@@ -25,17 +25,17 @@ me = discord.ClientUser
 async def on_ready():
 	print(f'{bot.user.name} has connected to Discord!')
 
-@bot.command(name='newtask', help='Adds a new task to the list')
+@bot.command(name='new', help='Adds a new task to the list')
 async def newTask(ctx, name, *taskName):
 	allTask[name] = " ".join(taskName)
-	await ctx.send(allTask[name])
+	await ctx.send("Added task " + name)
 
-@bot.command(name='deltask', help='Deletes a task from the list')
+@bot.command(name='delete', help='Deletes a task from the list')
 async def newTask(ctx, name):
 	del allTask[name]
 	await ctx.send("Deleted task " + name)
 
-@bot.command(name='listtask', help='Lists all tasks')
+@bot.command(name='list', help='Lists all tasks')
 async def listTasks(ctx):
 	if allTask:
 		await ctx.send("These are the current tasks")
