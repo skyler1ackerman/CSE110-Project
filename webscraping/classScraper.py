@@ -1,11 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 from collections import defaultdict
+from urllib.parse import urljoin
 
 URL = "https://ucsd.edu/catalog/front/courses.html"
 coursePage = requests.get(URL)
 
-
+# This method gets all of the links to the other course pages 
 def getCourseLinks(soup):
 	# Make a default dict (Dict made of lists)
 	courseList = defaultdict(list)
@@ -28,15 +29,21 @@ def printAttributes(var):
 	for x in dir(var):
 		print(x)
 
+def parseURLS(allCourse):
+	for key, linkList in allCourse.items():
+		for i, shortUrl in enumerate(linkList):
+			linkList[i] = urljoin(URL,shortUrl)
 
 #
 soup = BeautifulSoup(coursePage.content, 'html.parser')
 
 allCourse = getCourseLinks(soup)
+parseURLS(allCourse)
 
 # This is just to show the lists
 for key, linkList in allCourse.items():
 	print(key, linkList)
+
 
 # TODO: How to navigate through the given links
 # TODO: How to pull the class info on each page
