@@ -21,7 +21,7 @@ class Departments extends React.Component{
             </div>
             <div className= 'container'>
                 <h1>Departments feature coming Soon</h1>
-                <h2>Designed by Team San Diego</h2>
+                <p>Designed by Team San Diego</p>
             </div>
             </body>
         );

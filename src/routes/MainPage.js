@@ -28,7 +28,7 @@ class MainPage extends React.Component {
                 <div className='container'>
                     <head>Hello</head>
                     <h1>Triton Groups</h1>
-                    <h4>A site that connects you with your classmates</h4>
+                    <p>A site that connects you with your classmates</p>
                     <br/>
 
 
