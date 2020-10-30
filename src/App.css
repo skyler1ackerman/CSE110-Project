@@ -46,6 +46,7 @@
   margin: auto;
   width: 100%;
   height:100vh;
+  font-size: x-large;
   font-family: "Comic Sans MS";
 }
 
@@ -53,7 +54,7 @@
   font-family: "Comic Sans MS";
   color: white;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   font-size: large;
   padding-top: 20px;
 
@@ -75,4 +76,6 @@ a{
   color:white;
 }
 
-
+label{
+  padding-left: 2em;
+}

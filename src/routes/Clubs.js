@@ -12,7 +12,7 @@ const backgroundStyle = {
 
 }
 
-class Login extends React.Component{
+class Clubs extends React.Component{
     render(){
         return(
             <body style={backgroundStyle}>
@@ -20,7 +20,7 @@ class Login extends React.Component{
                 <NavBar/>
             </div>
             <div className= 'container'>
-                <h1>Login feature coming Soon</h1>
+                <h1>Clubs feature coming Soon</h1>
                 <h2>Designed by Team San Diego</h2>
             </div>
             </body>
@@ -28,4 +28,4 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default Clubs;

@@ -28,12 +28,9 @@ class MainPage extends React.Component {
                 <div className='container'>
                     <head>Hello</head>
                     <h1>Triton Groups</h1>
+                    <h4>A site that connects you with your classmates</h4>
                     <br/>
-                    <h2>A site that connects you with your classmates</h2>
-                    <br/>
-                    <label>
-                        Search by class <SearchBar/>
-                    </label>
+
 
                     {/*<img src="/group.png" alt="group"  width="639" height="385"/>*/}
                 </div>

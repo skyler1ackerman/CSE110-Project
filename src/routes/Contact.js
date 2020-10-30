@@ -20,7 +20,7 @@ class Contact extends React.Component{
               <NavBar/>
           </div>
           <div className= 'container'>
-            <h1>Coming Soon</h1>
+            <h1>Contact feature coming Soon</h1>
               <h2>Designed by Team San Diego</h2>
           </div>
           </body>

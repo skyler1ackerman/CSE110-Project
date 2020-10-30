@@ -1,6 +1,9 @@
-import React from "react";
-import "../App.css"
+import React from 'react';
+import SearchBar from "../components/SearchBar";
+
+import '../components/NavBar'
 import NavBar from "../components/NavBar";
+
 const backgroundStyle = {
 
     backgroundSize: 'cover',
@@ -12,20 +15,22 @@ const backgroundStyle = {
 
 }
 
-class Login extends React.Component{
-    render(){
+class Classes extends React.Component{
+    render() {
         return(
             <body style={backgroundStyle}>
             <div>
                 <NavBar/>
             </div>
-            <div className= 'container'>
-                <h1>Login feature coming Soon</h1>
-                <h2>Designed by Team San Diego</h2>
+            <div className='container'>
+
+                <label>
+                    Search by class <SearchBar/>
+                </label>
             </div>
             </body>
-        );
+            );
     }
 }
 
-export default Login;
+export default Classes;
