@@ -44,12 +44,26 @@ async def listTasks(ctx):
 	else:
 		await ctx.send("There are no current tasks")
 
+@bot.command(name='story',help='Records all stories.')
+async def recordStory(ctx, name, *story):
+	allStory[name] = " ".join(story)
+	await ctx.send("Added story " + name)
+
+
+@bot.command(name='checkoff')
+async def checkoffTask(ctx, taskName):
+	allTask[taskName]+=":Finished!"
+	msg = await ctx.send("Checked off task "+ taskName)
+	await msg.add_reaction("✅")
+
 
 @bot.command(name='shutdown',help='Shuts down the script')
 async def shutdown(ctx):
 	await ctx.send('See ya nerds')
 	await ctx.bot.logout()
 	taskStore.dumpTasks(allTask)
+	storyStore.dumpStories(allStory)
 
 allTask = taskStore.loadTasks()
+allStory = storyStore.loadStories()
 bot.run(TOKEN)
