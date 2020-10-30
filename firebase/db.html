@@ -11,6 +11,33 @@
     <body>
         DB html page!
         <button onclick="dbFunction()">db button</button>
+        <input type="file" id="upload"> 
+        <script>
+            document.getElementById('upload').addEventListener('change', readFileAsString)
+            function readFileAsString() {
+            var files = this.files;
+            if (files.length === 0) {
+                console.log('No file is selected');
+                return;
+            }
+            var arrToBePassed; 
+            var strNoSpace;
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                console.log('File content:', event.target.result);
+                strNoSpace = removeWhiteSpace(event.target.result);
+                arrToBePassed = strNoSpace.split("\n");
+                // console.log("arrtobepassed:" , arrToBePassed);
+                dbFunction(arrToBePassed);
+       
+            };
+            reader.readAsText(files[0]);
+        }
+        </script>
+
+
+
+
         <script src="" async defer></script>
         <script src="javascript/database.js"></script>
         <script src="" async defer></script>
