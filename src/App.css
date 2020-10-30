@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+.container{
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height:100vh;
+  font-family: "Comic Sans MS";
+}
+
+.navbar{
+  font-family: "Comic Sans MS";
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+nav p{
+  padding: 0 10px;
+
+}

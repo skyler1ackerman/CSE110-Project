@@ -1,21 +1,44 @@
 import React from 'react';
 
+const backgroundStyle = {
 
-const divStyle = {
-    textAlign: 'center'
-};
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    width: '100%',
+    height: '100',
+    backgroundImage: `url('/GeiselNight.jpg')`,
+
+}
+
+
 
 class MainPage extends React.Component {
     render(){
         return(
-            <div style={divStyle}>
+            <body style={backgroundStyle}>
+                <div>
+                    <nav className='navbar'>
+                        <p>Home</p>
+                        <p>Login</p>
+                        <p>Contact Us</p>
+                    </nav>
+                </div>
+                <div className='container'>
+                    <head>Hello</head>
+                    <h1>Triton Groups</h1>
+                    <br/>
+                    <h2>A site that connects you with your classmates</h2>
+                    <br/>
+                    <label>
+                        Search by class
+                        <input name="class" type="class" placeholder="class name" />
+                    </label>
 
-                <style></style>
-                <head>Hello</head>
-                <h1>Triton Groups</h1>
-                <h2>A site that connects you with your classmates</h2>
-                <iframe src="https://drive.google.com/file/d/15hSrMKwayM1RAeHU9W-XG9P-MuyUNEID/preview" width="639" height="385"></iframe>
-            </div>
+                    {/*<img src="/group.png" alt="group"  width="639" height="385"/>*/}
+                </div>
+            </body>
+
         );
     }
 
