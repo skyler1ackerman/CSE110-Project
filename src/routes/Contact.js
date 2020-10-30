@@ -15,11 +15,11 @@ const backgroundStyle = {
 class Contact extends React.Component{
     render(){
         return(
-          <body className={'container'} style={backgroundStyle}>
+          <body style={backgroundStyle}>
           <div>
               <NavBar/>
           </div>
-          <div >
+          <div className= 'container'>
             <h1>Coming Soon</h1>
               <h2>Designed by Team San Diego</h2>
           </div>
