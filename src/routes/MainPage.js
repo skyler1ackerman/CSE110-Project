@@ -1,5 +1,8 @@
 import React from 'react';
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
+
+import '../components/NavBar'
+import NavBar from "../components/NavBar";
 
 const backgroundStyle = {
 
@@ -7,23 +10,20 @@ const backgroundStyle = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     width: '100%',
-    height: '100',
+    height: '100%',
     backgroundImage: `url('/GeiselNight.jpg')`,
 
 }
 
 
-
 class MainPage extends React.Component {
+
+
     render(){
         return(
             <body style={backgroundStyle}>
                 <div>
-                    <nav className='navbar'>
-                        <p>Home</p>
-                        <p>Login</p>
-                        <p>Contact Us</p>
-                    </nav>
+                    <NavBar/>
                 </div>
                 <div className='container'>
                     <head>Hello</head>

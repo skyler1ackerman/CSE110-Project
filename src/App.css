@@ -53,8 +53,10 @@
   font-family: "Comic Sans MS";
   color: white;
   display: flex;
-  justify-content: flex-end;
-  margin-right: 10px;
+  justify-content: space-around;
+  font-size: large;
+  padding-top: 20px;
+
 }
 
 nav p{
@@ -72,4 +74,5 @@ nav p{
 a{
   color:white;
 }
+
 
