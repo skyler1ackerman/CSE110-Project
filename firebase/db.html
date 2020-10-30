@@ -24,10 +24,16 @@
             var strNoSpace;
             var reader = new FileReader();
             reader.onload = function(event) {
-                console.log('File content:', event.target.result);
+                // console.log('File content:', event.target.result);
                 strNoSpace = removeWhiteSpace(event.target.result);
-                arrToBePassed = strNoSpace.split("\n");
-                // console.log("arrtobepassed:" , arrToBePassed);
+                arrToBePassed = strNoSpace.split(",");
+                
+                for(var i = 0; i < arrToBePassed.length; i++){
+                    if(arrToBePassed[i] == ""){
+                        arrToBePassed[i] = "AAAAAAA";
+                    }
+                }
+                console.log("arrtobepassed:" , arrToBePassed);
                 dbFunction(arrToBePassed);
        
             };
