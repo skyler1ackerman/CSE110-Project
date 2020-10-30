@@ -5,7 +5,7 @@ import  '../App.css';
 
 
 const options =[
-    { value: 'https://discord.gg/kgrG8Gz', label: 'CSE110'},
+    { value: 'https://discord.gg/VAMwwrB', label: 'CSE110'},
     { value: 'www.google.com', label: 'Google'},
     { value: 'www.youtube.com', label: 'Youtube'}
 ]
@@ -58,6 +58,7 @@ class SearchBar extends React.Component{
                          color={'aqua'}
                          closeOnSelect={true}
                          onChange={classSearched => this.handleOnChange(classSearched)}
+                         multi={true}
                 />
 
                 <Outputs options={this.state.Links}/>
