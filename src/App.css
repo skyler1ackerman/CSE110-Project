@@ -61,3 +61,15 @@ nav p{
   padding: 0 10px;
 
 }
+
+.dropdown{
+  color: black;
+  background-color: white;
+  backgroundRepeat: 'no-repeat';
+
+}
+
+a{
+  color:white;
+}
+

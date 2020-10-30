@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from "./SearchBar";
 
 const backgroundStyle = {
 
@@ -31,8 +32,7 @@ class MainPage extends React.Component {
                     <h2>A site that connects you with your classmates</h2>
                     <br/>
                     <label>
-                        Search by class
-                        <input name="class" type="class" placeholder="class name" />
+                        Search by class <SearchBar/>
                     </label>
 
                     {/*<img src="/group.png" alt="group"  width="639" height="385"/>*/}
