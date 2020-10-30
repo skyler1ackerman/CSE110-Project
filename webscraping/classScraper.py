@@ -56,10 +56,11 @@ def getClasses(allCourse):
 			for courseObj in courseSoup.find_all(class_="course-name"):
 				# Get the text from the course-name object
 				classText = courseObj.get_text()
+				classText = classText.split()
 				# Get text returns the full title of the class with units 
 				# (Ex. ANTH 280B. Core Seminar in Cultural Anthropology (4))
-				# To get just the className, get all of the text up to the first period
-				classNames.append(classText[0:classText.find('.')])
+				# To get just the className, get the first two words and edit out the period.
+				classNames.append((' '.join(classText[0:2])).replace('.', ''))
 	return classNames
 
 # Get the base soup

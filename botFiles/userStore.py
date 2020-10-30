@@ -8,5 +8,3 @@ def dumpStories(taskList):
 def loadStories():
 	with open('storyList/stories') as f:
 		return json.load(f)
-
-print("Working")

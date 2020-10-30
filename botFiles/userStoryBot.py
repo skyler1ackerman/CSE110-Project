@@ -25,12 +25,13 @@ async def showCtx(ctx):
 	
 
 @bot.command(name='id')
-async def getId(ctx):
-	channel = ctx.channel
-	messages = await channel.history(limit=20).flatten()
+async def getId(ctx, parseWord):
+	messages = await ctx.channel.history(limit=200).flatten()
+	dmChannel = await ctx.author.create_dm()
+	tempList = []
 	for x in messages:
-		if "nerds" in x.content:
-			await ctx.send(x.author.name + " suggested " + x.content + " at " + str(x.created_at))
+		if parseWord in x.content and not x.author.bot:
+			print(x.content)
 			userStories.append(x.content)
 
 	
