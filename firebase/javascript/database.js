@@ -28,6 +28,10 @@ function writeClasses(name, profname, qtr, yr, link) {
 
 
 function removeWhiteSpace(strwithspace){
-    return strwithspace.replace(/\\|\/|\ |\.|\#|\$|\[|\]|\"|\(|\)/g,'');
-
+   
+  if(strwithspace=="") {
+    return strwithspace+"a";
+  }
+  return strwithspace.replace(/\\|\/|\ |\.|\#|\$|\[|\]|\"|\(|\)/g,'');
+    
 }
