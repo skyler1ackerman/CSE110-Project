@@ -9,19 +9,42 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        This is Index.html 
-        
-        
-        <button onclick="signInFunction()">google signin</button>
-        <button onclick="signOutFunction()">google signout button</button>
-        <button onclick="testFunction()">test button</button>
-        <br><br><br>
-        <input type="button" onclick="location.href='db.html';" value="Go to db.html" />
+        DB html page!
+        <button onclick="dbFunction()">db button</button>
+        <input type="file" id="upload"> 
+        <script>
+            document.getElementById('upload').addEventListener('change', readFileAsString)
+            function readFileAsString() {
+            var files = this.files;
+            if (files.length === 0) {
+                console.log('No file is selected');
+                return;
+            }
+            var arrToBePassed; 
+            var strNoSpace;
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                //console.log('File content:', event.target.result);
+                strNoSpace = removeWhiteSpace(event.target.result);
+                arrToBePassed = strNoSpace.split("\n");
+                console.log("arrtobepassed:" , arrToBePassed);
+                dbFunction(arrToBePassed);
+       
+            };
+            reader.readAsText(files[0]);
+        }
+        </script>
 
-        <!-- below is firebase SDKs-->
+
+
+
+        <script src="" async defer></script>
+        <script src="javascript/database.js"></script>
         <script src="" async defer></script>
         <script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
         <script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+        
+        <script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
         <script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
         <!-- <script defer src="./init-firebase.js"></script> -->
         <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -29,11 +52,6 @@
         <!-- TODO: Add SDKs for Firebase products that you want to use
              https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-             https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script> 
         <script>
           // Your web app's Firebase configuration
           // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -51,6 +69,6 @@
           firebase.initializeApp(firebaseConfig);
           firebase.analytics();
         </script>
-         <script src="javascript/login.js"></script>
     </body>
+    
 </html>
