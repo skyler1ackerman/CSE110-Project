@@ -9,15 +9,18 @@ class DisplayData extends Component {
             items: []
         };
 
-        this.firebaseRef = db.database().ref("teamMates");
+        this.firebaseRef = db.database().ref("testclasses");
         this.firebaseRef.on('value', dataSnapshot => {
             let items = [];
             dataSnapshot.forEach(childSnapshot => {
                 let item = childSnapshot.val();
                 item['.key'] = childSnapshot.key;
+                item['name'] = childSnapshot.key;
+                // item['info'] = childSnapshot.key.child().child("discordInfo");
                 items.push(item);
             });
             this.setState({items});
+            console.log(items);
         });
 
     }
@@ -27,9 +30,9 @@ class DisplayData extends Component {
 
     render() {
         const records = this.state.items.map(items =>
-            <tr key={items.name}>
+            <tr key={items.key}>
                 <td style={{width: '200px', textAlign: 'center'}}>{items.name}</td>
-                <td style={{width: '200px', textAlign: 'center'}}>{items.age}</td>
+                <td style={{width: '200px', textAlign: 'center'}}>{items.info}</td>
             </tr>
         );
 
