@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import TeamMembers from "../components/TeamMembers";
 import DisplayData from "../components/DisplayData";
 import db from "../base";
