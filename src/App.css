@@ -81,19 +81,23 @@ a{
   color:white;
 }
 
-label{
-  padding-left: 2em;
-}
+
 
 button{
   font-size: 20px;
   font-weight: bolder;
-
-  background-color: white;
+  background-color: transparent;
+  color: white;
   border-radius: 8px;
   padding: 15px 20px;
+  border-color: transparent;
 }
 button:hover{
-  background-color: #61dafb;
-  color:white;
+  background-color: transparent;
+  color: grey;
+}
+
+.SignOutButton{
+  float: right;
+
 }

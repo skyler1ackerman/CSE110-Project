@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css"
 import NavBar from "../components/NavBar";
+import db from "../base";
 const backgroundStyle = {
 
     backgroundSize: 'cover',
@@ -22,6 +23,7 @@ class Clubs extends React.Component{
             <div className= 'container'>
                 <h1>Clubs feature coming Soon</h1>
                 <p>Designed by Team San Diego</p>
+                <button className="SignOutButton" onClick={() => db.auth().signOut()}>Sign Out</button>
             </div>
             </body>
         );

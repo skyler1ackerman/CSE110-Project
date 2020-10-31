@@ -1,6 +1,10 @@
 import React from 'react';
 import  '../App.css';
 import { withRouter} from 'react-router-dom';
+import db from "../base";
+
+
+
 class NavBar extends React.Component{
     constructor(props) {
         super(props);
@@ -35,14 +39,19 @@ class NavBar extends React.Component{
 
     render(){
         return(
-            <nav className='navbar'>
-                <label onClick={this.redirectHome}>HOME</label >
-                {/*<label onClick={this.redirectLogin}>LOGIN</label >*/}
-                <label onClick={this.redirectClasses}>CLASSES</label >
-                <label onClick={this.redirectClubs}>CLUBS</label >
-                <label onClick={this.redirectDepartments}>DEPARTMENTS</label >
-                <label  onClick={this.redirectContact}>CONTACT</label >
-            </nav>
+            <div>
+                <nav className='navbar'>
+                    <button onClick={this.redirectHome}>HOME</button >
+                    {/*<button onClick={this.redirectLogin}>LOGIN</button >*/}
+                    <button onClick={this.redirectClasses}>CLASSES</button >
+                    <button onClick={this.redirectClubs}>CLUBS</button >
+                    <button onClick={this.redirectDepartments}>DEPARTMENTS</button >
+                    <button  onClick={this.redirectContact}>CONTACT</button >
+                </nav>
+
+            </div>
+
+
         );
     }
 }
