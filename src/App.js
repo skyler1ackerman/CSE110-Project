@@ -8,20 +8,24 @@ import Classes from "./routes/Classes";
 import Clubs from "./routes/Clubs";
 import Departments from "./routes/Departments";
 import Contact from "./routes/Contact";
-
+import PrivateRoute from "./auth/PrivateRoute";
+import  {AuthProvider} from "./auth/Auth";
 
 function App() {
     return (
-        <Router>
-            <div>
-                <Route exact path="/" component={MainPage}/>
-                <Route exact path="/Login" component={Login}/>
-                <Route exact path="/Classes" component={Classes}/>
-                <Route exact path="/Clubs" component={Clubs}/>
-                <Route exact path="/Departments" component={Departments}/>
-                <Route exact path="/Contact" component={Contact}/>
-            </div>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <div>
+                    <Route exact path="/" component={MainPage}/>
+                    <Route exact path="/Login" component={Login}/>
+                    <PrivateRoute exact path="/Classes" component={Classes}/>
+                    <PrivateRoute exact path="/Clubs" component={Clubs}/>
+                    <PrivateRoute exact path="/Departments" component={Departments}/>
+                    <Route exact path="/Contact" component={Contact}/>
+                </div>
+            </Router>
+        </AuthProvider>
+
 
     );
 }

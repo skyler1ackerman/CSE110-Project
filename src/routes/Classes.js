@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from "../components/SearchBar";
-
+import db , { provider2 } from "../base"
 import '../components/NavBar'
 import NavBar from "../components/NavBar";
 
@@ -27,6 +27,7 @@ class Classes extends React.Component{
                 <label>
                     Search by class <SearchBar/>
                 </label>
+                <button onClick={() => db.auth().signOut()}>Sign Out</button>
             </div>
             </body>
             );

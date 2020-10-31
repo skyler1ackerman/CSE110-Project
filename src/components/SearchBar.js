@@ -30,7 +30,6 @@ function Outputs(props){
     );
     return (
         <div>
-
             {content}
         </div>
     )

@@ -84,3 +84,16 @@ a{
 label{
   padding-left: 2em;
 }
+
+button{
+  font-size: 20px;
+  font-weight: bolder;
+
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px 20px;
+}
+button:hover{
+  background-color: #61dafb;
+  color:white;
+}

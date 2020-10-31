@@ -12,9 +12,9 @@ class NavBar extends React.Component{
     redirectHome =()=>{
         this.props.history.push("/");
     }
-    redirectLogin= ()=>{
+    /*= ()=>{
         this.props.history.push("/Login");
-    }
+    }*/
 
     redirectClasses =()=>{
         this.props.history.push("/Classes");
@@ -37,7 +37,7 @@ class NavBar extends React.Component{
         return(
             <nav className='navbar'>
                 <label onClick={this.redirectHome}>HOME</label >
-                <label onClick={this.redirectLogin}>LOGIN</label >
+                {/*<label onClick={this.redirectLogin}>LOGIN</label >*/}
                 <label onClick={this.redirectClasses}>CLASSES</label >
                 <label onClick={this.redirectClubs}>CLUBS</label >
                 <label onClick={this.redirectDepartments}>DEPARTMENTS</label >
