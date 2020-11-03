@@ -1,8 +1,13 @@
 function submit_class(){
     var classInput = document.getElementById("inputClasses").value;
-    localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
-    window.location.href = "classDB.html";
-    // console.log(classInput);
+    //check if user input is valid
+    if(classes.includes(classInput)){
+        localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
+        window.location.href = "classDB.html";
+    }
+    else{
+        alert("The class you entered is not in our Database.");
+    }
 }
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,

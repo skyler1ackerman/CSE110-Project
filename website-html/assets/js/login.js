@@ -38,7 +38,7 @@
       } // => "Tabs1")
       else{
         console.log("signin successful!");
-        window.location.href = "search.html";
+        window.location.href = "afterlogin.html";
       }
       // ...
     }).catch(function(error) {
