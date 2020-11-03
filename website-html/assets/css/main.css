@@ -4147,3 +4147,44 @@ input, select, textarea {
     all: initial;
     all: unset;
 }
+
+
+/* search bar */
+
+  
+  /*the container must be positioned relative:*/
+  .autocomplete {
+	position: relative;
+	display: inline-block;
+  }
+
+  
+  .autocomplete-items {
+	position: absolute;
+	border: 1px solid gray;
+	border-bottom: none;
+	border-top: none;
+	z-index: 99;
+	/*position the autocomplete items to be the same width as the container:*/
+	top: 100%;
+	left: 0;
+	right: 0;
+  }
+  
+  .autocomplete-items div {
+	padding: 10px;
+	cursor: pointer;
+	background-color: darkgray;  
+	border-bottom: 1px solid #111111;  
+  }
+  
+  /*when hovering an item:*/
+  .autocomplete-items div:hover {
+	background-color: #e9e9e9; 
+  }
+  
+  /*when navigating through the items using the arrow keys:*/
+  .autocomplete-active {
+	background-color: DodgerBlue !important; 
+	color: #111111;  
+  }

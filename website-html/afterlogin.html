@@ -48,12 +48,20 @@
 							<h2>Triton Groups</h2>
 
 							<p>
-								To make distance learning less distant <br />
-								Discord Bot - Gary
-							</p>
-							<ul class="actions special">
-								<li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li>
-							</ul>
+								Get Discord Servers You Need
+                            </p>
+                            <p style="font-size: 30px;">&#8595;</p>
+						
+                            <ul class="actions special">
+                                <!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
+                                <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+                                <form autocomplete="off" action="/action_page.php">
+                                    <div class="autocomplete" style="width:400px;">
+                                      <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes or Department">
+                                    </div>       
+                                </form>
+                            </ul>
+                            <input type="submit" onclick="submit_class()">
 							<!-- <ul class="actions special">
 								<li><a href="#" class="button primary">Activate</a></li>
 							</ul> -->
@@ -179,7 +187,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/login.js"></script>
+            <script src="assets/js/login.js"></script>
+            <script src="assets/js/searchbar.js"></script>
 
 
 			<!-- below is firebase SDKs-->
@@ -257,7 +266,8 @@
 					// $('.colorchange').css('background-color', '#333333 !important');
 				  }
 				});
-			</script>
+            </script>
+            
 
 	</body>
 </html>
