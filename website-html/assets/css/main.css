@@ -4185,6 +4185,6 @@ input, select, textarea {
   
   /*when navigating through the items using the arrow keys:*/
   .autocomplete-active {
-	background-color: DodgerBlue !important; 
+	background-color: #e89980 !important; 
 	color: #111111;  
   }
