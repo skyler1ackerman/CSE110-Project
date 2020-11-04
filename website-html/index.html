@@ -222,10 +222,11 @@
 				var top2 = $('#two').offset().top;
 				var top3 = $('#three').offset().top;
 	
+	
 				$(document).scroll(function() {
-				  var scrollPos = $(document).scrollTop();
+				  var scrollPos = $(document).scrollTop()+100; //100: buffer
 				  if (scrollPos < top1) {
-					console.log("passed1!")
+					console.log("passed1!!")
 					$('.zero-text').css('font-weight', 'bold');
 					$('.one-text').css('font-weight', 'normal');
 					$('.two-text').css('font-weight', 'normal');
