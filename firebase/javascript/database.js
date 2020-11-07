@@ -1,5 +1,3 @@
-
-
 function controlDB(num) {
   console.log("controlDB() called :)"); 
   firebase.initializeApp(firebaseConfig);
@@ -40,8 +38,74 @@ function writeClasses(name, profname, qtr, yr, link) {
   
 }
 
-
 function removeWhiteSpace(strwithspace){
     return strwithspace.replace(/\\|\/|\ |\.|\#|\$|\[|\]|\"|\(|\)/g,'');
 
 }
+
+function clubsInfo(clubfile){
+  var clubInfo = clubfile;
+  
+  console.log("clubsInfo() called :)");
+  firebase.initializeApp(firebaseConfig);
+  // console.log(clubInfo);
+
+  // Converting JSON-encoded string to JS object
+  var obj = JSON.parse(clubInfo);
+
+  // var keys = Object.keys(obj);
+
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      var i = 0;
+      var arr = ["none", "none", "none", "none" ,"none" ,"none", "none"];
+      for (var inside_key in obj[key]) {
+        if (obj[key].hasOwnProperty(inside_key)) {
+          arr[i] = obj[key][inside_key];
+        }
+        // else{
+        //   arr[i] = " - ";
+        // }
+        i++;
+      }
+      writeClubs(key, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6]);
+      console.log(key);
+      console.log(arr);
+    }
+  }
+
+  // writeClubs(obj, obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6])
+  // console.log(keys);
+
+}
+
+function removeErrorChar(removechar){
+  return removechar.replace(/\.|\#|\$|\[|\]/g,'');
+}
+
+function writeClubs(clubname, year, purpose, created, status, org_type, org_email, soc_media){
+  clubname = removeErrorChar(clubname);
+  console.log("writeClubs() called :)"); 
+
+  firebase.database().ref('clubs/').child(clubname).update({
+    "Academic Year": year, 
+    "Purpose": purpose, 
+    "Created": created, 
+    "Status": status, 
+    "Organization Type": org_type, 
+    "Organization Email": org_email, 
+    "Social Media": soc_media
+  });
+}
+
+// Example entry:
+
+// "Society of Hispanic Professional Engineers ": {
+//   "Academic Year": "2020",
+//   "Purpose": "The purpose of SHPE UCSD is to promote the advancement of Hispanics in math, science, engineering and other\rtechnical fields through our student chapter benefits; including but not limited to Professional Development, Academic\rDevelopment, and Community Service. SHPE at UCSD is a non-profit student organization.",
+//   "Created": "8/25/2020",
+//   "Status": "Current",
+//   "Organization Type": "Undergraduate",
+//   "Organization Email": "shpe@eng.ucsd.edu",
+//   "Social Media": "shpeucsd.org"
+// },

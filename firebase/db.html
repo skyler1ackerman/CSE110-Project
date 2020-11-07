@@ -12,7 +12,9 @@
         DB html page!
         <button onclick="controlDB(77)"> control DB Button</button>
         <button onclick="dbFunction()">db button</button>
-        <input type="file" id="upload"> 
+        
+        <li>for classes</li>
+        <input type="file" id="upload">
         <script>
             document.getElementById('upload').addEventListener('change', readFileAsString)
             function readFileAsString() {
@@ -37,6 +39,25 @@
                 console.log("arrtobepassed:" , arrToBePassed);
                 dbFunction(arrToBePassed);
        
+            };
+            reader.readAsText(files[0]);
+        }
+        </script>
+        <br/>
+        <li>for clubs</li>
+        <input type="file" id="selectFiles" />
+        <script>
+            document.getElementById('selectFiles').addEventListener('change', readFileAsString)
+            function readFileAsString() {
+            var files = this.files;
+            if (files.length === 0) {
+                console.log('No file is selected');
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function(e) {
+
+                clubsInfo(e.target.result);
             };
             reader.readAsText(files[0]);
         }
