@@ -35,7 +35,7 @@ rules = ruleFile.readlines()
     # 10 rules: 10th rule = index 10; -1 is needed 
 """
 
-ruleCount = len(ruleTitles_list)-1
+ruleCount = len(ruleTitles_list)
 ruleWall = ""
 for x in range (ruleCount):
     ruleWall += str(x) + '. ' + ruleTitles_list[x] + ' ' + ruleDesc_list[x] + '\n'
@@ -44,22 +44,25 @@ for x in range (ruleCount):
 async def on_ready():
     print("Bot is online.")
 
-@discordClient.command(aliases = ['rules'])
+@discordClient.command(aliases = ['rules'], help='List a specific rule or list all rules')
     # It is possible to set default arguments
-async def rule(ctx, number=-1):
-    if number == 34:
-        await ctx.send("We got a person of culture right here! ( ͡° ͜ʖ ͡°)")
-
-    elif number == -1:
+async def rule(ctx, number=None):
+    if number is None:
         await ctx.send(ruleWall)
-            # char limit for sending text = 2000
-            # the line below combines the rules list into a single string
-        # ruleWall = '\n'.join((line) for line in rules)
 
-    elif number > ruleCount:
-        await ctx.send("We dont have that many rules!")
+    else: 
+        if number.isnumeric():
+            if int(number) == 34:
+                await ctx.send("We got a person of culture right here! ( ͡° ͜ʖ ͡°)")
+            elif int(number) >= 0 and int(number) <= ruleCount:
+                await ctx.send(str(number) + '. ' + ruleTitles_list[int(number)] + '\n' + ruleDesc_list[int(number)])
+            else:
+                await ctx.send("We dont have that many rules!")
+        else:
+            await ctx.send("Please write a valid number for a specific rule, or no number for all rules")
 
-    else:
-        await ctx.send(str(number) + '. ' + ruleTitles_list[int(number)] + '\n' + ruleDesc_list[int(number)])
+# @discordClient.command()
+# async def help():
+#     await ctx.send("Rules bot commands:'\n'!rule(s):        list all rules'\n'!rule(s) <number>:    list a single rule")
 
 discordClient.run(DISCORD_TOKEN)
