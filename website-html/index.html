@@ -20,7 +20,7 @@
 							<!-- <ul> -->
 								<!-- <li class="special"> Navigation bar starts here -->
 									<ul class="menuToggle">
-										<a href="index.html" class="no-style more scrolly zero-text"><b>Home</b></a>
+										<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
 										&nbsp;
 										|
 										&nbsp;
@@ -215,15 +215,13 @@
 			  firebase.initializeApp(firebaseConfig);
 			  firebase.analytics();
 			</script>
-			 <script src="javascript/login.js"></script>
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			 <script>
 				var top1 = $('#one').offset().top;
 				var top2 = $('#two').offset().top;
 				var top3 = $('#three').offset().top;
-	
-	
+		
 				$(document).scroll(function() {
 				  var scrollPos = $(document).scrollTop()+100; //100: buffer
 				  if (scrollPos < top1) {
@@ -257,8 +255,8 @@
 				// 	$('.one-text').css('font-weight', 'normal');
 				// 	$('.two-text').css('font-weight', 'normal');
 				// 	$('.three-text').css('font-weight', 'bold');
-					// $('.colorchange').css('background', '#333333 !important');
-					// $('.colorchange').css('background-color', '#333333 !important');
+				//	// $('.colorchange').css('background', '#333333 !important');
+				//	// $('.colorchange').css('background-color', '#333333 !important');
 				//   }
 				});
 			</script>
