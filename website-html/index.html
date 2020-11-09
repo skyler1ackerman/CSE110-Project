@@ -18,17 +18,17 @@
 						<!-- <h1><a href="index.html">TritonGroups</a></h1> -->
 						<nav id="nav">
 							<!-- <ul> -->
-								<!-- <li class="special"> -->
+								<!-- <li class="special"> Navigation bar starts here -->
 									<ul class="menuToggle">
-										<a href="index.html" class="no-style more scrolly zero-text">Home</a>
+										<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="#one" class="no-style more scrolly one-text">About Us</a>
+										<a href="#one" class="no-style more scrolly one-text">How It Works</a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="#two" class="no-style more scrolly two-text">How It Works</a>
+										<a href="#two" class="no-style more scrolly two-text">About Us</a>
 										&nbsp;
 										|
 										<a href="#three" class="no-style more scrolly three-text">Contact Us</a>
@@ -36,6 +36,7 @@
 										|
 										&nbsp;
 										<a href="javascript:signInFunction();" class="no-style more scrolly four-text">Login</a>
+
 										&nbsp;
 										&nbsp;
 										&nbsp;
@@ -214,14 +215,13 @@
 			  firebase.initializeApp(firebaseConfig);
 			  firebase.analytics();
 			</script>
-			 <script src="javascript/login.js"></script>
+			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			 <script>
 				var top1 = $('#one').offset().top;
 				var top2 = $('#two').offset().top;
 				var top3 = $('#three').offset().top;
-	
-	
+		
 				$(document).scroll(function() {
 				  var scrollPos = $(document).scrollTop()+100; //100: buffer
 				  if (scrollPos < top1) {
@@ -248,15 +248,16 @@
 					$('.three-text').css('font-weight', 'normal');
 					// $('.colorchange').css('background', '#111111 !important');
 					// $('.colorchange').css('background-color', '#111111 !important');
-				  } else if (scrollPos >= top3) {
-					console.log("passed3!")
-					$('.zero-text').css('font-weight', 'normal');
-					$('.one-text').css('font-weight', 'normal');
-					$('.two-text').css('font-weight', 'normal');
-					$('.three-text').css('font-weight', 'bold');
-					// $('.colorchange').css('background', '#333333 !important');
-					// $('.colorchange').css('background-color', '#333333 !important');
-				  }
+				  } 
+				//   else if (scrollPos >= top3) {
+				// 	console.log("passed3!")
+				// 	$('.zero-text').css('font-weight', 'normal');
+				// 	$('.one-text').css('font-weight', 'normal');
+				// 	$('.two-text').css('font-weight', 'normal');
+				// 	$('.three-text').css('font-weight', 'bold');
+				//	// $('.colorchange').css('background', '#333333 !important');
+				//	// $('.colorchange').css('background-color', '#333333 !important');
+				//   }
 				});
 			</script>
 
