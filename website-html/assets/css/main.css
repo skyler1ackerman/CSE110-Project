@@ -4217,3 +4217,9 @@ input, select, textarea {
   .form-container > select{
 	margin:10px;
   }
+
+
+  /*nav bar hover effect*/
+  #header nav > ul > a:hover {
+	color: rgb(160, 156, 156);
+  }
