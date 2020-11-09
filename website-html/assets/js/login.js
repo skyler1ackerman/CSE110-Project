@@ -68,6 +68,7 @@
         localStorage.removeItem("user-email"); 
         localStorage.removeItem("user-displayname"); 
         console.log("signout successful");
+        window.location.href = "index.html";
       }).catch(function(error) {
         // An error happened.
         console.log("signout error!");

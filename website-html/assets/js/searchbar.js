@@ -39,12 +39,65 @@ function getDiscordInfo(className){
       displayedInfo += "          |invite url:   ";
       displayedInfo += info_inviteurl;
       displayedInfo += "";
-      document.getElementById("discordInfo".concat(counter)).innerHTML = displayedInfo;
+      if(info_year==null || info_year=="" || info_year=="\0"){
+        document.getElementById("discordInfo".concat(counter)).innerHTML = "DB Empty - No Discord info Added Yet";
+        return;
+      }else{
+        document.getElementById("discordInfo".concat(counter)).innerHTML = displayedInfo;
+      }
       counter++;
-
-     });
+     })
     });
 }
+
+function addDiscordInfotoDB(){
+  console.log("addDiscordInfotoDB() called!");
+  if (!firebase.apps.length) {
+    console.log("firebase app initlized!");
+    firebase.initializeApp(firebaseConfig);
+  }
+  
+  //First, count number of children in the class
+  var className = localStorage.getItem("classinput")
+  var classRef = "classes/".concat(className);
+  console.log("Finding class ->", className); 
+  var class_ref = firebase.database().ref(classRef);
+  var counter = 1;
+  class_ref.on("value", function(snapshot) {
+   snapshot.forEach(function(snapshot) {
+    counter++;
+   });
+  });
+
+  //now add a discordinfo inside class DB
+  var discordRef = "classes/" + className + "/discordInfo" + counter;
+  console.log(discordRef);
+  var discord_ref = firebase.database().ref(discordRef);
+  discord_ref.set({
+    inviteURL: document.getElementById("invitelink").value,
+    profName: document.getElementById("professor").value,
+    quarter : document.getElementById("quarter").value,
+    year: document.getElementById("year").value,
+  });
+}
+
+function resetDB(){
+  console.log("addDiscordInfotoDB() called!");
+  if (!firebase.apps.length) {
+    console.log("firebase app initlized!");
+    firebase.initializeApp(firebaseConfig);
+  }
+  
+  //First, count number of children in the class
+  var className = localStorage.getItem("classinput")
+  var classRef = "classes/".concat(className);
+  console.log("Finding class ->", className); 
+  var class_ref = firebase.database().ref(classRef);
+  class_ref.set({
+    discordInfo1: "",
+  });
+}
+
 function submit_class(){
     var classInput = document.getElementById("inputClasses").value;
     //check if user input is valid

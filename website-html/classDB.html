@@ -53,13 +53,13 @@
                         <ul class="actions special" style="margin-bottom:0px;">
                             <!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
                             <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
-                            <form autocomplete="off" action="/action_page.php">
+                            <form id="formsection" autocomplete="off">
                                 <div class="autocomplete" style="width:400px;">
                                   <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes or Department">
                                 </div>       
                             </form>
                         </ul>
-                        <div style="text-align:center; margin-bottom:50px;"> <input type="submit" onclick="submit_class()"></div>
+						<div style="text-align:center; margin-bottom:50px;" id="searchbarsubmit"> <input type="submit" onclick="submit_class()"></div>
                        
 						<div class="inner">
 							<h2 id="myclass"></h2>
@@ -73,6 +73,53 @@
                             <p id="discordInfo3">  </p>
 							<p id="discordInfo4">  </p>
 							<p id="discordInfo5">  </p>
+							<!-- <p style="font-weight:bold; margin:auto;width:4%;border: 1px solid #ffffff;"><a href="javascript:addDiscordInfotoDB();">&#43;</a></p> -->
+							<button id="openformButton" class="open-button" onclick="openForm()">&#43;</button>
+							<script>
+								function openForm() {
+								  document.getElementById("myForm").style.display = "block";
+								  document.getElementById("openformButton").style.display = "none";
+								  document.getElementById("formsection").style.display = "none";
+								  document.getElementById("searchbarsubmit").style.display = "none";
+								}
+								
+								function closeForm() {
+								  document.getElementById("myForm").style.display = "none";
+								  document.getElementById("openformButton").style.display = "block";
+								  document.getElementById("openformButton").style.margin = "auto"; //necessary for button position
+								}
+							</script>
+							<div class="form-popup" id="myForm">
+							  <form class="form-container">
+							    <h1>Add a New Discord Server to Database</h1>
+							
+							    <!-- <label ><b>Year</b></label> -->
+								<!-- <input type="text" placeholder="Year" id="year" required> -->
+								<select name="selectyear" rows="1" id="year">
+									<option value="">Select Year</option>
+									<option value="2020">2020</option>
+									<option value="2021">2021</option>
+								</select>
+							    <!-- <label ><b>Quarter</b></label> -->
+								<!-- <input type="text" placeholder="Quarter" id="quarter" required> -->
+								<select name="selectquarter" rows="1" id="quarter">
+									<option value="">Select Quarter</option>
+									<option value="spring">Spring</option>
+									<option value="summer">Summer</option>
+									<option value="fall">Fall</option>
+									<option value="winter">Winter</option>
+								</select>
+								<!-- <label ><b>Professor</b></label> -->
+								<input type="text" placeholder="Professor" id="professor" required>
+								<!-- <label ><b>Discord Invite Link</b></label> -->
+							    <input type="text" placeholder="Discord Invite Link" id="invitelink" required>
+							
+							    <button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px;">Submit</button>
+								<button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px;">Close</button>
+								<button type="button" class="btn cancel" onclick="resetDB()" style="margin-top:20px;">Reset DB(temp)</button>
+							  </form>
+							</div>
+							<!-- <p style="width:20px; border: 1px solid #ffffff">&#43;</p> -->
 						
                            
 						</div>

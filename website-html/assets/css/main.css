@@ -4193,3 +4193,27 @@ input, select, textarea {
 	background-color: #e89980 !important; 
 	color: #111111;  
   }
+
+  
+
+
+  /*popupform css*/
+
+  /* The popup form - hidden by default */
+  .form-popup {
+	width:70%;
+	margin:auto;
+	display: none;
+	border: 3px solid #f1f1f1;
+
+  }
+  .form-container {
+	padding:20px;
+  }
+  
+  .form-container > input{
+	margin:10px;
+  }
+  .form-container > select{
+	margin:10px;
+  }
