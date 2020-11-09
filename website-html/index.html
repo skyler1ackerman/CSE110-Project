@@ -18,21 +18,21 @@
 						<!-- <h1><a href="index.html">TritonGroups</a></h1> -->
 						<nav id="nav">
 							<!-- <ul> -->
-								<!-- <li class="special"> -->
+								<!-- <li class="special"> Navigation bar starts here -->
 									<ul class="menuToggle">
-										<a href="index.html" class="no-style more scrolly zero-text">Home</a>
+										<a href="index.html" class="no-style more scrolly zero-text"><b>Home</b></a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="#one" class="no-style more scrolly one-text">About Us</a>
+										<a href="#one" class="no-style more scrolly one-text">How It Works</a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="#two" class="no-style more scrolly two-text">How It Works</a>
+										<a href="#two" class="no-style more scrolly two-text">About Us</a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="javascript:signInFunction();" class="no-style more scrolly two-text">Login</a>
+										<a href="javascript:signInFunction();" class="no-style more scrolly three-text">Login</a>
 										&nbsp;
 										&nbsp;
 										&nbsp;
@@ -216,6 +216,7 @@
 			  firebase.analytics();
 			</script>
 			 <script src="javascript/login.js"></script>
+			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			 <script>
 				var top1 = $('#one').offset().top;
@@ -249,15 +250,16 @@
 					$('.three-text').css('font-weight', 'normal');
 					// $('.colorchange').css('background', '#111111 !important');
 					// $('.colorchange').css('background-color', '#111111 !important');
-				  } else if (scrollPos >= top3) {
-					console.log("passed3!")
-					$('.zero-text').css('font-weight', 'normal');
-					$('.one-text').css('font-weight', 'normal');
-					$('.two-text').css('font-weight', 'normal');
-					$('.three-text').css('font-weight', 'bold');
+				  } 
+				//   else if (scrollPos >= top3) {
+				// 	console.log("passed3!")
+				// 	$('.zero-text').css('font-weight', 'normal');
+				// 	$('.one-text').css('font-weight', 'normal');
+				// 	$('.two-text').css('font-weight', 'normal');
+				// 	$('.three-text').css('font-weight', 'bold');
 					// $('.colorchange').css('background', '#333333 !important');
 					// $('.colorchange').css('background-color', '#333333 !important');
-				  }
+				//   }
 				});
 			</script>
 
