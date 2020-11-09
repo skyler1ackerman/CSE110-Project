@@ -150,9 +150,8 @@
 							<h2>Contact Us</h2>
 						</header>
 						<form id="feedbackForm">
-							<textarea placeholder="Email" rows="1" id="email"></textarea>
-							<textarea placeholder="First Name" rows="1" id="firstname"></textarea>
-							<textarea placeholder="Last Name" rows="1" id="lastname"></textarea>
+							<textarea placeholder="Email" rows="1" id="email" readonly></textarea>
+							<textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
 							<select name="Issue_type" rows="1" id="Issue_type">
 								<option value="">Select Message Type</option>
 								<option value="Bug">Bug</option>
@@ -206,6 +205,17 @@
 					</footer>
 
 			</div>
+			<script>
+				window.onload = function() {
+					document.getElementById("email").placeholder=localStorage.getItem("user-email");
+					document.getElementById("email").value=localStorage.getItem("user-email");
+					// localStorage.removeItem("user-email"); 
+					document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+					// localStorage.removeItem("user-displayname"); 
+					//remove local storage items in signout function for security.
+				}     
+			</script>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

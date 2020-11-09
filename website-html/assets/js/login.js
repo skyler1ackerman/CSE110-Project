@@ -23,6 +23,7 @@
       // The signed-in user info.
       var user = result.user;
       console.log(user);
+      console.log(user.displayName);
       console.log(user.email);
       //check if the email ends with @ucsd.edu
       console.log(user.email.substr(user.email.length - 9));
@@ -37,6 +38,11 @@
         });
       } // => "Tabs1")
       else{
+        //save user info to local storage to use in it feedback form
+            localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
+            console.log(user.email, "saved to local storage");
+            localStorage.setItem("user-displayname", user.displayName);
+            console.log(user.displayName, "saved to local storage");
         console.log("signin successful!");
         window.location.href = "afterlogin.html";
       }
@@ -58,6 +64,9 @@
     if (answer) {
       firebase.auth().signOut().then(function() {
         // Sign-out successful.
+        //remove user info
+        localStorage.removeItem("user-email"); 
+        localStorage.removeItem("user-displayname"); 
         console.log("signout successful");
       }).catch(function(error) {
         // An error happened.

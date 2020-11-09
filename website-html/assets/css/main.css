@@ -3024,6 +3024,7 @@ input, select, textarea {
 				background-color: rgba(255, 255, 255, 0.075);
 				margin: 15px; 
 				border: 1px solid rgb(128,128,128);
+				resize: none;
 			}
 
 			.wrapper.style3 select {
