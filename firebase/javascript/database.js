@@ -14,6 +14,7 @@ function dbFunction(arr) {
     console.log("dbFunction called :)"); 
     firebase.initializeApp(firebaseConfig);
     populateClasses(arr);
+    console.log(arr);
     // writeClasses('CSE110', 'Gary', 'Fall', '2020', 'test.com');
     // writeClasses('CSE110', 'Gery', 'Fall', '2020', 'test2.com');
     // writeClasses('CSE111', 'Gory', 'Fall', '2020', 'test.com');
