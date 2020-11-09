@@ -2,6 +2,7 @@ import discord
 import os
 import pyrebase
 from config import fireConfig
+from config import token1
 from dotenv import load_dotenv
 from discord.ext import commands, tasks
 from datetime import datetime
@@ -17,7 +18,7 @@ auth = firebase.auth()
 db = firebase.database()
 
 load_dotenv()
-TOKEN = "Nzc0MDM3NDQ1OTQzMDk5NDAy.X6R8jA.R9mAid5oTdyxvcPgSQ8xwiKTjKM"
+TOKEN = token1
 GUILD= 'CSE110 Bot Testing'
 
 bot = commands.Bot(command_prefix='!')
@@ -32,33 +33,34 @@ async def on_ready():
 
 @bot.command(name='addAssign', help='Adds a new assignment to the list')
 async def newEvent(ctx, name, *date):
-	if db.child(ctx.guild.id).child(top).child(name).shallow().get().val():
+	if db.child(ctx.channel.id).child(top).child(name).shallow().get().val():
 		await ctx.send('Assignment "' + name + ' already exists!')
 	else:
-		db.child(ctx.guild.id).child(top).child(name).set(''.join(date))
+		db.child(ctx.channel.id).child(top).child(name).set(''.join(date))
 		await ctx.send('Added assignment "' + name + '"')
 
 @bot.command(name='delAssign', help='Deletes an assignment from the list')
 async def delEvent(ctx, name):
-	if db.child(ctx.guild.id).child(top).child(name).shallow().get().val():
-		db.child(ctx.guild.id).child(top).child(name).remove()
+	if db.child(ctx.channel.id).child(top).child(name).shallow().get().val():
+		db.child(ctx.channel.id).child(top).child(name).remove()
 		await ctx.send('Removed assignment "' + name + '"')
 	else:
 		await ctx.send('Assignment "' + name + '" does not exist')
 
 @bot.command(name='listAssign', help='Lists all assignments')
 async def listEvents(ctx):
-	if db.child(ctx.guild.id).child(top).shallow().get():
+	if db.child(ctx.channel.id).child(top).shallow().get():
 		newDate = {}
-		eventArray = []
-		allEvents = db.child(ctx.guild.id).child(top).get().val()
-		for eventKey in allEvents:
-			for event in allEvents[eventKey]:
-				newDate[event] = allEvents[eventKey][event]
-		newData = list(newDate.items())
-		sortedData = sorted(newData, key=make_datetime)
-		for x, y in sortedData:
-			await ctx.send(y+': '+x)
+		assignArray = []
+		allAssign = db.child(ctx.channel.id).child(top).get().val()
+		for channelID in db.get().val():
+			if int(channelID) == ctx.channel.id:
+				for assignment in db.get().val()[channelID]['Assignments']:
+					newDate[assignment] = db.get().val()[channelID]['Assignments'][assignment]
+				newData = list(newDate.items())
+				sortedData = sorted(newData, key=make_datetime)
+				for x, y in sortedData:
+					await ctx.send(y+': '+x)
 	else:
 		await ctx.send("There are no assignments to list!")
 
@@ -78,15 +80,12 @@ async def checkSchedule():
 					currDateTime = datetime.now()
 					if date <= currDateTime:
 						channel = bot.get_channel(int(channelID))
-						print("channelID: " + channelID)
-						print("channel: " + channel)
 						if channel:
-							print("channel: " + channel)
 							await channel.send("@everyone, " + assignment + " is due today.")
 							db.child(channelID).child(top).child(assignment).remove()
-		# keep loop asleep for 60 seconds
-		await asyncio.sleep(10)
-# main, note that checkSchedule() will run before bot start-up and old events will be deleted with no message 
+#		# keep loop asleep for 60 seconds
+		await asyncio.sleep(60)
+## main, note that checkSchedule() will run before bot start-up and old events will be deleted with no message 
 bot.loop.create_task(checkSchedule())
 
 bot.run(TOKEN)
