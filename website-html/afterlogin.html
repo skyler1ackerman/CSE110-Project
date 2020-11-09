@@ -32,6 +32,10 @@
 									&nbsp;
 									|
 									&nbsp;
+                  <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+                  &nbsp;
+									|
+									&nbsp;
 									<a href="javascript:signInFunction();" class="no-style more scrolly three-text">Login</a>
 									&nbsp;
 									&nbsp;
@@ -114,26 +118,22 @@
 				<section id="three" class="wrapper style3 special">
 					<div class="inner">
 						<header class="major">
-							<h2>Seamless support system</h2>
+							<h2>Contact Us</h2>
 							<!-- <p>your satisfaction is my satisfaction</p> -->
 						</header>
-						<ul class="features">
-							<li class="icon fa-paper-plane">
-								<h3>24/7 customer service</h3>
-								<p>we do this cause otherwise you wont hire me</p>
-							</li>
-							<li class="icon solid fa-laptop">
-								<h3>24/7 customer service</h3>
-								<p>we do this cause otherwise you wont hire me</p>
-							</li>
-							<li class="icon solid fa-code">
-								<h3>24/7 customer service</h3>
-								<p>we do this cause otherwise you wont hire me</p>
-							</li>
-							<li class="icon solid fa-headphones-alt">
-								<h3>24/7 customer service</h3>
-								<p>we do this cause otherwise you wont hire me</p>
-							</li>
+						<form id="feedbackForm">
+							<textarea placeholder="Email" id="email"></textarea>
+							<textarea placeholder="First Name" id="firstname"></textarea>
+							<textarea placeholder="Last Name" id="lastname"></textarea>
+							<select name=”Issue_type" id="Issue_type" >
+								<option value="Bug">Bug</option>
+								<option value="Suggestion">Suggestion</option>
+								<option value="FeedBack">Feedback</option>
+								<option value="Other">Other</option>
+							</select>
+							<textarea placeholder="Explanation" rows="5" cols="100" id="explanation"></textarea>
+							<input id="Submit" type="submit"></input>
+						</form>
 							<!-- <li class="icon fa-heart">
 								<h3>24/7 customer service</h3>
 								<p>we do this cause otherwise you wont hire me</p>
@@ -142,7 +142,6 @@
 								<h3>24/7 customer service</h3>
 								<p>we do this cause otherwise you wont hire me</p>
 							</li> -->
-						</ul>
 					</div>
 				</section>
 

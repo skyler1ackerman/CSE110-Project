@@ -79,5 +79,28 @@
 			});
 
 		}
+	// submit form
+	$('#feedbackForm').submit(function (evt) {
+		/*if (!firebase.apps.length) {
+			console.log("firebase app initlized!");
+			firebase.initializeApp(firebaseConfig);
+		}*/
+		var formData = {
+			"first name": $('#firstname').val(),
+			"last name": $('#lastname').val(),
+			"email": $('#email').val(),
+			"issue type": $('#Issue_type').val(),
+			"explanation": $('#explanation').val()
+		}
+		$('#firstname').val('');
+		$('#lastname').val('');
+		$('#email').val('');
+		$('#Issue_type').val('Bug');
+		$('#explanation').val('');
+		evt.preventDefault();
+		// /*firebase.database().ref('feedback form').push(formData);*/
+	})
 
 })(jQuery);
+
+
