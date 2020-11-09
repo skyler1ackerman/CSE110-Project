@@ -95,7 +95,7 @@
 		$('#firstname').val('');
 		$('#lastname').val('');
 		$('#email').val('');
-		$('#Issue_type').val('Bugs');
+		$('#Issue_type').val('Bug');
 		$('#explanation').val('');
 		evt.preventDefault();
 		// /*firebase.database().ref('feedback form').push(formData);*/
