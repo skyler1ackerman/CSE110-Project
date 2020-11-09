@@ -2811,7 +2811,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: #e89980;
+			/* background-color: #e89980; */
 			color: #c8ece9;
 		}
 
@@ -2974,7 +2974,9 @@ input, select, textarea {
 		}
 
 		.wrapper.style3 {
-			background-color: #e89980;
+			/* background-color: #e89980; */
+			/* background-color: rgba(232, 153, 128, 0.350); */
+			background-color: rgba(0, 0, 0, 0.650);
 			color: #d3d4e4;
 		}
 
@@ -3020,6 +3022,8 @@ input, select, textarea {
 			.wrapper.style3 select,
 			.wrapper.style3 textarea {
 				background-color: rgba(255, 255, 255, 0.075);
+				margin: 15px; 
+				border: 1px solid rgb(128,128,128);
 			}
 
 			.wrapper.style3 select {
@@ -3133,7 +3137,7 @@ input, select, textarea {
 			}
 
 		.wrapper.style4 {
-			background-color: transparent;
+			background-color: #e89980;
 		}
 
 		.wrapper.style5 {
