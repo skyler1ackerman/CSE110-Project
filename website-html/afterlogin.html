@@ -207,6 +207,9 @@
 			</div>
 			<script>
 				window.onload = function() {
+					//get all class info from FB databse
+					getClassSnapshot();
+
 					document.getElementById("email").placeholder=localStorage.getItem("user-email");
 					document.getElementById("email").value=localStorage.getItem("user-email");
 					// localStorage.removeItem("user-email"); 
@@ -235,6 +238,7 @@
 			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
 			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
 			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
 			<!-- <script defer src="./init-firebase.js"></script> -->
 			<!-- The core Firebase JS SDK is always required and must be listed first -->
 			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
