@@ -143,49 +143,7 @@
 			  firebase.initializeApp(firebaseConfig);
 			  firebase.analytics();
 			</script>
-			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-			 <script>
-				var top1 = $('#one').offset().top;
-				var top2 = $('#two').offset().top;
-				var top3 = $('#three').offset().top;
-	
-				$(document).scroll(function() {
-                    var scrollPos = $(document).scrollTop()+100; //100: buffer
-				  if (scrollPos < top1) {
-					console.log("passed1!")
-					$('.zero-text').css('font-weight', 'bold');
-					$('.one-text').css('font-weight', 'normal');
-					$('.two-text').css('font-weight', 'normal');
-					$('.three-text').css('font-weight', 'normal');
-					// $('.colorchange').css('background', '#555555');
-					// $('.colorchange').css('background-color', '#555555 !important');
-				  } else if (scrollPos >= top1 && scrollPos < top2) {
-					console.log("passed1!")
-					$('.zero-text').css('font-weight', 'normal');
-					$('.one-text').css('font-weight', 'bold');
-					$('.two-text').css('font-weight', 'normal');
-					$('.three-text').css('font-weight', 'normal');
-					// $('.colorchange').css('background', '#555555');
-					// $('.colorchange').css('background-color', '#555555 !important');
-				  } else if (scrollPos >= top2 && scrollPos < top3) {
-					console.log("passed2!")
-					$('.zero-text').css('font-weight', 'normal');
-					$('.one-text').css('font-weight', 'normal');
-					$('.two-text').css('font-weight', 'bold');
-					$('.three-text').css('font-weight', 'normal');
-					// $('.colorchange').css('background', '#111111 !important');
-					// $('.colorchange').css('background-color', '#111111 !important');
-				  } else if (scrollPos >= top3) {
-					console.log("passed3!")
-					$('.zero-text').css('font-weight', 'normal');
-					$('.one-text').css('font-weight', 'normal');
-					$('.two-text').css('font-weight', 'normal');
-					$('.three-text').css('font-weight', 'bold');
-					// $('.colorchange').css('background', '#333333 !important');
-					// $('.colorchange').css('background-color', '#333333 !important');
-				  }
-				});
-            </script>
+			 
             
 
 	</body>
