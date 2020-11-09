@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="assets/js/searchbar.js"></script>
+
 	</head>
 	<body class="landing is-preload">
 
@@ -43,9 +45,9 @@
 					</header>
                 <script>
                     window.onload = function() {
-						document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
-						getDiscordInfo(localStorage.getItem("classinput")); //get 5 discord infos from DB
-						getClassSnapshot(); //get all class info from DB for search engine
+						document.getElementById("mycommunity").innerHTML=localStorage.getItem("communityInput");
+						console.log(document.getElementById("inputCommunities"))
+                    // document.getElementById("myclass").innerHTML="CSE101"
                     }
                 </script>
 				<!-- Banner -->
@@ -53,77 +55,30 @@
                         <ul class="actions special" style="margin-bottom:0px;">
                             <!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
                             <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
-                            <form id="formsection" autocomplete="off">
-                                <div class="autocomplete" style="width:400px;">
-                                  <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes or Department">
+
+                            <form autocomplete="off" action="/action_page.php">
+								<div class="autocomplete" style="width:400px;">
+								  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
 								</div>
                             </form>
                         </ul>
-						<div style="text-align:center; margin-bottom:50px;" id="searchbarsubmit"> <input type="submit" onclick="submit_class()"></div>
+                        <div style="text-align:center; margin-bottom:50px;"> <input type="submit" onclick="submit_community()"></div>
 
 						<div class="inner">
-							<h2 id="myclass"></h2>
+							<h2 id="mycommunity"></h2>
 
 							<!-- <p>
                                 LIST OF DISCORD SERVERS HERE from firebase.
                             </p>
                             <p style="font-size: 30px;">&#8595;</p> -->
-                            <p id="discordInfo1">  </p>
-                            <p id="discordInfo2">  </p>
-                            <p id="discordInfo3">  </p>
-							<p id="discordInfo4">  </p>
-							<p id="discordInfo5">  </p>
-							<!-- <p style="font-weight:bold; margin:auto;width:4%;border: 1px solid #ffffff;"><a href="javascript:addDiscordInfotoDB();">&#43;</a></p> -->
-							<button id="openformButton" class="open-button" onclick="openForm()">&#43;</button>
-							<script>
-								function openForm() {
-								  document.getElementById("myForm").style.display = "block";
-								  document.getElementById("openformButton").style.display = "none";
-								  document.getElementById("formsection").style.display = "none";
-								  document.getElementById("searchbarsubmit").style.display = "none";
-								}
-
-								function closeForm() {
-								  document.getElementById("myForm").style.display = "none";
-								  document.getElementById("openformButton").style.display = "block";
-								  document.getElementById("openformButton").style.margin = "auto"; //necessary for button position
-								  document.getElementById("formsection").style.display = "block";
-								  document.getElementById("searchbarsubmit").style.display = "block";
-								}
-							</script>
-							<div class="form-popup" id="myForm">
-							  <form class="form-container">
-							    <h1>Add a New Discord Server to Database</h1>
-
-							    <!-- <label ><b>Year</b></label> -->
-								<!-- <input type="text" placeholder="Year" id="year" required> -->
-								<select name="selectyear" rows="1" id="year">
-									<option value="">Select Year</option>
-									<option value="2020">2020</option>
-									<option value="2021">2021</option>
-								</select>
-							    <!-- <label ><b>Quarter</b></label> -->
-								<!-- <input type="text" placeholder="Quarter" id="quarter" required> -->
-								<select name="selectquarter" rows="1" id="quarter">
-									<option value="">Select Quarter</option>
-									<option value="spring">Spring</option>
-									<option value="summer">Summer</option>
-									<option value="fall">Fall</option>
-									<option value="winter">Winter</option>
-								</select>
-								<!-- <label ><b>Professor</b></label> -->
-								<input type="text" placeholder="Professor" id="professor" required>
-								<!-- <label ><b>Discord Invite Link</b></label> -->
-							    <input type="text" placeholder="Discord Invite Link" id="invitelink" required>
-
-							    <button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px;">Submit</button>
-								<button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px;">Close</button>
-								<button type="button" class="btn cancel" onclick="resetDB()" style="margin-top:20px;">Reset DB(temp)</button>
-							  </form>
-							</div>
-							<!-- <p style="width:20px; border: 1px solid #ffffff">&#43;</p> -->
-
-
+                        <div>
+                            <h5>Academic Year</h5><label>2020</label>
+                            <h5>Created</h5><label>9/24/2020</label>
+                            <h5>Status</h5><label>Current</label>
+                            <h5>Organization Tylabele</h5><label>Undergraduate</label>
+                            <h5>Discord Invite Link</h5><label>httlabels://discord.gg/k9dkGlabel3A</label>
+                            <h5>Organization Email</h5><label>ucsdacalabellabelellachoir@gmail.com</label>
+                        </div>
 						</div>
 						<!-- <a href="#one" class="more scrolly">About Us</a> -->
 					</section>
@@ -134,7 +89,7 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="icons">
-							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+							<!-- <li><a href="#" class="icon brands fa-twitter"><slabelan class="label">Twitter</slabelan></a></li> -->
 							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
@@ -158,14 +113,23 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
             <script src="assets/js/login.js"></script>
-            <script src="assets/js/searchbar.js"></script>
 
 
 			<!-- below is firebase SDKs-->
+			<script src="" async defer></script>
+			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+			<!-- <script defer src="./init-firebase.js"></script> -->
+			<!-- The core Firebase JS SDK is always required and must be listed first -->
 			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-			<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script> -->
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+			<!-- TODO: Add SDKs for Firebase products that you want to use
+				 https://firebase.google.com/docs/web/setup#available-libraries -->
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+			<!-- The core Firebase JS SDK is always required and must be listed first -->
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+			<!-- TODO: Add SDKs for Firebase products that you want to use
+				 https://firebase.google.com/docs/web/setup#available-libraries -->
 			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
 			<script>
 			  // Your web app's Firebase configuration
@@ -184,5 +148,7 @@
 			  firebase.initializeApp(firebaseConfig);
 			  firebase.analytics();
 			</script>
+			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 	</body>
 </html>

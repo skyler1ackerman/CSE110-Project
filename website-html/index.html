@@ -8,8 +8,8 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="landing is-preload">
-		
-	
+
+
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
@@ -216,7 +216,7 @@
 			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
 			<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script> -->
 			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script> 
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
 			<script>
 			  // Your web app's Firebase configuration
 			  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -240,7 +240,6 @@
 				var top1 = $('#one').offset().top;
 				var top2 = $('#two').offset().top;
 				var top3 = $('#three').offset().top;
-		
 				$(document).scroll(function() {
 				  var scrollPos = $(document).scrollTop()+100; //100: buffer
 				  if (scrollPos < top1) {
@@ -267,7 +266,7 @@
 					$('.three-text').css('font-weight', 'normal');
 					// $('.colorchange').css('background', '#111111 !important');
 					// $('.colorchange').css('background-color', '#111111 !important');
-				  } 
+				  }
 				  else if (scrollPos >= top3) {
 					console.log("passed3!")
 					$('.zero-text').css('font-weight', 'normal');

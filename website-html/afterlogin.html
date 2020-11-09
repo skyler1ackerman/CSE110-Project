@@ -8,8 +8,8 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="landing is-preload">
-		
-	
+
+
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
@@ -55,23 +55,46 @@
 								Get Discord Servers You Need
                             </p>
                             <p style="font-size: 30px;">&#8595;</p>
-						
+
                             <ul class="actions special">
                                 <!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
                                 <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
                                 <form autocomplete="off" action="/action_page.php">
                                     <div class="autocomplete" style="width:400px;">
                                       <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes or Department">
-                                    </div>       
+                                    </div>
                                 </form>
-                            </ul>
+							</ul>
+
                             <input type="submit" onclick="submit_class()">
 							<!-- <ul class="actions special">
 								<li><a href="#" class="button primary">Activate</a></li>
 							</ul> -->
 						</div>
-						<a href="#one" class="more scrolly">About Us</a>
 					</section>
+				<!-- Banner -->
+				<section id="banner">
+					<div class="inner">
+						<div id="one">
+								<p>Browse Communities<br />
+								</p>
+						</div>
+						<ul class="actions special">
+							<!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
+							<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+							<form autocomplete="off" action="/action_page.php">
+								<div class="autocomplete" style="width:400px;">
+								  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+								</div>
+							</form>
+						</ul>
+
+						<input type="submit" onclick="submit_community()">
+						<!-- <ul class="actions special">
+							<li><a href="#" class="button primary">Activate</a></li>
+						</ul> -->
+					</div>
+				</section>
 
 				<!-- One -->
 				<section id="one" class="wrapper alt style2">
@@ -212,12 +235,12 @@
 
 					document.getElementById("email").placeholder=localStorage.getItem("user-email");
 					document.getElementById("email").value=localStorage.getItem("user-email");
-					// localStorage.removeItem("user-email"); 
+					// localStorage.removeItem("user-email");
 					document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
 					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-					// localStorage.removeItem("user-displayname"); 
+					// localStorage.removeItem("user-displayname");
 					//remove local storage items in signout function for security.
-				}     
+				}
 			</script>
 
 		<!-- Scripts -->
@@ -239,7 +262,7 @@
 			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
 			<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script> -->
 			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script> 
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
 			<script>
 			  // Your web app's Firebase configuration
 			  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -290,7 +313,7 @@
 				   $('.three-text').css('font-weight', 'normal');
 				   // $('.colorchange').css('background', '#111111 !important');
 				   // $('.colorchange').css('background-color', '#111111 !important');
-				 } 
+				 }
 			   	  else if (scrollPos >= top3) {
 			   		console.log("passed3!")
 			   		$('.zero-text').css('font-weight', 'normal');
@@ -302,7 +325,7 @@
 			   	  }
 			   });
 		   </script>
-            
+
 
 	</body>
 </html>
