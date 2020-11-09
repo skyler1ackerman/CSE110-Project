@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>tritongroups</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="landing is-preload">
+		
+	
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+                <!-- Header -->
+					<header id="header" class="alt">
+						<!-- <h1><a href="index.html">TritonGroups</a></h1> -->
+						<nav id="nav">
+							<!-- <ul> -->
+								<!-- <li class="special"> -->
+									<ul class="menuToggle">
+										<a href="afterlogin.html" class="no-style more scrolly zero-text">Back to Homepage</a>
+										&nbsp;
+										|
+										&nbsp;
+										<!-- <a href="#one" class="no-style more scrolly one-text">About Us</a>
+										&nbsp;
+										|
+										&nbsp;
+										<a href="#two" class="no-style more scrolly two-text">How It Works</a>
+										&nbsp;
+										|
+										&nbsp;
+										<a href="#three" class="no-style more scrolly three-text">Search</a>
+										&nbsp;
+										&nbsp;
+										&nbsp; -->
+									</ul>
+								<!-- </li> -->
+							<!-- </ul> -->
+						</nav>
+					</header>
+                <script>
+                    window.onload = function() {
+                        document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
+                    // document.getElementById("myclass").innerHTML="CSE101"
+                    }     
+                </script>
+				<!-- Banner -->
+					<section id="banner">
+                        <ul class="actions special" style="margin-bottom:0px;">
+                            <!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
+                            <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+                            <form autocomplete="off" action="/action_page.php">
+                                <div class="autocomplete" style="width:400px;">
+                                  <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes or Department">
+                                </div>       
+                            </form>
+                        </ul>
+                        <div style="text-align:center; margin-bottom:50px;"> <input type="submit" onclick="submit_class()"></div>
+                       
+						<div class="inner">
+							<h2 id="myclass"></h2>
+
+							<!-- <p>
+                                LIST OF DISCORD SERVERS HERE from firebase.
+                            </p>
+                            <p style="font-size: 30px;">&#8595;</p> -->
+                            <p>  fall 2020 gary invitelink https://discord.gg/k9dkGP3A</p>
+                            <p>  fall 2020 gayr invitelink https://discord.gg/k9dkGP3A</p>
+                            <p>  fall 2020 gary invitelink https://discord.gg/k9dkGP3A</p>
+                            <p>  fall 2020 gayr invitelink https://discord.gg/k9dkGP3A</p>
+						
+                           
+						</div>
+						<!-- <a href="#one" class="more scrolly">About Us</a> -->
+					</section>
+
+				
+
+				
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright"></br>
+							<li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+							<li>(408) 533-5213 |</li> </br>
+							<li>spryleaf@spryleaf.io |</li> </br>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script src="assets/js/login.js"></script>
+            <script src="assets/js/searchbar.js"></script>
+
+
+			<!-- below is firebase SDKs-->
+			<script src="" async defer></script>
+			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+			<!-- <script defer src="./init-firebase.js"></script> -->
+			<!-- The core Firebase JS SDK is always required and must be listed first -->
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+			<!-- TODO: Add SDKs for Firebase products that you want to use
+				 https://firebase.google.com/docs/web/setup#available-libraries -->
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+			<!-- The core Firebase JS SDK is always required and must be listed first -->
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+			<!-- TODO: Add SDKs for Firebase products that you want to use
+				 https://firebase.google.com/docs/web/setup#available-libraries -->
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script> 
+			<script>
+			  // Your web app's Firebase configuration
+			  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			  var firebaseConfig = {
+				apiKey: "AIzaSyBE4-bTw9_r8GOf1iPwLniOYd9Q6BcANdI",
+				authDomain: "tritongroups-c26fa.firebaseapp.com",
+				databaseURL: "https://tritongroups-c26fa.firebaseio.com",
+				projectId: "tritongroups-c26fa",
+				storageBucket: "tritongroups-c26fa.appspot.com",
+				messagingSenderId: "89265426122",
+				appId: "1:89265426122:web:8d44ef01d34059f03f6e33",
+				measurementId: "G-Z0TXVP3WVY"
+			  };
+			  // Initialize Firebase
+			  firebase.initializeApp(firebaseConfig);
+			  firebase.analytics();
+			</script>
+			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			 <script>
+				var top1 = $('#one').offset().top;
+				var top2 = $('#two').offset().top;
+				var top3 = $('#three').offset().top;
+	
+				$(document).scroll(function() {
+                    var scrollPos = $(document).scrollTop()+100; //100: buffer
+				  if (scrollPos < top1) {
+					console.log("passed1!")
+					$('.zero-text').css('font-weight', 'bold');
+					$('.one-text').css('font-weight', 'normal');
+					$('.two-text').css('font-weight', 'normal');
+					$('.three-text').css('font-weight', 'normal');
+					// $('.colorchange').css('background', '#555555');
+					// $('.colorchange').css('background-color', '#555555 !important');
+				  } else if (scrollPos >= top1 && scrollPos < top2) {
+					console.log("passed1!")
+					$('.zero-text').css('font-weight', 'normal');
+					$('.one-text').css('font-weight', 'bold');
+					$('.two-text').css('font-weight', 'normal');
+					$('.three-text').css('font-weight', 'normal');
+					// $('.colorchange').css('background', '#555555');
+					// $('.colorchange').css('background-color', '#555555 !important');
+				  } else if (scrollPos >= top2 && scrollPos < top3) {
+					console.log("passed2!")
+					$('.zero-text').css('font-weight', 'normal');
+					$('.one-text').css('font-weight', 'normal');
+					$('.two-text').css('font-weight', 'bold');
+					$('.three-text').css('font-weight', 'normal');
+					// $('.colorchange').css('background', '#111111 !important');
+					// $('.colorchange').css('background-color', '#111111 !important');
+				  } else if (scrollPos >= top3) {
+					console.log("passed3!")
+					$('.zero-text').css('font-weight', 'normal');
+					$('.one-text').css('font-weight', 'normal');
+					$('.two-text').css('font-weight', 'normal');
+					$('.three-text').css('font-weight', 'bold');
+					// $('.colorchange').css('background', '#333333 !important');
+					// $('.colorchange').css('background-color', '#333333 !important');
+				  }
+				});
+            </script>
+            
+
+	</body>
+</html>
