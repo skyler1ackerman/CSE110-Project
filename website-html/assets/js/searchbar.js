@@ -7,12 +7,41 @@ function getClassSnapshot(){
     var ref = firebase.database().ref("classes");
     ref.on("value", function(snapshot) {
      snapshot.forEach(function(childSnapshot) {
-      // var childData = childSnapshot.val(); // this is object
-      var className = childSnapshot.key; //class name
-      // var childchildval = childSnapshot.child("discordInfo1/inviteURL").val(); //discord info
-      // console.log(childKey);
-      // console.log(childchildval);
+      var className = childSnapshot.key; 
       classes.push(className);
+     });
+    });
+}
+
+//reads in every discord info from a class
+function getDiscordInfo(className){
+    console.log("getDiscordInfo() called :)"); 
+    if (!firebase.apps.length) {
+      console.log("firebase app initlized!");
+      firebase.initializeApp(firebaseConfig);
+    }
+    var classRef = "classes/".concat(className);
+    console.log("Finding class ->", className); 
+    var ref = firebase.database().ref(classRef);
+    var counter = 1;
+    ref.on("value", function(snapshot) {
+     snapshot.forEach(function(snapshot) {
+      var info_year = snapshot.child("year").val(); //discord info
+      var info_quarter = snapshot.child("quarter").val(); //discord info
+      var info_profname = snapshot.child("profName").val(); //discord info
+      var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
+      var displayedInfo = "year: ";
+      displayedInfo += info_year;
+      displayedInfo += "          |quarter: ";
+      displayedInfo += info_quarter;
+      displayedInfo += "          |professor: ";
+      displayedInfo += info_profname;
+      displayedInfo += "          |invite url:   ";
+      displayedInfo += info_inviteurl;
+      displayedInfo += "";
+      document.getElementById("discordInfo".concat(counter)).innerHTML = displayedInfo;
+      counter++;
+
      });
     });
 }

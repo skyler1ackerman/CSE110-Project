@@ -44,7 +44,8 @@
                 <script>
                     window.onload = function() {
 						document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
-						getClassSnapshot();
+						getDiscordInfo(localStorage.getItem("classinput")); //get 5 discord infos from DB
+						getClassSnapshot(); //get all class info from DB for search engine
                     }     
                 </script>
 				<!-- Banner -->
@@ -67,10 +68,11 @@
                                 LIST OF DISCORD SERVERS HERE from firebase.
                             </p>
                             <p style="font-size: 30px;">&#8595;</p> -->
-                            <p>  fall 2020 gary invitelink https://discord.gg/k9dkGP3A</p>
-                            <p>  fall 2020 gayr invitelink https://discord.gg/k9dkGP3A</p>
-                            <p>  fall 2020 gary invitelink https://discord.gg/k9dkGP3A</p>
-                            <p>  fall 2020 gayr invitelink https://discord.gg/k9dkGP3A</p>
+                            <p id="discordInfo1">  </p>
+                            <p id="discordInfo2">  </p>
+                            <p id="discordInfo3">  </p>
+							<p id="discordInfo4">  </p>
+							<p id="discordInfo5">  </p>
 						
                            
 						</div>
