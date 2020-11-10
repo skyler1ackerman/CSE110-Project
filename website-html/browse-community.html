@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>tritongroups</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="landing is-preload">
+
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+                <header id="header" class="alt">
+                    <!-- <h1><a href="index.html">TritonGroups</a></h1> -->
+                    <nav id="nav">
+                        <!-- <ul> -->
+                            <!-- <li class="special"> Navigation bar starts here -->
+								<ul class="menuToggle">
+									<a href="index.html" class="no-style more scrolly zero-text">Home</a>
+									&nbsp;
+									|
+									&nbsp;
+									<a href="#one" class="no-style more scrolly one-text">How It Works</a>
+									&nbsp;
+									|
+									&nbsp;
+									<a href="#two" class="no-style more scrolly two-text">About Us</a>
+									&nbsp;
+									|
+									&nbsp;
+               					    <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+               					    &nbsp;
+                                    |
+                                    <a href="browse-community.html" class="no-style more scrolly three-text" style="font-weight: bold;">Browse Communities</a>
+									&nbsp;
+								 	|
+									&nbsp;
+									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+									&nbsp;
+									&nbsp;
+									&nbsp;
+								</ul>
+								<!-- </li> -->
+                        <!-- </ul> -->
+                    </nav>
+                </header>
+				<!-- Banner -->
+				<section id="banner">
+					<div class="inner">
+						<div id="one">
+								<p>Browse Communities<br />
+								</p>
+						</div>
+						<ul class="actions special">
+							<!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
+							<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+							<form autocomplete="off" action="/action_page.php">
+								<div class="autocomplete" style="width:400px;">
+								  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+								</div>
+							</form>
+						</ul>
+
+						<input type="submit" onclick="submit_community()">
+						<!-- <ul class="actions special">
+							<li><a href="#" class="button primary">Activate</a></li>
+						</ul> -->
+					</div>
+				</section>
+
+
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright"></br>
+							<li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+							<li>(408) 533-5213 |</li> </br>
+							<li>spryleaf@spryleaf.io |</li> </br>
+						</ul>
+					</footer>
+
+			</div>
+			<script>
+				window.onload = function() {
+					//get all class info from FB databse
+					getClassSnapshot();
+					getCommunitySnapshot();
+
+					document.getElementById("email").placeholder=localStorage.getItem("user-email");
+					document.getElementById("email").value=localStorage.getItem("user-email");
+					// localStorage.removeItem("user-email");
+					document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+					// localStorage.removeItem("user-displayname");
+					//remove local storage items in signout function for security.
+				}
+			</script>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script src="assets/js/login.js"></script>
+			<script src="assets/js/searchbar.js"></script>
+			<script src="assets/js/feedback.js"></script>
+
+
+			<!-- below is firebase SDKs-->
+			<script src="" async defer></script>
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+			<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script> -->
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+			<script>
+			  // Your web app's Firebase configuration
+			  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			  var firebaseConfig = {
+				apiKey: "AIzaSyBE4-bTw9_r8GOf1iPwLniOYd9Q6BcANdI",
+				authDomain: "tritongroups-c26fa.firebaseapp.com",
+				databaseURL: "https://tritongroups-c26fa.firebaseio.com",
+				projectId: "tritongroups-c26fa",
+				storageBucket: "tritongroups-c26fa.appspot.com",
+				messagingSenderId: "89265426122",
+				appId: "1:89265426122:web:8d44ef01d34059f03f6e33",
+				measurementId: "G-Z0TXVP3WVY"
+			  };
+			  // Initialize Firebase
+			  firebase.initializeApp(firebaseConfig);
+			  firebase.analytics();
+			</script>
+			<!-- Jquery starts here: Javascript event handler for nav bar -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	</body>
+</html>

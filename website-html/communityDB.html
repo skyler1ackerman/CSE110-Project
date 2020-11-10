@@ -6,8 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script src="assets/js/searchbar.js"></script>
-
 	</head>
 	<body class="landing is-preload">
 
@@ -44,10 +42,11 @@
 						</nav>
 					</header>
                 <script>
+
                     window.onload = function() {
-						document.getElementById("mycommunity").innerHTML=localStorage.getItem("communityInput");
-						console.log(document.getElementById("inputCommunities"))
-                    // document.getElementById("myclass").innerHTML="CSE101"
+						const communityName = document.getElementById("mycommunity").innerHTML=localStorage.getItem("communityInput");
+						getCommunitySnapshot()
+						getCommunityInfoByName(communityName)
                     }
                 </script>
 				<!-- Banner -->
@@ -58,7 +57,7 @@
 
                             <form autocomplete="off" action="/action_page.php">
 								<div class="autocomplete" style="width:400px;">
-								  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+								  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities" />
 								</div>
                             </form>
                         </ul>
@@ -66,25 +65,19 @@
 
 						<div class="inner">
 							<h2 id="mycommunity"></h2>
-
-							<!-- <p>
-                                LIST OF DISCORD SERVERS HERE from firebase.
-                            </p>
-                            <p style="font-size: 30px;">&#8595;</p> -->
                         <div>
-                            <h5>Academic Year</h5><label>2020</label>
-                            <h5>Created</h5><label>9/24/2020</label>
-                            <h5>Status</h5><label>Current</label>
-                            <h5>Organization Tylabele</h5><label>Undergraduate</label>
-                            <h5>Discord Invite Link</h5><label>httlabels://discord.gg/k9dkGlabel3A</label>
-                            <h5>Organization Email</h5><label>ucsdacalabellabelellachoir@gmail.com</label>
+                            <h5>Academic Year</h5><span id="community-academic-year">2020</span>
+                            <h5>Created</h5><span id="community-date-created">9/24/2020</span>
+                            <h5>Status</h5><span id='community-status'>Current</span>
+                            <h5>Organization Type</h5><span id="community-organization-type">Undergraduate</span>
+                            <h5>Purpose</h5><div id="community-purpose">Undergraduate</div>
+                            <h5>Discord Invite Link</h5><span id="community-discord-link">None</span>
+                            <h5>Social Media</h5><span id="community-socialmedia">ucsdacadivdivellachoir@gmail.com</span>
+                            <h5>Email</h5><span id="community-email">ucsdacadivdivellachoir@gmail.com</span>
                         </div>
 						</div>
 						<!-- <a href="#one" class="more scrolly">About Us</a> -->
 					</section>
-
-
-
 
 				<!-- Footer -->
 					<footer id="footer">
@@ -112,43 +105,32 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-            <script src="assets/js/login.js"></script>
+			<script src="assets/js/login.js"></script>
+			<script src="assets/js/searchbar.js"></script>
 
 
-			<!-- below is firebase SDKs-->
-			<script src="" async defer></script>
-			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
-			<script defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
-			<!-- <script defer src="./init-firebase.js"></script> -->
-			<!-- The core Firebase JS SDK is always required and must be listed first -->
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-			<!-- TODO: Add SDKs for Firebase products that you want to use
-				 https://firebase.google.com/docs/web/setup#available-libraries -->
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
-			<!-- The core Firebase JS SDK is always required and must be listed first -->
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-			<!-- TODO: Add SDKs for Firebase products that you want to use
-				 https://firebase.google.com/docs/web/setup#available-libraries -->
-			<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
-			<script>
-			  // Your web app's Firebase configuration
-			  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-			  var firebaseConfig = {
-				apiKey: "AIzaSyBE4-bTw9_r8GOf1iPwLniOYd9Q6BcANdI",
-				authDomain: "tritongroups-c26fa.firebaseapp.com",
-				databaseURL: "https://tritongroups-c26fa.firebaseio.com",
-				projectId: "tritongroups-c26fa",
-				storageBucket: "tritongroups-c26fa.appspot.com",
-				messagingSenderId: "89265426122",
-				appId: "1:89265426122:web:8d44ef01d34059f03f6e33",
-				measurementId: "G-Z0TXVP3WVY"
-			  };
-			  // Initialize Firebase
-			  firebase.initializeApp(firebaseConfig);
-			  firebase.analytics();
-			</script>
-			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-	</body>
-</html>
+				<!-- below is firebase SDKs-->
+				<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+				<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+				<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script> -->
+				<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+				<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+				<script>
+				  // Your web app's Firebase configuration
+				  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+				  var firebaseConfig = {
+					apiKey: "AIzaSyBE4-bTw9_r8GOf1iPwLniOYd9Q6BcANdI",
+					authDomain: "tritongroups-c26fa.firebaseapp.com",
+					databaseURL: "https://tritongroups-c26fa.firebaseio.com",
+					projectId: "tritongroups-c26fa",
+					storageBucket: "tritongroups-c26fa.appspot.com",
+					messagingSenderId: "89265426122",
+					appId: "1:89265426122:web:8d44ef01d34059f03f6e33",
+					measurementId: "G-Z0TXVP3WVY"
+				  };
+				  // Initialize Firebase
+				  firebase.initializeApp(firebaseConfig);
+				  firebase.analytics();
+				</script>
+		</body>
+	</html>

@@ -35,6 +35,9 @@
                					    <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
                					    &nbsp;
 									|
+									<a href="browse-community.html" class="no-style more scrolly three-text">Browse Communities</a>
+									&nbsp;
+								 	|
 									&nbsp;
 									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
 									&nbsp;
@@ -232,6 +235,7 @@
 				window.onload = function() {
 					//get all class info from FB databse
 					getClassSnapshot();
+					getCommunitySnapshot();
 
 					document.getElementById("email").placeholder=localStorage.getItem("user-email");
 					document.getElementById("email").value=localStorage.getItem("user-email");
