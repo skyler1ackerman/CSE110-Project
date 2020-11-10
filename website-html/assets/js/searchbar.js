@@ -30,13 +30,13 @@ function getDiscordInfo(className){
       var info_quarter = snapshot.child("quarter").val(); //discord info
       var info_profname = snapshot.child("profName").val(); //discord info
       var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
-      var displayedInfo = "year: ";
+      var displayedInfo = "yr: ";
       displayedInfo += info_year;
-      displayedInfo += "          |quarter: ";
+      displayedInfo += "          |qtr: ";
       displayedInfo += info_quarter;
-      displayedInfo += "          |professor: ";
+      displayedInfo += "          |prof: ";
       displayedInfo += info_profname;
-      displayedInfo += "          |invite url:   ";
+      displayedInfo += "          |url:   ";
       displayedInfo += info_inviteurl;
       displayedInfo += "";
       if(info_year==null || info_year=="" || info_year=="\0"){
