@@ -1,4 +1,4 @@
- function testFunction() {
+function testFunction() {
     console.log("test called :)");
     const email = "yoryu@ucsd.edu"
     console.log(email.substr(email.length - 9)); //Outputs: Tabs1    

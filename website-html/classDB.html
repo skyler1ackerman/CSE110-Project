@@ -184,5 +184,15 @@
 			  firebase.initializeApp(firebaseConfig);
 			  firebase.analytics();
 			</script>
+
+			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+			<!-- this works only when we are using firebase hosting service-->
+			<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+			<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+  			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+  			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+			<script src="/__/firebase/init.js"></script>
+            
 	</body>
 </html>
