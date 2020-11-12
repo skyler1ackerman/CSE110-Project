@@ -1,3 +1,8 @@
+function searchbarClubSelected(){
+  console.log("searchbarClubSelected() called");
+  document.getElementById("classSearchBar").style.display = "none";
+  document.getElementById("clubSearchBar").style.display = "block";
+}
 function getCommunityInfoByName(name){
   console.log("getCommunityInfoByName() called :)");
   var ref = firebase.database().ref("clubs").child(name);

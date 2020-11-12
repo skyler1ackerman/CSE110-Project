@@ -1,3 +1,9 @@
+function searchbarClassSelected(){
+  console.log("searchbarClassSelected() called");
+  document.getElementById("clubSearchBar").style.display = "none";
+  document.getElementById("classSearchBar").style.display = "block";
+}
+
 function getClassSnapshot(){
     console.log("getClassSnapshot() called :)");
     var ref = firebase.database().ref("classes");
