@@ -15,19 +15,27 @@
 	  	<script src="/__/firebase/init.js"></script>
 
 
-		 
-		<div class="chatroom">
-			Triton Live Chat 
-			<ul id="messages"></ul>
-
+		<div class="chatroom" style="width: 350px; height:150px;" id="openChatroom">
+			<button onclick="openChatRoom()">open chat room</button>
+		</div>
+		<div class="chatroom" id="chatroom">
+			<p style="margin:0px 0px 0px 50px; padding:0px 30px 0px 0px; color:black; display: inline-block;">Triton Live Chat </p>
+			<p style="margin:0px 0px 0px 0px; padding:0px; color:black; display: inline-block; font-size:14px;"> Online Count: </p>
+			<p style="margin:0px 0px 0px 0px; padding:0px; color:black; display: inline-block;" id="numonline"> </p>
+			<p style="margin:0px 15px 0px 50px; padding:0px; color:red; display: inline-block; float: right; " onclick="closeChatRoom()">x</p>
+			<hr style="padding:0px; margin:0px 5px 5px 30px;">
+			<div class="scrollEffectInContainer" style="padding-left: 30px;">
+				<ul id="messages"></ul>	
+			</div>
+			<hr style="padding:0px; margin:0px 5px 5px 30px;">
+	
 
 			<!-- form to send message -->
 			<div id="rightbottom">
 				<form onsubmit="return sendMessage();">
-				<input id="message" placeholder="Enter message" autocomplete="off">	
-				<input style="width:35%; padding:0px 0px 0px 3px; display: inline-block;" type="submit">
+				<input style="display: inline-block; width: 270px;" id="message" placeholder="Enter message" autocomplete="off">	
+				<input style="display: inline-block; width: 100px; font-size:9px;" type="submit">
 			</div>
-
 			</form>
 		</div>
 		<!-- Page Wrapper -->
@@ -248,6 +256,27 @@
 					//remove local storage items in signout function for security.
 					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
 				}
+			</script>
+			<script>
+				window.onfocus = function() {
+						console.log("user focused on window");
+						var numOnlinePpl = parseInt(document.getElementById("numonline").innerHTML);
+						numOnlinePpl += 1;
+						firebase.database().ref('messages/').update({
+							onlineCount: numOnlinePpl,
+ 				 		});
+				};
+
+				window.onblur = function() {
+					console.log("user focus away from window");
+					var numOnlinePpl = parseInt(document.getElementById("numonline").innerHTML);
+						numOnlinePpl -= 1;
+						firebase.database().ref('messages/').update({
+							onlineCount: numOnlinePpl,
+ 				 		});
+					// alert("brox!")
+    				// do something when this window object loses focus.
+				};
 			</script>
 
 		<!-- Scripts -->

@@ -4229,7 +4229,7 @@ input, select, textarea {
 	bottom: 0px;
 	right: 0px;
 	background-color: gray;
-	padding: 20px;
+	padding: 20px 20px 20px 5px;
 	margin: 5px;
 	z-index:10;     /* on top of the layout*/
 	width: 450px;
@@ -4240,7 +4240,10 @@ input, select, textarea {
  }
 
  #messages {
+	margin-left: 0px;
+	padding-left: 0px;
 	font-size: 13px;
+	list-style-type: none !important;
  }
  
  #message {
@@ -4253,4 +4256,14 @@ input, select, textarea {
 	bottom: 0px;
 	z-index:10; 
 	bottom: 0px;
+	padding:0px; 
+	margin:0px 5px 5px 30px;
+}
+
+.scrollEffectInContainer
+{
+		height:78%;	
+        overflow-y:auto;
+		position:relative;
+		margin-left:-5px;
 }
