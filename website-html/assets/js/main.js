@@ -81,10 +81,6 @@
 		}
 	// submit form
 	$('#feedbackForm').submit(function (evt) {
-		/*if (!firebase.apps.length) {
-			console.log("firebase app initlized!");
-			firebase.initializeApp(firebaseConfig);
-		}*/
 		var formData = {
 			"first name": $('#firstname').val(),
 			"last name": $('#lastname').val(),

@@ -1,9 +1,5 @@
 function getClassSnapshot(){
     console.log("getClassSnapshot() called :)");
-    if (!firebase.apps.length) {
-      console.log("firebase app initlized!");
-      firebase.initializeApp(firebaseConfig);
-    }
     var ref = firebase.database().ref("classes");
     ref.on("value", function(snapshot) {
      snapshot.forEach(function(childSnapshot) {
@@ -16,10 +12,6 @@ function getClassSnapshot(){
 //reads in every discord info from a class
 function getDiscordInfo(className){
     console.log("getDiscordInfo() called :)");
-    if (!firebase.apps.length) {
-      console.log("firebase app initlized!");
-      firebase.initializeApp(firebaseConfig);
-    }
     var classRef = "classes/".concat(className);
     console.log("Finding class ->", className);
     var ref = firebase.database().ref(classRef);
@@ -52,11 +44,6 @@ function getDiscordInfo(className){
 
 function addDiscordInfotoDB(){
   console.log("addDiscordInfotoDB() called!");
-  if (!firebase.apps.length) {
-    console.log("firebase app initlized!");
-    firebase.initializeApp(firebaseConfig);
-  }
-
   //First, count number of children in the class
   var className = localStorage.getItem("classinput")
   var classRef = "classes/".concat(className);
@@ -83,11 +70,6 @@ function addDiscordInfotoDB(){
 
 function resetDB(){
   console.log("addDiscordInfotoDB() called!");
-  if (!firebase.apps.length) {
-    console.log("firebase app initlized!");
-    firebase.initializeApp(firebaseConfig);
-  }
-
   //First, count number of children in the class
   var className = localStorage.getItem("classinput")
   var classRef = "classes/".concat(className);

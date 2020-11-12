@@ -7,11 +7,6 @@ function testFunction() {
     //doc: https://firebase.google.com/docs/auth/web/google-signin#before_you_begin
     console.log("signInFunction called :)");
     //initialize firebase app only if there isn't any...
-    if (!firebase.apps.length) {
-        console.log("firebase app initlized!");
-        firebase.initializeApp(firebaseConfig);
-    }
-    
     var provider = new firebase.auth.GoogleAuthProvider();
     //without this, google auth keeps logging in automatically without account selection option
     provider.setCustomParameters({

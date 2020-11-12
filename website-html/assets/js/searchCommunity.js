@@ -1,9 +1,5 @@
 function getCommunityInfoByName(name){
   console.log("getCommunityInfoByName() called :)");
-  if (!firebase.apps.length) {
-    console.log("firebase app initlized!");
-    firebase.initializeApp(firebaseConfig);
-  }
   var ref = firebase.database().ref("clubs").child(name);
   console.log("NAME: ", name);
   ref.on('value', function(snapshot) {
@@ -23,10 +19,6 @@ function getCommunityInfoByName(name){
 
 function getCommunitySnapshot(){
   console.log("getCommunitySnapshot() called :)");
-  if (!firebase.apps.length) {
-    console.log("firebase app initlized!");
-    firebase.initializeApp(firebaseConfig);
-  }
   var ref = firebase.database().ref("clubs");
   ref.on("value", function(snapshot) {
    snapshot.forEach(function(childSnapshot) {
