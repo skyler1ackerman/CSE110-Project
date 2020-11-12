@@ -1,0 +1,14 @@
+[debug] [2020-11-12T01:33:42.105Z] ----------------------------------------------------------------------
+[debug] [2020-11-12T01:33:42.106Z] Command:       /usr/local/bin/firebase /Users/younseoryu/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase emulators:start
+[debug] [2020-11-12T01:33:42.107Z] CLI Version:   8.11.2
+[debug] [2020-11-12T01:33:42.107Z] Platform:      darwin
+[debug] [2020-11-12T01:33:42.107Z] Node Version:  v10.21.0
+[debug] [2020-11-12T01:33:42.112Z] Time:          Wed Nov 11 2020 17:33:42 GMT-0800 (Pacific Standard Time)
+[debug] [2020-11-12T01:33:42.112Z] ----------------------------------------------------------------------
+[debug] [2020-11-12T01:33:42.113Z] 
+[debug] [2020-11-12T01:33:42.125Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-12T01:33:42.125Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2020-11-12T01:33:42.139Z] [hub] writing locator at /var/folders/l4/v41nbllj1sg0jt0vt2mbg3940000gp/T/hub-tritongroups-c26fa.json
+[debug] [2020-11-12T01:33:42.148Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/tritongroups-c26fa/webApps/-/config  
+ 

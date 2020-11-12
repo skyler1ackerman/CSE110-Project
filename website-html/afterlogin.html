@@ -51,53 +51,32 @@
 					<div class="inner">
 						<h2>Triton Groups</h2>
 						<br><br><br><br>
-						<!-- <div class="row gtr-uniform"> -->
-							<!-- <div class="col-2 col-12-xsmall offset-3"></div> -->
-							<!-- <div class="col-6 col-12-xsmall offset-3"> -->
-								<p>Browse Communities</p>
-									<input type="radio" name="editList" id="searchOptionClasses" value="" checked onclick="searchbarClassSelected()"/>
-									<label for="searchOptionClasses">Classes</label>				
-									<input type="radio" name="editList" id="searchOptionClubs" value="" onclick="searchbarClubSelected()"/>
-									<label for="searchOptionClubs">Clubs</label>
-						
-									<p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p>
-									<div id="classSearchBar" style="display: block;">
-										<ul class="actions special">
-											<form autocomplete="off" action="/action_page.php">
-												<div class="autocomplete" style="width:400px;">
-												  <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Discord Server for Classes">
-												</div>
-											</form>
-											</ul>
-										<input type="submit" onclick="submit_class()">
+						<p id="welcomeMessage"></p>
+						<input type="radio" name="editList" id="searchOptionClasses" value="" checked onclick="searchbarClassSelected()"/>
+						<label for="searchOptionClasses">Classes</label>				
+						<input type="radio" name="editList" id="searchOptionClubs" value="" onclick="searchbarClubSelected()"/>
+						<label for="searchOptionClubs">Clubs</label>
+						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
+						<div id="classSearchBar" style="display: block;">
+							<ul class="actions special">
+								<form autocomplete="off" action="/action_page.php">
+									<div class="autocomplete" style="width:400px;">
+									  <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Class Discords">
 									</div>
-									
-									<div id="clubSearchBar" style="display: none;">
-										<ul class="actions special">
-											<form autocomplete="off" action="/action_page.php">
-												<div class="autocomplete" style="width:400px;">
-												  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
-												</div>
-											</form>
-										</ul>
-										<input type="submit" onclick="submit_community()">
+								</form>
+								</ul>
+							<input type="submit" onclick="submit_class()">
+						</div>
+						<div id="clubSearchBar" style="display: none;">
+							<ul class="actions special">
+								<form autocomplete="off" action="/action_page.php">
+									<div class="autocomplete" style="width:400px;">
+									  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
 									</div>
-									
-							<!-- </div> -->
-							<!-- <div class="col-4 col-12-xsmall">
-								<p>Browse Communities<br />
-									<p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p>
-									<ul class="actions special">
-										<form autocomplete="off" action="/action_page.php">
-											<div class="autocomplete" style="width:400px;">
-											  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
-											</div>
-										</form>
-									</ul>
-									<input type="submit" onclick="submit_community()">
-							</div> -->
-							<!-- <div class="col-2 col-12-xsmall offset-3"></div> -->
-							<!-- </div>   -->
+								</form>
+							</ul>
+							<input type="submit" onclick="submit_community()">
+						</div>
 					</div>
 				</section>
 
@@ -247,6 +226,7 @@
 					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
 					// localStorage.removeItem("user-displayname");
 					//remove local storage items in signout function for security.
+					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
 				}
 			</script>
 
