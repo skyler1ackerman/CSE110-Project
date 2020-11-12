@@ -44,6 +44,9 @@
                 <script>
 
                     window.onload = function() {
+						// document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
+						// getDiscordInfo(localStorage.getItem("classinput")); //get 5 discord infos from DB
+						// getClassSnapshot(); //get all class info from DB for search engine
 						const communityName = document.getElementById("mycommunity").innerHTML=localStorage.getItem("communityInput");
 						getCommunitySnapshot()
 						getCommunityInfoByName(communityName)
@@ -71,7 +74,7 @@
                             <h5>Status</h5><span id='community-status'>Current</span>
                             <h5>Organization Type</h5><span id="community-organization-type">Undergraduate</span>
                             <h5>Purpose</h5><div id="community-purpose">Undergraduate</div>
-                            <h5>Discord Invite Link</h5><span id="community-discord-link">None</span>
+                            <h5>Discord Invite Link</h5><span id="community-discord-link">socialmedia.com</span>
                             <h5>Social Media</h5><span id="community-socialmedia">ucsdacadivdivellachoir@gmail.com</span>
                             <h5>Email</h5><span id="community-email">ucsdacadivdivellachoir@gmail.com</span>
                         </div>
@@ -106,7 +109,8 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/login.js"></script>
-			<script src="assets/js/searchbar.js"></script>
+			<script src="assets/js/searchClass.js"></script>
+			<script src="assets/js/searchCommunity.js"></script>
 
 
 			<!-- below is firebase SDKs-->

@@ -35,9 +35,6 @@
                					    <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
                					    &nbsp;
 									|
-									<a href="browse-community.html" class="no-style more scrolly three-text">Browse Communities</a>
-									&nbsp;
-								 	|
 									&nbsp;
 									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
 									&nbsp;
@@ -50,52 +47,38 @@
                 </header>
 
 				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>Triton Groups</h2>
-
-							<p>
-								Get Discord Servers You Need
-                            </p>
-                            <p style="font-size: 30px;">&#8595;</p>
-
-                            <ul class="actions special">
-                                <!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
-                                <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
-                                <form autocomplete="off" action="/action_page.php">
-                                    <div class="autocomplete" style="width:400px;">
-                                      <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes or Department">
-                                    </div>
-                                </form>
-							</ul>
-
-                            <input type="submit" onclick="submit_class()">
-							<!-- <ul class="actions special">
-								<li><a href="#" class="button primary">Activate</a></li>
-							</ul> -->
-						</div>
-					</section>
-				<!-- Banner -->
 				<section id="banner">
 					<div class="inner">
-						<div id="one">
+						<h2>Triton Groups</h2>
+						<br><br><br><br>
+						<div class="row gtr-uniform">
+							<div class="col-2 col-12-xsmall offset-3"></div>
+							<div class="col-4 col-12-xsmall offset-3">
+								<p>Browse Classes</p>
+									<p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p>
+									<ul class="actions special">
+									<form autocomplete="off" action="/action_page.php">
+										<div class="autocomplete" style="width:400px;">
+										  <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Discord Server for Classes">
+										</div>
+									</form>
+									</ul>
+									<input type="submit" onclick="submit_class()">
+							</div>
+							<div class="col-4 col-12-xsmall">
 								<p>Browse Communities<br />
-								</p>
-						</div>
-						<ul class="actions special">
-							<!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
-							<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
-							<form autocomplete="off" action="/action_page.php">
-								<div class="autocomplete" style="width:400px;">
-								  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
-								</div>
-							</form>
-						</ul>
-
-						<input type="submit" onclick="submit_community()">
-						<!-- <ul class="actions special">
-							<li><a href="#" class="button primary">Activate</a></li>
-						</ul> -->
+									<p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p>
+									<ul class="actions special">
+										<form autocomplete="off" action="/action_page.php">
+											<div class="autocomplete" style="width:400px;">
+											  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+											</div>
+										</form>
+									</ul>
+									<input type="submit" onclick="submit_community()">
+							</div>
+							<div class="col-2 col-12-xsmall offset-3"></div>
+						</div>  
 					</div>
 				</section>
 
@@ -234,8 +217,9 @@
 			<script>
 				window.onload = function() {
 					//get all class info from FB databse
-					getClassSnapshot();
+					// getClassSnapshot();
 					getCommunitySnapshot();
+					getClassSnapshot();
 
 					document.getElementById("email").placeholder=localStorage.getItem("user-email");
 					document.getElementById("email").value=localStorage.getItem("user-email");
@@ -256,7 +240,8 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
             <script src="assets/js/login.js"></script>
-			<script src="assets/js/searchbar.js"></script>
+			<script src="assets/js/searchClass.js"></script>
+			<script src="assets/js/searchCommunity.js"></script>
 			<script src="assets/js/feedback.js"></script>
 
 
