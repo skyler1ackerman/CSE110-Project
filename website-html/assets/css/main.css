@@ -4222,3 +4222,35 @@ input, select, textarea {
   #header nav > ul > a:hover {
 	color: rgb(160, 156, 156);
   }
+
+
+  .chatroom {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	background-color: gray;
+	padding: 20px;
+	margin: 5px;
+	z-index:10;     /* on top of the layout*/
+	width: 450px;
+	height: 450px;
+	border: 3px solid black;
+	border-radius: 25px 25px 0px 25px;
+   
+ }
+
+ #messages {
+	font-size: 13px;
+ }
+ 
+ #message {
+	color:black;
+	width: 70%;
+ }
+ 
+ #rightbottom {
+	position: fixed;
+	bottom: 0px;
+	z-index:10; 
+	bottom: 0px;
+}
