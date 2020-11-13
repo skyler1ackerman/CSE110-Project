@@ -18,19 +18,19 @@
 		<div class="chatroom" style="width: 150px; height:80px;" id="openChatroom">
 			<p onclick="openChatRoom()" style="border: 1px solid white; text-align: center; margin:auto;">CHAT</p>
 		</div>
-		<div class="chatroom" style="visibility:hidden;" id="chatroom">
+		<div class="chatroom" style="visibility:hidden; margin-right:15px" id="chatroom">
 			<p style="margin:0px 0px 0px 30px; padding:0px 30px 0px 0px; color:black; display: inline-block;">
 				Live Chat 
 				<span style="font-size:13px; margin-left:30px; ">Online Count:</span>
 				<span style="font-size:13px;" id="numonline"></span>
 				<span style="font-size:13px; color:green; font-size:30px;">&#8226;</span>
-				<span class="no-style" style="color:darkred; font-size:15px; margin:0px 0px 10px 40px; border: 2px solid darkred; padding: 3px;"onclick="closeChatRoom()">close</span> 
+				
 			</p>
 			<hr style="padding:0px; margin:0px 5px 5px 30px;">
-			<div class="scrollEffectInContainer" style="padding-left: 30px;">
+			<div id="messagesContainer" class="scrollEffectInContainer" style="padding-left: 30px;">
 				<ul id="messages"></ul>	
 			</div>
-			<!-- <hr style="padding:0px; margin:0px 25px 5px 30px;"> -->
+			<hr style="padding:0px; margin:0px 25px 5px 30px;">
 	
 
 			<!-- form to send message -->
@@ -38,6 +38,7 @@
 				<form onsubmit="return sendMessage();">
 				<input style="display: inline-block; width: 270px;" id="message" placeholder="Enter message" autocomplete="off">	
 				<input style="display: inline-block; width: 100px; font-size:9px;" type="submit">
+				<p style="display: inline-block; width: 100px; font-size:9px;"><span class="no-style" style="color:darkred; font-size:20px; margin:0px 0px -10px 100px; border: 2px solid darkred; padding: 3px;"onclick="closeChatRoom()">close</span> </input>
 			</div>
 			</form>
 		</div>

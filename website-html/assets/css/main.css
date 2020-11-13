@@ -100,8 +100,8 @@ input, select, textarea {
 		font-family: "Open Sans", Helvetica, sans-serif;
 		font-size: 15pt;
 		font-weight: 400;
-		letter-spacing: 0.075em;
-		line-height: 1.65em;
+		/* letter-spacing: 0.075em; */
+		line-height: 1.35em;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -4232,7 +4232,7 @@ input, select, textarea {
 	padding: 20px 20px 20px 5px;
 	margin: 5px;
 	z-index:10;     /* on top of the layout*/
-	width: 450px;
+	width: 600px;
 	height: 450px;
 	border: 3px solid black;
 	border-radius: 25px 25px 0px 25px;
@@ -4269,4 +4269,10 @@ input, select, textarea {
 }
 
 
-/*chatbox*/
+.avatar {
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin: 5px 0px 5px 0px;
+  }
