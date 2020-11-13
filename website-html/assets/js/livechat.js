@@ -8,6 +8,16 @@ function openChatRoom(){
     console.log("close called");
     document.getElementById("openChatroom").style.visibility = "hidden";
     document.getElementById("chatroom").style.visibility = "visible";
+    // addOnlineNumberAsUserSignin();
+}
+
+
+function addOnlineNumberAsUserSignin(){
+	var numOnlinePpl = (document.getElementById("numonline").innerHTML) || 0 ;
+	numOnlinePpl++;
+	firebase.database().ref('messages/').update({
+		onlineCount: numOnlinePpl,
+ 	});
 }
 
 function sendMessage() {
@@ -47,8 +57,9 @@ firebase.database().ref("messages/dataID").on("child_added", function (snapshot)
 });
 
 //listen to how many ppl are online
-firebase.database().ref("messages/onlineCount").on("value", function (snapshot) {
+firebase.database().ref("messages/onlineCount").on('value', function (snapshot) {
     document.getElementById("numonline").innerHTML = snapshot.val();
+    console.log("numlogin!: ",snapshot.val());
 });
 
 

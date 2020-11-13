@@ -2425,7 +2425,7 @@ input, select, textarea {
 		text-transform: uppercase;
 		white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis;
+		text-overflow: ellipsis; 
 	}
 
 		input[type="submit"]:hover,
@@ -4228,7 +4228,7 @@ input, select, textarea {
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
-	background-color: gray;
+	background-color: #6973b8;
 	padding: 20px 20px 20px 5px;
 	margin: 5px;
 	z-index:10;     /* on top of the layout*/
@@ -4267,3 +4267,6 @@ input, select, textarea {
 		position:relative;
 		margin-left:-5px;
 }
+
+
+/*chatbox*/

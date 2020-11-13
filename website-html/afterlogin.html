@@ -15,19 +15,22 @@
 	  	<script src="/__/firebase/init.js"></script>
 
 
-		<div class="chatroom" style="width: 350px; height:150px;" id="openChatroom">
-			<button onclick="openChatRoom()">open chat room</button>
+		<div class="chatroom" style="width: 150px; height:80px;" id="openChatroom">
+			<p onclick="openChatRoom()" style="border: 1px solid white; text-align: center; margin:auto;">CHAT</p>
 		</div>
-		<div class="chatroom" id="chatroom">
-			<p style="margin:0px 0px 0px 50px; padding:0px 30px 0px 0px; color:black; display: inline-block;">Triton Live Chat </p>
-			<p style="margin:0px 0px 0px 0px; padding:0px; color:black; display: inline-block; font-size:14px;"> Online Count: </p>
-			<p style="margin:0px 0px 0px 0px; padding:0px; color:black; display: inline-block;" id="numonline"> </p>
-			<p style="margin:0px 15px 0px 50px; padding:0px; color:red; display: inline-block; float: right; " onclick="closeChatRoom()">x</p>
+		<div class="chatroom" style="visibility:hidden;" id="chatroom">
+			<p style="margin:0px 0px 0px 30px; padding:0px 30px 0px 0px; color:black; display: inline-block;">
+				Live Chat 
+				<span style="font-size:13px; margin-left:30px; ">Online Count:</span>
+				<span style="font-size:13px;" id="numonline"></span>
+				<span style="font-size:13px; color:green; font-size:30px;">&#8226;</span>
+				<span class="no-style" style="color:darkred; font-size:15px; margin:0px 0px 10px 40px; border: 2px solid darkred; padding: 3px;"onclick="closeChatRoom()">close</span> 
+			</p>
 			<hr style="padding:0px; margin:0px 5px 5px 30px;">
 			<div class="scrollEffectInContainer" style="padding-left: 30px;">
 				<ul id="messages"></ul>	
 			</div>
-			<hr style="padding:0px; margin:0px 5px 5px 30px;">
+			<!-- <hr style="padding:0px; margin:0px 25px 5px 30px;"> -->
 	
 
 			<!-- form to send message -->
@@ -255,25 +258,30 @@
 					// localStorage.removeItem("user-displayname");
 					//remove local storage items in signout function for security.
 					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+					addOnlineNumberAsUserSignin();
 				}
 			</script>
 			<script>
 				window.onfocus = function() {
-						console.log("user focused on window");
-						var numOnlinePpl = parseInt(document.getElementById("numonline").innerHTML);
-						numOnlinePpl += 1;
+					console.log("user focused on window");
+					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
+					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
+						++numOnlinePpl;
 						firebase.database().ref('messages/').update({
 							onlineCount: numOnlinePpl,
- 				 		});
+					  	});
+					}
 				};
 
 				window.onblur = function() {
 					console.log("user focus away from window");
-					var numOnlinePpl = parseInt(document.getElementById("numonline").innerHTML);
-						numOnlinePpl -= 1;
+					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
+					--numOnlinePpl;
+					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
 						firebase.database().ref('messages/').update({
 							onlineCount: numOnlinePpl,
- 				 		});
+					  	});
+					}
 					// alert("brox!")
     				// do something when this window object loses focus.
 				};
