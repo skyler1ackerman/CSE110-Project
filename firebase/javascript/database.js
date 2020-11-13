@@ -59,17 +59,15 @@ function clubsInfo(clubfile){
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       var i = 0;
-      var arr = ["none", "none", "none", "none" ,"none" ,"none", "none"];
+      var arr = ["none", "none", "none", "none" ,"none" ,"none", "none", "none"];
       for (var inside_key in obj[key]) {
         if (obj[key].hasOwnProperty(inside_key)) {
           arr[i] = obj[key][inside_key];
         }
-        // else{
-        //   arr[i] = " - ";
-        // }
         i++;
       }
-      writeClubs(key, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6]);
+      
+      writeClubs(arr[0], key, arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7]);
       console.log(key);
       console.log(arr);
     }
@@ -84,18 +82,18 @@ function removeErrorChar(removechar){
   return removechar.replace(/\.|\#|\$|\[|\]/g,'');
 }
 
-function writeClubs(clubname, year, purpose, created, status, org_type, org_email, soc_media){
+function writeClubs(category, clubname, year, purpose, created, status, org_type, org_email, soc_media){
   clubname = removeErrorChar(clubname);
   console.log("writeClubs() called :)"); 
 
-  firebase.database().ref('clubs/').child(clubname).update({
-    "Academic Year": year, 
-    "Purpose": purpose, 
-    "Created": created, 
-    "Status": status, 
-    "Organization Type": org_type, 
-    "Organization Email": org_email, 
-    "Social Media": soc_media
+  firebase.database().ref('clubs/').child(category).child(clubname).update({
+    "academic_year": year, 
+    "purpose": purpose, 
+    "created": created, 
+    "status": status, 
+    "organization_type": org_type, 
+    "organization_email": org_email, 
+    "social_media": soc_media
   });
 }
 
