@@ -4222,3 +4222,27 @@ input, select, textarea {
   #header nav > ul > a:hover {
 	color: rgb(160, 156, 156);
   }
+
+.card {
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+
+}
+
+.card {
+	margin: 0 auto;
+	float: none;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-clip: border-box;
+	border: 0 solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+}
+
+.card-body {
+	flex: 1 1 auto;
+	min-height: 1px;
+	padding: 1rem;
+}
