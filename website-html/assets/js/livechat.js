@@ -40,18 +40,39 @@ firebase.database().ref("messages/dataID").on("child_added", function (snapshot)
     // html += "<li style=\"text-align: right; margin-right:5px;\" id='message-" + snapshot.key + "'>";
     // show delete button if message is sent by me
     if (snapshot.val().sender == localStorage.getItem("user-displayname")) {
-        html += "<li style=\"text-align: right; margin-right:5px;\" id='message-" + snapshot.key + "'>";
+        html += "<li style=\"text-align: right; margin:8px 0px 8px 0px;\" id='message-" + snapshot.key + "'>";
         html += "<button style=\"color:darkred;\" data-id='" + snapshot.key + "' onclick='deleteMessage(this);' class=\"no-style\">";
             html += "&times;"
         html += "</button>";
-        html += "     <span style='background-color:brown; padding:2px 6px 2px 8px;'>" + snapshot.val().message + "</span>";
+        html += "     <span style='background-color:#b19cd9; border-radius:10px; padding:2px 4px 2px 4px;'>" + snapshot.val().message + "</span>";
     }
     else{
+        //this for changing text color for each person. user color hex code.
+        var senderStr = String(snapshot.val().sender);
+        var asciiSum = 0;
+        for (var i = 0; i < senderStr.length; i++) {
+            asciiSum += senderStr.charCodeAt(i)*i*82;
+        }
+        var colorHexCode = (asciiSum%16777215).toString(16);
+        if(colorHexCode.length == 6){
+            colorHexCode = colorHexCode.concat("");
+        } else if(colorHexCode.length == 5){
+            colorHexCode = colorHexCode.concat("F");
+        } else if(colorHexCode.length == 4){
+            colorHexCode = colorHexCode.concat("3F");
+        }else if(colorHexCode.length == 3){
+            colorHexCode = colorHexCode.concat("3EF");
+        }else if(colorHexCode.length == 2){
+            colorHexCode = colorHexCode.concat("F3EF");
+        } else if(colorHexCode.length == 1){
+            colorHexCode = colorHexCode.concat("FF3EF");
+        }
         html += "<li style=\"text-align: left; margin-left:0px;\" id='message-" + snapshot.key + "'>";
-        html += "    <img src='assets/css/images/img_avatar.png' alt='Avatar' class='avatar'>: <span style='background-color:purple; padding:2px;'>" + snapshot.val().message + "</span>";
+        html += "<span style='font-size:20px; color:#" + colorHexCode +  ";'>&#9632;</span>"; 
+        html += "<span style='font-size:12px; color:white; background-color:#"+ colorHexCode +"; border-radius:3px;'>"+String(snapshot.val().sender).split(" ")[0] +"</span>: <span style='padding:2px;'>" + snapshot.val().message + "</span>";
     }
     if (snapshot.val().sender != localStorage.getItem("user-displayname")) {
-    html += "</li><span font-size:3px !important;>" + String(snapshot.val().sender).split(" ")[0]+"</span>";
+    html += "</li>";
     }
     document.getElementById("messages").innerHTML += html;
     var objDiv = document.getElementById("messagesContainer");

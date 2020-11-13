@@ -38,8 +38,8 @@ function testFunction() {
             console.log(user.email, "saved to local storage");
             localStorage.setItem("user-displayname", user.displayName);
             console.log(user.displayName, "saved to local storage");
-        console.log("signin successful!");
-        window.location.href = "afterlogin.html";
+           console.log("signin successful!");
+            window.location.href = "afterlogin.html";
       }
       // ...
     }).catch(function(error) {
