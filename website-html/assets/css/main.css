@@ -4223,6 +4223,7 @@ input, select, textarea {
 	color: rgb(160, 156, 156);
   }
 
+  /*used for user profile*/
 .card {
 	box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
 
@@ -4253,3 +4254,4 @@ input, select, textarea {
 	height: 150px;
 	border-radius: 50%;
 }
+
