@@ -20,6 +20,7 @@ function testFunction() {
       console.log(user);
       console.log(user.displayName);
       console.log(user.email);
+      console.log(user.photoURL);
       //check if the email ends with @ucsd.edu
       console.log(user.email.substr(user.email.length - 9));
       if(user.email.substr(user.email.length - 9) != "@ucsd.edu"){
@@ -38,6 +39,8 @@ function testFunction() {
             console.log(user.email, "saved to local storage");
             localStorage.setItem("user-displayname", user.displayName);
             console.log(user.displayName, "saved to local storage");
+            localStorage.setItem("user-profileimgurl", user.photoURL);
+            console.log(user.photoURL, "saved to local storage");
         console.log("signin successful!");
         window.location.href = "afterlogin.html";
       }
@@ -62,6 +65,7 @@ function testFunction() {
         //remove user info
         localStorage.removeItem("user-email"); 
         localStorage.removeItem("user-displayname"); 
+        localStorage.removeItem("user-profileimgurl"); 
         console.log("signout successful");
         window.location.href = "index.html";
       }).catch(function(error) {

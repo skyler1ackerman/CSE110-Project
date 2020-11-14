@@ -27,8 +27,8 @@
                 </nav>
             </header>
 
-            <!-- Profile -->
-            <section id="banner">
+            <!-- Profile and unfinished solution to the profile page styling -->
+            <section id="getanewsectionid">
                 <div class="inner">
                     <header class="major">
                         <h2>User Profile</h2>
@@ -40,7 +40,7 @@
                 <div class="inner">
                     <div class="card text-center" style="width: 50rem;">
 
-                        <img src="images/gary.jpg" class="avatar" alt="avatar" >
+                        <img id="profilePicUserProfile" src="images/gary.jpg" class="avatar" alt="avatar" >
 
                         <div class="card-body">
                             <p id="welcomeMessage"></p>
@@ -50,17 +50,27 @@
                         <form id="profileForm">
                             <textarea placeholder="Email" rows="1" id="email" readonly></textarea>
                             <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
+                            
+                            <!--
                             <select name="Major" rows="1" id="major">
                                 <option value="">Select Major</option>
                             </select>
+                            -->
+                             
+                            <!--only proof of concept, add the search team's thing in here-->
                             <select name="Courses" rows="1" id="courses">
                                 <option value="">Select Courses to Add</option>
-                                <option value="">course 1</option>
-                                <option value="">course 2</option>
-                                <option value="">course</option>
+                                <option value="course 0">course 0</option>
+                                <option value="course 1">course 1</option>
+                                <option value="course 2">course 2</option>
+                                <option value="course 3">course 3</option>
+                                <option value="course 4">course 4</option>
+                                <option value="course 5">course 5</option>
+                                <option value="course 6">course 6</option>
+                                <option value="course 7">course 7</option>
                             </select>
                             <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" style="border: 1px solid #cccccc"/>
-                            <textarea placeholder="Courses" rows="8" cols="100" id="explanation"></textarea>
+                            <textarea placeholder="Courses" rows="8" cols="100" id="courseListToSave" readonly></textarea>
                             <input id="save" type="button" value = "Save" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
                         </form>
                     </div>
@@ -103,6 +113,10 @@
                 document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
                 document.getElementById("fullname").value=localStorage.getItem("user-displayname");
                 // localStorage.removeItem("user-displayname");
+                // take url of user's profile pic from login.js, get a resized version (unsure if always works)
+                var profileImgUrl = localStorage.getItem("user-profileimgurl");
+                profileImgUrl = profileImgUrl.replace("s96-c", "s512-c");
+                document.getElementById("profilePicUserProfile").src=profileImgUrl;
                 //remove local storage items in signout function for security.
                 document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + "!";
             }
@@ -110,12 +124,35 @@
 
         <!-- add courses to the textbox -->
         <script type="text/javascript">
+            var courseArray = [];
+            var courseCount = 0;
+            // currently only for dropdown in select, no duplicate add check 
             function Add() {
+                var currentCourse = document.getElementById("courses").value
+                console.log("Add " +  currentCourse);
+                if(currentCourse == "") {
+                    return;
+                }
+                courseArray[courseCount] = currentCourse;
+                courseCount++;
+                var i = 0;
+                document.getElementById("courseListToSave").value = "";
+                for (i of courseArray) {
+                    document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
+                    console.log(i);
+                }
 
             }
 
+            // not plugged into firebase 
             function updateProfile(){
+                console.log("Save ");
+                console.log(courseArray.toString());
+                // iterate through courseArray, send to firebase db
 
+                document.getElementById("courseListToSave").value = "";
+                courseArray = [];
+                courseCount = 0;
             }
         </script>
 
