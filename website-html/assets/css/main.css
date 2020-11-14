@@ -100,8 +100,8 @@ input, select, textarea {
 		font-family: "Open Sans", Helvetica, sans-serif;
 		font-size: 15pt;
 		font-weight: 400;
-		letter-spacing: 0.075em;
-		line-height: 1.65em;
+		/* letter-spacing: 0.075em; */
+		line-height: 1.35em;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -2425,7 +2425,7 @@ input, select, textarea {
 		text-transform: uppercase;
 		white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis;
+		text-overflow: ellipsis; 
 	}
 
 		input[type="submit"]:hover,
@@ -4221,4 +4221,58 @@ input, select, textarea {
   /*nav bar hover effect*/
   #header nav > ul > a:hover {
 	color: rgb(160, 156, 156);
+  }
+
+
+  .chatroom {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	background-color: #7ea4b3;
+	padding: 20px 20px 20px 5px;
+	margin: 5px;
+	z-index:10;     /* on top of the layout*/
+	width: 600px;
+	height: 450px;
+	border: 3px solid black;
+	border-radius: 25px 25px 0px 25px;
+   
+ }
+
+ #messages {
+	margin-left: 0px;
+	padding-left: 0px;
+	font-size: 13px;
+	list-style-type: none !important;
+ }
+ 
+ #message {
+	color:black;
+	width: 70%;
+ }
+ 
+ #rightbottom {
+	position: fixed;
+	bottom: 0px;
+	z-index:10; 
+	bottom: 0px;
+	padding:0px; 
+	margin:0px 5px 5px 30px;
+}
+
+.scrollEffectInContainer
+{
+		height:78%;	
+        overflow-y:auto;
+		position:relative;
+		margin-left:-5px;
+}
+
+
+.avatar {
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin: 5px 0px 5px 0px;
   }
