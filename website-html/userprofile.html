@@ -43,7 +43,7 @@
                         <img src="images/gary.jpg" class="avatar" alt="avatar" >
 
                         <div class="card-body">
-                            <h1>Hello Gary!</h1>
+                            <p id="welcomeMessage"></p>
                             <p class="card-text">This is your profile page. You can edit your major and add current classes you're taking
                                 to customize your search.</p>
                         </div>
@@ -59,14 +59,14 @@
                                 <option value="">course 2</option>
                                 <option value="">course</option>
                             </select>
-                            <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" />
+                            <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" style="border: 1px solid #cccccc"/>
                             <textarea placeholder="Courses" rows="8" cols="100" id="explanation"></textarea>
-                            <input id="save" onclick="updateProfile()" type="submit" style="border: 1px solid #cccccc"></input>
+                            <input id="save" type="button" value = "Save" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
                         </form>
                     </div>
                 </div>
             </section>
-            
+
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.scrollex.min.js"></script>
@@ -104,7 +104,7 @@
                 document.getElementById("fullname").value=localStorage.getItem("user-displayname");
                 // localStorage.removeItem("user-displayname");
                 //remove local storage items in signout function for security.
-                document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+                document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + "!";
             }
         </script>
 
@@ -119,21 +119,20 @@
             }
         </script>
 
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright"></br>
+                <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+                <li>(408) 533-5213 |</li> </br>
+                <li>spryleaf@spryleaf.io |</li> </br>
+            </ul>
+        </footer>
     </body>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <ul class="icons">
-            <!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
-            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
-            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright"></br>
-            <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
-            <li>(408) 533-5213 |</li> </br>
-            <li>spryleaf@spryleaf.io |</li> </br>
-        </ul>
-    </footer>
 </html>
