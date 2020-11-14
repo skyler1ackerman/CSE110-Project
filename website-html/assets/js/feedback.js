@@ -32,8 +32,6 @@ function getFeedbackValues(){
 
     });
     firebase.database().ref(fbRef).once("child_added").then(function (){
-        document.getElementById("email").value='';
-        document.getElementById("fullname").value='';
         document.getElementById("Issue_type").value='';
         document.getElementById("explanation").value='';
         console.log("Output clear")
