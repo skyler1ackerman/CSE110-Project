@@ -4246,3 +4246,10 @@ input, select, textarea {
 	min-height: 1px;
 	padding: 1rem;
 }
+
+.avatar {
+	vertical-align: middle;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}

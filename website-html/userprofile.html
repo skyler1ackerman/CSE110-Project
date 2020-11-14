@@ -33,20 +33,35 @@
                     <h2>User Profile</h2>
                 </header>
                 <div class="wrapper style3 special">
-                <div class="card text-center" style="width: 50rem;">
+                    <div class="card text-center" style="width: 50rem;">
 
-                    <img src="images/gary.jpg" class="rounded-circle" width="150">
+                        <img src="images/gary.jpg" class="avatar" alt="avatar" >
 
-                    <div class="card-body">
+                        <div class="card-body">
+                            <h1>Hello Gary!</h1>
+                            <p class="card-text">This is your profile page. You can edit your major and add current classes you're taking
+                                to customize your search.</p>
 
-                    <h1>Hello Gary!</h1>
-                    <p class="card-text">This is your profile page. You can edit your major and add current classes you're taking
-                        to customize your search.</p>
+                            <form id="profileForm">
+                                <textarea placeholder="Email" rows="1" id="email" readonly></textarea>
+                                <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
+                                <select name="Major" rows="1" id="major">
+                                    <option value="">Select Major</option>
+                                </select>
+                                <select name="Courses" rows="1" id="courses">
+                                    <option value="">Select Courses to Add</option>
+                                    <option value="">course 1</option>
+                                    <option value="">course 2</option>
+                                    <option value="">course</option>
+                                </select>
+                                <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" />
+                                <textarea placeholder="Courses" rows="8" cols="100" id="explanation"></textarea>
+                                <input id="save" onclick="getFeedbackValues()" type="submit" style="border: 1px solid #cccccc"></input>
+                            </form>
+
+                        </div>
                     </div>
-                    <ul class="list-group list-group-flush">
 
-                    </ul>
-                </div>
                 </div>
             </section>
 
@@ -66,6 +81,7 @@
                 </ul>
             </footer>
         </div>
+
 
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
@@ -89,6 +105,31 @@
         <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
         <script src="/__/firebase/8.0.1/firebase-database.js"></script>
         <script src="/__/firebase/init.js"></script>
+
+        <script>
+            window.onload = function() {
+                //get all class info from FB databse
+                // getClassSnapshot();
+                getCommunitySnapshot();
+                getClassSnapshot();
+
+                document.getElementById("email").placeholder=localStorage.getItem("user-email");
+                document.getElementById("email").value=localStorage.getItem("user-email");
+                // localStorage.removeItem("user-email");
+                document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+                document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+                // localStorage.removeItem("user-displayname");
+                //remove local storage items in signout function for security.
+                document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+            }
+        </script>
+
+        <!-- add courses to the textbox -->
+        <script type="text/javascript">
+            function Add() {
+
+            }
+        </script>
 
     </body>
 </html>
