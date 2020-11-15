@@ -63,6 +63,11 @@ function autocompleteCommunity(inp, arr) {
       a.setAttribute("class", "autocomplete-items");
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
+      /*create buffer for scrolling*/
+      nodesBuffer = document.createElement("BODY");
+      nodesBuffer.setAttribute("id", "buffer");
+      nodesBuffer.style.display = "none";
+      this.parentNode.appendChild(nodesBuffer);
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
@@ -85,6 +90,21 @@ function autocompleteCommunity(inp, arr) {
           a.appendChild(b);
         }
       }
+
+      a.addEventListener("wheel",function (e){
+          e.preventDefault();
+
+          if(e.deltaY>0&&a.childElementCount>7){
+              nodesBuffer.appendChild(a.firstChild);
+              a.removeChild(a.firstChild);
+              console.log("scroll up");
+          }else if(e.deltaY<0){
+              if(nodesBuffer.hasChildNodes()){
+                  a.insertBefore(nodesBuffer.lastChild,a.firstChild);
+              }
+          }
+
+      });
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {

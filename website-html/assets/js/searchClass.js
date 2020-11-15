@@ -109,12 +109,18 @@ function autocompleteClass(inp, arr) {
       closeAllLists();
       if (!val) { return false;}
       currentFocus = -1;
+
       /*create a DIV element that will contain the items (values):*/
       a = document.createElement("DIV");
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
+      /*create buffer for scrolling*/
+      nodesBuffer = document.createElement("BODY");
+      nodesBuffer.setAttribute("id", "buffer");
+      nodesBuffer.style.display = "none";
+      this.parentNode.appendChild(nodesBuffer);
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
@@ -137,7 +143,39 @@ function autocompleteClass(inp, arr) {
           a.appendChild(b);
         }
       }
+
+      a.addEventListener("wheel",function (e){
+          e.preventDefault();
+
+          if(e.deltaY>0&&a.childElementCount>7){
+              nodesBuffer.appendChild(a.firstChild);
+              a.removeChild(a.firstChild);
+              console.log("scroll up");
+          }else if(e.deltaY<0){
+              if(nodesBuffer.hasChildNodes()){
+                  a.insertBefore(nodesBuffer.lastChild,a.firstChild);
+              }
+          }
+
+      });
+
   });
+
+  // inp.addEventListener("wheel",function(e){
+  //    var x = document.getElementById(this.id + "autocomplete-list");
+  //    closeAllLists();
+  //   // b.addEventListener("wheel",function (e){
+  //   //     e.preventDefault();
+  //   //     var y=e.deltaY;
+  //   //     console.log("pop!");
+  //   //     if(y<e.deltaY){
+  //   //         a.removeChild(b);
+  //   //         console.log("Child removed!");
+  //   //     }
+  //   //
+  //   // });
+  // });
+
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
       var x = document.getElementById(this.id + "autocomplete-list");
@@ -163,6 +201,9 @@ function autocompleteClass(inp, arr) {
         }
       }
   });
+
+
+
   function addActive(x) {
     /*a function to classify an item as "active":*/
     if (!x) return false;
@@ -188,6 +229,10 @@ function autocompleteClass(inp, arr) {
         x[i].parentNode.removeChild(x[i]);
       }
     }
+
+  }
+  function clearNodeBuffer(){
+
   }
   /*execute a function when someone clicks in the document:*/
   document.addEventListener("click", function (e) {
