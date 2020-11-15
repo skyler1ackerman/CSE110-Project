@@ -118,7 +118,8 @@ function autocompleteClass(inp, arr) {
       this.parentNode.appendChild(a);
       /*create buffer for scrolling*/
       nodesBuffer = document.createElement("BODY");
-      nodesBuffer.setAttribute("id", "buffer");
+      nodesBuffer.setAttribute("id", this.id+"buffer");
+      nodesBuffer.setAttribute("class", "buffer-items");
       nodesBuffer.style.display = "none";
       this.parentNode.appendChild(nodesBuffer);
       /*for each item in the array...*/
@@ -153,6 +154,7 @@ function autocompleteClass(inp, arr) {
               console.log("scroll up");
           }else if(e.deltaY<0){
               if(nodesBuffer.hasChildNodes()){
+                  console.log("buffer not empty");
                   a.insertBefore(nodesBuffer.lastChild,a.firstChild);
               }
           }
@@ -211,16 +213,17 @@ function autocompleteClass(inp, arr) {
     /*close all autocomplete lists in the document,
     except the one passed as an argument:*/
     var x = document.getElementsByClassName("autocomplete-items");
+    var y = document.getElementsByClassName("buffer-items")
     for (var i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
         x[i].parentNode.removeChild(x[i]);
       }
     }
-
+    for (var i = 0; i < y.length; i++) {
+        y[i].parentNode.removeChild(y[i]);
+    }
   }
-  function clearNodeBuffer(){
 
-  }
   /*execute a function when someone clicks in the document:*/
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
