@@ -8,11 +8,6 @@
 // }
 function getFeedbackValues(){
     console.log("getFeedbackValues() called!");
-
-    if (!firebase.apps.length) {
-      console.log("firebase app initlized!");
-      firebase.initializeApp(firebaseConfig);
-    }
   
     // var feedback_ref = firebase.database().ref("Feedbacks/");
     var counter = 1;
@@ -42,11 +37,7 @@ function getFeedbackValues(){
 
 function getFeedbackOutside(){
   console.log("getFeedbackValues() called!");
-
-  if (!firebase.apps.length) {
-    console.log("firebase app initlized!");
-    firebase.initializeApp(firebaseConfig);
-  }
+    
   var counter = 1;
   var fbRef = "Feedback/Outside";
   firebase.database().ref(fbRef).once("value").then(function (snapshot){
