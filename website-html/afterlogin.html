@@ -20,7 +20,11 @@
                         <!-- <ul> -->
                             <!-- <li class="special"> Navigation bar starts here -->
 								<ul class="menuToggle">
+<<<<<<< HEAD
 									<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
+=======
+									<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
+>>>>>>> link added to login page
 									&nbsp;
 									|
 									&nbsp;
@@ -36,6 +40,14 @@
                					    &nbsp;
 									|
 									&nbsp;
+<<<<<<< HEAD
+=======
+									<img id="profilePicUserProfile" src="" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
+               					    <a href="userprofile.html" class="no-style more scrolly four-text">User Profile</a>
+               					    &nbsp;
+									|
+									&nbsp;
+>>>>>>> link added to login page
 									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
 									&nbsp;
 									&nbsp;
@@ -219,6 +231,9 @@
 					getCommunitySnapshot();
 					getClassSnapshot();
 
+					var profileImgUrl = localStorage.getItem("user-profileimgurl");
+                	//profileImgUrl = profileImgUrl.replace("s96-c", "s256-c");
+					document.getElementById("profilePicUserProfile").src=profileImgUrl;
 					document.getElementById("email").placeholder=localStorage.getItem("user-email");
 					document.getElementById("email").value=localStorage.getItem("user-email");
 					// localStorage.removeItem("user-email");
