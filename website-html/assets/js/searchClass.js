@@ -161,20 +161,7 @@ function autocompleteClass(inp, arr) {
 
   });
 
-  // inp.addEventListener("wheel",function(e){
-  //    var x = document.getElementById(this.id + "autocomplete-list");
-  //    closeAllLists();
-  //   // b.addEventListener("wheel",function (e){
-  //   //     e.preventDefault();
-  //   //     var y=e.deltaY;
-  //   //     console.log("pop!");
-  //   //     if(y<e.deltaY){
-  //   //         a.removeChild(b);
-  //   //         console.log("Child removed!");
-  //   //     }
-  //   //
-  //   // });
-  // });
+
 
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
