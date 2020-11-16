@@ -23,33 +23,6 @@
 	  	<script src="/__/firebase/init.js"></script>
 
 
-		<div class="chatroom" style="width: 150px; height:80px;" id="openChatroom">
-			<p onclick="openChatRoom()" style="border: 1px solid white; text-align: center; margin:auto;">CHAT</p>
-		</div>
-		<div class="chatroom" style="visibility:hidden; margin-right:15px" id="chatroom">
-			<p style="margin:0px 0px 0px 30px; padding:0px 30px 0px 0px; color:black; display: inline-block;">
-				Live Chat
-				<span style="font-size:13px; margin-left:320px; ">Online Count:</span>
-				<span style="font-size:13px;" id="numonline"></span>
-				<span style="font-size:13px; color:green; font-size:30px;">&#8226;</span>
-
-			</p>
-			<hr style="padding:0px; margin:0px 5px 5px 30px;">
-			<div id="messagesContainer" class="scrollEffectInContainer" style="padding-left: 30px;">
-				<ul id="messages"></ul>
-			</div>
-			<hr style="padding:0px; margin:0px 25px 5px 30px;">
-
-
-			<!-- form to send message -->
-			<div id="rightbottom">
-				<form onsubmit="return sendMessage();">
-				<input style="display: inline-block; width: 270px;" id="message" placeholder="Enter message" autocomplete="off">
-				<input style="display: inline-block; width: 100px; font-size:9px;" type="submit">
-				<p style="display: inline-block; width: 100px; font-size:9px;"><span class="no-style" style="color:darkred; font-size:20px; margin:0px 0px -10px 100px; border: 2px solid darkred; padding: 3px;"onclick="closeChatRoom()">close</span> </input>
-			</div>
-			</form>
-		</div>
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
@@ -60,11 +33,11 @@
                         <!-- <ul> -->
                             <!-- <li class="special"> Navigation bar starts here -->
 								<ul class="menuToggle">
-									<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
+									<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Dashboard</a>
 									&nbsp;
 									|
 									&nbsp;
-									<a href="#one" class="no-style more scrolly one-text">How It Works</a>
+									<!-- <a href="#one" class="no-style more scrolly one-text">How It Works</a>
 									&nbsp;
 									|
 									&nbsp;
@@ -75,7 +48,7 @@
                					    <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
                					    &nbsp;
 									|
-									&nbsp;
+									&nbsp; -->
 									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
 									&nbsp;
 									&nbsp;
