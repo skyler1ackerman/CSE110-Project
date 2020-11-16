@@ -58,7 +58,7 @@
                             -->
                              
                             <!--only proof of concept, add the search team's thing in here-->
-                            <select name="Courses" rows="1" id="courses">
+                            <!--<select name="Courses" rows="1" id="courses">
                                 <option value="">Select Courses to Add</option>
                                 <option value="course 0">course 0</option>
                                 <option value="course 1">course 1</option>
@@ -68,9 +68,13 @@
                                 <option value="course 5">course 5</option>
                                 <option value="course 6">course 6</option>
                                 <option value="course 7">course 7</option>
-                            </select>
+                            </select>-->
+                            <div class="autocomplete" style="width: auto;">
+                                <input id="inputClasses" type="text" name="searchclasses" style="text-align:center; width: auto;" placeholder="Search Class Discords">
+                            </div>            
                             <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" style="border: 1px solid #cccccc"/>
                             <textarea placeholder="Courses" rows="8" cols="100" id="courseListToSave" readonly></textarea>
+                            <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
                             <input id="save" type="button" value = "Save" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
                         </form>
                     </div>
@@ -102,9 +106,8 @@
 
         <script>
             window.onload = function() {
-                //get all class info from FB databse
-                // getClassSnapshot();
-                getCommunitySnapshot();
+                // get all class info from FB databse
+                //getCommunitySnapshot();
                 getClassSnapshot();
 
                 document.getElementById("email").placeholder=localStorage.getItem("user-email");
@@ -128,14 +131,25 @@
             var courseCount = 0;
             // currently only for dropdown in select, no duplicate add check 
             function Add() {
-                var currentCourse = document.getElementById("courses").value
+                var currentCourse = document.getElementById("inputClasses").value;
+                //check if user input is valid
+                if(classesArr.includes(currentCourse) && currentCourse !== ""){
+                    console.log("good add");
+                }
+                else{
+                    alert("The class you entered is not in our Database.");
+                    return false;
+                }
                 console.log("Add " +  currentCourse);
-                if(currentCourse == "") {
-                    return;
+                var i;
+                for (i of courseArray) {
+                    if(i == currentCourse){
+                        alert("The class you entered is already in the list.");
+                        return false;
+                    }
                 }
                 courseArray[courseCount] = currentCourse;
                 courseCount++;
-                var i = 0;
                 document.getElementById("courseListToSave").value = "";
                 for (i of courseArray) {
                     document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
@@ -149,6 +163,12 @@
                 console.log("Save ");
                 console.log(courseArray.toString());
                 // iterate through courseArray, send to firebase db
+
+            }
+            // clear is not meant to update db, only the list visible on page
+            function clearList(){
+                console.log("clear ");
+                console.log(courseArray.toString());
 
                 document.getElementById("courseListToSave").value = "";
                 courseArray = [];
