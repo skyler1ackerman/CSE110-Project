@@ -64,8 +64,8 @@ function getFeedbackOutside(){
     alert("Successfully submitted! Thank you for your feedback!");
 }
 
-function retriveFeedbackUCSD() {
-  console.log("retriveFeedbackUCSD() called :)");
+function retrieveFeedbackUCSD() {
+  console.log("retrieveFeedbackUCSD() called :)");
 
   let feedbackUCSDElement = document.querySelector('#feedbackUCSD')
 
@@ -128,8 +128,8 @@ function retriveFeedbackUCSD() {
   console.log("feedbackUCSDArr:! ", feedbackUCSDArr);
 }
 
-function retriveFeedbackOutside() {
-  console.log("retriveFeedbackOutside() called :)");
+function retrieveFeedbackOutside() {
+  console.log("retrieveFeedbackOutside() called :)");
 
   var ref = firebase.database().ref("Feedback/Outside");
   let feedbackOutsideElement = document.querySelector('#feedbackOutside')
@@ -205,5 +205,5 @@ function feedbackOutsideSelected(){
 
 feedbackUCSDArr = []
 feedbackOutsideArr = []
-retriveFeedbackUCSD()
-retriveFeedbackOutside()
+retrieveFeedbackUCSD()
+retrieveFeedbackOutside()
