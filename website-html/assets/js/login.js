@@ -32,6 +32,14 @@ function testFunction() {
           console.log("signout error!");
         });
       } // => "Tabs1")
+      else if(user.email == "amkohli@ucsd.edu") {
+          localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
+          console.log(user.email, "saved to local storage");
+          localStorage.setItem("user-displayname", user.displayName);
+          console.log(user.displayName, "saved to local storage");
+          window.location.href = "afterAdminLogin.html"; //routes admins to admin options   
+                  
+      }
       else{
         //save user info to local storage to use in it feedback form
             localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
@@ -39,7 +47,7 @@ function testFunction() {
             localStorage.setItem("user-displayname", user.displayName);
             console.log(user.displayName, "saved to local storage");
         console.log("signin successful!");
-        window.location.href = "afterlogin.html";
+        window.location.href = "afterlogin.html"; //routes to afterlogin.html
       }
       // ...
     }).catch(function(error) {
