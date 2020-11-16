@@ -33,7 +33,7 @@ function testFunction() {
         });
       } // => "Tabs1")
       //checking if user is an admin
-      else if(user.email == "amkohli@ucsd.edu" || user.email == "djuanito@ucsd.edu" || user.email == "kat066@ucsd.edu") {
+      else if(user.email == "amkohli@ucsd.edu" || user.email == "djuanito@ucsd.edu" || user.email == "kat066@ucsd.edu" || user.email == "yoryu@ucsd.edu") {
         localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
         console.log(user.email, "saved to local storage");
         localStorage.setItem("user-displayname", user.displayName);
