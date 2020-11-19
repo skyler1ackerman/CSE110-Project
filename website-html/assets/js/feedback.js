@@ -57,7 +57,7 @@ function getFeedbackOutside(){
 
       console.log(counter)
 
-<<<<<<< HEAD
+
   });
   firebase.database().ref(fbRef).once("child_added").then(function (){
           document.getElementById("email").value='';
@@ -203,8 +203,9 @@ function feedbackUCSDSelected(){
     document.getElementById("feedbackUCSD").style.display = "block";
 }
 
-function feedbackOutsideSelected(){
+function feedbackOutsideSelected() {
     console.log("feedbackOutsideSelected() called");
     document.getElementById("feedbackUCSD").style.display = "none";
     document.getElementById("feedbackOutside").style.display = "block";
+}
 
