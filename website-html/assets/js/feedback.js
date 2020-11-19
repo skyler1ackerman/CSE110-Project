@@ -9,8 +9,6 @@
 function getFeedbackValues(){
     console.log("getFeedbackValues() called!");
 
-  
-
     // var feedback_ref = firebase.database().ref("Feedbacks/");
     var counter = 1;
     var fbRef = "Feedback/UCSD";
@@ -74,10 +72,13 @@ function retrieveFeedbackUCSD() {
     console.log("retrieveFeedbackUCSD() called :)");
 
     let feedbackUCSDElement = document.querySelector('#feedbackUCSD')
-
     var ref = firebase.database().ref("Feedback/UCSD");
     var counter = 1
+
     ref.on("value", function(snapshot) {
+        while(feedbackUCSDElement.hasChildNodes()){
+            feedbackUCSDElement.removeChild(feedbackUCSDElement.lastChild);
+        }
         snapshot.forEach(function(childSnapshot) {
             counter += 1
             var feedback = childSnapshot.val();
@@ -141,7 +142,10 @@ function retrieveFeedbackOutside() {
     let feedbackOutsideElement = document.querySelector('#feedbackOutside')
     counter = 1
 
-    ref.on("value", function(snapshot) {
+    ref.once("value", function(snapshot) {
+        while(feedbackOutsideElement.hasChildNodes()){
+            feedbackOutsideElement.removeChild(feedbackOutsideElement.lastChild);
+        }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
             counter += 1
@@ -203,9 +207,15 @@ function feedbackUCSDSelected(){
     document.getElementById("feedbackUCSD").style.display = "block";
 }
 
-function feedbackOutsideSelected() {
+function feedbackOutsideSelected(){
     console.log("feedbackOutsideSelected() called");
     document.getElementById("feedbackUCSD").style.display = "none";
     document.getElementById("feedbackOutside").style.display = "block";
+
 }
+
+feedbackUCSDArr = []
+feedbackOutsideArr = []
+retrieveFeedbackUCSD()
+retrieveFeedbackOutside()
 
