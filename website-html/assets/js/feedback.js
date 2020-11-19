@@ -8,10 +8,13 @@
 // }
 function getFeedbackValues(){
     console.log("getFeedbackValues() called!");
+
   
+
     // var feedback_ref = firebase.database().ref("Feedbacks/");
     var counter = 1;
     var fbRef = "Feedback/UCSD";
+
     firebase.database().ref(fbRef).once("value").then(function (snapshot){
         counter=snapshot.numChildren()+1;
         console.log(fbRef);
@@ -30,6 +33,7 @@ function getFeedbackValues(){
         document.getElementById("Issue_type").value='';
         document.getElementById("explanation").value='';
         console.log("Output clear")
+
     });
 
     alert("Successfully submitted! Thank you for your feedback!");
@@ -53,6 +57,7 @@ function getFeedbackOutside(){
 
       console.log(counter)
 
+<<<<<<< HEAD
   });
   firebase.database().ref(fbRef).once("child_added").then(function (){
           document.getElementById("email").value='';
@@ -202,9 +207,4 @@ function feedbackOutsideSelected(){
     console.log("feedbackOutsideSelected() called");
     document.getElementById("feedbackUCSD").style.display = "none";
     document.getElementById("feedbackOutside").style.display = "block";
-}
 
-feedbackUCSDArr = []
-feedbackOutsideArr = []
-retrieveFeedbackUCSD()
-retrieveFeedbackOutside()
