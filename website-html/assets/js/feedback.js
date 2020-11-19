@@ -16,7 +16,7 @@ function getFeedbackValues(){
     firebase.database().ref(fbRef).once("value").then(function (snapshot){
         counter=snapshot.numChildren()+1;
         console.log(fbRef);
-        var childRef =  "feedback" + counter + "/";
+        var childRef =  "feedback" + counter + ' ' + document.getElementById("fullname").value+"/";
         firebase.database().ref(fbRef).child(childRef).set({
             email: document.getElementById("email").value,
             fullname: document.getElementById("fullname").value,
@@ -45,7 +45,7 @@ function getFeedbackOutside(){
   firebase.database().ref(fbRef).once("value").then(function (snapshot){
       counter=snapshot.numChildren()+1;
       console.log(fbRef);
-      var childRef =  "feedback" + counter + "/";
+      var childRef =  "feedback" + counter + ' ' + document.getElementById("fullname").value+"/";
       firebase.database().ref(fbRef).child(childRef).set({
           email: document.getElementById("email").value,
           fullname: document.getElementById("fullname").value,
@@ -72,6 +72,7 @@ function retrieveFeedbackUCSD() {
     console.log("retrieveFeedbackUCSD() called :)");
 
     let feedbackUCSDElement = document.querySelector('#feedbackUCSD')
+    var ResolvedRef=firebase.database().ref("Feedback/ResolvedUCSD");
     var ref = firebase.database().ref("Feedback/UCSD");
     var counter = 1
 
@@ -82,9 +83,8 @@ function retrieveFeedbackUCSD() {
         snapshot.forEach(function(childSnapshot) {
             counter += 1
             var feedback = childSnapshot.val();
-
             let newFeedbackBoxElement = document.createElement('div')
-            newFeedbackBoxElement.setAttribute("id", "feedback-UCSD-box");
+            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
 
@@ -117,6 +117,20 @@ function retrieveFeedbackUCSD() {
             let explanation = document.createElement('span')
             explanation.innerText = feedback.explanation || 'N/A'
 
+            let new_Line = document.createElement('br')
+
+            let resolved = document.createElement('button')
+            resolved.innerText = "Resolved"
+            resolved.addEventListener("click",function(){
+                ResolvedRef.child(newFeedbackBoxElement.id).set({
+                    email: feedback.email,
+                    fullname: feedback.fullname,
+                    issue_type: feedback.issue_type,
+                    explanation: feedback.explanation,
+                })
+                ref.child(newFeedbackBoxElement.id).remove();
+            });
+
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -125,33 +139,36 @@ function retrieveFeedbackUCSD() {
             newFeedbackBoxElement.appendChild(issue_type)
             newFeedbackBoxElement.appendChild(explanationLabel)
             newFeedbackBoxElement.appendChild(explanation)
+            newFeedbackBoxElement.appendChild(new_Line)
+            newFeedbackBoxElement.appendChild(resolved)
 
             feedbackUCSDArr.push(feedback);
-
             feedbackUCSDElement.append(newFeedbackBoxElement)
+
+
         });
     });
 
     console.log("feedbackUCSDArr:! ", feedbackUCSDArr);
 }
-
-function retrieveFeedbackOutside() {
-    console.log("retrieveFeedbackOutside() called :)");
-
-    var ref = firebase.database().ref("Feedback/Outside");
-    let feedbackOutsideElement = document.querySelector('#feedbackOutside')
+function retrieveResolvedUCSD() {
+    console.log("retrieveResolvedUCSD() called :)");
+    var ref=firebase.database().ref("Feedback/ResolvedUCSD");
+    var UnresolvedRef = firebase.database().ref("Feedback/UCSD");
+    let resolvedUCSDElement = document.querySelector('#resolvedUCSD')
     counter = 1
 
-    ref.once("value", function(snapshot) {
-        while(feedbackOutsideElement.hasChildNodes()){
-            feedbackOutsideElement.removeChild(feedbackOutsideElement.lastChild);
+    ref.on("value", function(snapshot) {
+        while(resolvedUCSDElement.hasChildNodes()){
+            resolvedUCSDElement.removeChild(resolvedUCSDElement.lastChild);
         }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
+            childSnapshot.key
             counter += 1
 
             let newFeedbackBoxElement = document.createElement('div')
-            newFeedbackBoxElement.setAttribute("id", "feedback-Outside-box");
+            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
 
@@ -184,6 +201,20 @@ function retrieveFeedbackOutside() {
             let explanation = document.createElement('span')
             explanation.innerText = feedback.explanation || 'N/A'
 
+            let new_Line = document.createElement('br')
+
+            let unresolved = document.createElement('button')
+            unresolved.innerText = "Unresolved"
+            unresolved.addEventListener("click",function(){
+                UnresolvedRef.child(newFeedbackBoxElement.id).set({
+                    email: feedback.email,
+                    fullname: feedback.fullname,
+                    issue_type: feedback.issue_type,
+                    explanation: feedback.explanation,
+                })
+                ref.child(newFeedbackBoxElement.id).remove();
+            });
+
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -192,6 +223,91 @@ function retrieveFeedbackOutside() {
             newFeedbackBoxElement.appendChild(issue_type)
             newFeedbackBoxElement.appendChild(explanationLabel)
             newFeedbackBoxElement.appendChild(explanation)
+            newFeedbackBoxElement.appendChild(new_Line)
+            newFeedbackBoxElement.appendChild(unresolved)
+
+            resolvedUCSDElement.append(newFeedbackBoxElement)
+
+            resolvedUCSDArr.push(feedback);
+        });
+    });
+    console.log("resolvedUCSDArr:! ", resolvedUCSDArr);
+}
+
+function retrieveFeedbackOutside() {
+    console.log("retrieveFeedbackOutside() called :)");
+    var ResolvedRef=firebase.database().ref("Feedback/ResolvedOutside");
+    var ref = firebase.database().ref("Feedback/Outside");
+    let feedbackOutsideElement = document.querySelector('#feedbackOutside')
+    counter = 1
+
+    ref.on("value", function(snapshot) {
+        while(feedbackOutsideElement.hasChildNodes()){
+            feedbackOutsideElement.removeChild(feedbackOutsideElement.lastChild);
+        }
+        snapshot.forEach(function(childSnapshot) {
+            var feedback = childSnapshot.val();
+            childSnapshot.key
+            counter += 1
+
+            let newFeedbackBoxElement = document.createElement('div')
+            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
+            newFeedbackBoxElement.style.border = "solid #FFFFFF"
+            newFeedbackBoxElement.style.marginBottom = "10px"
+
+            // Email
+            let emailLabel = document.createElement('label')
+            emailLabel.innerText = "email"
+
+            let email = document.createElement('span')
+            email.innerText = feedback.email || 'N/A'
+
+
+            // Fullname
+            let fullnameLabel = document.createElement('label')
+            fullnameLabel.innerText = "fullname"
+
+            let fullname = document.createElement('span')
+            fullname.innerText = feedback.fullname || 'N/A'
+
+            // Issue Type
+            let issueTypeLabel = document.createElement('label')
+            issueTypeLabel.innerText = "Issue Type"
+
+            let issue_type = document.createElement('span')
+            issue_type.innerText = feedback.issue_type || 'N/A'
+
+            // Explanation
+            let explanationLabel = document.createElement('label')
+            explanationLabel.innerText = "Explanation"
+
+            let explanation = document.createElement('span')
+            explanation.innerText = feedback.explanation || 'N/A'
+
+            let new_Line = document.createElement('br')
+
+            let resolved = document.createElement('button')
+            resolved.innerText = "Resolved"
+            resolved.addEventListener("click",function(){
+                ResolvedRef.child(newFeedbackBoxElement.id).set({
+                    email: feedback.email,
+                    fullname: feedback.fullname,
+                    issue_type: feedback.issue_type,
+                    explanation: feedback.explanation,
+                })
+                ref.child(newFeedbackBoxElement.id).remove();
+            });
+
+            newFeedbackBoxElement.appendChild(emailLabel)
+            newFeedbackBoxElement.appendChild(email)
+            newFeedbackBoxElement.appendChild(fullnameLabel)
+            newFeedbackBoxElement.appendChild(fullname)
+            newFeedbackBoxElement.appendChild(issueTypeLabel)
+            newFeedbackBoxElement.appendChild(issue_type)
+            newFeedbackBoxElement.appendChild(explanationLabel)
+            newFeedbackBoxElement.appendChild(explanation)
+            newFeedbackBoxElement.appendChild(new_Line)
+            newFeedbackBoxElement.appendChild(resolved)
 
             feedbackOutsideElement.append(newFeedbackBoxElement)
 
@@ -201,21 +317,130 @@ function retrieveFeedbackOutside() {
     console.log("feedbackOutsideArr:! ", feedbackOutsideArr);
 }
 
+
+function retrieveResolvedOutside() {
+    console.log("retrieveResolvedOutside() called :)");
+    var ref=firebase.database().ref("Feedback/ResolvedOutside");
+    var UnresolvedRef = firebase.database().ref("Feedback/Outside");
+    let resolvedOutsideElement = document.querySelector('#resolvedOutside')
+    counter = 1
+
+    ref.on("value", function(snapshot) {
+        while(resolvedOutsideElement.hasChildNodes()){
+            resolvedOutsideElement.removeChild(resolvedOutsideElement.lastChild);
+        }
+        snapshot.forEach(function(childSnapshot) {
+            var feedback = childSnapshot.val();
+            childSnapshot.key
+            counter += 1
+
+            let newFeedbackBoxElement = document.createElement('div')
+            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
+            newFeedbackBoxElement.style.border = "solid #FFFFFF"
+            newFeedbackBoxElement.style.marginBottom = "10px"
+
+            // Email
+            let emailLabel = document.createElement('label')
+            emailLabel.innerText = "email"
+
+            let email = document.createElement('span')
+            email.innerText = feedback.email || 'N/A'
+
+
+            // Fullname
+            let fullnameLabel = document.createElement('label')
+            fullnameLabel.innerText = "fullname"
+
+            let fullname = document.createElement('span')
+            fullname.innerText = feedback.fullname || 'N/A'
+
+            // Issue Type
+            let issueTypeLabel = document.createElement('label')
+            issueTypeLabel.innerText = "Issue Type"
+
+            let issue_type = document.createElement('span')
+            issue_type.innerText = feedback.issue_type || 'N/A'
+
+            // Explanation
+            let explanationLabel = document.createElement('label')
+            explanationLabel.innerText = "Explanation"
+
+            let explanation = document.createElement('span')
+            explanation.innerText = feedback.explanation || 'N/A'
+
+            let new_Line = document.createElement('br')
+
+            let unresolved = document.createElement('button')
+            unresolved.innerText = "Unresolved"
+            unresolved.addEventListener("click",function(){
+                UnresolvedRef.child(newFeedbackBoxElement.id).set({
+                    email: feedback.email,
+                    fullname: feedback.fullname,
+                    issue_type: feedback.issue_type,
+                    explanation: feedback.explanation,
+                })
+                ref.child(newFeedbackBoxElement.id).remove();
+            });
+
+            newFeedbackBoxElement.appendChild(emailLabel)
+            newFeedbackBoxElement.appendChild(email)
+            newFeedbackBoxElement.appendChild(fullnameLabel)
+            newFeedbackBoxElement.appendChild(fullname)
+            newFeedbackBoxElement.appendChild(issueTypeLabel)
+            newFeedbackBoxElement.appendChild(issue_type)
+            newFeedbackBoxElement.appendChild(explanationLabel)
+            newFeedbackBoxElement.appendChild(explanation)
+            newFeedbackBoxElement.appendChild(new_Line)
+            newFeedbackBoxElement.appendChild(unresolved)
+
+            resolvedOutsideElement.append(newFeedbackBoxElement)
+
+            resolvedOutsideArr.push(feedback);
+        });
+    });
+    console.log("resolvedOutsideArr:! ", resolvedOutsideArr);
+}
+
 function feedbackUCSDSelected(){
     console.log("feedbackUCSDSelected() called");
     document.getElementById("feedbackOutside").style.display = "none";
     document.getElementById("feedbackUCSD").style.display = "block";
+    document.getElementById("resolvedOutside").style.display = "none";
+    document.getElementById("resolvedUCSD").style.display = "none";
 }
 
 function feedbackOutsideSelected(){
     console.log("feedbackOutsideSelected() called");
+    document.getElementById("feedbackOutside").style.display = "block";;
     document.getElementById("feedbackUCSD").style.display = "none";
-    document.getElementById("feedbackOutside").style.display = "block";
+    document.getElementById("resolvedOutside").style.display = "none";
+    document.getElementById("resolvedUCSD").style.display = "none";
+
+}
+
+function resolvedUCSDSelected(){
+    console.log("ResolvedUCSDSelected() called");
+    document.getElementById("feedbackOutside").style.display = "none";
+    document.getElementById("feedbackUCSD").style.display = "none";
+    document.getElementById("resolvedOutside").style.display = "none";
+    document.getElementById("resolvedUCSD").style.display = "block";
+}
+
+function resolvedOutsideSelected(){
+    console.log("ResolvedOutsideSelected() called");
+    document.getElementById("feedbackOutside").style.display = "none";
+    document.getElementById("feedbackUCSD").style.display = "none";
+    document.getElementById("resolvedOutside").style.display = "block";
+    document.getElementById("resolvedUCSD").style.display = "none";
 
 }
 
 feedbackUCSDArr = []
 feedbackOutsideArr = []
+resolvedUCSDArr = []
+resolvedOutsideArr = []
 retrieveFeedbackUCSD()
 retrieveFeedbackOutside()
+retrieveResolvedOutside()
+retrieveResolvedUCSD()
 

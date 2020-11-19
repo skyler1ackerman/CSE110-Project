@@ -33,7 +33,7 @@
                         <!-- <ul> -->
                             <!-- <li class="special"> Navigation bar starts here -->
 								<ul class="menuToggle">
-									<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Dashboard</a>
+									<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Dashboard</a>
 									&nbsp;
 									|
 									&nbsp;
@@ -64,15 +64,23 @@
                     <div class="inner" style="margin-top: 40px;">
 						<input type="radio" name="editList" id="feedbackOptionUCSD" value="" checked onclick="feedbackUCSDSelected()"/>
 						<label for="feedbackOptionUCSD">Feedback UCSD</label>
+						<input type="radio" name="editList" id="resolvedOptionUCSD" value=""  onclick="resolvedUCSDSelected()"/>
+						<label for="resolvedOptionUCSD">Resolved UCSD</label>
 						<input type="radio" name="editList" id="feedbackOptionOutside" value="" onclick="feedbackOutsideSelected()"/>
 						<label for="feedbackOptionOutside">Feedback Outside</label>
+						<input type="radio" name="editList" id="resolvedOptionOutside" value="" onclick="resolvedOutsideSelected()"/>
+						<label for="resolvedOptionOutside">Resolved Outside</label>
 						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
 
                     </div>
                     <div style="margin-bottom: 140px; overflow: scroll;">
                         <div id="feedbackUCSD" style="display: block; margin:auto; width: 60%;">
 						</div>
+						<div id="resolvedUCSD" style="display: block; margin:auto; width: 60%;">
+						</div>
 						<div id="feedbackOutside" style="display: none; margin:auto; width: 60%;">
+						</div>
+						<div id="resolvedOutside" style="display: none; margin:auto; width: 60%;">
 						</div>
                     </div>
 				</section>
