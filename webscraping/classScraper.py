@@ -75,7 +75,7 @@ parseURLS(allCourse)
 classNames = getClasses(allCourse)
 # Print the names out to check that it worked
 
-f = open('classNames.txt', 'a')	
+f = open('Info/classNames.txt', 'a')	
 for class_ in classNames:
 	f.write(class_+'\n')
 
