@@ -46,6 +46,49 @@ function submit_community(){
   }
 }
 
+// Category Search
+
+function submit_community_category(categoryInput){
+    //check if user input is valid
+        localStorage.setItem("categoryInput", categoryInput);
+        window.location.href = "community-categoryDB.html";
+}
+
+// Need to check if field is blank and then not display it.
+// Considering having a button that displays info so its not as long!
+function getCommunityCategory(category){
+    console.log("getCommunityCategory() called :)");
+    console.log("CATEGORY: ", category);
+
+    var catRef = "clubs/".concat(category);
+    var ref = firebase.database().ref(catRef).on('value', function(snap){
+        var resultsString = { str : "" };
+
+        //This loop iterates over the clubs associated with the category
+        snap.forEach(function(childNodes){
+            resultsString.str += "<li>";
+            resultsString.str +=   `<p><b>${childNodes.key}</b></p>`;
+            resultsString.str +=   `<p><b>Contact: </b>${childNodes.val().contact}</p>`;
+            resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
+            resultsString.str +=   `<p><b>Discord: </b>${childNodes.val().inviteLink}</p>`;
+            resultsString.str +=   `<p><b>Type: </b>${childNodes.val().org_type}</p>`;
+            resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
+            resultsString.str +=   `<p><b>Status: </b>${childNodes.val().status}</p>`;
+            resultsString.str += "</li>";
+
+            console.log(childNodes.key);
+            console.log(childNodes.val().contact);
+            console.log(childNodes.val().description);
+            console.log(childNodes.val().inviteLink);
+            console.log(childNodes.val().org_type);
+            console.log(childNodes.val().social_media);
+            console.log(childNodes.val().status);
+        });
+        document.getElementById("queryResults").innerHTML = resultsString.str;
+    });
+}
+// end of Category Search
+
 function autocompleteCommunity(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/

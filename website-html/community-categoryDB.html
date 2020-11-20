@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>tritongroups</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="landing is-preload">
+
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul class="menuToggle">
+                <a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="#one" class="no-style more scrolly one-text">How It Works</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="#two" class="no-style more scrolly two-text">About Us</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+            </ul>
+        </nav>
+    </header>
+    <script>
+
+        window.onload = function() {
+            const communityName = document.getElementById("community-category").innerHTML=localStorage.getItem("categoryInput");
+            getCommunityCategory(communityName)
+        }
+    </script>
+
+    <!-- Banner -->
+    <section id="banner">
+
+        <div class="inner">
+            <br><br><br><br>
+
+            <p>Browse Communities</p>
+            <!-- I don't know how to make this look good -->
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Academic</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Career</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Cooperative</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Cultural</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Dance</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Educational</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Fraternities</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Media</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Medical</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Music and Performance</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Political</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Service</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Social</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Sororities</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Spiritual</a>
+                <a href="#" class="button fit primary category" onclick="submit_community_category(this.textContent)">Sports</a>
+
+
+            <!--
+            <ul class="actions">
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Academic</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Career</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Cooperative</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Cultural</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Dance</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Educational</a></li>
+            </ul>
+            <ul class="actions">
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Fraternities</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Media</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Medical</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Music and Performance</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Political</a></li>
+            </ul>
+            <ul class="actions">
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Service</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Social</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Sororities</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Spiritual</a></li>
+                <li><a href="#" class="button category" onclick="submit_community_category(this.textContent)">Sports</a></li>
+            </ul>
+            -->
+            <p></p>
+            <ul class="actions special">
+                <form autocomplete="off" action="/action_page.php">
+                    <div class="autocomplete" style="width:400px;">
+                        <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+                    </div>
+                </form>
+            </ul>
+
+        <div style="text-align:center; margin-bottom:50px;"> <input type="submit" onclick="submit_community()"></div>
+        </div>
+    </section>
+
+    <section class="wrapper style5">
+
+        <div class="inner">
+            <h2 id="community-category"></h2>
+
+            <!-- Display query results here -->
+            <ul id="queryResults" class="alt">
+
+            </ul>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <!-- <li><a href="#" class="icon brands fa-twitter"><slabelan class="label">Twitter</slabelan></a></li> -->
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright"></br>
+            <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+            <li>(408) 533-5213 |</li> </br>
+            <li>spryleaf@spryleaf.io |</li> </br>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/searchClass.js"></script>
+<script src="assets/js/searchCommunity.js"></script>
+
+
+<!-- below is firebase SDKs-->
+<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+<!-- this works only when we are using firebase hosting service-->
+<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+<script src="/__/firebase/init.js"></script>
+</body>
+</html>
