@@ -67,7 +67,7 @@ async def sendReport(reaction, user):
 	# Immediately remove the flag so that not everyone on the server can see who flagged
 	await reaction.remove(user)
 	# Get a list of all of the admins in the guild
-	adminsList = [admin for admin in susMsg.guild.members if admin.guild_permissions.administrator and not admin.bot and admin.name =='thomasm16']
+	adminsList = [admin for admin in susMsg.guild.members if admin.guild_permissions.administrator and not admin.bot]
 	# Loop through all the admins
 	reportMsgList = []
 	for admin in adminsList:
