@@ -12,16 +12,15 @@ function getFeedbackValues(){
     // var feedback_ref = firebase.database().ref("Feedbacks/");
     var counter = 1;
     var fbRef = "Feedback/UCSD";
-
     firebase.database().ref(fbRef).once("value").then(function (snapshot){
         counter=snapshot.numChildren()+1;
         console.log(fbRef);
-        var childRef =  "feedback" + counter + ' ' + document.getElementById("fullname").value+"/";
-        firebase.database().ref(fbRef).child(childRef).set({
+        firebase.database().ref(fbRef).push().set({
             email: document.getElementById("email").value,
             fullname: document.getElementById("fullname").value,
             issue_type: document.getElementById("Issue_type").value,
             explanation: document.getElementById("explanation").value,
+            time:Date(Date.now()).toString()
         });
 
         console.log(counter)
@@ -46,11 +45,12 @@ function getFeedbackOutside(){
       counter=snapshot.numChildren()+1;
       console.log(fbRef);
       var childRef =  "feedback" + counter + ' ' + document.getElementById("fullname").value+"/";
-      firebase.database().ref(fbRef).child(childRef).set({
+      firebase.database().ref(fbRef).push().set({
           email: document.getElementById("email").value,
           fullname: document.getElementById("fullname").value,
           issue_type: document.getElementById("Issue_type").value,
           explanation: document.getElementById("explanation").value,
+          time:Date(Date.now()).toString()
       });
 
       console.log(counter)
@@ -87,6 +87,13 @@ function retrieveFeedbackUCSD() {
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
+
+            //Time
+            let timeLabel = document.createElement('label')
+            timeLabel.innerText = "time created"
+
+            let time = document.createElement('span')
+            time.innerText = feedback.time || 'N/A'
 
             // Email
             let emailLabel = document.createElement('label')
@@ -127,10 +134,12 @@ function retrieveFeedbackUCSD() {
                     fullname: feedback.fullname,
                     issue_type: feedback.issue_type,
                     explanation: feedback.explanation,
+                    time: feedback.time
                 })
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-
+            newFeedbackBoxElement.appendChild(timeLabel)
+            newFeedbackBoxElement.appendChild(time)
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -172,6 +181,13 @@ function retrieveResolvedUCSD() {
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
 
+            //Time
+            let timeLabel = document.createElement('label')
+            timeLabel.innerText = "time created"
+
+            let time = document.createElement('span')
+            time.innerText = feedback.time || 'N/A'
+
             // Email
             let emailLabel = document.createElement('label')
             emailLabel.innerText = "email"
@@ -211,6 +227,7 @@ function retrieveResolvedUCSD() {
                     fullname: feedback.fullname,
                     issue_type: feedback.issue_type,
                     explanation: feedback.explanation,
+                    time: feedback.time
                 })
                 ref.child(newFeedbackBoxElement.id).remove();
             });
@@ -220,7 +237,8 @@ function retrieveResolvedUCSD() {
             removed.addEventListener("click",function(){
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-
+            newFeedbackBoxElement.appendChild(timeLabel)
+            newFeedbackBoxElement.appendChild(time)
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -262,6 +280,13 @@ function retrieveFeedbackOutside() {
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
 
+            //Time
+            let timeLabel = document.createElement('label')
+            timeLabel.innerText = "time created"
+
+            let time = document.createElement('span')
+            time.innerText = feedback.time || 'N/A'
+
             // Email
             let emailLabel = document.createElement('label')
             emailLabel.innerText = "email"
@@ -301,10 +326,12 @@ function retrieveFeedbackOutside() {
                     fullname: feedback.fullname,
                     issue_type: feedback.issue_type,
                     explanation: feedback.explanation,
+                    time: feedback.time
                 })
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-
+            newFeedbackBoxElement.appendChild(timeLabel)
+            newFeedbackBoxElement.appendChild(time)
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -346,6 +373,13 @@ function retrieveResolvedOutside() {
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
 
+            //Time
+            let timeLabel = document.createElement('label')
+            timeLabel.innerText = "time created"
+
+            let time = document.createElement('span')
+            time.innerText = feedback.time || 'N/A'
+
             // Email
             let emailLabel = document.createElement('label')
             emailLabel.innerText = "email"
@@ -385,6 +419,7 @@ function retrieveResolvedOutside() {
                     fullname: feedback.fullname,
                     issue_type: feedback.issue_type,
                     explanation: feedback.explanation,
+                    time: feedback.time
                 })
                 ref.child(newFeedbackBoxElement.id).remove();
             });
@@ -394,7 +429,8 @@ function retrieveResolvedOutside() {
             removed.addEventListener("click",function(){
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-
+            newFeedbackBoxElement.appendChild(timeLabel)
+            newFeedbackBoxElement.appendChild(time)
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -458,3 +494,4 @@ retrieveFeedbackOutside()
 retrieveResolvedOutside()
 retrieveResolvedUCSD()
 
+s
