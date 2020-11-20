@@ -18,15 +18,25 @@ async def delMsg(susMsg, reportMsg, reportMsgList):
 		# Tell the admin that we received the command to delete, then delete the message
 		await reportMsg.channel.send('Deleting message "' + susMsg.content + '"')
 		await susMsg.delete()
+	# If someone already manually deleted the message we would hit an error. This is just to avoid that.
 	except discord.errors.NotFound:
 		await reportMsg.channel.send('That message has already been deleted!')
+	# Send a message to every admin besides the one that deleted the message letting them know it got deleted.
 	for channel in [msg.channel for msg in reportMsgList if msg.channel.recipient != reportMsg.channel.recipient]:
-		await channel.send(str(reportMsg.author) + ' deleted message ' + susMsg.content)
+		await channel.send(str(reportMsg.author) + ' deleted message "' + susMsg.content + '"')
 
 # This function gets called when the admin rejects deleting a reported message
 async def keepMsg(susMsg, reportMsg, reportMsgList):
-	# Let the admin know that we recieved the command
-	await reportMsg.channel.send('Ignoring message "' + susMsg.content + '"')
+	# We do a try except loop to avoid the edge case where another mod already deleted the given message
+	try:
+		# Tell the admin that we received the command to allow the message
+		await reportMsg.channel.send('Ignoring message "' + susMsg.content + '"')
+	# If someone already manually deleted the message we would hit an error. This is just to avoid that.
+	except discord.errors.NotFound:
+		await reportMsg.channel.send('That message has already been deleted!')
+	# Send a message to every admin besides the one that allowed the message letting them know it was ignored.
+	for channel in [msg.channel for msg in reportMsgList if msg.channel.recipient != reportMsg.channel.recipient]:
+		await channel.send(str(reportMsg.author) + ' ignored message "' + susMsg.content + '"')
 
 # This function is called after the report is sent to the admin
 # It waits for the admin to react with a check or x
@@ -62,7 +72,6 @@ async def sendReport(reaction, user):
 	reportMsgList = []
 	for admin in adminsList:
 		# Send a report to the admin including who reported who, the message, the time, and instructions
-		print('Sending message to',admin.name)
 		try:
 			# If there isn't already a dm_channel between the bot and the user, create one
 			if not admin.dm_channel:
