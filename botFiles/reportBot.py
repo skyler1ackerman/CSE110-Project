@@ -20,8 +20,8 @@ async def delMsg(susMsg, reportMsg, reportMsgList):
 		await susMsg.delete()
 	except discord.errors.NotFound:
 		await reportMsg.channel.send('That message has already been deleted!')
-	for channel in [msg.channel for msg in reportMsgList]:
-		await channel.send(str(reportMsg.author) + ' deleted the message!')
+	for channel in [msg.channel for msg in reportMsgList if msg.channel.recipient != reportMsg.channel.recipient]:
+		await channel.send(str(reportMsg.author) + ' deleted message ' + susMsg.content)
 
 # This function gets called when the admin rejects deleting a reported message
 async def keepMsg(susMsg, reportMsg, reportMsgList):
@@ -42,13 +42,13 @@ async def waitGen(reportMsgList, susMsg):
 	# The bot will wait for the admin to react to the report message until the timeout
 	# The timeout can be removed if we want it to wait forever, but I advise against that
 	try:
-		gen_reaction, admin = await bot.wait_for('reaction_add', timeout=60, check=check)
+		reportReact, reportAdmin = await bot.wait_for('reaction_add', timeout=60, check=check)
 	# If the wait times out, simply continue
 	except asyncio.TimeoutError:
 		pass
 	# If the wait returns true, then run the function corresponding to the given emoji
 	else:
-		await optionDict[gen_reaction.emoji](susMsg, gen_reaction.message, reportMsgList)
+		await optionDict[reportReact.emoji](susMsg, reportReact.message, reportMsgList)
 
 # This function is called when a user 'flags' a message, AKA reacts with a red square
 async def sendReport(reaction, user):
@@ -57,10 +57,10 @@ async def sendReport(reaction, user):
 	# Immediately remove the flag so that not everyone on the server can see who flagged
 	await reaction.remove(user)
 	# Get a list of all of the admins in the guild
-	admins = (admin for admin in susMsg.guild.members if admin.guild_permissions.administrator and not admin.bot)
+	adminsList = [admin for admin in susMsg.guild.members if admin.guild_permissions.administrator and not admin.bot and admin.name =='thomasm16']
 	# Loop through all the admins
 	reportMsgList = []
-	for admin in admins:
+	for admin in adminsList:
 		# Send a report to the admin including who reported who, the message, the time, and instructions
 		print('Sending message to',admin.name)
 		try:
