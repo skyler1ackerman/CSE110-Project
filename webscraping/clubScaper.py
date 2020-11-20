@@ -39,8 +39,10 @@ def getClubInfo(fullLinks):
 		clubSoup = BeautifulSoup(clubPage.content, 'html.parser')
 		# The first (and only) h1 object should be the club name
 		title = clubSoup.find('h1').text
+		# The first h4 object should be the category. We remove "Category" from the text to get the pure data.
+		cat   = (clubSoup.find('h4').text).replace('Category', '').strip()
 		# Define a nested dictionary with a key equal to the club name
-		clubInfo[title] = {}
+		clubInfo[title] = {'Category': cat}
 		# The first (and only) dl object should be the club info
 		mainTable = clubSoup.find('dl')
 		# All of the dt objects contain the labels, and the dd objects contain the data

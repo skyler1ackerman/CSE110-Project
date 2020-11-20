@@ -46,7 +46,7 @@ async def waitGen(reportMsgList, susMsg):
 	# Checks that the admin reacted with one of the two options
 	def check(react, user_):
 		# We check that A. They reacted with one of the two emojis
-		# B. The reaction was on one of the reports
+		# B. The reaction was on the correct report message
 		# C. There are two reactions (The bot's and the admins)
 		return str(react.emoji) in optionDict.keys() and react.message.id in [msg.id for msg in reportMsgList] and react.count == 2
 	# The bot will wait for the admin to react to the report message until the timeout

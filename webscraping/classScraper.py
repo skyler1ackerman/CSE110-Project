@@ -1,4 +1,6 @@
 import requests
+import json
+import jsonpickle
 from bs4 import BeautifulSoup
 from collections import defaultdict
 from urllib.parse import urljoin
@@ -72,7 +74,11 @@ parseURLS(allCourse)
 # Get all the classes from all of the major pages
 classNames = getClasses(allCourse)
 # Print the names out to check that it worked
-for x in classNames:
-	print(x)
+
+f = open('classNames.txt', 'a')	
+for class_ in classNames:
+	f.write(class_+'\n')
+
+f.close()
 # Total number of classes
-print(len(classNames))
+
