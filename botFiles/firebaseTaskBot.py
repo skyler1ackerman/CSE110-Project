@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 from discord.ext import commands
 
 firebase = pyrebase.initialize_app(fireConfig)
-auth = firebase.auth()
 db = firebase.database()
 
 load_dotenv()
@@ -15,7 +14,6 @@ GUILD= 'CSE110 Bot Testing'
 
 bot = commands.Bot(command_prefix='!')
 client = discord.Client()
-
 top = "Tasks"
 
 @bot.event
