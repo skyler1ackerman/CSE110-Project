@@ -215,6 +215,12 @@ function retrieveResolvedUCSD() {
                 ref.child(newFeedbackBoxElement.id).remove();
             });
 
+            let removed = document.createElement('button')
+            removed.innerText = "Removed"
+            removed.addEventListener("click",function(){
+                ref.child(newFeedbackBoxElement.id).remove();
+            });
+
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -225,6 +231,7 @@ function retrieveResolvedUCSD() {
             newFeedbackBoxElement.appendChild(explanation)
             newFeedbackBoxElement.appendChild(new_Line)
             newFeedbackBoxElement.appendChild(unresolved)
+            newFeedbackBoxElement.appendChild(removed)
 
             resolvedUCSDElement.append(newFeedbackBoxElement)
 
@@ -382,6 +389,12 @@ function retrieveResolvedOutside() {
                 ref.child(newFeedbackBoxElement.id).remove();
             });
 
+            let removed = document.createElement('button')
+            removed.innerText = "Removed"
+            removed.addEventListener("click",function(){
+                ref.child(newFeedbackBoxElement.id).remove();
+            });
+
             newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullnameLabel)
@@ -392,6 +405,7 @@ function retrieveResolvedOutside() {
             newFeedbackBoxElement.appendChild(explanation)
             newFeedbackBoxElement.appendChild(new_Line)
             newFeedbackBoxElement.appendChild(unresolved)
+            newFeedbackBoxElement.appendChild(removed)
 
             resolvedOutsideElement.append(newFeedbackBoxElement)
 
