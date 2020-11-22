@@ -66,5 +66,5 @@ soup = BeautifulSoup(coursePage.content, 'html.parser')
 # Get all of the links
 clubLinks = getLinks(soup)
 # Make a json file out of the nested dictionaries
-with open('clubInfo.json', 'w') as f:
+with open('Info/clubInfo.json', 'w') as f:
 	json.dump(getClubInfo(clubLinks),f,indent=2)
