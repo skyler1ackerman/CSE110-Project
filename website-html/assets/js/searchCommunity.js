@@ -8,9 +8,7 @@ function getCommunityInfoByName(name){
   var ref = firebase.database().ref("clubs").child(name);
   console.log("NAME: ", name);
   ref.on('value', function(snapshot) {
-      console.log(snapshot.val());
       let communityObj = snapshot.val()
-      console.log("year!: , ", communityObj.year);
       document.getElementById("community-academic-year").innerHTML =  snapshot.child("year").val(); //discord info
       document.getElementById("community-date-created").innerHTML = snapshot.child("year").val();
       document.getElementById("community-status").innerHTML = snapshot.child("year").val();
@@ -54,11 +52,9 @@ function submit_community_category(categoryInput){
         window.location.href = "community-categoryDB.html";
 }
 
-// Need to check if field is blank and then not display it.
-// Considering having a button that displays info so its not as long!
 function getCommunityCategory(category){
     console.log("getCommunityCategory() called :)");
-    console.log("CATEGORY: ", category);
+    //console.log("CATEGORY: ", category);
 
     var catRef = "clubs/".concat(category);
     var ref = firebase.database().ref(catRef).on('value', function(snap){
@@ -66,27 +62,50 @@ function getCommunityCategory(category){
 
         //This loop iterates over the clubs associated with the category
         snap.forEach(function(childNodes){
-            resultsString.str += "<li>";
-            resultsString.str +=   `<p><b>${childNodes.key}</b></p>`;
-            resultsString.str +=   `<p><b>Contact: </b>${childNodes.val().contact}</p>`;
-            resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
-            resultsString.str +=   `<p><b>Discord: </b>${childNodes.val().inviteLink}</p>`;
-            resultsString.str +=   `<p><b>Type: </b>${childNodes.val().org_type}</p>`;
-            resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
-            resultsString.str +=   `<p><b>Status: </b>${childNodes.val().status}</p>`;
+            resultsString.str += "<li class='community'>";
+            resultsString.str += `<button class=\"collapsible\">${childNodes.key}</button>`;
+            resultsString.str += "<div class=\"content\">";
+            resultsString.str += "<p></p>";
+            if(childNodes.val().status !== "") {
+                resultsString.str +=   `<p><b>Status: </b>${childNodes.val().status}</p>`;
+            };
+            if(childNodes.val().org_type !== "") {
+                resultsString.str +=   `<p><b>Type: </b>${childNodes.val().org_type}</p>`;
+            };
+            if(childNodes.val().contact !== ""){
+                resultsString.str +=   `<p><b>Contact: </b>${childNodes.val().contact}</p>`;
+            };
+            if(childNodes.val().description !== "") {
+                resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
+            };
+            if(childNodes.val().inviteLink !== "") {
+                resultsString.str +=   `<p><b>Discord: </b>${childNodes.val().inviteLink}</p>`;
+            };
+            if(childNodes.val().social_media !== "") {
+                resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
+            };
+            resultsString.str += "</div>";
             resultsString.str += "</li>";
-
-            console.log(childNodes.key);
-            console.log(childNodes.val().contact);
-            console.log(childNodes.val().description);
-            console.log(childNodes.val().inviteLink);
-            console.log(childNodes.val().org_type);
-            console.log(childNodes.val().social_media);
-            console.log(childNodes.val().status);
         });
+        console.log(resultsString.str);
         document.getElementById("queryResults").innerHTML = resultsString.str;
+        var container = document.querySelector(" #results > #queryResults ");
+        var coll = container.querySelectorAll(" .community > .collapsible")
+        var i;
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
     });
 }
+
 // end of Category Search
 
 function autocompleteCommunity(inp, arr) {
