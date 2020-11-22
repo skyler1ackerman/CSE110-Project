@@ -85,7 +85,7 @@ function retrieveFeedbackUCSD() {
             var feedback = childSnapshot.val();
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
-            newFeedbackBoxElement.style.border = "solid #FFFFFF"
+            newFeedbackBoxElement.style.border = "gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
             //Time
             let time = document.createElement('textarea')
@@ -167,7 +167,7 @@ function retrieveResolvedUCSD() {
 
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
-            newFeedbackBoxElement.style.border = "solid #FFFFFF"
+            newFeedbackBoxElement.style.border = "gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
 
             //Time
@@ -253,7 +253,7 @@ function retrieveFeedbackOutside() {
 
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
-            newFeedbackBoxElement.style.border = "solid #FFFFFF"
+            newFeedbackBoxElement.style.border = "gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
 
             //Time
@@ -333,7 +333,7 @@ function retrieveResolvedOutside() {
 
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
-            newFeedbackBoxElement.style.border = "solid #FFFFFF"
+            newFeedbackBoxElement.style.border = "gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
             //Time
             let time = document.createElement('textarea')
@@ -389,6 +389,7 @@ function retrieveResolvedOutside() {
             newFeedbackBoxElement.appendChild(fullname)
             newFeedbackBoxElement.appendChild(issue_type)
             newFeedbackBoxElement.appendChild(explanation)
+            newFeedbackBoxElement.appendChild(unresolved)
             newFeedbackBoxElement.appendChild(removed)
 
             resolvedOutsideElement.append(newFeedbackBoxElement)
