@@ -89,26 +89,22 @@ function retrieveFeedbackUCSD() {
             newFeedbackBoxElement.style.marginBottom = "10px"
 
             //Time
-            let timeLabel = document.createElement('label')
-            timeLabel.innerText = "time created"
-
-            let time = document.createElement('span')
+            let time = document.createElement('textarea')
             time.innerText = feedback.time || 'N/A'
+            time.rows =1
+            time.readOnly=true
 
             // Email
-            let emailLabel = document.createElement('label')
-            emailLabel.innerText = "email"
-
-            let email = document.createElement('span')
+            let email = document.createElement('textarea')
             email.innerText = feedback.email || 'N/A'
-
+            email.rows =1
+            email.readOnly=true
 
             // Fullname
-            let fullnameLabel = document.createElement('label')
-            fullnameLabel.innerText = "fullname"
-
-            let fullname = document.createElement('span')
+            let fullname = document.createElement('textarea')
             fullname.innerText = feedback.fullname || 'N/A'
+            fullname.rows =1
+            fullname.readOnly=true
 
             // Issue Type
             let issueTypeLabel = document.createElement('label')
@@ -494,4 +490,3 @@ retrieveFeedbackOutside()
 retrieveResolvedOutside()
 retrieveResolvedUCSD()
 
-s
