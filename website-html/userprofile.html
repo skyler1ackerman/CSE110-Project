@@ -156,11 +156,20 @@
 
             }
 
-            // not plugged into firebase 
             function updateProfile(){
                 console.log("Save ");
                 console.log(courseArray.toString());
+
+                var courses = courseArray.toString();
+                // used fullname as key in order to avoid multiple entry from the same user
+                var fullnameKey = document.getElementById("fullname").value;
                 // iterate through courseArray, send to firebase db
+                firebase.database().ref("userProfiles").child(fullnameKey).set({
+                    email: document.getElementById("email").value,
+                    fullname: document.getElementById("fullname").value,
+                    major: document.getElementById("inputMajor").value,
+                    courseList: courses, //document.getElementById("courseListToSave").value,
+                });
 
                 alert("Enrolled courses saved!")
 
