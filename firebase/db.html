@@ -14,9 +14,9 @@
         <button onclick="dbFunction()">db button</button>
         
         <li>for classes</li>
-        <input type="file" id="upload">
+        <input type="file" id="uploadClass">
         <script>
-            document.getElementById('upload').addEventListener('change', readFileAsString)
+            document.getElementById('uploadClass').addEventListener('change', readFileAsString)
             function readFileAsString() {
             var files = this.files;
             if (files.length === 0) {
@@ -44,10 +44,10 @@
         }
         </script>
         <br/>
-        <li>for clubs</li>
-        <input type="file" id="selectFiles" />
+        <li>for club list</li>
+        <input type="file" id="uploadClubs" />
         <script>
-            document.getElementById('selectFiles').addEventListener('change', readFileAsString)
+            document.getElementById('uploadClubs').addEventListener('change', readFileAsString)
             function readFileAsString() {
             var files = this.files;
             if (files.length === 0) {
@@ -58,6 +58,27 @@
             reader.onload = function(e) {
 
                 clubsInfo(e.target.result);
+            };
+            reader.readAsText(files[0]);
+        }
+        </script>
+
+        <br/>
+        <li>for major list</li>
+        <input type="file" id="uploadMajors" />
+        <script>
+            document.getElementById('uploadMajors').addEventListener('change', readFileAsString)
+            function readFileAsString() {
+            var files = this.files;
+            if (files.length === 0) {
+                console.log('No file is selected');
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                console.log('here')
+                majorList(e.target.result);
+                // clubsInfo(e.target.result);
             };
             reader.readAsText(files[0]);
         }

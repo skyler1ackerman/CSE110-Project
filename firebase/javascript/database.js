@@ -108,3 +108,30 @@ function writeClubs(category, clubname, description, status, org_type, contact, 
 //   "Social Media": "ucsdsammy",
 //   "Invite": ""
 // }
+
+function majorList(majorlistfile){
+  var majorList = majorlistfile;
+  
+  console.log("majorList() called :)");
+  firebase.initializeApp(firebaseConfig);
+
+  // Converting JSON-encoded string to JS object
+  var objM = JSON.parse(majorList);
+
+  for(var key in objM) {
+    writeMajors(objM[key]);
+  }
+
+}
+
+function writeMajors(major){
+
+  console.log("writeMajors() called :)"); 
+  // the major name included '/' in the string, firebase uses it as going inside the key to make new child
+  // so that it is replaced with '-'
+  major = major.replace(/\//g,'-');
+
+  firebase.database().ref('majors/').child(major).update({
+    majorName: major
+  });
+}
