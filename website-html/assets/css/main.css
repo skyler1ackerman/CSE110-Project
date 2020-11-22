@@ -3137,10 +3137,6 @@ input, select, textarea {
 
 			}
 
-		.wrapper.style4 {
-			background-color: #e89980;
-		}
-
 		.wrapper.style5 {
 			background-color: #ffffff;
 			color: #4E4852;
@@ -3997,6 +3993,44 @@ input, select, textarea {
 		background-color: #1d242a;
 	}
 
+/* Landing2 */
+
+	body.landing2 #page-wrapper {
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-attachment: fixed;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		padding-top: 0;
+	}
+
+	body.landing2 #footer {
+		background-color: rgba(29, 36, 42, 0.9);
+	}
+
+	body.is-mobile.landing2 #page-wrapper {
+		background: none;
+	}
+
+	body.is-mobile.landing2 #banner,
+	body.is-mobile.landing2 .wrapper.style4 {
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	body.is-mobile.landing2 #footer {
+		background-color: #1d242a;
+	}
+
+
 
 /*no style*/
 .no-style {
@@ -4232,8 +4266,8 @@ input, select, textarea {
 .card {
 	margin: 0 auto;
 	float: none;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	flex-direction: column;
 	min-width: 0;
 	word-wrap: break-word;
@@ -4241,6 +4275,7 @@ input, select, textarea {
 	border: 0 solid rgba(0,0,0,.125);
 	border-radius: .25rem;
 	text-align-all: left;
+	padding: 20px;
 }
 
 .card-body {

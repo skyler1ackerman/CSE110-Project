@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>tritongroups</title>
+        <title>User Profile</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
-    <body class="landing is-preload">
+        </head>
+    <body class="landing2 is-preload">
+
 
         <!-- Page Wrapper -->
         <div id="page-wrapper">
@@ -26,58 +27,50 @@
 
                 </nav>
             </header>
+            <div class="wrapper style3">
 
-            <!-- Profile and unfinished solution to the profile page styling -->
-            <section id="getanewsectionid">
-                <div class="inner">
-                    <br/>
-                    <br/>
-                    <br/>
-                </div>
-            </section>
-
-            <section id="three" class="wrapper style3 special">
-                <div class="inner">
-                    <header class="major">
-                        <h2>User Profile</h2>
-                    </header>
-                    <div class="card text-center" style="width: 50rem;">
-                        <img id="profilePicUserProfile" src="images/gary.jpg" class="avatar" alt="avatar" >
-
-                        <div class="card-body">
-                            <p id="welcomeMessage"></p>
-                            <h6>This is your profile page. You can edit your major and add current classes you're taking
-                                to customize your search.</h6>
-                        </div>
-
-                        <form id="profileForm">
-                            <!--
-                            <select name="Major" rows="1" id="major">
-                                <option value="">Select Major</option>
-                            </select>
-                            -->
-                            <!--major-->
-
-                            <div class="autocomplete" style="width: 800px">
-                                <textarea placeholder="Email" rows="1" id="email" readonly></textarea>
-
-                                <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
-                                <input id="inputMajor" type="text" name="searchmajor" style="text-align:left; width: 800px;" placeholder="Search Major">
+                    <h2 align="center">User Profile</h2>
+                    <h6 align="center">This is your profile page. You can edit your major and <br/>add current classes you're taking
+                        to customize your search.</h6><br/><br/>
+                    <section>
+                        <div class="card" style="width: 50rem;">
+                            <div align="center">
+                                <img id="profilePicUserProfile" src="images/gary.jpg" class="avatar" alt="avatar" >
+                                <p id="welcomeMessage"></p>
                             </div>
-                            <br/>
 
-                            <!--adding classes-->
-                            <div class="autocomplete" style="width: auto;">
-                                <input id="inputClasses" type="text" name="searchclasses" style="text-align:left; width: 600px;" placeholder="Search Classes">
-                            </div>            
-                            <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" style="border: 1px solid #cccccc"/>
-                            <textarea placeholder="Classes" rows="8" cols="100" id="courseListToSave" readonly></textarea>
-                            <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
-                            <input id="save" type="button" value = "Save Changes" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
-                        </form>
-                    </div>
-                </div>
-            </section>
+                            <form id="profileForm">
+                                <div class="row gtr-uniform">
+                                    <div class="col-6 col-12-xsmall">
+                                        <label>Email</label>
+                                        <textarea placeholder="Email" rows="1" id="email" readonly></textarea>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <label>Full Name</label>
+                                        <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
+                                    </div>
+                                    <div class="col-6">
+                                        <label>Major</label>
+                                        <input id="inputMajor" type="text" name="searchmajor" style="text-align:left; width: 760px;" placeholder="Search Major">
+                                    </div>
+                                </div>
+                                <br/>
+                                <!--adding classes-->
+                                <div class="autocomplete" style="width: auto;">
+                                    <label>Classes</label>
+                                    <input id="inputClasses" type="text" name="searchclasses" style="text-align:left; width: 600px;" placeholder="Search Classes">
+                                </div>
+                                <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" style="border: 1px solid #cccccc"/>
+                                <textarea placeholder="Add Classes" rows="8" cols="100" id="courseListToSave" readonly></textarea>
+                                <div align="center">
+                                <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
+                                <input id="save" type="button" value = "Save Changes" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+            </div>
+
 
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
@@ -188,12 +181,6 @@
                 courseCount = 0;
             }
         </script>
-
-            <style>
-                label textarea{
-                    vertical-align: middle;
-                }
-            </style>
 
         <!-- Footer -->
         <footer id="footer">
