@@ -38,7 +38,7 @@ function getFeedbackValues(){
 
 function getFeedbackOutside(){
   console.log("getFeedbackValues() called!");
-    
+
   var counter = 1;
   var fbRef = "Feedback/Outside";
   firebase.database().ref(fbRef).once("value").then(function (snapshot){
@@ -493,5 +493,3 @@ retrieveFeedbackUCSD()
 retrieveFeedbackOutside()
 retrieveResolvedOutside()
 retrieveResolvedUCSD()
-
-s
