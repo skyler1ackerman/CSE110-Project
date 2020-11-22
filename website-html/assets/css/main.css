@@ -4278,5 +4278,6 @@ input, select, textarea {
   }
 
 div textarea{
-	background-color: transparent;
+	margin-bottom: 2px;
+	resize: none;
 }
