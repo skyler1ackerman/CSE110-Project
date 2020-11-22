@@ -87,7 +87,6 @@ function retrieveFeedbackUCSD() {
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
-
             //Time
             let time = document.createElement('textarea')
             time.innerText = feedback.time || 'N/A'
@@ -107,20 +106,19 @@ function retrieveFeedbackUCSD() {
             fullname.readOnly=true
 
             // Issue Type
-            let issueTypeLabel = document.createElement('label')
-            issueTypeLabel.innerText = "Issue Type"
 
-            let issue_type = document.createElement('span')
+            let issue_type = document.createElement('textarea')
             issue_type.innerText = feedback.issue_type || 'N/A'
+            issue_type.rows =1
+            issue_type.readOnly=true
+
 
             // Explanation
-            let explanationLabel = document.createElement('label')
-            explanationLabel.innerText = "Explanation"
+            let explanation = document.createElement('textarea')
+            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
+            explanation.readOnly=true
 
-            let explanation = document.createElement('span')
-            explanation.innerText = feedback.explanation || 'N/A'
 
-            let new_Line = document.createElement('br')
 
             let resolved = document.createElement('button')
             resolved.innerText = "Resolved"
@@ -134,17 +132,12 @@ function retrieveFeedbackUCSD() {
                 })
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-            newFeedbackBoxElement.appendChild(timeLabel)
+
             newFeedbackBoxElement.appendChild(time)
-            newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
-            newFeedbackBoxElement.appendChild(fullnameLabel)
             newFeedbackBoxElement.appendChild(fullname)
-            newFeedbackBoxElement.appendChild(issueTypeLabel)
             newFeedbackBoxElement.appendChild(issue_type)
-            newFeedbackBoxElement.appendChild(explanationLabel)
             newFeedbackBoxElement.appendChild(explanation)
-            newFeedbackBoxElement.appendChild(new_Line)
             newFeedbackBoxElement.appendChild(resolved)
 
             feedbackUCSDArr.push(feedback);
@@ -178,42 +171,35 @@ function retrieveResolvedUCSD() {
             newFeedbackBoxElement.style.marginBottom = "10px"
 
             //Time
-            let timeLabel = document.createElement('label')
-            timeLabel.innerText = "time created"
-
-            let time = document.createElement('span')
+            let time = document.createElement('textarea')
             time.innerText = feedback.time || 'N/A'
+            time.rows =1
+            time.readOnly=true
 
             // Email
-            let emailLabel = document.createElement('label')
-            emailLabel.innerText = "email"
-
-            let email = document.createElement('span')
+            let email = document.createElement('textarea')
             email.innerText = feedback.email || 'N/A'
-
+            email.rows =1
+            email.readOnly=true
 
             // Fullname
-            let fullnameLabel = document.createElement('label')
-            fullnameLabel.innerText = "fullname"
-
-            let fullname = document.createElement('span')
+            let fullname = document.createElement('textarea')
             fullname.innerText = feedback.fullname || 'N/A'
+            fullname.rows =1
+            fullname.readOnly=true
 
             // Issue Type
-            let issueTypeLabel = document.createElement('label')
-            issueTypeLabel.innerText = "Issue Type"
 
-            let issue_type = document.createElement('span')
+            let issue_type = document.createElement('textarea')
             issue_type.innerText = feedback.issue_type || 'N/A'
+            issue_type.rows =1
+            issue_type.readOnly=true
+
 
             // Explanation
-            let explanationLabel = document.createElement('label')
-            explanationLabel.innerText = "Explanation"
-
-            let explanation = document.createElement('span')
-            explanation.innerText = feedback.explanation || 'N/A'
-
-            let new_Line = document.createElement('br')
+            let explanation = document.createElement('textarea')
+            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
+            explanation.readOnly=true
 
             let unresolved = document.createElement('button')
             unresolved.innerText = "Unresolved"
@@ -233,17 +219,11 @@ function retrieveResolvedUCSD() {
             removed.addEventListener("click",function(){
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-            newFeedbackBoxElement.appendChild(timeLabel)
             newFeedbackBoxElement.appendChild(time)
-            newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
-            newFeedbackBoxElement.appendChild(fullnameLabel)
             newFeedbackBoxElement.appendChild(fullname)
-            newFeedbackBoxElement.appendChild(issueTypeLabel)
             newFeedbackBoxElement.appendChild(issue_type)
-            newFeedbackBoxElement.appendChild(explanationLabel)
             newFeedbackBoxElement.appendChild(explanation)
-            newFeedbackBoxElement.appendChild(new_Line)
             newFeedbackBoxElement.appendChild(unresolved)
             newFeedbackBoxElement.appendChild(removed)
 
@@ -277,42 +257,35 @@ function retrieveFeedbackOutside() {
             newFeedbackBoxElement.style.marginBottom = "10px"
 
             //Time
-            let timeLabel = document.createElement('label')
-            timeLabel.innerText = "time created"
-
-            let time = document.createElement('span')
+            let time = document.createElement('textarea')
             time.innerText = feedback.time || 'N/A'
+            time.rows =1
+            time.readOnly=true
 
             // Email
-            let emailLabel = document.createElement('label')
-            emailLabel.innerText = "email"
-
-            let email = document.createElement('span')
+            let email = document.createElement('textarea')
             email.innerText = feedback.email || 'N/A'
-
+            email.rows =1
+            email.readOnly=true
 
             // Fullname
-            let fullnameLabel = document.createElement('label')
-            fullnameLabel.innerText = "fullname"
-
-            let fullname = document.createElement('span')
+            let fullname = document.createElement('textarea')
             fullname.innerText = feedback.fullname || 'N/A'
+            fullname.rows =1
+            fullname.readOnly=true
 
             // Issue Type
-            let issueTypeLabel = document.createElement('label')
-            issueTypeLabel.innerText = "Issue Type"
 
-            let issue_type = document.createElement('span')
+            let issue_type = document.createElement('textarea')
             issue_type.innerText = feedback.issue_type || 'N/A'
+            issue_type.rows =1
+            issue_type.readOnly=true
+
 
             // Explanation
-            let explanationLabel = document.createElement('label')
-            explanationLabel.innerText = "Explanation"
-
-            let explanation = document.createElement('span')
-            explanation.innerText = feedback.explanation || 'N/A'
-
-            let new_Line = document.createElement('br')
+            let explanation = document.createElement('textarea')
+            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
+            explanation.readOnly=true
 
             let resolved = document.createElement('button')
             resolved.innerText = "Resolved"
@@ -326,17 +299,11 @@ function retrieveFeedbackOutside() {
                 })
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-            newFeedbackBoxElement.appendChild(timeLabel)
             newFeedbackBoxElement.appendChild(time)
-            newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
-            newFeedbackBoxElement.appendChild(fullnameLabel)
             newFeedbackBoxElement.appendChild(fullname)
-            newFeedbackBoxElement.appendChild(issueTypeLabel)
             newFeedbackBoxElement.appendChild(issue_type)
-            newFeedbackBoxElement.appendChild(explanationLabel)
             newFeedbackBoxElement.appendChild(explanation)
-            newFeedbackBoxElement.appendChild(new_Line)
             newFeedbackBoxElement.appendChild(resolved)
 
             feedbackOutsideElement.append(newFeedbackBoxElement)
@@ -368,44 +335,36 @@ function retrieveResolvedOutside() {
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
             newFeedbackBoxElement.style.border = "solid #FFFFFF"
             newFeedbackBoxElement.style.marginBottom = "10px"
-
             //Time
-            let timeLabel = document.createElement('label')
-            timeLabel.innerText = "time created"
-
-            let time = document.createElement('span')
+            let time = document.createElement('textarea')
             time.innerText = feedback.time || 'N/A'
+            time.rows =1
+            time.readOnly=true
 
             // Email
-            let emailLabel = document.createElement('label')
-            emailLabel.innerText = "email"
-
-            let email = document.createElement('span')
+            let email = document.createElement('textarea')
             email.innerText = feedback.email || 'N/A'
-
+            email.rows =1
+            email.readOnly=true
 
             // Fullname
-            let fullnameLabel = document.createElement('label')
-            fullnameLabel.innerText = "fullname"
-
-            let fullname = document.createElement('span')
+            let fullname = document.createElement('textarea')
             fullname.innerText = feedback.fullname || 'N/A'
+            fullname.rows =1
+            fullname.readOnly=true
 
             // Issue Type
-            let issueTypeLabel = document.createElement('label')
-            issueTypeLabel.innerText = "Issue Type"
 
-            let issue_type = document.createElement('span')
+            let issue_type = document.createElement('textarea')
             issue_type.innerText = feedback.issue_type || 'N/A'
+            issue_type.rows =1
+            issue_type.readOnly=true
+
 
             // Explanation
-            let explanationLabel = document.createElement('label')
-            explanationLabel.innerText = "Explanation"
-
-            let explanation = document.createElement('span')
-            explanation.innerText = feedback.explanation || 'N/A'
-
-            let new_Line = document.createElement('br')
+            let explanation = document.createElement('textarea')
+            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
+            explanation.readOnly=true
 
             let unresolved = document.createElement('button')
             unresolved.innerText = "Unresolved"
@@ -425,18 +384,11 @@ function retrieveResolvedOutside() {
             removed.addEventListener("click",function(){
                 ref.child(newFeedbackBoxElement.id).remove();
             });
-            newFeedbackBoxElement.appendChild(timeLabel)
             newFeedbackBoxElement.appendChild(time)
-            newFeedbackBoxElement.appendChild(emailLabel)
             newFeedbackBoxElement.appendChild(email)
-            newFeedbackBoxElement.appendChild(fullnameLabel)
             newFeedbackBoxElement.appendChild(fullname)
-            newFeedbackBoxElement.appendChild(issueTypeLabel)
             newFeedbackBoxElement.appendChild(issue_type)
-            newFeedbackBoxElement.appendChild(explanationLabel)
             newFeedbackBoxElement.appendChild(explanation)
-            newFeedbackBoxElement.appendChild(new_Line)
-            newFeedbackBoxElement.appendChild(unresolved)
             newFeedbackBoxElement.appendChild(removed)
 
             resolvedOutsideElement.append(newFeedbackBoxElement)
