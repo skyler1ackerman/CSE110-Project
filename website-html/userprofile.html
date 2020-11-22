@@ -161,10 +161,14 @@
                 console.log(courseArray.toString());
 
                 var courses = courseArray.toString();
-                // used fullname as key in order to avoid multiple entry from the same user
-                var fullnameKey = document.getElementById("fullname").value;
+                // used username as key in order to avoid multiple entry from the same user
+                var usernameKey = document.getElementById("email").value;
+                // username is the email without @ucsd.edu
+                usernameKey = usernameKey.substring(0, usernameKey.indexOf('@'));
+                // console.log(usernameKey);
+
                 // iterate through courseArray, send to firebase db
-                firebase.database().ref("userProfiles").child(fullnameKey).set({
+                firebase.database().ref("userProfiles").child(usernameKey).set({
                     email: document.getElementById("email").value,
                     fullname: document.getElementById("fullname").value,
                     major: document.getElementById("inputMajor").value,
