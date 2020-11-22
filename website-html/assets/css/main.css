@@ -4276,3 +4276,27 @@ input, select, textarea {
 	border-radius: 50%;
 	margin: 5px 0px 5px 0px;
   }
+
+div textarea{
+	margin-bottom: 2px;
+	resize: none;
+}
+
+.whiteBackground {
+	background-color: white;
+	color: black;
+	border-color: #1d242a;
+
+}
+.whiteBackground .inner label{
+	color: black;
+}
+.whiteBackground div{
+	border-color: gainsboro;
+}
+.whiteBackground button{
+	color:black;
+	background-color: gainsboro;
+	border-color: gainsboro;
+	border-width: 1px;
+}

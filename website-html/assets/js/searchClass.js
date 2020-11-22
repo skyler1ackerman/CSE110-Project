@@ -48,31 +48,49 @@ function getDiscordInfo(className){
     });
 }
 
-function addDiscordInfotoDB(){
-  console.log("addDiscordInfotoDB() called!");
-  //First, count number of children in the class
-  var className = localStorage.getItem("classinput")
-  var classRef = "classes/".concat(className);
-  console.log("Finding class ->", className);
-  var class_ref = firebase.database().ref(classRef);
-  var counter = 1;
-  class_ref.on("value", function(snapshot) {
-   snapshot.forEach(function(snapshot) {
-    counter++;
-   });
-  });
+function submitClassDiscordInfotoDB(){
+  console.log("submitDiscordInfotoDB() called!");
 
-  //now add a discordinfo inside class DB
-  var discordRef = "classes/" + className + "/discordInfo" + counter;
+  //now add a discordinfo inside Discord server requests DB
+  var discordRef = "DiscordServerRequests/";
   console.log(discordRef);
-  var discord_ref = firebase.database().ref(discordRef);
-  discord_ref.set({
-    inviteURL: document.getElementById("invitelink").value,
-    profName: document.getElementById("professor").value,
-    quarter : document.getElementById("quarter").value,
-    year: document.getElementById("year").value,
-  });
+  firebase.database().ref(discordRef).push().set({
+      className: localStorage.getItem("classinput"),
+      email: localStorage.getItem('user-email'),
+      inviteURL: document.getElementById("invitelink").value,
+      profName: document.getElementById("professor").value,
+      quarter : document.getElementById("quarter").value,
+      year: document.getElementById("year").value,
+      time:Date(Date.now()).toString()
+    });
 }
+
+// Old Yonseu Implementation
+// function addDiscordInfotoDB(){
+//   console.log("addDiscordInfotoDB() called!");
+//   //First, count number of children in the class
+//   var className = localStorage.getItem("classinput")
+//   var classRef = "classes/".concat(className);
+//   console.log("Finding class ->", className);
+//   var class_ref = firebase.database().ref(classRef);
+//   var counter = 1;
+//   class_ref.on("value", function(snapshot) {
+//    snapshot.forEach(function(snapshot) {
+//     counter++;
+//    });
+//   });
+
+//   //now add a discordinfo inside class DB
+//   var discordRef = "classes/" + className + "/discordInfo" + counter;
+//   console.log(discordRef);
+//   var discord_ref = firebase.database().ref(discordRef);
+//   discord_ref.set({
+//     inviteURL: document.getElementById("invitelink").value,
+//     profName: document.getElementById("professor").value,
+//     quarter : document.getElementById("quarter").value,
+//     year: document.getElementById("year").value,
+//   });
+// }
 
 function resetDB(){
   console.log("addDiscordInfotoDB() called!");
