@@ -57,20 +57,18 @@
                             </select>
                             -->
                             <!--major-->
-                            <div class="autocomplete" style="width: 800px;">
+
+                            <div class="autocomplete" style="width: 800px">
                                 <textarea placeholder="Email" rows="1" id="email" readonly></textarea>
 
                                 <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
-                            </div>
-                            <div class="autocomplete" style="width: auto;">
-
                                 <input id="inputMajor" type="text" name="searchmajor" style="text-align:left; width: 800px;" placeholder="Search Major">
                             </div>
                             <br/>
 
                             <!--adding classes-->
                             <div class="autocomplete" style="width: auto;">
-                                <input id="inputClasses" type="text" name="searchclasses" style="text-align:left; width: 630px;" placeholder="Search Classes">
+                                <input id="inputClasses" type="text" name="searchclasses" style="text-align:left; width: 600px;" placeholder="Search Classes">
                             </div>            
                             <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" style="border: 1px solid #cccccc"/>
                             <textarea placeholder="Classes" rows="8" cols="100" id="courseListToSave" readonly></textarea>
@@ -123,7 +121,7 @@
                 //remove local storage items in signout function for security.
                 document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + "!";
             }
-        </script>   
+        </script>
 
         <!-- add courses to the textbox -->
         <script type="text/javascript">
