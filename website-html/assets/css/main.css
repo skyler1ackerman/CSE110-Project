@@ -4240,12 +4240,14 @@ input, select, textarea {
 	background-clip: border-box;
 	border: 0 solid rgba(0,0,0,.125);
 	border-radius: .25rem;
+	text-align-all: left;
 }
 
 .card-body {
 	flex: 1 1 auto;
 	min-height: 1px;
 	padding: 1rem;
+	text-align-all: left;
 }
 
 .avatar {
@@ -4254,4 +4256,3 @@ input, select, textarea {
 	height: 150px;
 	border-radius: 50%;
 }
-

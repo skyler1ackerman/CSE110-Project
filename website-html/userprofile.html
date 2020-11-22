@@ -30,52 +30,52 @@
             <!-- Profile and unfinished solution to the profile page styling -->
             <section id="getanewsectionid">
                 <div class="inner">
-                    <header class="major">
-                        <h2>User Profile</h2>
-                    </header>
+                    <br/>
+                    <br/>
+                    <br/>
                 </div>
             </section>
 
             <section id="three" class="wrapper style3 special">
                 <div class="inner">
+                    <header class="major">
+                        <h2>User Profile</h2>
+                    </header>
                     <div class="card text-center" style="width: 50rem;">
-
                         <img id="profilePicUserProfile" src="images/gary.jpg" class="avatar" alt="avatar" >
 
                         <div class="card-body">
                             <p id="welcomeMessage"></p>
-                            <p class="card-text">This is your profile page. You can edit your major and add current classes you're taking
-                                to customize your search.</p>
+                            <h6>This is your profile page. You can edit your major and add current classes you're taking
+                                to customize your search.</h6>
                         </div>
+
                         <form id="profileForm">
-                            <textarea placeholder="Email" rows="1" id="email" readonly></textarea>
-                            <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
-                            
                             <!--
                             <select name="Major" rows="1" id="major">
                                 <option value="">Select Major</option>
                             </select>
                             -->
-                             
-                            <!--only proof of concept, add the search team's thing in here-->
-                            <!--<select name="Courses" rows="1" id="courses">
-                                <option value="">Select Courses to Add</option>
-                                <option value="course 0">course 0</option>
-                                <option value="course 1">course 1</option>
-                                <option value="course 2">course 2</option>
-                                <option value="course 3">course 3</option>
-                                <option value="course 4">course 4</option>
-                                <option value="course 5">course 5</option>
-                                <option value="course 6">course 6</option>
-                                <option value="course 7">course 7</option>
-                            </select>-->
+                            <!--major-->
+                            <div class="autocomplete" style="width: 800px;">
+                                <textarea placeholder="Email" rows="1" id="email" readonly></textarea>
+
+                                <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
+                            </div>
                             <div class="autocomplete" style="width: auto;">
-                                <input id="inputClasses" type="text" name="searchclasses" style="text-align:center; width: auto;" placeholder="Search Class Discords">
+
+                                <input id="inputMajor" type="text" name="searchmajor" style="text-align:left; width: 800px;" placeholder="Search Major">
+                            </div>
+                            <br/>
+
+                            <!--adding classes-->
+                            <div class="autocomplete" style="width: auto;">
+                                <input id="inputClasses" type="text" name="searchclasses" style="text-align:left; width: 630px;" placeholder="Search Classes">
                             </div>            
                             <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" style="border: 1px solid #cccccc"/>
-                            <textarea placeholder="Courses" rows="8" cols="100" id="courseListToSave" readonly></textarea>
+                            <textarea placeholder="Classes" rows="8" cols="100" id="courseListToSave" readonly></textarea>
                             <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
-                            <input id="save" type="button" value = "Save" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
+                            <input id="save" type="button" value = "Save Changes" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
                         </form>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                 //remove local storage items in signout function for security.
                 document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + "!";
             }
-        </script>
+        </script>   
 
         <!-- add courses to the textbox -->
         <script type="text/javascript">
@@ -177,6 +177,12 @@
                 courseCount = 0;
             }
         </script>
+
+            <style>
+                label textarea{
+                    vertical-align: middle;
+                }
+            </style>
 
         <!-- Footer -->
         <footer id="footer">
