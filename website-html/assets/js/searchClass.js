@@ -27,11 +27,15 @@ async function getDiscordInfo(className){
     //This loop iterates over the clubs associated with the category
     await ref.once("value", function(snapshot) {
         snapshot.forEach(function (snapshot) {
+
             var info_year = snapshot.child("year").val(); //discord info
             var info_quarter = snapshot.child("quarter").val(); //discord info
             var info_profname = snapshot.child("profName").val(); //discord info
             var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
 
+            if(info_quarter === null){
+                return;
+            }
             var item = info_quarter.concat(" ",info_year);
             // if Quarter Year is not already in the dict, add it
             if (!(item in results)){
