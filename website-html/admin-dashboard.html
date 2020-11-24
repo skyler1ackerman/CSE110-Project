@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>tritongroups</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <style>
+
+/*  For debugging
+  * {
+	  outline: 1px solid red  !important;
+  } */
+
+    </style>
+	<body class="landing">
+		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+	  	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+	  	<script src="/__/firebase/init.js"></script>
+
+
+		<!-- Page Wrapper -->
+			<div class="whiteBackground" >
+
+				<!-- Header -->
+                <header id="header" class="alt">
+                    <!-- <h1><a href="index.html">TritonGroups</a></h1> -->
+                    <nav id="nav">
+                        <!-- <ul> -->
+                            <!-- <li class="special"> Navigation bar starts here -->
+								<ul class="menuToggle">
+									<a class="no-style more scrolly zero-text" style="font-weight: bold;">Dashboard</a>
+									&nbsp;
+									|
+									&nbsp;
+									<a href="admin-discord-requests.html" class="no-style more scrolly zero-text">Discord Requests</a>
+									&nbsp;
+									|
+									<!-- <a href="#one" class="no-style more scrolly one-text">How It Works</a>
+									&nbsp;
+									|
+									&nbsp;
+									<a href="#two" class="no-style more scrolly two-text">About Us</a>
+									&nbsp;
+									|
+									&nbsp;
+               					    <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+               					    &nbsp;
+									|
+									&nbsp; -->
+									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+									&nbsp;
+									&nbsp;
+									&nbsp;
+								</ul>
+								<!-- </li> -->
+                        <!-- </ul> -->
+                    </nav>
+                </header>
+
+				<!-- Banner -->
+				<section id="banner">
+                    <div class="inner" style="margin-top: 40px;">
+						<input type="radio" name="editList" id="feedbackOptionUCSD" value="" checked onclick="feedbackUCSDSelected()"/>
+						<label for="feedbackOptionUCSD">Feedback UCSD</label>
+						<input type="radio" name="editList" id="resolvedOptionUCSD" value=""  onclick="resolvedUCSDSelected()"/>
+						<label for="resolvedOptionUCSD">Resolved UCSD</label>
+						<input type="radio" name="editList" id="feedbackOptionOutside" value="" onclick="feedbackOutsideSelected()"/>
+						<label for="feedbackOptionOutside">Feedback Outside</label>
+						<input type="radio" name="editList" id="resolvedOptionOutside" value="" onclick="resolvedOutsideSelected()"/>
+						<label for="resolvedOptionOutside">Resolved Outside</label>
+						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
+
+                    </div>
+                    <div style="overflow: auto;" >
+                        <div id="feedbackUCSD" style="display: block; margin:auto; width: 60%;">
+						</div>
+						<div id="resolvedUCSD" style="display: none; margin:auto; width: 60%;">
+						</div>
+						<div id="feedbackOutside" style="display: none; margin:auto; width: 60%;">
+						</div>
+						<div id="resolvedOutside" style="display: none; margin:auto; width: 60%;">
+						</div>
+                    </div>
+				</section>
+
+			</div>
+			<script>
+				window.onload = function() {
+					//get all class info from FB databse
+					// getClassSnapshot();
+					document.getElementById("email").placeholder=localStorage.getItem("user-email");
+					document.getElementById("email").value=localStorage.getItem("user-email");
+					// localStorage.removeItem("user-email");
+					document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+					// localStorage.removeItem("user-displayname");
+					//remove local storage items in signout function for security.
+					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+					addOnlineNumberAsUserSignin();
+				}
+			</script>
+			<script>
+				window.onfocus = function() {
+					console.log("user focused on window");
+					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
+					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
+						++numOnlinePpl;
+						firebase.database().ref('messages/').update({
+							onlineCount: numOnlinePpl,
+					  	});
+					}
+				};
+
+				window.onblur = function() {
+					console.log("user focus away from window");
+					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
+					--numOnlinePpl;
+					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
+						firebase.database().ref('messages/').update({
+							onlineCount: numOnlinePpl,
+					  	});
+					}
+					// alert("brox!")
+    				// do something when this window object loses focus.
+				};
+			</script>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script src="assets/js/login.js"></script>
+			<script src="assets/js/feedback.js"></script>
+			<script src="assets/js/livechat.js"></script>
+
+
+			<!-- below is firebase SDKs-->
+			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+			<!-- this works only when we are using firebase hosting service-->
+			<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+			<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+  			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+  			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+			<script src="/__/firebase/init.js"></script> -->
+
+			<!-- Jquery starts here: Javascript event handler for nav bar -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+	</body>
+</html>
