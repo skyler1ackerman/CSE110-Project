@@ -8,6 +8,41 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="landing is-preload">
+		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+	  	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+	  	<script src="/__/firebase/init.js"></script>
+
+
+
+		<div class="chatroom" style="width: 150px; height:80px;" id="openChatroom">
+			<p onclick="openChatRoom()" style="border: 1px solid white; text-align: center; margin:auto;">CHAT</p>
+		</div>
+		<div class="chatroom" style="visibility:hidden; margin-right:15px" id="chatroom">
+			<p style="margin:0px 0px 0px 30px; padding:0px 30px 0px 0px; color:black; display: inline-block;">
+				Live Chat 
+				<span style="font-size:13px; margin-left:320px; ">Online Count:</span>
+				<span style="font-size:13px;" id="numonline"></span>
+				<span style="font-size:13px; color:green; font-size:30px;">&#8226;</span>
+				
+			</p>
+			<hr style="padding:0px; margin:0px 5px 5px 30px;">
+			<div id="messagesContainer" class="scrollEffectInContainer" style="padding-left: 30px;">
+				<ul id="messages"></ul>	
+			</div>
+			<hr style="padding:0px; margin:0px 25px 5px 30px;">
+	
+
+			<!-- form to send message -->
+			<div id="rightbottom">
+				<form onsubmit="return sendMessage();">
+				<input style="display: inline-block; width: 270px;" id="message" placeholder="Enter message" autocomplete="off">	
+				<input style="display: inline-block; width: 100px; font-size:9px;" type="submit">
+				<p style="display: inline-block; width: 100px; font-size:9px;"><span class="no-style" style="color:darkred; font-size:20px; margin:0px 0px -10px 100px; border: 2px solid darkred; padding: 3px;"onclick="closeChatRoom()">close</span> </input>
+			</div>
+			</form>
+		</div>
 
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
@@ -69,7 +104,7 @@
 									</div>
 								</form>
 								</ul>
-							<input type="submit" onclick="submit_class()">
+							<input type="submit" onclick="submit_class()" value="SEARCH">
 						</div>
 						<div id="clubSearchBar" style="display: none;">
 							<ul class="actions special">
@@ -79,7 +114,7 @@
 									</div>
 								</form>
 							</ul>
-							<input type="submit" onclick="submit_community()">
+							<input type="submit" onclick="submit_community()" value="SEARCH">
 						</div>
 					</div>
 				</section>
@@ -234,7 +269,33 @@
 					// localStorage.removeItem("user-displayname");
 					//remove local storage items in signout function for security.
 					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+					addOnlineNumberAsUserSignin();
 				}
+			</script>
+			<script>
+				window.onfocus = function() {
+					console.log("user focused on window");
+					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
+					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
+						++numOnlinePpl;
+						firebase.database().ref('messages/').update({
+							onlineCount: numOnlinePpl,
+					  	});
+					}
+				};
+
+				window.onblur = function() {
+					console.log("user focus away from window");
+					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
+					--numOnlinePpl;
+					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
+						firebase.database().ref('messages/').update({
+							onlineCount: numOnlinePpl,
+					  	});
+					}
+					// alert("brox!")
+    				// do something when this window object loses focus.
+				};
 			</script>
 
 		<!-- Scripts -->
@@ -249,17 +310,18 @@
 			<script src="assets/js/searchClass.js"></script>
 			<script src="assets/js/searchCommunity.js"></script>
 			<script src="assets/js/feedback.js"></script>
+			<script src="assets/js/livechat.js"></script>
 
 
 			<!-- below is firebase SDKs-->
 			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
 			<!-- this works only when we are using firebase hosting service-->
 			<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-			<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+			<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
   			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
   			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
 			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-			<script src="/__/firebase/init.js"></script>
+			<script src="/__/firebase/init.js"></script> -->
 
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

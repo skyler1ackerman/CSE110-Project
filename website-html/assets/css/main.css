@@ -100,8 +100,8 @@ input, select, textarea {
 		font-family: "Open Sans", Helvetica, sans-serif;
 		font-size: 15pt;
 		font-weight: 400;
-		letter-spacing: 0.075em;
-		line-height: 1.65em;
+		/* letter-spacing: 0.075em; */
+		line-height: 1.35em;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -1877,7 +1877,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75em;
+		height: 2.55em;
 	}
 
 	textarea {
@@ -2155,7 +2155,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				border-top: solid 1px #fff;
+				/*border-top: solid 1px #fff;*/
 				padding: 0.5em 0;
 			}
 
@@ -2179,6 +2179,7 @@ input, select, textarea {
 		list-style: none;
 		margin-left: -1em;
 		padding-left: 0;
+		justify-content: center;
 	}
 
 		ul.actions li {
@@ -2331,8 +2332,9 @@ input, select, textarea {
 	}
 
 	table {
-		margin: 0 0 2em 0;
-		width: 100%;
+		/*margin: 0 0 2em 0;*/
+		margin: auto;
+		/*width: 100%;*/
 	}
 
 		table tbody tr {
@@ -2418,14 +2420,14 @@ input, select, textarea {
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-		max-width: 30em;
+		/*max-width: 30em;*/
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis;
+		text-overflow: ellipsis; 
 	}
 
 		input[type="submit"]:hover,
@@ -2481,7 +2483,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #ed4933;
+			background-color: #d17344;
 			box-shadow: none !important;
 			color: #ffffff !important;
 		}
@@ -2491,7 +2493,7 @@ input, select, textarea {
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #ef5e4a !important;
+				background-color: #d18e6c !important;
 			}
 
 			input[type="submit"].primary:active,
@@ -2499,7 +2501,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #eb341c !important;
+				background-color: #d88054 !important;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -4234,7 +4236,7 @@ input, select, textarea {
 
   /* The popup form - hidden by default */
   .form-popup {
-	width:70%;
+	width:75%;
 	margin:auto;
 	display: none;
 	border: 3px solid #f1f1f1;
@@ -4256,6 +4258,7 @@ input, select, textarea {
   #header nav > ul > a:hover {
 	color: rgb(160, 156, 156);
   }
+
 
   /*used for user profile*/
 .card {
@@ -4290,4 +4293,264 @@ input, select, textarea {
 	width: 150px;
 	height: 150px;
 	border-radius: 50%;
+}
+
+
+  .chatroom {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	background-color: #7ea4b3;
+	padding: 20px 20px 20px 5px;
+	margin: 5px;
+	z-index:10;     /* on top of the layout*/
+	width: 600px;
+	height: 450px;
+	border: 3px solid black;
+	border-radius: 25px 25px 0px 25px;
+   
+ }
+
+ #messages {
+	margin-left: 0px;
+	padding-left: 0px;
+	font-size: 13px;
+	list-style-type: none !important;
+ }
+ 
+ #message {
+	color:black;
+	width: 70%;
+ }
+ 
+ #rightbottom {
+	position: fixed;
+	bottom: 0px;
+	z-index:10; 
+	bottom: 0px;
+	padding:0px; 
+	margin:0px 5px 5px 30px;
+}
+
+.scrollEffectInContainer
+{
+		height:78%;	
+        overflow-y:auto;
+		position:relative;
+		margin-left:-5px;
+}
+
+
+
+/* Category Dropdown */
+
+/* The dropdown container */
+.dropdown {
+	float: left;
+	overflow: hidden;
+}
+
+.dropdown-content {
+	height: auto;
+	max-height: 180px;
+	overflow-x: hidden;
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	overflow-y: scroll;
+	background-color: darkgray;
+}
+
+.dropdown-content a {
+	font: inherit;
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.show {
+	display: block;
+}
+
+/*Container for category tags */
+.small-buttons{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+.submit-community-button{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align:center;
+	margin-bottom:50px;
+}
+.category-tags{
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	border-radius: 3px;
+	border: 0;
+	background-color: #d17344;
+	box-shadow: none !important;
+	color: #ffffff !important;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 0.8em;
+	font-weight: 600;
+	height: 3.125em;
+	letter-spacing: 0.175em;
+	line-height: 3.125em;
+	max-width: 30em;
+	padding: 0 1.75em;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: .25rem;
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+.category-tags:hover{
+	background-color: #d18e6c !important;
+}
+
+/*Search bar + button div*/
+#search{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align:center;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+	font: inherit;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	background-color: transparent;
+	display: block;
+	width: 100%;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: inset 0 0 0 2px #fff;
+	color: #fff;
+	cursor: pointer;
+	font-size: 0.8em;
+	font-weight: 600;
+	height: 3.125em;
+	letter-spacing: 0.225em;
+	line-height: 3.125em;
+	padding: 0 2.75em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+	background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+	width: inherit;
+	font: inherit;
+	padding: 0 18px;
+	display: none;
+	overflow: hidden;
+	background-color: #f1f1f1;
+}
+
+#openformButton{
+	text-align: center;
+	font: inherit;
+}
+
+.class-button{
+	font: inherit;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	background-color: transparent;
+	display: block;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	width: 100%;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: inset 0 0 0 2px #fff;
+	color: #fff;
+	cursor: pointer;
+	font-size: 0.8em;
+	font-weight: 600;
+	height: 3.125em;
+	letter-spacing: 0.225em;
+	line-height: 3.125em;
+	padding: 0 2.75em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+div textarea{
+	margin-bottom: 2px;
+	resize: none;
+}
+
+.whiteBackground {
+	background-color: white;
+	color: black;
+	border-color: #1d242a;
+
+}
+.whiteBackground .inner label{
+	color: black;
+}
+.whiteBackground div{
+	border-color: gainsboro;
+}
+.whiteBackground button{
+	color:black;
+	background-color: gainsboro;
+	border-color: gainsboro;
+	border-width: 1px;
+
 }
