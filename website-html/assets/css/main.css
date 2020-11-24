@@ -3139,10 +3139,6 @@ input, select, textarea {
 
 			}
 
-		.wrapper.style4 {
-			background-color: #e89980;
-		}
-
 		.wrapper.style5 {
 			background-color: #ffffff;
 			color: #4E4852;
@@ -3999,6 +3995,44 @@ input, select, textarea {
 		background-color: #1d242a;
 	}
 
+/* Landing2 */
+
+	body.landing2 #page-wrapper {
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-attachment: fixed;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		padding-top: 0;
+	}
+
+	body.landing2 #footer {
+		background-color: rgba(29, 36, 42, 0.9);
+	}
+
+	body.is-mobile.landing2 #page-wrapper {
+		background: none;
+	}
+
+	body.is-mobile.landing2 #banner,
+	body.is-mobile.landing2 .wrapper.style4 {
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	body.is-mobile.landing2 #footer {
+		background-color: #1d242a;
+	}
+
+
 
 /*no style*/
 .no-style {
@@ -4226,6 +4260,42 @@ input, select, textarea {
   }
 
 
+  /*used for user profile*/
+.card {
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+
+}
+
+.card {
+	margin: 0 auto;
+	float: none;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-clip: border-box;
+	border: 0 solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+	text-align-all: left;
+	padding: 20px;
+}
+
+.card-body {
+	flex: 1 1 auto;
+	min-height: 1px;
+	padding: 1rem;
+	text-align-all: left;
+}
+
+.avatar {
+	vertical-align: middle;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+
+
   .chatroom {
 	position: fixed;
 	bottom: 0px;
@@ -4270,14 +4340,6 @@ input, select, textarea {
 		margin-left:-5px;
 }
 
-
-.avatar {
-	vertical-align: middle;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	margin: 5px 0px 5px 0px;
-  }
 
 
 /* Category Dropdown */
