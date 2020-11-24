@@ -18,15 +18,15 @@
     <header id="header" class="alt">
         <nav id="nav">
             <ul class="menuToggle">
-                <a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
+                <a href="afterlogin.html" class="no-style more scrolly zero-text">Home</a>
                 &nbsp;
                 |
                 &nbsp;
-                <a href="#one" class="no-style more scrolly one-text">Classes</a>
+                <a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
                 &nbsp;
                 |
                 &nbsp;
-                <a href="browse-community.html" class="no-style more scrolly two-text">Communities</a>
+                <a href="browse-community.html" class="no-style more scrolly two-text" style="font-weight: bold;">Communities</a>
                 &nbsp;
                 |
                 &nbsp;
@@ -55,13 +55,11 @@
         <div class="inner">
             <br><br><br><br>
 
-            <p>Browse UCSD Communities</p>
+            <h2>Browse UCSD Communities</h2>
 
             <p></p>
             <div class="small-buttons">
-                <div style="margin-bottom: 1.5rem;" class="row">
-                    <a href="#" class="category-tags">+ Add Community</a>
-                </div>
+
                 <div class="row">
                     <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Academic</a>
                     <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Career</a>
@@ -117,8 +115,13 @@
                 </div>-->
 
                 <form autocomplete="off"action="/action_page.php">
-                    <div class="autocomplete" style="width:400px;">
-                        <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+                    <div class="row gtr-25">
+                        <div class="autocomplete" style="width:400px;">
+                            <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+                        </div>
+                        <div id="openformButton">
+                            <a href="add-community.html" class="button">+</a>
+                        </div>
                     </div>
                 </form>
             </ul>
@@ -129,12 +132,15 @@
     <section class="wrapper style5">
 
         <div id="results" class="inner">
-            <h2 id="community-category"></h2>
+            <h2 style="text-align: center;" id="community-category"></h2>
 
             <!-- Display query results here -->
             <ul id="queryResults" class="alt">
 
             </ul>
+        </div>
+        <div id="openformButton">
+            <a href="add-community.html" class="button">+ Add Community</a>
         </div>
     </section>
     <!-- Footer -->

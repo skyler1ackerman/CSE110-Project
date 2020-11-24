@@ -79,11 +79,14 @@ function getCommunityCategory(category){
                 resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
             };
             if(childNodes.val().inviteLink !== "") {
-                resultsString.str +=   `<p><b>Discord: </b>${childNodes.val().inviteLink}</p>`;
+                resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="justify-content: center;">Join Discord</a>`;
+                resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="justify-content: center;">Report</a>`;
+
             };
             if(childNodes.val().social_media !== "") {
                 resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
             };
+            resultsString.str += "<p></p>";
             resultsString.str += "</div>";
             resultsString.str += "</li>";
         });

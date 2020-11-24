@@ -2155,7 +2155,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				border-top: solid 1px #fff;
+				/*border-top: solid 1px #fff;*/
 				padding: 0.5em 0;
 			}
 
@@ -2332,8 +2332,9 @@ input, select, textarea {
 	}
 
 	table {
-		margin: 0 0 2em 0;
-		width: 100%;
+		/*margin: 0 0 2em 0;*/
+		margin: auto;
+		/*width: 100%;*/
 	}
 
 		table tbody tr {
@@ -2482,7 +2483,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #ed4933;
+			background-color: #d17344;
 			box-shadow: none !important;
 			color: #ffffff !important;
 		}
@@ -2492,7 +2493,7 @@ input, select, textarea {
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #ef5e4a !important;
+				background-color: #d18e6c !important;
 			}
 
 			input[type="submit"].primary:active,
@@ -2500,7 +2501,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #eb341c !important;
+				background-color: #d88054 !important;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -4201,7 +4202,7 @@ input, select, textarea {
 
   /* The popup form - hidden by default */
   .form-popup {
-	width:70%;
+	width:75%;
 	margin:auto;
 	display: none;
 	border: 3px solid #f1f1f1;
@@ -4345,7 +4346,7 @@ input, select, textarea {
 	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	border-radius: 3px;
 	border: 0;
-	background-color: #ed4933;
+	background-color: #d17344;
 	box-shadow: none !important;
 	color: #ffffff !important;
 	cursor: pointer;
@@ -4368,7 +4369,7 @@ input, select, textarea {
 	flex-wrap: wrap;
 }
 .category-tags:hover{
-	background-color: #ef5e4a !important;
+	background-color: #d18e6c !important;
 }
 
 /*Search bar + button div*/
@@ -4420,9 +4421,49 @@ input, select, textarea {
 
 /* Style the collapsible content. Note: hidden by default */
 .content {
+	width: inherit;
 	font: inherit;
 	padding: 0 18px;
 	display: none;
 	overflow: hidden;
 	background-color: #f1f1f1;
+}
+
+#openformButton{
+	text-align: center;
+	font: inherit;
+}
+
+.class-button{
+	font: inherit;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+	background-color: transparent;
+	display: block;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	width: 100%;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: inset 0 0 0 2px #fff;
+	color: #fff;
+	cursor: pointer;
+	font-size: 0.8em;
+	font-weight: 600;
+	height: 3.125em;
+	letter-spacing: 0.225em;
+	line-height: 3.125em;
+	padding: 0 2.75em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

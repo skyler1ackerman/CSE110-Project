@@ -18,43 +18,14 @@ function getClassSnapshot(){
 //reads in every discord info from a class
 async function getDiscordInfo(className){
     console.log("getDiscordInfo() called");
-    /* Old OG code
-    console.log("getDiscordInfo() called :)");
-    var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
-    var ref = firebase.database().ref(classRef);
-    var counter = 1;
-    ref.on("value", function(snapshot) {
-     snapshot.forEach(function(snapshot) {
-      var info_year = snapshot.child("year").val(); //discord info
-      var info_quarter = snapshot.child("quarter").val(); //discord info
-      var info_profname = snapshot.child("profName").val(); //discord info
-      var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
-      var displayedInfo = "yr: ";
-      displayedInfo += info_year;
-      displayedInfo += "          |qtr: ";
-      displayedInfo += info_quarter;
-      displayedInfo += "          |prof: ";
-      displayedInfo += info_profname;
-      displayedInfo += "          |url:   ";
-      displayedInfo += info_inviteurl;
-      displayedInfo += "";
-      if(info_year==null || info_year=="" || info_year=="\0"){
-        document.getElementById("discordInfo".concat(counter)).innerHTML = "No results found!";
-        return;
-      }else{
-        document.getElementById("discordInfo".concat(counter)).innerHTML = displayedInfo;
-      }
-      counter++;
-     })
-    });*/
+
     var classRef = "classes/".concat(className);
     console.log("Finding class ->", className);
     var ref = firebase.database().ref(classRef);
     var resultsString = { str : "" };
     var results = {};
     //This loop iterates over the clubs associated with the category
-    ref.on("value", function(snapshot) {
+    await ref.once("value", function(snapshot) {
         snapshot.forEach(function (snapshot) {
             var info_year = snapshot.child("year").val(); //discord info
             var info_quarter = snapshot.child("quarter").val(); //discord info
@@ -75,8 +46,9 @@ async function getDiscordInfo(className){
             //console.log(results);
 
         });
+        return results
     });
-    console.log(JSON.parse(JSON.stringify(results)));
+    //console.log(JSON.parse(JSON.stringify(results)));
 
     // Returns results before finished parsing the DB, so still empty
     return results;
@@ -88,15 +60,11 @@ async function constructHTML(className){
     let result = await getDiscordInfo(className);
 
     console.log("constructHTML");
-    console.log(JSON.parse(JSON.stringify(result)));
+    //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = {str : ""};
-    console.log(Object.values(result).length);
+    //console.log(Object.values(result).length);
     Object.keys(result).forEach(function(key) {
-        console.log("PLSEEEEEEEEEEEEEEE");
-        console.log(key);
-        // Ignore all this
-        //if(info_quarter !== null && info_year !== null && info_year!== "" && info_year!== "\0") {
-         /*resultsString.str += "<li class='community' style=\"display: inline;\">";
+         resultsString.str += "<li class='community' style=\"display: inline;\">";
          resultsString.str += `<button class=\"collapsible\">${key}</button>`;
          resultsString.str += "<div class=\"content\">";
          resultsString.str += "<p></p>";
@@ -104,14 +72,14 @@ async function constructHTML(className){
              "                        <table class=\"alt\" style=\"align-self: center;\">\n" +
              "                            <thead></thead>\n" +
              "                            <tbody>";
-             results[key].forEach(function(elem, index) {
-                 console.log(elem, index);
-             });
-         resultsString.str += `<tr>
-                                     <td style=\"text-align: center; vertical-align: middle;\">${info_profname}</td>
-                                     <td><a href=\"${info_inviteurl}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
+             result[key].forEach(function(elem) {
+                 resultsString.str += `<tr>
+                                     <td style=\"text-align: center; vertical-align: middle;\">${elem['prof']}</td>
+                                     <td><a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
                                          <a href=\"#\" target=\"_blank\" class=\"button\">Report</a>
                                      </td> </tr>`;
+
+             });
 
          resultsString.str += "</tbody>\n" +
              "                            <tfoot>\n" +
@@ -120,12 +88,14 @@ async function constructHTML(className){
              "                    </div>\n" +
              "                    <p></p>";
          resultsString.str += "</div>";
-         resultsString.str += "</li>";*/
+         resultsString.str += "</li>";
      //};
     });
     console.log("After for each loop");
     console.log(resultsString.str);
-    /*var container = document.querySelector(" #results > #queryResults ");
+    document.getElementById("queryResults").innerHTML = resultsString.str;
+
+    var container = document.querySelector(" #results > #queryResults ");
     var coll = container.querySelectorAll(" .community > .collapsible")
     var i;
 
@@ -139,7 +109,7 @@ async function constructHTML(className){
                 content.style.display = "block";
             }
         });
-    }*/
+    }
 };
 
 function addDiscordInfotoDB(){
