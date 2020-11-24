@@ -46,7 +46,6 @@ async function getDiscordInfo(className){
             //console.log(results);
 
         });
-        return results
     });
     //console.log(JSON.parse(JSON.stringify(results)));
 
