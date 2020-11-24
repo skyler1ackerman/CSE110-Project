@@ -8,7 +8,9 @@ function getCommunityInfoByName(name){
   var ref = firebase.database().ref("clubs").child(name);
   console.log("NAME: ", name);
   ref.on('value', function(snapshot) {
+      console.log(snapshot.val());
       let communityObj = snapshot.val()
+      console.log("year!: , ", communityObj.year);
       document.getElementById("community-academic-year").innerHTML =  snapshot.child("year").val(); //discord info
       document.getElementById("community-date-created").innerHTML = snapshot.child("year").val();
       document.getElementById("community-status").innerHTML = snapshot.child("year").val();
@@ -43,73 +45,6 @@ function submit_community(){
       alert("The community you entered is not in our Database.");
   }
 }
-
-// Category Search
-
-function submit_community_category(categoryInput){
-    //check if user input is valid
-        localStorage.setItem("categoryInput", categoryInput);
-        window.location.href = "community-categoryDB.html";
-}
-
-function getCommunityCategory(category){
-    console.log("getCommunityCategory() called :)");
-    //console.log("CATEGORY: ", category);
-
-    var catRef = "clubs/".concat(category);
-    var ref = firebase.database().ref(catRef).on('value', function(snap){
-        var resultsString = { str : "" };
-
-        //This loop iterates over the clubs associated with the category
-        snap.forEach(function(childNodes){
-            resultsString.str += "<li class='community'>";
-            resultsString.str += `<button class=\"collapsible\">${childNodes.key}</button>`;
-            resultsString.str += "<div class=\"content\">";
-            resultsString.str += "<p></p>";
-            if(childNodes.val().status !== "") {
-                resultsString.str +=   `<p><b>Status: </b>${childNodes.val().status}</p>`;
-            };
-            if(childNodes.val().org_type !== "") {
-                resultsString.str +=   `<p><b>Type: </b>${childNodes.val().org_type}</p>`;
-            };
-            if(childNodes.val().contact !== ""){
-                resultsString.str +=   `<p><b>Contact: </b>${childNodes.val().contact}</p>`;
-            };
-            if(childNodes.val().description !== "") {
-                resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
-            };
-            if(childNodes.val().inviteLink !== "") {
-                resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="justify-content: center;">Join Discord</a>`;
-                resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="justify-content: center;">Report</a>`;
-
-            };
-            if(childNodes.val().social_media !== "") {
-                resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
-            };
-            resultsString.str += "<p></p>";
-            resultsString.str += "</div>";
-            resultsString.str += "</li>";
-        });
-        console.log(resultsString.str);
-        document.getElementById("queryResults").innerHTML = resultsString.str;
-        var container = document.querySelector(" #results > #queryResults ");
-        var coll = container.querySelectorAll(" .community > .collapsible")
-        var i;
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-    });
-}
-
-// end of Category Search
 
 function autocompleteCommunity(inp, arr) {
   /*the autocomplete function takes two arguments,
