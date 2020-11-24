@@ -16,7 +16,9 @@ function getClassSnapshot(){
 }
 
 //reads in every discord info from a class
-function getDiscordInfo(className){
+async function getDiscordInfo(className){
+    console.log("getDiscordInfo() called");
+    /* Old OG code
     console.log("getDiscordInfo() called :)");
     var classRef = "classes/".concat(className);
     console.log("Finding class ->", className);
@@ -38,15 +40,107 @@ function getDiscordInfo(className){
       displayedInfo += info_inviteurl;
       displayedInfo += "";
       if(info_year==null || info_year=="" || info_year=="\0"){
-        document.getElementById("discordInfo".concat(counter)).innerHTML = "DB Empty - No Discord info Added Yet";
+        document.getElementById("discordInfo".concat(counter)).innerHTML = "No results found!";
         return;
       }else{
         document.getElementById("discordInfo".concat(counter)).innerHTML = displayedInfo;
       }
       counter++;
      })
+    });*/
+    var classRef = "classes/".concat(className);
+    console.log("Finding class ->", className);
+    var ref = firebase.database().ref(classRef);
+    var resultsString = { str : "" };
+    var results = {};
+    //This loop iterates over the clubs associated with the category
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function (snapshot) {
+            var info_year = snapshot.child("year").val(); //discord info
+            var info_quarter = snapshot.child("quarter").val(); //discord info
+            var info_profname = snapshot.child("profName").val(); //discord info
+            var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
+
+            var item = info_quarter.concat(" ",info_year);
+            // if Quarter Year is not already in the dict, add it
+            if (!(item in results)){
+                results[item] = [];
+            }
+
+            // Add to list associated with Quarter Year
+            // results = Dictionary where
+            // { Fall 2020 : [ {prof: ... , discord : ... } , {...} ] }
+            var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl};
+            results[item].push(profDiscordInfo);
+            //console.log(results);
+
+        });
     });
-}
+    console.log(JSON.parse(JSON.stringify(results)));
+
+    // Returns results before finished parsing the DB, so still empty
+    return results;
+};
+
+async function constructHTML(className){
+
+    // result is still empty even when using async/await
+    let result = await getDiscordInfo(className);
+
+    console.log("constructHTML");
+    console.log(JSON.parse(JSON.stringify(result)));
+    var resultsString = {str : ""};
+    console.log(Object.values(result).length);
+    Object.keys(result).forEach(function(key) {
+        console.log("PLSEEEEEEEEEEEEEEE");
+        console.log(key);
+        // Ignore all this
+        //if(info_quarter !== null && info_year !== null && info_year!== "" && info_year!== "\0") {
+         /*resultsString.str += "<li class='community' style=\"display: inline;\">";
+         resultsString.str += `<button class=\"collapsible\">${key}</button>`;
+         resultsString.str += "<div class=\"content\">";
+         resultsString.str += "<p></p>";
+         resultsString.str += "<div class=\"table-wrapper\" style=\"align-content: center;\">\n" +
+             "                        <table class=\"alt\" style=\"align-self: center;\">\n" +
+             "                            <thead></thead>\n" +
+             "                            <tbody>";
+             results[key].forEach(function(elem, index) {
+                 console.log(elem, index);
+             });
+         resultsString.str += `<tr>
+                                     <td style=\"text-align: center; vertical-align: middle;\">${info_profname}</td>
+                                     <td><a href=\"${info_inviteurl}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
+                                         <a href=\"#\" target=\"_blank\" class=\"button\">Report</a>
+                                     </td> </tr>`;
+
+         resultsString.str += "</tbody>\n" +
+             "                            <tfoot>\n" +
+             "                            </tfoot>\n" +
+             "                        </table>\n" +
+             "                    </div>\n" +
+             "                    <p></p>";
+         resultsString.str += "</div>";
+         resultsString.str += "</li>";*/
+     //};
+    });
+    console.log("After for each loop");
+    console.log(resultsString.str);
+    /*var container = document.querySelector(" #results > #queryResults ");
+    var coll = container.querySelectorAll(" .community > .collapsible")
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }*/
+};
 
 function addDiscordInfotoDB(){
   console.log("addDiscordInfotoDB() called!");
