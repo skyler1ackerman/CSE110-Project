@@ -23,7 +23,7 @@ async def delMsg(susMsg, reportMsg, reportMsgList):
 		await reportMsg.channel.send('That message has already been deleted!')
 	# Send a message to every admin besides the one that deleted the message letting them know it got deleted.
 	for channel in [msg.channel for msg in reportMsgList if msg.channel.recipient != reportMsg.channel.recipient]:
-		await channel.send(str(reportMsg.author) + ' deleted message "' + susMsg.content + '"')
+		await channel.send(str(reportMsg.channel.recipient) + ' deleted message "' + susMsg.content + '"')
 
 # This function gets called when the admin rejects deleting a reported message
 async def keepMsg(susMsg, reportMsg, reportMsgList):
@@ -36,7 +36,7 @@ async def keepMsg(susMsg, reportMsg, reportMsgList):
 		await reportMsg.channel.send('That message has already been deleted!')
 	# Send a message to every admin besides the one that allowed the message letting them know it was ignored.
 	for channel in [msg.channel for msg in reportMsgList if msg.channel.recipient != reportMsg.channel.recipient]:
-		await channel.send(str(reportMsg.author) + ' ignored message "' + susMsg.content + '"')
+		await channel.send(str(reportMsg.channel.recipient) + ' ignored message "' + susMsg.content + '"')
 
 # This function is called after the report is sent to the admin
 # It waits for the admin to react with a check or x
