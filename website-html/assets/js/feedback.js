@@ -85,7 +85,7 @@ function retrieveFeedbackUCSD() {
             var feedback = childSnapshot.val();
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
-            newFeedbackBoxElement.style.border = "gainsboro"
+            //newFeedbackBoxElement.style.border = "solid gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
             //Time
             let time = document.createElement('textarea')
