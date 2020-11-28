@@ -2140,13 +2140,19 @@ input, select, textarea {
 		}
 
 	ul {
-		list-style: disc;
+		list-style: none;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}
 
 		ul li {
 			padding-left: 0.5em;
+		}
+
+		.tridentList li:before {
+			content: '\1F531'; /*url("../../images/tritonicon1.png"); */
+			margin-left: -30px; 
+			margin-right: 10px;
 		}
 
 		ul.alt {
@@ -2481,7 +2487,8 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #ed4933;
+			
+			background-color: #d17344;
 			box-shadow: none !important;
 			color: #ffffff !important;
 		}
@@ -2491,7 +2498,7 @@ input, select, textarea {
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #ef5e4a !important;
+				background-color: #d18e6c; /* !important; */
 			}
 
 			input[type="submit"].primary:active,
@@ -2499,7 +2506,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #eb341c !important;
+				background-color: #d88054; /* !important;*/
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
