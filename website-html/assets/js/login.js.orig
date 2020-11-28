@@ -3,6 +3,31 @@ function testFunction() {
     const email = "yoryu@ucsd.edu"
     console.log(email.substr(email.length - 9)); //Outputs: Tabs1    
 }
+<<<<<<< HEAD
+function signInFunction() {
+  //doc: https://firebase.google.com/docs/auth/web/google-signin#before_you_begin
+  console.log("signInFunction called :)");
+  //initialize firebase app only if there isn't any...
+  var provider = new firebase.auth.GoogleAuthProvider();
+  //without this, google auth keeps logging in automatically without account selection option
+  provider.setCustomParameters({
+    prompt: 'select_account'
+  });
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    console.log(user);
+    console.log(user.displayName);
+    console.log(user.email);
+    console.log(user.photoURL);
+    //check if the email ends with @ucsd.edu
+    console.log(user.email.substr(user.email.length - 9));
+    if(user.email.substr(user.email.length - 9) != "@ucsd.edu"){
+      console.log("Not a UCSD email!");
+      //if not ucsd email, sign out
+=======
  function signInFunction() {
     //doc: https://firebase.google.com/docs/auth/web/google-signin#before_you_begin
     console.log("signInFunction called :)");
@@ -65,6 +90,7 @@ function testFunction() {
     console.log("signOutFunction called :)");
     var answer = window.confirm("Do you want to logout?");
     if (answer) {
+>>>>>>> website-html
       firebase.auth().signOut().then(function() {
         // Sign-out successful.
         //remove user info
@@ -76,6 +102,7 @@ function testFunction() {
         // An error happened.
         console.log("signout error!");
       });
+<<<<<<< HEAD
     } // => "Tabs1")
     //checking if user is an admin
     else if(user.email == "amkohli@ucsd.edu" || user.email == "djuanito@ucsd.edu" || user.email == "kat066@ucsd.edu" || user.email == "yoryu@ucsd.edu") {
@@ -133,3 +160,12 @@ function signOutFunction() {
  
  
 }
+=======
+    }
+    else {
+       console.log("user does not want to logout")
+    }
+   
+   
+ }
+>>>>>>> website-html
