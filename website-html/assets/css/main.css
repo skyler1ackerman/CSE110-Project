@@ -1877,7 +1877,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.55em;
+		height: 2.75em;
 	}
 
 	textarea {
@@ -2155,7 +2155,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				/*border-top: solid 1px #fff;*/
+				border-top: solid 1px #fff;
 				padding: 0.5em 0;
 			}
 
@@ -2179,7 +2179,6 @@ input, select, textarea {
 		list-style: none;
 		margin-left: -1em;
 		padding-left: 0;
-		justify-content: center;
 	}
 
 		ul.actions li {
@@ -2332,9 +2331,8 @@ input, select, textarea {
 	}
 
 	table {
-		/*margin: 0 0 2em 0;*/
-		margin: auto;
-		/*width: 100%;*/
+		margin: 0 0 2em 0;
+		width: 100%;
 	}
 
 		table tbody tr {
@@ -2420,7 +2418,7 @@ input, select, textarea {
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-		/*max-width: 30em;*/
+		max-width: 30em;
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -2483,7 +2481,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #d17344;
+			background-color: #ed4933;
 			box-shadow: none !important;
 			color: #ffffff !important;
 		}
@@ -2493,7 +2491,7 @@ input, select, textarea {
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #d18e6c !important;
+				background-color: #ef5e4a !important;
 			}
 
 			input[type="submit"].primary:active,
@@ -2501,7 +2499,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #d88054 !important;
+				background-color: #eb341c !important;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -3138,6 +3136,10 @@ input, select, textarea {
 				}
 
 			}
+
+		.wrapper.style4 {
+			background-color: #e89980;
+		}
 
 		.wrapper.style5 {
 			background-color: #ffffff;
@@ -3995,44 +3997,6 @@ input, select, textarea {
 		background-color: #1d242a;
 	}
 
-/* Landing2 */
-
-	body.landing2 #page-wrapper {
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-attachment: fixed;
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		padding-top: 0;
-	}
-
-	body.landing2 #footer {
-		background-color: rgba(29, 36, 42, 0.9);
-	}
-
-	body.is-mobile.landing2 #page-wrapper {
-		background: none;
-	}
-
-	body.is-mobile.landing2 #banner,
-	body.is-mobile.landing2 .wrapper.style4 {
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-
-	body.is-mobile.landing2 #footer {
-		background-color: #1d242a;
-	}
-
-
 
 /*no style*/
 .no-style {
@@ -4236,7 +4200,7 @@ input, select, textarea {
 
   /* The popup form - hidden by default */
   .form-popup {
-	width:75%;
+	width:70%;
 	margin:auto;
 	display: none;
 	border: 3px solid #f1f1f1;
@@ -4258,42 +4222,6 @@ input, select, textarea {
   #header nav > ul > a:hover {
 	color: rgb(160, 156, 156);
   }
-
-
-  /*used for user profile*/
-.card {
-	box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-
-}
-
-.card {
-	margin: 0 auto;
-	float: none;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	flex-direction: column;
-	min-width: 0;
-	word-wrap: break-word;
-	background-clip: border-box;
-	border: 0 solid rgba(0,0,0,.125);
-	border-radius: .25rem;
-	text-align-all: left;
-	padding: 20px;
-}
-
-.card-body {
-	flex: 1 1 auto;
-	min-height: 1px;
-	padding: 1rem;
-	text-align-all: left;
-}
-
-.avatar {
-	vertical-align: middle;
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-}
 
 
   .chatroom {
@@ -4341,194 +4269,13 @@ input, select, textarea {
 }
 
 
-
-/* Category Dropdown */
-
-/* The dropdown container */
-.dropdown {
-	float: left;
-	overflow: hidden;
-}
-
-.dropdown-content {
-	height: auto;
-	max-height: 180px;
-	overflow-x: hidden;
-	display: none;
-	position: absolute;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
-	overflow-y: scroll;
-	background-color: darkgray;
-}
-
-.dropdown-content a {
-	font: inherit;
-	float: none;
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	text-align: left;
-}
-
-.dropdown-content a:hover {
-	background-color: #ddd;
-}
-
-.show {
-	display: block;
-}
-
-/*Container for category tags */
-.small-buttons{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	margin-bottom: 2rem;
-}
-.submit-community-button{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align:center;
-	margin-bottom:50px;
-}
-.category-tags{
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	border-radius: 3px;
-	border: 0;
-	background-color: #d17344;
-	box-shadow: none !important;
-	color: #ffffff !important;
-	cursor: pointer;
-	display: inline-flex;
-	font-size: 0.8em;
-	font-weight: 600;
-	height: 3.125em;
-	letter-spacing: 0.175em;
-	line-height: 3.125em;
-	max-width: 30em;
-	padding: 0 1.75em;
-	text-align: center;
-	text-decoration: none;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	margin: .25rem;
-	align-items: center;
-	display: flex;
-	flex-wrap: wrap;
-}
-.category-tags:hover{
-	background-color: #d18e6c !important;
-}
-
-/*Search bar + button div*/
-#search{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align:center;
-}
-
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-	font: inherit;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	background-color: transparent;
-	display: block;
-	width: 100%;
-	border-radius: 3px;
-	border: 0;
-	box-shadow: inset 0 0 0 2px #fff;
-	color: #fff;
-	cursor: pointer;
-	font-size: 0.8em;
-	font-weight: 600;
-	height: 3.125em;
-	letter-spacing: 0.225em;
-	line-height: 3.125em;
-	padding: 0 2.75em;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
-	background-color: #ccc;
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.content {
-	width: inherit;
-	font: inherit;
-	padding: 0 18px;
-	display: none;
-	overflow: hidden;
-	background-color: #f1f1f1;
-}
-
-#openformButton{
-	text-align: center;
-	font: inherit;
-}
-
-.class-button{
-	font: inherit;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-	background-color: transparent;
-	display: block;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	width: 100%;
-	border-radius: 3px;
-	border: 0;
-	box-shadow: inset 0 0 0 2px #fff;
-	color: #fff;
-	cursor: pointer;
-	font-size: 0.8em;
-	font-weight: 600;
-	height: 3.125em;
-	letter-spacing: 0.225em;
-	line-height: 3.125em;
-	padding: 0 2.75em;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+.avatar {
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin: 5px 0px 5px 0px;
+  }
 
 div textarea{
 	margin-bottom: 2px;
@@ -4552,5 +4299,4 @@ div textarea{
 	background-color: gainsboro;
 	border-color: gainsboro;
 	border-width: 1px;
-
 }
