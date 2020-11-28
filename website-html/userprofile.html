@@ -82,7 +82,7 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/login.js"></script>
         <script src="assets/js/searchClass.js"></script>
-        <script src="assets/js/searchCommunity.js"></script>
+        <!--<script src="assets/js/searchCommunity.js"></script>-->
 
 
         <!-- below is firebase SDKs-->
@@ -95,7 +95,12 @@
         <script src="/__/firebase/8.0.1/firebase-database.js"></script>
         <script src="/__/firebase/init.js"></script>
 
-        <script>
+        <!-- add courses to the textbox -->
+        <script type="text/javascript">
+
+            var courseArray = [];
+            var courseCount = 0;
+
             window.onload = function() {
                 // get all class info from FB databse
                 //getCommunitySnapshot();
@@ -113,25 +118,48 @@
                 document.getElementById("profilePicUserProfile").src=profileImgUrl;
                 //remove local storage items in signout function for security.
                 document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + "!";
-            }
-        </script>
 
-        <!-- add courses to the textbox -->
-        <script type="text/javascript">
-            var courseArray = [];
-            var courseCount = 0;
+                // load any db-saved courses to the page
+                firebase.database().ref("userProfiles").child("a3ramos").child("courseList").on('value', function(dataSnapshot) {
+                    // take DataSnapshot obj, which might be null
+                    courseArray = dataSnapshot.val();
+                    if (courseArray == null) {
+                        //console.log(courseArray + " this is from db");
+                        courseArray = [];
+                        //console.log(courseArray + " this is empty arr");
+                    } else if (typeof courseArray === "string"){
+                        // take string of comma-seperated classes, turn into an array of strings
+                        //console.log(courseArray + " this is from db");
+                        courseArray = courseArray.split(",");
+                        courseCount = courseArray.length;
+                        //console.log(courseArray + " this is new arr");
+                        if(courseArray[0].length === 0){
+                            courseArray = [];
+                            courseCount = 0;
+                        }
+                        // clear and fill in the course list textbox 
+                        document.getElementById("courseListToSave").value = "";
+                        for (i of courseArray) {
+                            document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
+                            //console.log(i);
+                        }
+                    }
+                });
+                
+            }
+
             // currently only for dropdown in select, no duplicate add check 
             function Add() {
                 var currentCourse = document.getElementById("inputClasses").value;
                 //check if user input is valid
                 if(classesArr.includes(currentCourse) && currentCourse !== ""){
-                    console.log("good add");
+                    //console.log("good add");
                 }
                 else{
                     alert("The class you entered is not in our Database.");
                     return false;
                 }
-                console.log("Add " +  currentCourse);
+                //console.log("Add " +  currentCourse);
                 var i;
                 for (i of courseArray) {
                     if(i == currentCourse){
@@ -141,24 +169,25 @@
                 }
                 courseArray[courseCount] = currentCourse;
                 courseCount++;
+                // clear and fill in the course list textbox 
                 document.getElementById("courseListToSave").value = "";
                 for (i of courseArray) {
                     document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
-                    console.log(i);
+                    //console.log(i);
                 }
 
             }
 
             function updateProfile(){
-                console.log("Save ");
-                console.log(courseArray.toString());
+                //console.log("Save ");
+                //console.log(courseArray.toString());
 
                 var courses = courseArray.toString();
                 // used username as key in order to avoid multiple entry from the same user
                 var usernameKey = document.getElementById("email").value;
                 // username is the email without @ucsd.edu
                 usernameKey = usernameKey.substring(0, usernameKey.indexOf('@'));
-                // console.log(usernameKey);
+                //console.log(usernameKey);
 
                 // iterate through courseArray, send to firebase db
                 firebase.database().ref("userProfiles").child(usernameKey).set({
@@ -173,8 +202,8 @@
             }
             // clear is not meant to update db, only the list visible on page
             function clearList(){
-                console.log("clear ");
-                console.log(courseArray.toString());
+                //console.log("clear ");
+                //console.log(courseArray.toString());
 
                 document.getElementById("courseListToSave").value = "";
                 courseArray = [];
