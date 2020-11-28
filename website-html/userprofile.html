@@ -69,8 +69,8 @@
                                 <input type="button" id = "btnAdd" value = "Add" onclick = "addCourse()" style="border: 1px solid #cccccc"/>
                                 <textarea placeholder="Add Classes" rows="8" cols="100" id="courseListToSave" readonly></textarea>
                                 <div align="center">
-                                <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
-                                <input id="save" type="button" value = "Save Changes" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
+                                    <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
+                                    <input id="save" type="button" value = "Save Changes" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
                                 </div>
                             </form>
                         </div>
@@ -107,8 +107,10 @@
 
             var courseArray = [];
             var courseCount = 0;
+            var userMajor = "";
 
             window.onload = function() {
+
                 // // get all class info from FB databse
                 // //getCommunitySnapshot();
                 // getClassSnapshot();
@@ -140,6 +142,7 @@
                 // get all class and major info from FB databse, need this for vars
                 getClassSnapshot();
                 getMajorSnapshot();
+
                 // load any db-saved courses to the page
                 firebase.database().ref("userProfiles").child(usernameKey).child("courseList").on('value', function(dataSnapshot) {
                     // take DataSnapshot obj, which might be null
@@ -166,6 +169,9 @@
                         }
                     }
                 });
+
+
+                // load db-saved major to page
                 firebase.database().ref("userProfiles").child(usernameKey).child("major").on('value', function(dataSnapshot) {
                     // take DataSnapshot obj, which might be null
                     userMajor = dataSnapshot.val();
@@ -177,6 +183,7 @@
                         document.getElementById("inputMajors").value = userMajor;
                     }
                 });
+
             }
             // load db-saved major to page
             
@@ -212,6 +219,22 @@
             }
              // take entered major, make sure its valid before letting save button take it 
              function setMajor() {
+                var currentMajor = document.getElementById("inputMajors").value;
+                // check if user input is valid major, allowing empty major
+                if(majorsArr.includes(currentMajor) || currentMajor === ""){
+                    //console.log("good add");
+                    userMajor = currentMajor;
+                }
+                else{
+                    alert("The major you entered is not in our Database.");
+                    document.getElementById("inputMajors").value = "";
+                    userMajor = "";
+                    return false;
+                }
+            }
+
+            // take entered major, make sure its valid before letting save button take it 
+            function setMajor() {
                 var currentMajor = document.getElementById("inputMajors").value;
                 // check if user input is valid major, allowing empty major
                 if(majorsArr.includes(currentMajor) || currentMajor === ""){
