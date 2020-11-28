@@ -71,15 +71,17 @@ function getFeedbackOutside(){
 function retrieveFeedbackUCSD() {
     console.log("retrieveFeedbackUCSD() called :)");
 
-    let feedbackUCSDElement = document.querySelector('#feedbackUCSD')
-    var ResolvedRef=firebase.database().ref("Feedback/ResolvedUCSD");
-    var ref = firebase.database().ref("Feedback/UCSD");
-    var counter = 1
+    let feedbackUCSDElement = document.querySelector('#feedbackUCSD');
+    var ResolvedRef="Feedback/ResolvedUCSD";
+    var refUCSD = "Feedback/UCSD";
+    var counter = 1;
 
-    ref.on("value", function(snapshot) {
+    firebase.database().ref(refUCSD).on("value", function(snapshot) {
+        if(feedbackUCSDElement != null){
         while(feedbackUCSDElement.hasChildNodes()){
             feedbackUCSDElement.removeChild(feedbackUCSDElement.lastChild);
         }
+    }
         snapshot.forEach(function(childSnapshot) {
             counter += 1
             var feedback = childSnapshot.val();
@@ -123,14 +125,14 @@ function retrieveFeedbackUCSD() {
             let resolved = document.createElement('button')
             resolved.innerText = "Resolved"
             resolved.addEventListener("click",function(){
-                ResolvedRef.child(newFeedbackBoxElement.id).set({
+                firebase.database().ref(ResolvedRef).child(newFeedbackBoxElement.id).set({
                     email: feedback.email,
                     fullname: feedback.fullname,
                     issue_type: feedback.issue_type,
                     explanation: feedback.explanation,
                     time: feedback.time
                 })
-                ref.child(newFeedbackBoxElement.id).remove();
+                firebase.database().ref(refUCSD).child(newFeedbackBoxElement.id).remove();
             });
 
             newFeedbackBoxElement.appendChild(time)
@@ -141,7 +143,9 @@ function retrieveFeedbackUCSD() {
             newFeedbackBoxElement.appendChild(resolved)
 
             feedbackUCSDArr.push(feedback);
+            if(feedbackUCSDElement != null) {
             feedbackUCSDElement.append(newFeedbackBoxElement)
+            }
 
 
         });
@@ -157,9 +161,11 @@ function retrieveResolvedUCSD() {
     counter = 1
 
     ref.on("value", function(snapshot) {
+        if(resolvedUCSDElement != null){
         while(resolvedUCSDElement.hasChildNodes()){
             resolvedUCSDElement.removeChild(resolvedUCSDElement.lastChild);
         }
+    }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
             childSnapshot.key
@@ -227,7 +233,9 @@ function retrieveResolvedUCSD() {
             newFeedbackBoxElement.appendChild(unresolved)
             newFeedbackBoxElement.appendChild(removed)
 
+            if(resolvedUCSDElement != null){
             resolvedUCSDElement.append(newFeedbackBoxElement)
+            }
 
             resolvedUCSDArr.push(feedback);
         });
@@ -243,9 +251,11 @@ function retrieveFeedbackOutside() {
     counter = 1
 
     ref.on("value", function(snapshot) {
+        if(feedbackOutsideElement != null){
         while(feedbackOutsideElement.hasChildNodes()){
             feedbackOutsideElement.removeChild(feedbackOutsideElement.lastChild);
         }
+    }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
             childSnapshot.key
@@ -306,7 +316,9 @@ function retrieveFeedbackOutside() {
             newFeedbackBoxElement.appendChild(explanation)
             newFeedbackBoxElement.appendChild(resolved)
 
+            if(feedbackOutsideElement != null) {
             feedbackOutsideElement.append(newFeedbackBoxElement)
+            }
 
             feedbackOutsideArr.push(feedback);
         });
@@ -323,9 +335,11 @@ function retrieveResolvedOutside() {
     counter = 1
 
     ref.on("value", function(snapshot) {
+        if(resolvedOutsideElement != null){
         while(resolvedOutsideElement.hasChildNodes()){
             resolvedOutsideElement.removeChild(resolvedOutsideElement.lastChild);
         }
+    }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
             childSnapshot.key
@@ -392,7 +406,9 @@ function retrieveResolvedOutside() {
             newFeedbackBoxElement.appendChild(unresolved)
             newFeedbackBoxElement.appendChild(removed)
 
+            if(resolvedOutsideElement != null){
             resolvedOutsideElement.append(newFeedbackBoxElement)
+            }
 
             resolvedOutsideArr.push(feedback);
         });
@@ -438,6 +454,7 @@ feedbackUCSDArr = []
 feedbackOutsideArr = []
 resolvedUCSDArr = []
 resolvedOutsideArr = []
+
 retrieveFeedbackUCSD()
 retrieveFeedbackOutside()
 retrieveResolvedOutside()
