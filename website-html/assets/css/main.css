@@ -108,7 +108,6 @@ input, select, textarea {
 
 			body, input, select, textarea {
 				font-size: 13pt;
-				display: inline-block;
 			}
 
 		}
@@ -117,7 +116,6 @@ input, select, textarea {
 
 			body, input, select, textarea {
 				font-size: 12pt;
-				display: inline-block;
 			}
 
 		}
@@ -127,7 +125,6 @@ input, select, textarea {
 			body, input, select, textarea {
 				font-size: 11pt;
 				letter-spacing: 0.0375em;
-				display: block;
 			}
 
 		}
@@ -1880,7 +1877,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.55em;
+		height: 2.75em;
 	}
 
 	textarea {
@@ -2143,7 +2140,7 @@ input, select, textarea {
 		}
 
 	ul {
-		list-style: none;
+		list-style: disc;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}
@@ -2152,19 +2149,13 @@ input, select, textarea {
 			padding-left: 0.5em;
 		}
 
-		.tridentList li:before {
-			content: '\1F531'; /*url("../../images/tritonicon1.png"); */
-			margin-left: -30px; 
-			margin-right: 10px;
-		}
-
 		ul.alt {
 			list-style: none;
 			padding-left: 0;
 		}
 
 			ul.alt li {
-				/*border-top: solid 1px #fff;*/
+				border-top: solid 1px #fff;
 				padding: 0.5em 0;
 			}
 
@@ -2188,7 +2179,6 @@ input, select, textarea {
 		list-style: none;
 		margin-left: -1em;
 		padding-left: 0;
-		justify-content: center;
 	}
 
 		ul.actions li {
@@ -2341,9 +2331,8 @@ input, select, textarea {
 	}
 
 	table {
-		/*margin: 0 0 2em 0;*/
-		margin: auto;
-		/*width: 100%;*/
+		margin: 0 0 2em 0;
+		width: 100%;
 	}
 
 		table tbody tr {
@@ -2429,7 +2418,7 @@ input, select, textarea {
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-		/*max-width: 30em;*/
+		max-width: 30em;
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -2492,7 +2481,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #d17344;
+			background-color: #ed4933;
 			box-shadow: none !important;
 			color: #ffffff !important;
 		}
@@ -2502,7 +2491,7 @@ input, select, textarea {
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #d18e6c !important;
+				background-color: #ef5e4a !important;
 			}
 
 			input[type="submit"].primary:active,
@@ -2510,7 +2499,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #d88054 !important;
+				background-color: #eb341c !important;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -3147,6 +3136,10 @@ input, select, textarea {
 				}
 
 			}
+
+		.wrapper.style4 {
+			background-color: #e89980;
+		}
 
 		.wrapper.style5 {
 			background-color: #ffffff;
@@ -4004,44 +3997,6 @@ input, select, textarea {
 		background-color: #1d242a;
 	}
 
-/* Landing2 */
-
-	body.landing2 #page-wrapper {
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-attachment: fixed;
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		padding-top: 0;
-	}
-
-	body.landing2 #footer {
-		background-color: rgba(29, 36, 42, 0.9);
-	}
-
-	body.is-mobile.landing2 #page-wrapper {
-		background: none;
-	}
-
-	body.is-mobile.landing2 #banner,
-	body.is-mobile.landing2 .wrapper.style4 {
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/geisel5blur.jpg");
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-
-	body.is-mobile.landing2 #footer {
-		background-color: #1d242a;
-	}
-
-
 
 /*no style*/
 .no-style {
@@ -4197,7 +4152,6 @@ input, select, textarea {
     all: initial;
     all: unset;
 }
-
 
 /* search bar */
 
@@ -4538,6 +4492,7 @@ input, select, textarea {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
 
 div textarea{
 	margin-bottom: 2px;
