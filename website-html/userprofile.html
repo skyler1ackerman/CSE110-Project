@@ -60,7 +60,7 @@
                                     <label>Major</label>
                                     <input id="inputMajors" type="text" name="searchmajor" style="text-align:left; width: 600px;" placeholder="Search Majors">
                                 </div>
-                                <input type="button" id = "btnSet" value = "Set" onclick = "setMajor()" style="border: 1px solid #cccccc"/>
+                                <!-- <input type="button" id = "btnSet" value = "Set" onclick = "setMajor()" style="border: 1px solid #cccccc"/>-->
                                 <!--adding classes-->
                                 <div class="autocomplete" style="width: auto;">
                                     <label>Classes</label>
@@ -70,7 +70,7 @@
                                 <textarea placeholder="Add Classes" rows="8" cols="100" id="courseListToSave" readonly></textarea>
                                 <div align="center">
                                     <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
-                                    <input id="save" type="button" value = "Save Changes" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
+                                    <input id="save" type="button" value = "Save Changes" onclick="setMajor();updateProfile()"  style="border: 1px solid #cccccc"></input>
                                 </div>
                             </form>
                         </div>
@@ -184,6 +184,8 @@
             // currently only for dropdown in select, no duplicate add check 
             function addCourse() {
                 var currentCourse = document.getElementById("inputClasses").value;
+                // clear the input box for responsiveness
+                document.getElementById("inputClasses").value = "";
                 //check if user input is valid
                 if(classesArr.includes(currentCourse) && currentCourse !== ""){
                     //console.log("good add");
@@ -218,9 +220,10 @@
                 if(majorsArr.includes(currentMajor) || currentMajor === ""){
                     //console.log("good add");
                     userMajor = currentMajor;
+                    alert("The major you entered will be saved.");
                 }
                 else{
-                    alert("The major you entered is not in our Database.");
+                    alert("The major you entered is not in our database, will not be saved.");
                     document.getElementById("inputMajors").value = "";
                     userMajor = "";
                     return false;
@@ -246,7 +249,7 @@
                     courseList: courses, //document.getElementById("courseListToSave").value,
                 });
 
-                alert("Enrolled courses and major saved!")
+                alert("Enrolled courses saved!")
 
             }
             // clear is not meant to update db, only the list visible on page
