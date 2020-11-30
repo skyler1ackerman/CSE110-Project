@@ -1,8 +1,9 @@
 function testFunction() {
-    console.log("test called :)");
-    const email = "yoryu@ucsd.edu"
-    console.log(email.substr(email.length - 9)); //Outputs: Tabs1    
+  console.log("test called :)");
+  const email = "yoryu@ucsd.edu"
+  console.log(email.substr(email.length - 9)); //Outputs: Tabs1    
 }
+
  function signInFunction() {
     //doc: https://firebase.google.com/docs/auth/web/google-signin#before_you_begin
     console.log("signInFunction called :)");
@@ -20,6 +21,7 @@ function testFunction() {
       console.log(user);
       console.log(user.displayName);
       console.log(user.email);
+      console.log(user.photoURL);
       //check if the email ends with @ucsd.edu
       console.log(user.email.substr(user.email.length - 9));
       if(user.email.substr(user.email.length - 9) != "@ucsd.edu"){
@@ -38,6 +40,8 @@ function testFunction() {
         console.log(user.email, "saved to local storage");
         localStorage.setItem("user-displayname", user.displayName);
         console.log(user.displayName, "saved to local storage");
+        localStorage.setItem("user-profileimgurl", user.photoURL);
+        console.log(user.photoURL, "saved to local storage");
         window.location.href = "afterAdminLogin.html"; //routes admins to admin options        
     }
       else{
@@ -46,7 +50,9 @@ function testFunction() {
             console.log(user.email, "saved to local storage");
             localStorage.setItem("user-displayname", user.displayName);
             console.log(user.displayName, "saved to local storage");
-           console.log("signin successful!");
+            localStorage.setItem("user-profileimgurl", user.photoURL);
+            console.log(user.photoURL, "saved to local storage");
+            console.log("signin successful!");
             window.location.href = "afterlogin.html";
       }
       // ...
@@ -70,16 +76,17 @@ function testFunction() {
         //remove user info
         localStorage.removeItem("user-email"); 
         localStorage.removeItem("user-displayname"); 
+        localStorage.removeItem("user-profileimgurl"); 
         console.log("signout successful");
         window.location.href = "index.html";
-      }).catch(function(error) {
-        // An error happened.
-        console.log("signout error!");
-      });
-    }
-    else {
-       console.log("user does not want to logout")
-    }
-   
-   
- }
+    }).catch(function(error) {
+      // An error happened.
+      console.log("signout error!");
+    });
+  }
+  else {
+     console.log("user does not want to logout")
+  }
+ 
+ 
+}

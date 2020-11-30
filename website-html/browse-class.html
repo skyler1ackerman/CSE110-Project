@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>tritongroups</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="landing is-preload">
+
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul class="menuToggle">
+                <a href="index.html" class="no-style more scrolly zero-text">Home</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-class.html" class="no-style more scrolly one-text" style="font-weight: bold;">Classes</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-community.html" class="no-style more scrolly two-text">Communities</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+            </ul>
+        </nav>
+    </header>
+    <script>
+        window.onload = function() {
+            //get all class info from FB databse
+            getClassSnapshot();
+
+            document.getElementById("email").placeholder=localStorage.getItem("user-email");
+            document.getElementById("email").value=localStorage.getItem("user-email");
+            // localStorage.removeItem("user-email");
+            document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+            document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+            // localStorage.removeItem("user-displayname");
+            //remove local storage items in signout function for security.
+        }
+    </script>
+
+    <!-- Banner -->
+    <section id="banner">
+
+        <div class="inner">
+            <br><br><br><br>
+
+            <h2>Browse Classes</h2>
+
+            <p></p>
+            <div id="classSearchBar" style="display: block;">
+                <ul class="actions special">
+                    <form autocomplete="off" action="/action_page.php">
+                        <div class="autocomplete" style="width:400px;">
+                            <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes">
+                        </div>
+                    </form>
+                </ul>
+                <input type="submit" onclick="submit_class()" value="SEARCH">
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright"></br>
+            <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/searchClass.js"></script>
+<script src="assets/js/searchCommunity.js"></script>
+
+
+<!-- below is firebase SDKs-->
+<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+<!-- this works only when we are using firebase hosting service-->
+<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+<script src="/__/firebase/init.js"></script>
+
+</body>
+</html>
