@@ -100,42 +100,18 @@
 				window.onload = function() {
 					//get all class info from FB databse
 					// getClassSnapshot();
-					document.getElementById("email").placeholder=localStorage.getItem("user-email");
-					document.getElementById("email").value=localStorage.getItem("user-email");
+					// document.getElementById("email").placeholder=localStorage.getItem("user-email");
+					// document.getElementById("email").value=localStorage.getItem("user-email");
 					// localStorage.removeItem("user-email");
-					document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+					// document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+					// document.getElementById("fullname").value=localStorage.getItem("user-displayname");
 					// localStorage.removeItem("user-displayname");
 					//remove local storage items in signout function for security.
-					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
-					addOnlineNumberAsUserSignin();
+					// document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+					// addOnlineNumberAsUserSignin();
 				}
 			</script>
-			<script>
-				window.onfocus = function() {
-					console.log("user focused on window");
-					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
-					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
-						++numOnlinePpl;
-						firebase.database().ref('messages/').update({
-							onlineCount: numOnlinePpl,
-					  	});
-					}
-				};
-
-				window.onblur = function() {
-					console.log("user focus away from window");
-					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
-					--numOnlinePpl;
-					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
-						firebase.database().ref('messages/').update({
-							onlineCount: numOnlinePpl,
-					  	});
-					}
-					// alert("brox!")
-    				// do something when this window object loses focus.
-				};
-			</script>
+		
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -147,7 +123,7 @@
 			<script src="assets/js/main.js"></script>
             <script src="assets/js/login.js"></script>
 			<script src="assets/js/feedback.js"></script>
-			<script src="assets/js/livechat.js"></script>
+			<!-- <script src="assets/js/livechat.js"></script> -->
 
 
 			<!-- below is firebase SDKs-->
