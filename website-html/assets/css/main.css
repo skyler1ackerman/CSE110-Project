@@ -108,7 +108,6 @@ input, select, textarea {
 
 			body, input, select, textarea {
 				font-size: 13pt;
-				display: inline-block;
 			}
 
 		}
@@ -117,7 +116,6 @@ input, select, textarea {
 
 			body, input, select, textarea {
 				font-size: 12pt;
-				display: inline-block;
 			}
 
 		}
@@ -127,7 +125,6 @@ input, select, textarea {
 			body, input, select, textarea {
 				font-size: 11pt;
 				letter-spacing: 0.0375em;
-				display: block;
 			}
 
 		}
@@ -1880,7 +1877,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.55em;
+		height: 2.75em;
 	}
 
 	textarea {
@@ -2143,7 +2140,7 @@ input, select, textarea {
 		}
 
 	ul {
-		list-style: none;
+		list-style: disc;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}
@@ -2164,7 +2161,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				/*border-top: solid 1px #fff;*/
+				border-top: solid 1px #fff;
 				padding: 0.5em 0;
 			}
 
@@ -2341,9 +2338,9 @@ input, select, textarea {
 	}
 
 	table {
-		/*margin: 0 0 2em 0;*/
-		margin: auto;
-		/*width: 100%;*/
+		margin: 0 0 2em 0;
+		/* margin: auto; */
+		width: 100%;
 	}
 
 		table tbody tr {
@@ -2429,7 +2426,7 @@ input, select, textarea {
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-		/*max-width: 30em;*/
+		max-width: 30em;
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -3147,6 +3144,10 @@ input, select, textarea {
 				}
 
 			}
+
+		.wrapper.style4 {
+			background-color: #e89980;
+		}
 
 		.wrapper.style5 {
 			background-color: #ffffff;
@@ -4538,6 +4539,7 @@ input, select, textarea {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
 
 div textarea{
 	margin-bottom: 2px;
