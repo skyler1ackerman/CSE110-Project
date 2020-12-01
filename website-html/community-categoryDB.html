@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>tritongroups</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+	<script src="/__/firebase/init.js"></script>
+	<script src="assets/js/auth.js"></script>
+</head>
+<body class="landing is-preload">
+
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul class="menuToggle">
+                <a href="afterlogin.html" class="no-style more scrolly zero-text">Home</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-community.html" class="no-style more scrolly two-text" style="font-weight: bold;">Communities</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+            </ul>
+        </nav>
+    </header>
+    <script>
+
+        window.onload = function() {
+            const communityName = document.getElementById("community-category").innerHTML=localStorage.getItem("categoryInput");
+            getCommunityCategory(communityName)
+        }
+    </script>
+
+    <!-- Banner -->
+    <section id="banner">
+
+        <div class="inner">
+            <br><br><br><br>
+
+            <h2>Browse UCSD Communities</h2>
+
+            <p></p>
+            <div class="small-buttons">
+
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Academic</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Career</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Cooperative</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Cultural</a>
+                </div>
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Dance</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Educational</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Fraternities</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Media</a>
+                </div>
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Medical</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Music and Performance</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Political</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Service</a>
+                </div>
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Social</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Sororities</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Spiritual</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Sports</a>
+                </div>
+            </div>
+        </div>
+        <div id="search" class="align-center">
+            <ul class="actions special">
+                <!--<div class="row gtr-0">
+                <div class="dropdown">
+                    <a href="#" class="button primary" id="dropdown" onclick="toggle()">Category
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="#" class="dropdown-item" onclick="submit_community_category(this.textContent)">Academic</a>
+                        <a href="#" class="dropdown-item" onclick="submit_community_category(this.textContent)">Career</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Cooperative</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Cultural</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Dance</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Educational</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Fraternities</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Media</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Medical</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Music and Performance</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Political</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Service</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Social</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Sororities</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Spiritual</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Sports</a>
+                    </div>
+
+                </div>-->
+
+                <form autocomplete="off"action="/action_page.php">
+                    <div class="row gtr-25">
+                        <div class="autocomplete" style="width:400px;">
+                            <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+                        </div>
+                        <div id="openformButton">
+                            <a href="add-community.html" class="button">+</a>
+                        </div>
+                    </div>
+                </form>
+            </ul>
+            <div class="submit-community-button"> <input type="submit" onclick="submit_community()"></div>
+        </div>
+    </section>
+
+    <section class="wrapper style5">
+
+        <div id="results" class="inner">
+            <h2 style="text-align: center;" id="community-category"></h2>
+
+            <!-- Display query results here -->
+            <ul id="queryResults" class="alt">
+
+            </ul>
+        </div>
+        <div id="openformButton">
+            <a href="add-community.html" class="button">+ Add Community</a>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright"></br>
+            <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/searchClass.js"></script>
+<script src="assets/js/searchCommunity.js"></script>
+
+
+<!-- below is firebase SDKs-->
+<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+<!-- this works only when we are using firebase hosting service-->
+<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+<script src="/__/firebase/init.js"></script> -->
+<!--
+<script>
+function toggle() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+    if (!e.target.matches('#dropdown')) {
+        var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+            myDropdown.classList.remove('show');
+        }
+    }
+}</script>-->
+</body>
+</html>
