@@ -146,4 +146,5 @@ function autocompleteClass(inp, arr) {
 }
 
 var majorsArr = [];
+
 autocompleteClass(document.getElementById("inputMajors"), majorsArr);

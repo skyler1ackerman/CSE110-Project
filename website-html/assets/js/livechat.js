@@ -7,7 +7,7 @@ function closeChatRoom(){
 function openChatRoom(){
     console.log("close called");
     document.getElementById("openChatroom").style.visibility = "hidden";
-    document.getElementById("chatroom").style.visibility = "visible";
+    document.getElementById("").style.visibility = "visible";
     // addOnlineNumberAsUserSignin();
 }
 

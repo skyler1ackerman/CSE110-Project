@@ -6,7 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        </head>
+        <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+		<script src="/__/firebase/init.js"></script>
+		<script src="assets/js/auth.js"></script>
+    </head>
     <body class="landing2 is-preload">
 
 
@@ -49,10 +56,10 @@
                                         <label>Full Name</label>
                                         <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
                                     </div>
-                                    <!--<div class="col-6">
+                                    <!-- <div class="col-6">
                                         <label>Major</label>
                                         <input id="inputMajor" type="text" name="searchmajor" style="text-align:left; width: 760px;" placeholder="Search Major">
-                                    </div>-->
+                                    </div> -->
                                 </div>
                                 <br/>
                                 <!--adding major-->
@@ -100,11 +107,11 @@
         <!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
         <!-- this works only when we are using firebase hosting service-->
         <!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-        <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+        <!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
         <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
         <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
         <script src="/__/firebase/8.0.1/firebase-database.js"></script>
-        <script src="/__/firebase/init.js"></script>
+        <script src="/__/firebase/init.js"></script> -->
 
         <!-- add courses to the textbox -->
         <script type="text/javascript">
@@ -114,7 +121,11 @@
             var userMajor = "";
 
             window.onload = function() {
-                
+
+                // // get all class info from FB databse
+                // //getCommunitySnapshot();
+                // getClassSnapshot();
+
                 // redirect if user not signed in; check by sign-in info in localStorage from login.js
                 if (typeof localStorage.getItem("user-email") !== "string") {
                     document.location.href="/";
@@ -170,6 +181,7 @@
                     }
                 });
 
+
                 // load db-saved major to page
                 firebase.database().ref("userProfiles").child(usernameKey).child("major").on('value', function(dataSnapshot) {
                     // take DataSnapshot obj, which might be null
@@ -182,9 +194,11 @@
                         document.getElementById("inputMajors").value = userMajor;
                     }
                 });
-                
-            }
 
+            }
+            // load db-saved major to page
+            
+                
             // currently only for dropdown in select, no duplicate add check 
             function addCourse() {
                 var currentCourse = document.getElementById("inputClasses").value;
@@ -218,6 +232,21 @@
                     //console.log(i);
                 }
 
+            }
+             // take entered major, make sure its valid before letting save button take it 
+             function setMajor() {
+                var currentMajor = document.getElementById("inputMajors").value;
+                // check if user input is valid major, allowing empty major
+                if(majorsArr.includes(currentMajor) || currentMajor === ""){
+                    //console.log("good add");
+                    userMajor = currentMajor;
+                }
+                else{
+                    alert("The major you entered is not in our Database.");
+                    document.getElementById("inputMajors").value = "";
+                    userMajor = "";
+                    return false;
+                }
             }
 
             // take entered major, make sure its valid before letting save button take it 
@@ -279,21 +308,5 @@
                 courseCount = 0;
             }
         </script>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <ul class="icons">
-                <!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
-                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                <!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
-                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-            </ul>
-            <ul class="copyright"></br>
-                <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
-                <li>(408) 533-5213 |</li> </br>
-                <li>spryleaf@spryleaf.io |</li> </br>
-            </ul>
-        </footer>
     </body>
 </html>
