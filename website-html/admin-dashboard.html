@@ -6,13 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
-		<script src="/__/firebase/init.js"></script>
-		<script src="assets/js/auth.js"></script>
     </head>
     <style>
 
@@ -24,13 +17,6 @@
     </style>
 
 	<body class="whiteBackground">
-		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-	  	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-	  	<script src="/__/firebase/init.js"></script> -->
-
-
 		<!-- Page Wrapper -->
 			<div class="whiteBackground" >
 
@@ -41,29 +27,17 @@
                         <!-- <ul> -->
                             <!-- <li class="special"> Navigation bar starts here -->
 								<ul class="menuToggle">
-									<a href="afterlogin.html" class="no-style more scrolly zero-text" >Home</a>
+									<a href="afterlogin.html" class="no-style more" >Home</a>
 									|
-									<a class="no-style more scrolly zero-text" style="font-weight: bold;">Feedback Review</a>
+									<a class="no-style more" style="font-weight: bold;">Feedback Review</a>
 									&nbsp;
 									|
 									&nbsp;
-									<a href="admin-discord-requests.html" class="no-style more scrolly zero-text">Discord Requests</a>
+									<a href="admin-discord-requests.html" class="no-style more">Discord Requests</a>
 									&nbsp;
 									|
 
-									<!-- <a href="#one" class="no-style more scrolly one-text">How It Works</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="#two" class="no-style more scrolly two-text">About Us</a>
-									&nbsp;
-									|
-									&nbsp;
-               					    <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
-               					    &nbsp;
-									|
-									&nbsp; -->
-									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+									<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
 									&nbsp;
 									&nbsp;
 									&nbsp;
@@ -100,50 +74,45 @@
 				</section>
 
 			</div>
-			<script>
-				window.onload = function() {
-					//get all class info from FB databse
-					// getClassSnapshot();
-					// document.getElementById("email").placeholder=localStorage.getItem("user-email");
-					// document.getElementById("email").value=localStorage.getItem("user-email");
-					// localStorage.removeItem("user-email");
-					// document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-					// document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-					// localStorage.removeItem("user-displayname");
-					//remove local storage items in signout function for security.
-					// document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
-					// addOnlineNumberAsUserSignin();
-				}
-			</script>
-		
+<!--			<script>-->
+<!--				window.onload = function() {-->
+<!--					//get all class info from FB databse-->
+<!--					// getClassSnapshot();-->
+<!--					// document.getElementById("email").placeholder=localStorage.getItem("user-email");-->
+<!--					// document.getElementById("email").value=localStorage.getItem("user-email");-->
+<!--					// localStorage.removeItem("user-email");-->
+<!--					// document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");-->
+<!--					// document.getElementById("fullname").value=localStorage.getItem("user-displayname");-->
+<!--					// localStorage.removeItem("user-displayname");-->
+<!--					//remove local storage items in signout function for security.-->
+<!--					// document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";-->
+<!--					// addOnlineNumberAsUserSignin();-->
+<!--				}-->
+<!--			</script>-->
+
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-            <script src="assets/js/login.js"></script>
-			<script src="assets/js/feedback.js"></script>
-			<!-- <script src="assets/js/livechat.js"></script> -->
+		<!-- below is firebase SDKs-->
+		<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+		<!-- this works only when we are using firebase hosting service-->
+		<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+		<script src="/__/firebase/init.js"></script>
+		<!-- Jquery starts here: Javascript event handler for nav bar -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-
-
-			<!-- below is firebase SDKs-->
-			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
-			<!-- this works only when we are using firebase hosting service-->
-			<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-			<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-  			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-  			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-			<script src="/__/firebase/init.js"></script> -->
-
-			<!-- Jquery starts here: Javascript event handler for nav bar -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/login.js"></script>
+		<script src="assets/js/feedback.js"></script>
 
 	</body>
 </html>
