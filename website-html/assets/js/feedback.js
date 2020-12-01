@@ -10,22 +10,15 @@ function getFeedbackValues(){
     console.log("getFeedbackValues() called!");
 
     // var feedback_ref = firebase.database().ref("Feedbacks/");
-    var counter = 1;
     var fbRef = "Feedback/UCSD";
-    firebase.database().ref(fbRef).once("value").then(function (snapshot){
-        counter=snapshot.numChildren()+1;
-        console.log(fbRef);
-        firebase.database().ref(fbRef).push().set({
-            email: document.getElementById("email").value,
-            fullname: document.getElementById("fullname").value,
-            issue_type: document.getElementById("Issue_type").value,
-            explanation: document.getElementById("explanation").value,
-            time:Date(Date.now()).toString()
-        });
-
-        console.log(counter)
-
+    firebase.database().ref(fbRef).push().set({
+        email: document.getElementById("email").value,
+        fullname: document.getElementById("fullname").value,
+        issue_type: document.getElementById("Issue_type").value,
+        explanation: document.getElementById("explanation").value,
+        time:Date(Date.now()).toString()
     });
+
     firebase.database().ref(fbRef).once("child_added").then(function (){
         document.getElementById("Issue_type").value='';
         document.getElementById("explanation").value='';
@@ -39,24 +32,18 @@ function getFeedbackValues(){
 function getFeedbackOutside(){
   console.log("getFeedbackValues() called!");
 
-  var counter = 1;
+
   var fbRef = "Feedback/Outside";
-  firebase.database().ref(fbRef).once("value").then(function (snapshot){
-      counter=snapshot.numChildren()+1;
-      console.log(fbRef);
-      var childRef =  "feedback" + counter + ' ' + document.getElementById("fullname").value+"/";
-      firebase.database().ref(fbRef).push().set({
-          email: document.getElementById("email").value,
-          fullname: document.getElementById("fullname").value,
-          issue_type: document.getElementById("Issue_type").value,
-          explanation: document.getElementById("explanation").value,
-          time:Date(Date.now()).toString()
-      });
-
-      console.log(counter)
-
-
+  firebase.database().ref(fbRef).push().set({
+      email: document.getElementById("email").value,
+      fullname: document.getElementById("fullname").value,
+      issue_type: document.getElementById("Issue_type").value,
+      explanation: document.getElementById("explanation").value,
+      time:Date(Date.now()).toString()
   });
+
+
+
   firebase.database().ref(fbRef).once("child_added").then(function (){
           document.getElementById("email").value='';
           document.getElementById("fullname").value='';
@@ -74,7 +61,7 @@ function retrieveFeedbackUCSD() {
     let feedbackUCSDElement = document.querySelector('#feedbackUCSD');
     var ResolvedRef="Feedback/ResolvedUCSD";
     var refUCSD = "Feedback/UCSD";
-    var counter = 1;
+
 
     firebase.database().ref(refUCSD).on("value", function(snapshot) {
         if(feedbackUCSDElement != null){
@@ -83,7 +70,6 @@ function retrieveFeedbackUCSD() {
         }
     }
         snapshot.forEach(function(childSnapshot) {
-            counter += 1
             var feedback = childSnapshot.val();
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
@@ -158,7 +144,7 @@ function retrieveResolvedUCSD() {
     var ref=firebase.database().ref("Feedback/ResolvedUCSD");
     var UnresolvedRef = firebase.database().ref("Feedback/UCSD");
     let resolvedUCSDElement = document.querySelector('#resolvedUCSD')
-    counter = 1
+
 
     ref.on("value", function(snapshot) {
         if(resolvedUCSDElement != null){
@@ -168,8 +154,6 @@ function retrieveResolvedUCSD() {
     }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
-            childSnapshot.key
-            counter += 1
 
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
@@ -248,7 +232,7 @@ function retrieveFeedbackOutside() {
     var ResolvedRef=firebase.database().ref("Feedback/ResolvedOutside");
     var ref = firebase.database().ref("Feedback/Outside");
     let feedbackOutsideElement = document.querySelector('#feedbackOutside')
-    counter = 1
+
 
     ref.on("value", function(snapshot) {
         if(feedbackOutsideElement != null){
@@ -258,8 +242,6 @@ function retrieveFeedbackOutside() {
     }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
-            childSnapshot.key
-            counter += 1
 
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
@@ -332,7 +314,7 @@ function retrieveResolvedOutside() {
     var ref=firebase.database().ref("Feedback/ResolvedOutside");
     var UnresolvedRef = firebase.database().ref("Feedback/Outside");
     let resolvedOutsideElement = document.querySelector('#resolvedOutside')
-    counter = 1
+
 
     ref.on("value", function(snapshot) {
         if(resolvedOutsideElement != null){
@@ -342,8 +324,7 @@ function retrieveResolvedOutside() {
     }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
-            childSnapshot.key
-            counter += 1
+
 
             let newFeedbackBoxElement = document.createElement('div')
             newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
