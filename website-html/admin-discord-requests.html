@@ -22,8 +22,9 @@
   } */
 
     </style>
-	<body class="landing is-preload">
-		<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+
+	<body class="whiteBackground">
+		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
 		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
 		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
 	  	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
@@ -31,7 +32,7 @@
 
 
 		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+			<div id="whiteBackground">
 
 				<!-- Header -->
                 <header id="header" class="alt">
@@ -40,7 +41,9 @@
                         <!-- <ul> -->
                             <!-- <li class="special"> Navigation bar starts here -->
 								<ul class="menuToggle">
-									<a href="admin-dashboard.html" class="no-style more scrolly zero-text"">Dashboard</a>
+									<a href="afterlogin.html" class="no-style more scrolly zero-text" >Home</a>
+									|
+									<a href="admin-dashboard.html" class="no-style more scrolly zero-text">Dashboard</a>
 									&nbsp;
 									|
 									&nbsp;
@@ -70,11 +73,11 @@
                 </header>
 
 				<!-- Banner -->
-				<section id="banner" ">
+				<section id="banner">
                     <div class="inner" style="margin-top: 5px;">
 						<label>Discord Requests</label>
                     </div>
-                    <div style="margin-bottom: 140px; overflow: scroll;">
+                    <div style="margin-bottom: 140px; overflow: auto;">
                         <div id="discordRequests" style="display: block; margin:auto; width: 60%;">
 						</div>
 

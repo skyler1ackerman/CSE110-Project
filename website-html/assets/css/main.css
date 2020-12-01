@@ -4548,6 +4548,7 @@ div textarea{
 
 .whiteBackground {
 	background-color: white;
+	/*background-size: auto;*/
 	color: black;
 	border-color: #1d242a;
 
