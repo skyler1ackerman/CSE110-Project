@@ -1,5 +1,5 @@
 function getMajorSnapshot() {
-    console.log("getMajorSnapshot() called :)");
+    //console.log("getMajorSnapshot() called :)");
     var ref = firebase.database().ref("majors");
     ref.on("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
@@ -75,10 +75,10 @@ function autocompleteClass(inp, arr) {
             if (e.deltaY > 0 && a.childElementCount > 7) {
                 nodesBuffer.appendChild(a.firstChild);
                 a.removeChild(a.firstChild);
-                console.log("scroll up");
+                //console.log("scroll up");
             } else if (e.deltaY < 0) {
                 if (nodesBuffer.hasChildNodes()) {
-                    console.log("buffer not empty");
+                    //console.log("buffer not empty");
                     a.insertBefore(nodesBuffer.lastChild, a.firstChild);
                 }
             }
