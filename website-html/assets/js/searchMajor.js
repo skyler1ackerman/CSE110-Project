@@ -62,6 +62,10 @@ function autocompleteClass(inp, arr) {
                     closeAllLists();
                 });
                 a.appendChild(b);
+                // this limits length of buffer, no scroll
+                if(a.childNodes.length == 7){
+                    break;
+                }
             }
         }
 
