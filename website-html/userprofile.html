@@ -18,7 +18,7 @@
 
 
         <!-- Page Wrapper -->
-        <div id="page-wrapper" style="overflow: hidden">
+        <div id="page-wrapper">
 
             <!-- Header -->
             <header id="header" class="alt">
@@ -34,7 +34,7 @@
 
                 </nav>
             </header>
-            <div class="wrapper style3">
+            <div class="wrapper style3" style="overflow: hidden">
 
                     <h2 align="center">User Profile</h2>
                     <h6 align="center">This is your profile page. You can edit your major and <br/>add current classes you're taking
@@ -67,22 +67,18 @@
                                     <label>Major</label>
                                     <input id="inputMajors" type="text" name="searchmajor" style="text-align:left; width: 600px;" placeholder="Search Majors">
                                 </div>
-                                <label id="inputMajorsErr" style="color: red"></label>
-                                <!-- <input type="button" id = "btnSet" value = "Set" onclick = "setMajor()" style="border: 1px solid #cccccc"/>-->
+                                <input type="button" id = "btnSet" value = "Set" onclick = "setMajor()" style="border: 1px solid #cccccc"/>
                                 <!--adding classes-->
                                 <div class="autocomplete" style="width: auto;">
                                     <label>Classes</label>
                                     <input id="inputClasses" type="text" name="searchclasses" style="text-align:left; width: 600px;" placeholder="Search Classes">
                                 </div>
                                 <input type="button" id = "btnAdd" value = "Add" onclick = "addCourse()" style="border: 1px solid #cccccc"/>
-                                <label id="inputClassesErr" style="color: red"></label>
                                 <textarea placeholder="Add Classes" rows="8" cols="100" id="courseListToSave" readonly></textarea>
                                 <div align="center">
                                     <input id="clear" type="button" value = "Clear" onclick="clearList()"  style="border: 1px solid #cccccc"></input>
-                                    <input id="save" type="button" value = "Save Changes" onclick="setMajor();updateProfile()"  style="border: 1px solid #cccccc"></input>
-                                    <label id="saveErr" style="color: red"></label>
+                                    <input id="save" type="button" value = "Save Changes" onclick="updateProfile()"  style="border: 1px solid #cccccc"></input>
                                 </div>
-                                
                             </form>
                         </div>
                     </section>
@@ -149,7 +145,7 @@
                 // username is the email without @ucsd.edu
                 usernameKey = usernameKey.substring(0, usernameKey.indexOf('@'));
                 //console.log(usernameKey);
-                
+
                 // get all class and major info from FB databse, need this for vars
                 getClassSnapshot();
                 getMajorSnapshot();
@@ -172,7 +168,7 @@
                             courseArray = [];
                             courseCount = 0;
                         }
-                        // clear and fill in the course list textbox 
+                        // clear and fill in the course list textbox
                         document.getElementById("courseListToSave").value = "";
                         for (i of courseArray) {
                             document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
@@ -190,44 +186,37 @@
                         //console.log(userMajor + " this is from db");
                         userMajor = "";
                     } else if (typeof userMajor === "string"){
-                        // fill in the major textbox 
+                        // fill in the major textbox
                         document.getElementById("inputMajors").value = userMajor;
                     }
                 });
 
             }
             // load db-saved major to page
-            
-                
-            // currently only for dropdown in select, no duplicate add check 
+
+
+            // currently only for dropdown in select, no duplicate add check
             function addCourse() {
                 var currentCourse = document.getElementById("inputClasses").value;
-                // clear the input box for responsiveness
-                document.getElementById("inputClasses").value = "";
-                document.getElementById("inputClassesErr").innerHTML = "";
-                document.getElementById("inputMajorsErr").innerHTML = "";
-                document.getElementById("saveErr").innerHTML = "";
                 //check if user input is valid
                 if(classesArr.includes(currentCourse) && currentCourse !== ""){
                     //console.log("good add");
                 }
                 else{
-                    //alert("The class you entered is not in our Database.");
-                    document.getElementById("inputClassesErr").innerHTML = "The class you entered is not in our Database.";
+                    alert("The class you entered is not in our Database.");
                     return false;
                 }
                 //console.log("Add " +  currentCourse);
                 var i;
                 for (i of courseArray) {
                     if(i == currentCourse){
-                        //alert("The class you entered is already in the list.");
-                        document.getElementById("inputClassesErr").innerHTML = "The class you entered is already in the list.";
+                        alert("The class you entered is already in the list.");
                         return false;
                     }
                 }
                 courseArray[courseCount] = currentCourse;
                 courseCount++;
-                // clear and fill in the course list textbox 
+                // clear and fill in the course list textbox
                 document.getElementById("courseListToSave").value = "";
                 for (i of courseArray) {
                     document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
@@ -235,22 +224,32 @@
                 }
 
             }
+             // take entered major, make sure its valid before letting save button take it
+             function setMajor() {
+                var currentMajor = document.getElementById("inputMajors").value;
+                // check if user input is valid major, allowing empty major
+                if(majorsArr.includes(currentMajor) || currentMajor === ""){
+                    //console.log("good add");
+                    userMajor = currentMajor;
+                }
+                else{
+                    alert("The major you entered is not in our Database.");
+                    document.getElementById("inputMajors").value = "";
+                    userMajor = "";
+                    return false;
+                }
+            }
 
-            // take entered major, make sure its valid before letting save button take it 
+            // take entered major, make sure its valid before letting save button take it
             function setMajor() {
                 var currentMajor = document.getElementById("inputMajors").value;
                 // check if user input is valid major, allowing empty major
                 if(majorsArr.includes(currentMajor) || currentMajor === ""){
                     //console.log("good add");
                     userMajor = currentMajor;
-                    //alert("The major you entered will be saved.");
-                    document.getElementById("inputMajorsErr").style.color = "green"; 
-                    document.getElementById("inputMajorsErr").innerHTML = "Major saved!";
                 }
                 else{
-                    //alert("The major you entered is not in our database, will not be saved.");
-                    document.getElementById("inputMajorsErr").style.color = "red"; 
-                    document.getElementById("inputMajorsErr").innerHTML = "Invalid major.";
+                    alert("The major you entered is not in our Database.");
                     document.getElementById("inputMajors").value = "";
                     userMajor = "";
                     return false;
@@ -276,11 +275,7 @@
                     courseList: courses, //document.getElementById("courseListToSave").value,
                 });
 
-                //alert("Enrolled courses saved!")
-                document.getElementById("saveErr").style.color = "green";
-                document.getElementById("saveErr").innerHTML = "Enrolled courses saved!";
-                document.getElementById("inputClasses").value = "";
-                document.getElementById("inputClassesErr").innerHTML = "";
+                alert("Enrolled courses and major saved!")
 
             }
             // clear is not meant to update db, only the list visible on page
@@ -289,10 +284,6 @@
                 //console.log(courseArray.toString());
 
                 document.getElementById("courseListToSave").value = "";
-                document.getElementById("saveErr").innerHTML = "";
-                document.getElementById("inputMajorsErr").innerHTML = "";
-                document.getElementById("inputClassesErr").innerHTML = "";
-                document.getElementById("inputClasses").value = "";
                 courseArray = [];
                 courseCount = 0;
             }
