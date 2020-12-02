@@ -6,18 +6,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+		<script src="/__/firebase/init.js"></script>
+		<script src="assets/js/auth.js"></script>
 	</head>
 	<body class="landing is-preload">
-		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+		<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
 		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
 		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
 	  	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-	  	<script src="/__/firebase/init.js"></script>
+	  	<script src="/__/firebase/init.js"></script> -->
 
 
 
 		<div class="chatroom" style="width: 150px; height:80px;" id="openChatroom">
-			<p onclick="openChatRoom()" style="border: 1px solid white; text-align: center; margin:auto;">CHAT</p>
+			<p onclick="openChatRoom()" style="border: 1px solid white; text-align: center; margin:auto;">TRITON CHAT</p>
 		</div>
 		<div class="chatroom" style="visibility:hidden; margin-right:15px" id="chatroom">
 			<p style="margin:0px 0px 0px 30px; padding:0px 30px 0px 0px; color:black; display: inline-block;">
@@ -53,7 +60,7 @@
                     <nav id="nav">
                         <!-- <ul> -->
                             <!-- <li class="special"> Navigation bar starts here -->
-								<ul class="menuToggle">
+								<ul class="menuToggle" >
 									<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
 									&nbsp;
 									|
@@ -393,6 +400,23 @@
 			   	  }
 			   });
 		   </script>
+	<script>
+		firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
+			snapshot.forEach(function (childSnapshot){
+
+				if(localStorage.getItem("user-email")==childSnapshot.val().email){
+					let header = document.querySelector('#header');
+					let button= document.createElement('button');
+					button.innerText = "Admin DashBoard";
+					button.addEventListener("click",function (){
+						window.location.href="afterAdminLogin.html";
+					})
+					header.append(button);
+				}
+
+			});
+		});
+	</script>
 
 
 	</body>
