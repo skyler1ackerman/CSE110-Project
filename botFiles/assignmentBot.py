@@ -1,12 +1,13 @@
 import discord
 import os
 import pyrebase
+import re
+import asyncio
 from config import fireConfig
 from config import token1
 from dotenv import load_dotenv
 from discord.ext import commands, tasks
 from datetime import datetime
-import asyncio
 
 #used skylers skeleton
 def make_datetime(lst):
@@ -32,12 +33,24 @@ async def on_ready():
 
 
 @bot.command(name='addAssign', help='Adds a new assignment to the list')
-async def newEvent(ctx, name, *date):
-	if db.child(ctx.channel.id).child(top).child(name).shallow().get().val():
-		await ctx.send('Assignment "' + name + ' already exists!')
+async def newEvent(ctx, name=None, *date):
+	content = ctx.message.content
+	if name is not None and (content.count('\"') == 2):
+		print('past')
+		title = content.split('"')[1].strip()
+		date1 = content[content.rindex('"')+1:].strip()
+		dateFound = re.search('(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}' , date1)
+		print(title)
+		if dateFound and title:
+			if db.child(ctx.channel.id).child(top).child(name).shallow().get().val():
+				await ctx.send('Assignment "' + name + ' already exists!')
+			else:
+				db.child(ctx.channel.id).child(top).child(name).set(''.join(str(dateFound.group())))
+				await ctx.send('Added assignment "' + name + '"')
+		else:
+			await ctx.send('Please use the format: !addAssign "Assignment Name" mm/dd/yyyy')
 	else:
-		db.child(ctx.channel.id).child(top).child(name).set(''.join(date))
-		await ctx.send('Added assignment "' + name + '"')
+		await ctx.send('Please use the format: !addAssign "Assignment Name" mm/dd/yyyy')
 
 @bot.command(name='delAssign', help='Deletes an assignment from the list')
 async def delEvent(ctx, name):
@@ -77,14 +90,19 @@ async def checkSchedule():
 			for channelID in db.get().val():
 				for assignment in db.get().val()[channelID]['Assignments']:
 					date = datetime.strptime(db.get().val()[channelID]['Assignments'][assignment], '%m/%d/%Y')
-					currDateTime = datetime.now()
-					if date <= currDateTime:
+					currDateTime = datetime.today()
+					if date.date() == currDateTime.date():
 						channel = bot.get_channel(int(channelID))
 						if channel:
 							await channel.send("@everyone, " + assignment + " is due today.")
+					elif date.date() < currDateTime.date():
+						channel = bot.get_channel(int(channelID))
+						if channel:
+							await channel.send("@everyone, " + assignment + " was due.")
 							db.child(channelID).child(top).child(assignment).remove()
-#		# keep loop asleep for 60 seconds
-		await asyncio.sleep(60)
+
+#		# keep loop asleep for 8 hours
+		await asyncio.sleep(28800)
 ## main, note that checkSchedule() will run before bot start-up and old events will be deleted with no message 
 bot.loop.create_task(checkSchedule())
 
