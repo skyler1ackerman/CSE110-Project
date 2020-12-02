@@ -24,33 +24,6 @@
 			
 
 
-		<div class="chatroom" style="width: 150px; height:80px;" id="openChatroom">
-			<p onclick="openChatRoom()" style="border: 1px solid white; text-align: center; margin:auto;">TRITON CHAT</p>
-		</div>
-		<div class="chatroom" style="visibility:hidden; margin-right:15px" id="chatroom">
-			<p style="margin:0px 0px 0px 30px; padding:0px 30px 0px 0px; color:black; display: inline-block;">
-				Live Chat 
-				<span style="font-size:13px; margin-left:320px; ">Online Count:</span>
-				<span style="font-size:13px;" id="numonline"></span>
-				<span style="font-size:13px; color:green; font-size:30px;">&#8226;</span>
-				
-			</p>
-			<hr style="padding:0px; margin:0px 5px 5px 30px;">
-			<div id="messagesContainer" class="scrollEffectInContainer" style="padding-left: 30px;">
-				<ul id="messages"></ul>	
-			</div>
-			<hr style="padding:0px; margin:0px 25px 5px 30px;">
-	
-
-			<!-- form to send message -->
-			<div id="rightbottom">
-				<form onsubmit="return sendMessage();">
-				<input style="display: inline-block; width: 270px;" id="message" placeholder="Enter message" autocomplete="off">	
-				<input style="display: inline-block; width: 100px; font-size:9px;" type="submit">
-				<p style="display: inline-block; width: 100px; font-size:9px;"><span class="no-style" style="color:darkred; font-size:20px; margin:0px 0px -10px 100px; border: 2px solid darkred; padding: 3px;"onclick="closeChatRoom()">close</span> </input>
-			</div>
-			</form>
-		</div>
 
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
@@ -227,7 +200,7 @@
 					</div>
 				</section>
 
-				<script>
+				<!-- <script>
 					(function(t,a,l,k,j,s){
 					s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
 					;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
@@ -243,7 +216,7 @@
 					    });
 					    window.talkSession = new Talk.Session({
 					        appId: "tGPhd31E",
-					        me: me
+					        me: me     
 					    });
 					    var other = new Talk.User({
 					        id: "654321",
@@ -260,14 +233,15 @@
 					    var inbox = talkSession.createInbox({selected: conversation});
 					    inbox.mount(document.getElementById("talkjs-container"));
 					});
-				</script>
+				</script> -->
 					
 				<section id="four" class="wrapper style3 special">
-						<div class="inner">
+					<div class="inner">
+					<i id="chatGuide">Press New Match Button to Connect</i>
 					<!-- container element in which TalkJS will display a chat UI -->
-					<div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
-						<i>Loading chat...</i>
-					</div>
+					<div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px"></div>
+					<button onclick="newMatch()">New Match</button>
+					<button onclick="disconnect()"> Disconnect</button>
 				</section>
 				<!-- CTA -->
 					<!-- <section id="cta" class="wrapper style4">
@@ -319,35 +293,10 @@
 					// localStorage.removeItem("user-displayname");
 					//remove local storage items in signout function for security.
 					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
-					addOnlineNumberAsUserSignin();
+					// addOnlineNumberAsUserSignin();
 				}
 			</script>
-			<script>
-				window.onfocus = function() {
-					console.log("user focused on window");
-					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
-					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
-						++numOnlinePpl;
-						firebase.database().ref('messages/').update({
-							onlineCount: numOnlinePpl,
-					  	});
-					}
-				};
-
-				window.onblur = function() {
-					console.log("user focus away from window");
-					var numOnlinePpl = document.getElementById("numonline").innerHTML || 0;
-					--numOnlinePpl;
-					if ((numOnlinePpl !== undefined) && (numOnlinePpl !== null)) {
-						firebase.database().ref('messages/').update({
-							onlineCount: numOnlinePpl,
-					  	});
-					}
-					// alert("brox!")
-    				// do something when this window object loses focus.
-				};
-			</script>
-
+		
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -361,6 +310,7 @@
 			<script src="assets/js/searchCommunity.js"></script>
 			<script src="assets/js/feedback.js"></script>
 			<script src="assets/js/livechat.js"></script>
+			<!-- <script src="assets/js/livechat.js"></script> -->
 
 
 			<!-- below is firebase SDKs-->
