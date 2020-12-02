@@ -103,7 +103,8 @@ async def delEventError(ctx, error):
 	if isinstance(error.original, asyncio.exceptions.TimeoutError):
 		await ctx.send('Error: no response / time-out.')
 	else: 
-		await ctx.send('Error: bad date or bad time entered.')
+		print(error)
+		await ctx.send('Error: unknown error.')
 
 # listEvents will access firebase db and list all events found for specific server
 @bot.command(name='schedule',aliases=['showevents','showschedule','showplan','showplanned','listevents'], help="Lists all events in the server's schedule.")
