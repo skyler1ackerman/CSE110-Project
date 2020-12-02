@@ -143,6 +143,7 @@ function autocompleteClass(inp, arr) {
                 });
                 a.appendChild(b);
             }
+
         }
 
         a.addEventListener("wheel",function (e){
