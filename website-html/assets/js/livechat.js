@@ -51,7 +51,6 @@ function instantiateSession(otherID, otherName, otherEmail, otherPhotoUrl, other
     Talk.ready.then(function() {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                console.log("inside user if statement")
                 var me = new Talk.User({
                     id: user.uid,
                     name: user.displayName,
@@ -161,7 +160,7 @@ function findMatch(){
         //when the queue is empty, create a new queue and listen to it.
         var ifAllQueueFull = 1;
         if(snapshot.numChildren() == 0){
-            console.log("queue empty!");
+            console.log("EMPTY QUEUE!");
             var myRef = firebase.database().ref("livechat/queues").push();
             var key = myRef.key; //get the push-random-key for listening
             console.log("key: ", key);
@@ -185,14 +184,11 @@ function findMatch(){
                         if(childSnapshot.key!=currentUser.id){
                             //get the other person's user profile(that's not me)
                             var oUser = childSnapshot.val();
-                            console.log(childSnapshot.val().id);
-                            console.log(childSnapshot.val().name);
-                            console.log(childSnapshot.val().email);
-                            console.log(childSnapshot.val().photoUrl);
-                            console.log(childSnapshot.val().welcomeMessage);
                             //detach eventlistener
                             firebase.database().ref("livechat/queues").child(key).off();
                             //and match
+                            console.log("OTHER USER ENTERED THE QUERY!");
+                            console.log("You are matching with: ", oUser.email)
                             instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
                             return;
                         }
@@ -205,7 +201,6 @@ function findMatch(){
                 // console.log(childSnapshot.child("participants").numChildren()); //get number of participants in each queue
 
                 //if there is a queue with a waiting participant, join the queue and match
-                
                 if(childSnapshot.child("participants").numChildren() == 1){
                     //set all full flag to false
                     ifAllQueueFull = 0;
@@ -224,17 +219,13 @@ function findMatch(){
                             if(grandChildSnapshot.key!=currentUser.id){
                                 //get the other person's user profile(that's not me)
                                 var oUser = grandChildSnapshot.val();
-                                console.log(grandChildSnapshot.val().id);
-                                console.log(grandChildSnapshot.val().name);
-                                console.log(grandChildSnapshot.val().email);
-                                console.log(grandChildSnapshot.val().photoUrl);
-                                console.log(grandChildSnapshot.val().welcomeMessage);
+                                console.log("YOU ENTERED AN EXISTING QUERY!");
+                                console.log("You are matching with: ", oUser.email)
                                 instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
                                 return;
                             }
                         });
                     }); 
-                    
                 }
                 // childSnapshot.forEach(function(grandChildSnapshot){
                 //     console.log(grandChildSnapshot.val()); //snapshot of each user's info
@@ -242,10 +233,44 @@ function findMatch(){
                 // });
             }); 
             
+            //in JS, if statement is synchronous
             //if every queue is full, create new queue and listen to it  //line below gets executed after foreach is done since js trait
             if(ifAllQueueFull == 1){
-                console.log("every qeueu is full");
-                
+                console.log("EVERY QUEUE IS FULL. CREATING NEW QUEUE");
+                var myRef = firebase.database().ref("livechat/queues").push();
+                var key = myRef.key; //get the push-random-key for listening
+                console.log("key: ", key);
+                myRef.set({
+                    "participants": {
+                        [currentUser.id]: {
+                          "id": currentUser.id,
+                          "name": currentUser.name,
+                          "email": currentUser.email,
+                          "photoUrl": currentUser.photoUrl,
+                          "welcomeMessage": currentUser.welcomeMessage,
+                        },
+                    },
+                });
+                firebase.database().ref("livechat/queues").child(key).on('value', (snapshot) =>{
+                    console.log("sc:", snapshot.child("participants").numChildren()); 
+                    if(snapshot.child("participants").numChildren()==2){
+                        //read the other person's profile and match with him.
+                        snapshot.child("participants").forEach(function(childSnapshot){
+                            console.log(childSnapshot.key);
+                            if(childSnapshot.key!=currentUser.id){
+                                //get the other person's user profile(that's not me)
+                                var oUser = childSnapshot.val();
+                                //detach eventlistener
+                                firebase.database().ref("livechat/queues").child(key).off();
+                                //and match
+                                console.log("OTHER USER ENTERED THE QUERY!");
+                                console.log("You are matching with: ", oUser.email)
+                                instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
+                                return;
+                            }
+                        });
+                    }
+                });          
             }
         }
     
