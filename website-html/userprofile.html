@@ -205,6 +205,8 @@
                 // clear the input box for responsiveness
                 document.getElementById("inputClasses").value = "";
                 document.getElementById("inputClassesErr").innerHTML = "";
+                document.getElementById("inputMajorsErr").innerHTML = "";
+                document.getElementById("saveErr").innerHTML = "";
                 //check if user input is valid
                 if(classesArr.includes(currentCourse) && currentCourse !== ""){
                     //console.log("good add");
@@ -232,21 +234,6 @@
                     //console.log(i);
                 }
 
-            }
-             // take entered major, make sure its valid before letting save button take it 
-             function setMajor() {
-                var currentMajor = document.getElementById("inputMajors").value;
-                // check if user input is valid major, allowing empty major
-                if(majorsArr.includes(currentMajor) || currentMajor === ""){
-                    //console.log("good add");
-                    userMajor = currentMajor;
-                }
-                else{
-                    alert("The major you entered is not in our Database.");
-                    document.getElementById("inputMajors").value = "";
-                    userMajor = "";
-                    return false;
-                }
             }
 
             // take entered major, make sure its valid before letting save button take it 
@@ -293,6 +280,7 @@
                 document.getElementById("saveErr").style.color = "green";
                 document.getElementById("saveErr").innerHTML = "Enrolled courses saved!";
                 document.getElementById("inputClasses").value = "";
+                document.getElementById("inputClassesErr").innerHTML = "";
 
             }
             // clear is not meant to update db, only the list visible on page
