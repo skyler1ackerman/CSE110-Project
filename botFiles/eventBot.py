@@ -13,9 +13,6 @@ auth = firebase.auth()
 db = firebase.database()
 bot = commands.Bot(command_prefix='!')
 client = discord.Client()
-utcDelta = timedelta(0, time.timezone)
-localTimezone = timezone(utcDelta)
-botStarted = False
 
 # class constants
 FOLDER_STR = "Events"
@@ -50,12 +47,12 @@ async def newEvent(ctx, *inputEventMsg):
 	if db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).shallow().get().val():
 		await ctx.send('Event "' + eventName + '" already exists!')
 	else:
-		## take user input for date and time, only accept same user's input
+		# take user input for date and time, only accept same user's input
 		await ctx.send("Enter date of event, MM DD YYYY (spaces required).")
 		eventDateMsg = await bot.wait_for("message", timeout=30, check=verifyUser)
 		await ctx.send("Enter time of event, HH MM (pm/am) (spaces required).")
 		eventTimeMsg = await bot.wait_for("message", timeout=30, check=verifyUser)
-		## parse user input to generate datatime object
+		# parse user input to generate datetime object, set format string
 		eventDateTime = datetime.strptime(eventDateMsg.content + " " + eventTimeMsg.content, '%m %d %Y %I %M %p')
 		db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("date").set(eventDateTime.isoformat(' '))
 		# get channel for event announcements, by taking command's current channel
@@ -69,8 +66,11 @@ async def newEventError(ctx, error):
 	# only give specific response for timeout, dont think anything else worth it
 	if isinstance(error.original, asyncio.exceptions.TimeoutError):
 		await ctx.send('Error: no response / time-out.')
-	else: 
+	elif isinstance(error.original, ValueError):
 		await ctx.send('Error: bad date or bad time entered.')
+	else:
+		print(error)
+		await ctx.send('Error: unknown error.')
 
 # delEvent will access firebase db and delete matching event folder for specific server
 @bot.command(name='deleteevent', aliases=['removeevent','cancelevent','unplan','delevent'], help="Deletes an event from the server's schedule. Optional event name with command.")
@@ -155,7 +155,8 @@ async def checkSchedule():
 							db.child(childGuild).child(FOLDER_STR).child(eventFolder).remove()
 						else:
 							# insert secondary reminder alerts here
-							# 30 minute reminder, ex if event is 12:00 pm remind at (11:29:00 am, 11:30:00 am] w/ 60 second check interval
+							# 30 minute reminder, w/ 60 second check interval and millisec precision
+							# ex. if event is 12:00 pm remind at (11:29:00 am, 11:30:00 am] 
 							if (eventDateTime - timedelta(minutes=31)) < currDateTime <= (eventDateTime - timedelta(minutes=30)):
 								destinationChannel = bot.get_channel(guildAllEvents[eventFolder]['channel'])
 								if destinationChannel is not None:
@@ -167,6 +168,5 @@ botStartTime = datetime.now()
 print(botStartTime)
 # main, note that checkSchedule() will run before bot start-up and old events will be deleted with no message 
 bot.loop.create_task(checkSchedule())
-botStarted = True
 bot.run(TOKEN)
 print("Bot off")
