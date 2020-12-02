@@ -34,16 +34,6 @@ function testFunction() {
           console.log("signout error!");
         });
       } // => "Tabs1")
-      //checking if user is an admin
-      else if(user.email == "amkohli@ucsd.edu" || user.email == "djuanito@ucsd.edu" || user.email == "kat066@ucsd.edu" || user.email == "yoryu@ucsd.edu") {
-        localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
-        console.log(user.email, "saved to local storage");
-        localStorage.setItem("user-displayname", user.displayName);
-        console.log(user.displayName, "saved to local storage");
-        localStorage.setItem("user-profileimgurl", user.photoURL);
-        console.log(user.photoURL, "saved to local storage");
-        window.location.href = "afterAdminLogin.html"; //routes admins to admin options        
-    }
       else{
         //save user info to local storage to use in it feedback form
             localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
@@ -53,7 +43,20 @@ function testFunction() {
             localStorage.setItem("user-profileimgurl", user.photoURL);
             console.log(user.photoURL, "saved to local storage");
             console.log("signin successful!");
-            window.location.href = "afterlogin.html";
+            var link="afterlogin.html";
+            firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
+               snapshot.forEach(function (childSnapshot){
+
+                   if(user.email==childSnapshot.val().email){
+                       link="afterAdminLogin.html";
+                           window.location.href=link;
+                   }
+
+               });
+                window.location.href = link;
+            });
+
+
       }
       // ...
     }).catch(function(error) {
