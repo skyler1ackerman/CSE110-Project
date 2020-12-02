@@ -28,7 +28,7 @@ async def on_ready():
 	print(f'{bot.user.name} has connected to Discord!')
 
 # newEvent will add a new event folder with data to firebase db given user input, for specific server folder
-@bot.command(name='setevent', aliases=['addevent','newevent','plan'], help="Adds a new event to the current server's schedule. Optional event name with command.")
+@bot.command(name='newevent', aliases=['addevent','plan','setevent'], help="Adds a new event to the current server's schedule. Optional event name with command.")
 async def newEvent(ctx, *inputEventMsg):
 	def verifyUser(newMessage):
 		return newMessage.author == ctx.author
@@ -56,8 +56,15 @@ async def newEvent(ctx, *inputEventMsg):
 		db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("users").set(ctx.author.id)
 		await ctx.send('Added event "' + eventName + '", scheduled for: ' + eventDateTime.ctime() + '.')
 
+@newEvent.error
+async def newEventError(ctx, error):
+	if isinstance(error.original, asyncio.exceptions.TimeoutError):
+		await ctx.send('Error: no response / time-out.')
+	else: 
+		await ctx.send('Error: bad date or bad time entered.')
+
 # delEvent will access firebase db and delete matching event folder for specific server
-@bot.command(name='deleteevent', aliases=['removeevent','cancelevent','unplan'], help="Deletes an event from the server's schedule. Optional event name with command.")
+@bot.command(name='deleteevent', aliases=['removeevent','cancelevent','unplan','delevent'], help="Deletes an event from the server's schedule. Optional event name with command.")
 async def delEvent(ctx, *inputEventMsg):
 	def verifyUser(newMessage):
 		return newMessage.author == ctx.author
@@ -75,7 +82,7 @@ async def delEvent(ctx, *inputEventMsg):
 		await ctx.send('Event "' + eventName + '" does not exist!')
 
 # listEvents will access firebase db and list all events found for specific server
-@bot.command(name='schedule',aliases=['showevents','showschedule','showplan'], help="Lists all events in the server's schedule.")
+@bot.command(name='schedule',aliases=['showevents','showschedule','showplan','showplanned','listevents'], help="Lists all events in the server's schedule.")
 async def listEvents(ctx):
 	guildAllEvents = db.child(ctx.guild.id).child(FOLDER_STR).get().val()
 	# working null db check
