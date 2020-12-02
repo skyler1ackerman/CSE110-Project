@@ -7,13 +7,6 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <meta charset="UTF-8">
-    <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
-	<script src="/__/firebase/init.js"></script>
-	<script src="assets/js/auth.js"></script>
 </head>
 <body>
 <div id="page-wrapper">
@@ -49,11 +42,41 @@
                     <h4>Community Information</h4>
                     <form method="post" action="#" class="was-validated">
                         <div class="row gtr-uniform">
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" name="demo-name" id="demo-name" value="" placeholder="Club Name/Discord Server Name" required/>
+                            <div class="col-12">
+                                <input type="email" name="email" id="email" value="" placeholder="Club Name/Discord Server Name"/>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="url" id="url" value="" placeholder="Discord Link" required/>
+                            </div>
+
+                            <div class="col-6 col-12-xsmall">
+                                <select name="demo-category" id="demo-category">
+                                    <option value="">- Type -</option>
+                                    <option value="1">Undergraduate</option>
+                                    <option value="1">Graduate</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <select name="demo-category" id="demo-category">
+                                    <option value="">- Category -</option>
+                                    <option value="1">Academic</option>
+                                    <option value="1">Career</option>
+                                    <option value="1">Cooperative</option>
+                                    <option value="1">Cultural</option>
+                                    <option value="1">Dance</option>
+                                    <option value="1">Educational</option>
+                                    <option value="1">Fraternities</option>
+                                    <option value="1">Media</option>
+                                    <option value="1">Medical</option>
+                                    <option value="1">Music and Performance</option>
+                                    <option value="1">Political</option>
+                                    <option value="1">Service</option>
+                                    <option value="1">Social</option>
+                                    <option value="1">Sororities</option>
+                                    <option value="1">Spiritual</option>
+                                    <option value="1">Sports</option>           
+                                </select>
                             </div>
                             <div class="col-12">
                                 <input type="email" name="email" id="email" value="" placeholder="Contact Email"/>
@@ -61,8 +84,9 @@
                             <div class="col-12">
                                 <textarea name="description" id="description" placeholder="Enter a short description..." rows="6"></textarea>
                             </div>
-                            <h5>Important Reminder</h5>
-                            <blockquote>Ensure that the Discord invite link you share is a permanent invite. To create a permanent invite, select "never" under "expire after" and "no limit" under "max uses."
+                            <blockquote>
+                                <h4>Important Reminder</h4>
+                                Ensure that the Discord invite link you share is a permanent invite. <br>To create a permanent invite, select "never" under "expire after" and "no limit" under "max uses."
                                 <p>Don't know to retrieve the invite link? <a href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">Look no further!</a> </p>
                             </blockquote>
                             <div class="col-12">
