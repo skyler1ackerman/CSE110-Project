@@ -319,7 +319,6 @@ function dequeueMatch(){
                                 document.getElementById("chatGuide").innerHTML = "Welcome to Triton Groups Live Chat!"; 
                             }
                         }, 3000);
-                        document.getElementById("cancelMatchBtn").style.display = "none"; 
                     }
                 });
             }
