@@ -217,4 +217,4 @@ def delete_element(someDict, a = None):
     return retDict
 
 
-discordClient.run("Nzc4ODg3NjkyMDExMTc1OTM2.X7YhsA.9mw4oL88gEaoN1Wnq9ZkBa1_XGI")
+discordClient.run("c4ODg3NjkyMDExMTc1OTM2.X7YhsA.9mw4oL88gEaoN1Wnq9ZkBa1_XGI")
