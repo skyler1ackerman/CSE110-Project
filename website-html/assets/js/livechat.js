@@ -36,54 +36,6 @@ function setCurrentUserObj(){
     });
 }
 
-// function initiateDefaultPopupSession(){
-//     (function(t,a,l,k,j,s){
-//         s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";
-//         a.head.appendChild(s);
-//         k=t.Promise;
-//         t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});
-//             l.push([f])},catch:function(){
-//                 return k&&new k()
-//             },c:l}
-//         };
-//     })(window,document,[]);
-
-//     Talk.ready.then(function() {
-//         firebase.auth().onAuthStateChanged(function(user) {
-//             if (user) {
-//                 var me = new Talk.User({
-//                     id: user.uid,
-//                     name: user.displayName,
-//                     email: user.email,
-//                     photoUrl: user.photoURL,
-//                     welcomeMessage: "Welcome to Triton Groups Live Chat!",
-//                 });
-//                 window.talkSession = new Talk.Session({
-//                     appId: "tGPhd31E",
-//                     me: me     
-//                 });
-            
-//                 var conversation = window.talkSession.getOrCreateConversation(Talk.oneOnOneId(me));
-//                 conversation.setParticipant(me);
-//                 // conversation.setParticipant(other);
-//                 // var inbox = window.talkSession.createInbox({selected: conversation});
-//                 var popup = window.talkSession.createPopup(conversation, { keepOpen: false });
-//                 popup.mount({ show: false });
-//                 // inbox.mount({ show:false });
-
-//                 var button = document.getElementById("btn-getInTouch");
-//                 button.addEventListener("click", function(event) {
-//                     event.preventDefault();
-//                     popup.show();
-//                     // inbox.show();
-//                 });
-//             }   
-
-//         });
-//     });
-    
-// }
-
 function initiateDefaultSession(){
     (function(t,a,l,k,j,s){
         s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";
@@ -224,7 +176,6 @@ function findMatch(){
                             document.getElementById("matchBtn").style.display = "block"; 
                             document.getElementById("cancelBtn").style.display = "none"; 
                             document.getElementById("loadingIcon").style.display = "none"; 
-                            document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!";
                             document.getElementById('canvas').style.visibility = "visible";
                             document.getElementById('canvas').style.opacity = "1";
                             document.getElementById('canvas').style.zIndex = "8";
@@ -280,7 +231,6 @@ function findMatch(){
                                 document.getElementById("matchBtn").style.display = "block"; 
                                 document.getElementById("cancelBtn").style.display = "none"; 
                                 document.getElementById("loadingIcon").style.display = "none"; 
-                                document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!"; 
                                 document.getElementById('canvas').style.visibility = "visible";
                                 document.getElementById('canvas').style.opacity = "1";
                                 document.getElementById('canvas').style.zIndex = "8";
@@ -346,7 +296,6 @@ function findMatch(){
                                 document.getElementById("cancelBtn").style.display = "none"; 
                                 document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!";
                                 document.getElementById("loadingIcon").style.display = "none"; 
-                                document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!"; 
                                 document.getElementById('canvas').style.visibility = "visible";
                                 document.getElementById('canvas').style.opacity = "1";
                                 document.getElementById('canvas').style.zIndex = "8";
@@ -401,7 +350,6 @@ function dequeueMatch(){
             }
         });
     }); 
-
 }
 
 
@@ -427,22 +375,20 @@ function getClaimByName(Name){
 
 function toggleChatContainer(){
     if(document.getElementById('talkjs-container').style.display == 'none'){
+        //first, set UI as if the user is not on the queue
         console.log("toggle btn clicked");
         document.getElementById('talkjs-container').style.display = 'block';
         document.getElementById('matchBtn').style.display = 'block';
-        // document.getElementById('cancelBtn').style.display = 'block';
         document.getElementById('chatGuide').style.display = 'block';
-        // document.getElementById('loadingIcon').style.display = 'flex';
-
-        //if there is a queue with one person and id is mine, put loadingIcon and cancelBtn
+        //if the user is on the queue, change the UI accordingly
         firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
             snapshot.forEach(function(childSnapshot) {
-                //if there is a queue with one person, check it if it's me, and if it's me, remove the queue room.
+                //if there is a queue with one person, check it if it's me, and if it's me, activate loadingIcon and cancel button
                 if(childSnapshot.child("participants").numChildren() == 1){
                     childSnapshot.child("participants").forEach(function(grandChildSnapshot){
-                        //if the only participant's ID is same as my ID, remove the queue room
+                        //if the only participant's ID is same as my ID, ctivate loadingIcon and cancel button
                         if(grandChildSnapshot.key==currentUser.id){
-                            //remove the queue
+                            //activate loadingIcon and cancel button
                             console.log("there is my queue going on")
                             document.getElementById('talkjs-container').style.display = 'block';
                             document.getElementById('chatGuide').style.display = 'block';
@@ -454,14 +400,6 @@ function toggleChatContainer(){
                 }
             });
         }); 
-
-
-        
-        //if user on queue: loading icon and cancelBtn
-        
-
-        //if user not on queue: chatGuide.innerhtml="welcome" and connect with triton 
-        
     } else{
         document.getElementById('talkjs-container').style.display = 'none';
         document.getElementById('matchBtn').style.display = 'none';
