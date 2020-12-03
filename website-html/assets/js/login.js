@@ -24,17 +24,17 @@ function testFunction() {
       console.log(user.photoURL);
       //check if the email ends with @ucsd.edu
       console.log(user.email.substr(user.email.length - 9));
-      if(user.email.substr(user.email.length - 9) != "@ucsd.edu"){
-        console.log("Not a UCSD email!");
-        //if not ucsd email, sign out
-        firebase.auth().signOut().then(function() {
-          console.log("signout successful!");   
-          alert("Access granted only to UCSD students.\n Login with @ucsd.edu email.");
-        }).catch(function(error) {
-          console.log("signout error!");
-        });
-      } // => "Tabs1")
-      else{
+      // if(user.email.substr(user.email.length - 9) != "@ucsd.edu"){
+      //   console.log("Not a UCSD email!");
+      //   //if not ucsd email, sign out
+      //   firebase.auth().signOut().then(function() {
+      //     console.log("signout successful!");   
+      //     alert("Access granted only to UCSD students.\n Login with @ucsd.edu email.");
+      //   }).catch(function(error) {
+      //     console.log("signout error!");
+      //   });
+      // } // => "Tabs1")
+      // else{
         //save user info to local storage to use in it feedback form
             localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
             console.log(user.email, "saved to local storage");
@@ -57,7 +57,7 @@ function testFunction() {
             });
 
 
-      }
+      // }
       // ...
     }).catch(function(error) {
       // Handle Errors here.

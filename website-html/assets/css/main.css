@@ -4575,3 +4575,142 @@ div textarea{
 	border-width: 1px;
 
 }
+
+/* LOADING*/
+.loading {
+	display: flex;
+	justify-content: center;
+  }
+  
+  .loading--full-height {
+	align-items: center;
+	height: 35px;
+  }
+  
+  .loading::after {
+	content: "";
+	width: 35px;
+	height: 35px;
+	border: 10px solid white;
+	border-top-color: #00ccff;
+	border-radius: 50%;
+	transform: rotate(0.16turn);
+	animation: loading 1s ease infinite;
+  }
+  
+  @keyframes loading {
+	/* Safari support */
+	from {
+	  transform: rotate(0turn);
+	}
+	
+	to {
+	  transform: rotate(1turn);
+	}
+  }
+  
+  /* LOADING */
+
+  /*firework*/
+  canvas {
+	display: block;
+}
+
+  
+/*playground switch*/
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 90px;
+	height: 34px;
+  }
+  
+  .switch input {display:none;}
+  
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color:black;
+	-webkit-transition: .4s;
+	transition: .4s;
+	 border-radius: 34px;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+	border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+	background-color: #ca2222;
+  }
+  
+  input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(55px);
+  }
+  
+  /*------ ADDED CSS ---------*/
+  .slider:after
+  {
+   content:'OFF';
+   color: white;
+   display: block;
+   position: absolute;
+   transform: translate(-50%,-50%);
+   top: 50%;
+   left: 50%;
+   font-size: 10px;
+   font-family: Verdana, sans-serif;
+  }
+  
+  input:checked + .slider:after
+  {  
+	content:'ON';
+  }
+  
+  /*--------- END --------*/
+  /*playground switch*/
+
+  /*buttons hover effect for chatbox and matchbutton*/
+.buttonMatch:hover {
+	background-color: #484848 !important; 
+	/* font-weight: bold !important; */
+}
+.buttonMatch:active {
+  background-color: black !important;
+  transform: translateY(4px);
+}
+.buttonCancel:hover {
+	background-color: #484848 !important;
+	/* font-weight: bold !important;  */
+}
+.buttonCancel:active {
+  background-color: black !important;
+  transform: translateY(4px);
+}
+
+.buttonChatbox:hover {
+	/* background-color: black !important; */
+	filter: "grayscale(100%)" !important;
+	transform: translate(-6px, -6px);
+}
+
+/* document.getElementById("myImg").style.filter = "grayscale(100%)"; */
