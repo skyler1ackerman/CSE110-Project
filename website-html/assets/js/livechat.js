@@ -134,11 +134,12 @@ function instantiateSession(otherID, otherName, otherEmail, otherPhotoUrl, other
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
-const newMatch = async () => {
+const queueMatch = async () => {
     // if (typeof talkSession !== 'undefined') {
     //     disconnect();
     // }
-    document.getElementById("chatGuide").innerHTML = "Looking For a New Match...";
+    document.getElementById("cancelMatchBtn").style.display = "inline"; 
+    document.getElementById("chatGuide").innerHTML = "You are on queue for a new match...";
     
     // do a bunch of stuff here regarding matching
     findMatch();
@@ -148,8 +149,29 @@ const newMatch = async () => {
 }
 
 
-function disconnect(){
-    talkSession.destroy();
+function dequeueMatch(){
+    // talkSession.destroy();
+    //there is one person and id is me;
+    firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
+        snapshot.forEach(function(childSnapshot) {
+
+            //if there is a queue with one person, check it if it's me, and if it's me, remove the queue room.
+            if(childSnapshot.child("participants").numChildren() == 1){
+                childSnapshot.child("participants").forEach(function(grandChildSnapshot){
+                    //if the only participant's ID is same as my ID, remove the queue room
+                    if(grandChildSnapshot.key==currentUser.id){
+                        //remove the queue
+                        console.log("key: ", childSnapshot.key);
+                        firebase.database().ref("livechat/queues/"+childSnapshot.key).remove();
+                        document.getElementById("chatGuide").innerHTML = "You Are Dequeued From the Match";
+                        document.getElementById("cancelMatchBtn").style.display = "none"; 
+                    }
+                });
+
+            }
+        });
+    }); 
+
 }
 
 //find match and return the otherUser information
