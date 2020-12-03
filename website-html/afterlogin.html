@@ -13,7 +13,13 @@
 		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
 		<script src="/__/firebase/init.js"></script>
 		<script src="assets/js/auth.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
+	<label class="switch" style="position:fixed; right:150px; bottom:25px; z-index:20;"><input type="checkbox" id="togBtn" onclick="toggleChatPlayground()"><div class="slider round"></div></label>
+	<div style="position:fixed; right:140px; bottom:50px; width:80px; height:80px;  padding:0px; z-index: 10;"> 
+		<img id="playgroundToggleImg" src="images/playgroundOff.png" width="50px" height="50px" />
+	</div>
+	<canvas id="canvasPlayground" style="position:fixed; width:100%; height:100%;z-index: 3; display: none; border:solid white 20px;">Canvas is not supported in your browser.</canvas>
 	<div id="congratMsg" style="position:fixed; z-index: 12; width:100%; height:100%; display:block; text-align: center; top: 30%; visibility: hidden; opacity: 0; transition: visibility 1s linear, opacity 1.0s linear; font-size:30px;">Congratulations! <br><br>You have a new connection</div>
 	<canvas id="canvas" style="position:fixed; z-index: 8; visibility: hidden; opacity: 0; transition: visibility 1.5s linear, opacity 1.5s linear; "></canvas>
 	<div id="loadingIcon" class="loading loading--full-height" style="position:fixed; right:142px; bottom:622px; z-index: 11; display: none;"></div>
@@ -169,6 +175,7 @@
 			<script src="assets/js/feedback.js"></script>
 			<script src="assets/js/livechat.js"></script>
 			<script src="assets/js/firework.js"></script>
+			<script src="assets/js/fireworkPlayground.js"></script>
 
 
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
