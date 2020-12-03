@@ -36,6 +36,54 @@ function setCurrentUserObj(){
     });
 }
 
+// function initiateDefaultPopupSession(){
+//     (function(t,a,l,k,j,s){
+//         s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";
+//         a.head.appendChild(s);
+//         k=t.Promise;
+//         t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});
+//             l.push([f])},catch:function(){
+//                 return k&&new k()
+//             },c:l}
+//         };
+//     })(window,document,[]);
+
+//     Talk.ready.then(function() {
+//         firebase.auth().onAuthStateChanged(function(user) {
+//             if (user) {
+//                 var me = new Talk.User({
+//                     id: user.uid,
+//                     name: user.displayName,
+//                     email: user.email,
+//                     photoUrl: user.photoURL,
+//                     welcomeMessage: "Welcome to Triton Groups Live Chat!",
+//                 });
+//                 window.talkSession = new Talk.Session({
+//                     appId: "tGPhd31E",
+//                     me: me     
+//                 });
+            
+//                 var conversation = window.talkSession.getOrCreateConversation(Talk.oneOnOneId(me));
+//                 conversation.setParticipant(me);
+//                 // conversation.setParticipant(other);
+//                 // var inbox = window.talkSession.createInbox({selected: conversation});
+//                 var popup = window.talkSession.createPopup(conversation, { keepOpen: false });
+//                 popup.mount({ show: false });
+//                 // inbox.mount({ show:false });
+
+//                 var button = document.getElementById("btn-getInTouch");
+//                 button.addEventListener("click", function(event) {
+//                     event.preventDefault();
+//                     popup.show();
+//                     // inbox.show();
+//                 });
+//             }   
+
+//         });
+//     });
+    
+// }
+
 function initiateDefaultSession(){
     (function(t,a,l,k,j,s){
         s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";
@@ -47,7 +95,6 @@ function initiateDefaultSession(){
             },c:l}
         };
     })(window,document,[]);
-
 
     Talk.ready.then(function() {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -63,18 +110,8 @@ function initiateDefaultSession(){
                     appId: "tGPhd31E",
                     me: me     
                 });
-                // var other = new Talk.User({
-                //     id: otherID, 
-                //     name: otherName,
-                //     email: otherEmail,
-                //     photoUrl: otherPhotoUrl,
-                //     welcomeMessage: otherWelcomeMsg
-                // });
-        
                 var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me))
                 conversation.setParticipant(me);
-                // conversation.setParticipant(other);
-        
                 var inbox = talkSession.createInbox({selected: conversation});
                 inbox.mount(document.getElementById("talkjs-container"));
             } else {
@@ -96,7 +133,6 @@ function instantiateSession(otherID, otherName, otherEmail, otherPhotoUrl, other
             },c:l}
         };
     })(window,document,[]);
-
 
     Talk.ready.then(function() {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -135,51 +171,18 @@ function instantiateSession(otherID, otherName, otherEmail, otherPhotoUrl, other
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 const queueMatch = async () => {
-    // if (typeof talkSession !== 'undefined') {
-    //     disconnect();
-    // }
     document.getElementById("cancelMatchBtn").style.display = "inline"; 
-    document.getElementById("chatGuide").innerHTML = "You are on queue for a new match...";
-    
+    document.getElementById("chatGuide").innerHTML = "You are on queue for a new match..."; 
     // do a bunch of stuff here regarding matching
     findMatch();
-    // instantiateSession("Sebastian", "Sebastian", "Sebastian@example.com", "https://demo.talkjs.com/img/sebastian.jpg","Hey, how can I help?");
-    // await delay(10000);
-    // document.getElementById("chatGuide").innerHTML = "";
-}
-
-
-function dequeueMatch(){
-    // talkSession.destroy();
-    //there is one person and id is me;
-    firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
-        snapshot.forEach(function(childSnapshot) {
-
-            //if there is a queue with one person, check it if it's me, and if it's me, remove the queue room.
-            if(childSnapshot.child("participants").numChildren() == 1){
-                childSnapshot.child("participants").forEach(function(grandChildSnapshot){
-                    //if the only participant's ID is same as my ID, remove the queue room
-                    if(grandChildSnapshot.key==currentUser.id){
-                        //remove the queue
-                        console.log("key: ", childSnapshot.key);
-                        firebase.database().ref("livechat/queues/"+childSnapshot.key).remove();
-                        document.getElementById("chatGuide").innerHTML = "You Are Dequeued From the Match";
-                        document.getElementById("cancelMatchBtn").style.display = "none"; 
-                    }
-                });
-
-            }
-        });
-    }); 
-
 }
 
 //find match and return the otherUser information
 function findMatch(){
+    //if queue is empty, create a new queue and listen to it
+    //if every queue is full, create new queue and listen to it 
+    //if there is a queue with a waiting participant, join the queue
     firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
-        // console.log(snapshot.val()); //snapshot of queues
-        // console.log(snapshot.numChildren()); //number of queues
-
         //when the queue is empty, create a new queue and listen to it.
         var ifAllQueueFull = 1;
         if(snapshot.numChildren() == 0){
@@ -221,9 +224,6 @@ function findMatch(){
             });
         } else{
             snapshot.forEach(function(childSnapshot) {
-                // console.log(childSnapshot.val()); //snapshot of participants
-                // console.log(childSnapshot.child("participants").numChildren()); //get number of participants in each queue
-
                 //if there is a queue with a waiting participant, join the queue and match
                 if(childSnapshot.child("participants").numChildren() == 1){
                     //set all full flag to false
@@ -252,12 +252,7 @@ function findMatch(){
                         });
                     }); 
                 }
-                // childSnapshot.forEach(function(grandChildSnapshot){
-                //     console.log(grandChildSnapshot.val()); //snapshot of each user's info
-                //     // console.log(grandChildSnapshot.numChildren());
-                // });
             }); 
-            
             //in JS, if statement is synchronous
             //if every queue is full, create new queue and listen to it  //line below gets executed after foreach is done since js trait
             if(ifAllQueueFull == 1){
@@ -299,32 +294,35 @@ function findMatch(){
                 });          
             }
         }
-    
     });
-      
-    //if queue is empty, create a new queue and listen to it
+}
 
-    //if every queue is full, create new queue and listen to it 
-
-    //if there is a queue with a waiting participant, join the queue
+function dequeueMatch(){
+    //if there is a queue with one person and id is mine, remove the queue
+    firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
+        snapshot.forEach(function(childSnapshot) {
+            //if there is a queue with one person, check it if it's me, and if it's me, remove the queue room.
+            if(childSnapshot.child("participants").numChildren() == 1){
+                childSnapshot.child("participants").forEach(function(grandChildSnapshot){
+                    //if the only participant's ID is same as my ID, remove the queue room
+                    if(grandChildSnapshot.key==currentUser.id){
+                        //remove the queue
+                        console.log("key: ", childSnapshot.key);
+                        firebase.database().ref("livechat/queues/"+childSnapshot.key).remove();
+                        document.getElementById("chatGuide").innerHTML = "You are dequeued from the match";
+                        setTimeout(function() { 
+                            if(document.getElementById("chatGuide").innerHTML != "You are on queue for a new match..."){
+                                document.getElementById("chatGuide").innerHTML = "Welcome to Triton Groups Live Chat!"; 
+                            }
+                        }, 3000);
+                        document.getElementById("cancelMatchBtn").style.display = "none"; 
+                    }
+                });
+            }
+        });
+    }); 
 
 }
-// //possible scenarios
-// When user clicks "Start New Match" button, disconnect the chat room, take a snapshot of "livechat/queue"
-// 1. When all queues are full or when there is no queue
-//         create new queue AND listen if anyone joins into your queue
-//             if no one joins, wait
-//             if anyone joins, match
-// 2. When there is a queue with a spot left
-//         join existing queue AND match
-            
-// //list of functions
-// check if all queues are full or empty()
-// join existing queue()
-// create new queue and listen to the newly made queue()
-// match() <-- instantiateSession()
-
-
 
 
 
@@ -348,5 +346,9 @@ function getClaimByName(Name){
 }
 
 setCurrentUserObj();
+// initiateDefaultPopupSession();
 initiateDefaultSession();
 // instantiateSession();
+
+//when user opens up, in default, inbox should appear : click the button programactically
+//match and unmatch buttons. and welcome message or on qeuue message

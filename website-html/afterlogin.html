@@ -14,6 +14,19 @@
 		<script src="/__/firebase/init.js"></script>
 		<script src="assets/js/auth.js"></script>
 	</head>
+	<div id="talkjs-container"style="position:fixed; right:0px; bottom:110px; width:300px; height:520px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:8px; display:none;"></div>
+	<div style="position:fixed; right:10px; bottom:5px; width:80px; height:80px;  padding:0px; z-index: 10"> 
+		<img src="images/chaticon.png" width="50px" height="50px" onclick="toggleChatContainer();" />
+	</div>
+	<script>
+		function toggleChatContainer(){
+			if(document.getElementById('talkjs-container').style.display == 'none'){
+				document.getElementById('talkjs-container').style.display = 'block';
+			} else{
+				document.getElementById('talkjs-container').style.display = 'none';
+			}
+		}
+	</script>
 	<body class="landing is-preload">
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
@@ -49,7 +62,7 @@
 								<!-- </li> -->
                         <!-- </ul> -->
                     </nav>
-                </header>
+				</header>
 
 				<!-- Banner -->
 				<section id="banner">
@@ -85,11 +98,12 @@
 					</div>
 				</section>
 
-				<section id="one" class="wrapper style3 special">
+				<section id="one" class="wrapper style4 special">
                     <div class="inner">
                     <i id="chatGuide">Welcome to Triton Groups Live Chat</i>
                     <!-- container element in which TalkJS will display a chat UI -->
-                    <div id="talkjs-container" style="width: 100%; margin: 30px; height: 500px"></div>
+					<!-- <div id="talkjs-container" style="width: 100%; margin: 30px; height: 500px"></div> -->
+					<!-- <button id="btn-getInTouch" style="border:white solid 1px; margin-right:15px; width: 150px; padding:0px;">GET IN TOUCH</button> -->
                     <button onclick="queueMatch()" style="border:white solid 1px; margin-right:15px; width: 150px; padding:0px;">Match</button>
                     <button id="cancelMatchBtn" onclick="dequeueMatch()" style="border:white solid 1px; margin-left:15px; width: 180px; padding:0px; display: none;"> Cancel Match</button>
 				</section>
