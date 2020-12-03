@@ -1,3 +1,4 @@
 # CSE110-Project
 
-I am making a change on these lines to show how merge errors can happen.
+In this second branch, I made a different change. This will cause issues when I try to merge.
+
