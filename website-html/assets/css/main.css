@@ -4575,3 +4575,45 @@ div textarea{
 	border-width: 1px;
 
 }
+
+/* LOADING*/
+.loading {
+	display: flex;
+	justify-content: center;
+  }
+  
+  .loading--full-height {
+	align-items: center;
+	height: 35px;
+  }
+  
+  .loading::after {
+	content: "";
+	width: 35px;
+	height: 35px;
+	border: 10px solid white;
+	border-top-color: #00ccff;
+	border-radius: 50%;
+	transform: rotate(0.16turn);
+	animation: loading 1s ease infinite;
+  }
+  
+  @keyframes loading {
+	/* Safari support */
+	from {
+	  transform: rotate(0turn);
+	}
+	
+	to {
+	  transform: rotate(1turn);
+	}
+  }
+  
+  /* LOADING */
+
+  /*firework*/
+  canvas {
+	display: block;
+}
+
+  

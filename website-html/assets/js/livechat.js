@@ -171,10 +171,12 @@ function instantiateSession(otherID, otherName, otherEmail, otherPhotoUrl, other
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 const queueMatch = async () => {
+    document.getElementById("chatGuide").innerHTML = ""; 
     document.getElementById("matchBtn").style.display = "none"; 
     document.getElementById("cancelBtn").style.display = "block"; 
     
-    document.getElementById("chatGuide").innerHTML = "You are on queue for a new match..."; 
+    // document.getElementById("chatGuide").innerHTML = "You are on queue for a new match..."; 
+    document.getElementById("loadingIcon").style.display = "flex"; 
     // do a bunch of stuff here regarding matching
     findMatch();
 }
@@ -218,7 +220,27 @@ function findMatch(){
                             console.log("OTHER USER ENTERED THE QUERY!");
                             console.log("You are matching with: ", oUser.email)
                             instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
-                            document.getElementById("chatGuide").innerHTML = "";
+                            document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!";
+                            document.getElementById("matchBtn").style.display = "block"; 
+                            document.getElementById("cancelBtn").style.display = "none"; 
+                            document.getElementById("loadingIcon").style.display = "none"; 
+                            document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!";
+                            document.getElementById('canvas').style.visibility = "visible";
+                            document.getElementById('canvas').style.opacity = "1";
+                            document.getElementById('canvas').style.zIndex = "8";
+                            document.getElementById('congratMsg').style.visibility = "visible";
+                            document.getElementById('congratMsg').style.opacity = "0.8";
+                            document.getElementById('congratMsg').style.zIndex = "12";
+                            setTimeout(function() { 
+                                document.getElementById('canvas').style.visibility = "hidden";
+                                document.getElementById('canvas').style.opacity = "0";
+                                document.getElementById('congratMsg').style.visibility = "hidden";
+                                document.getElementById('congratMsg').style.opacity = "0";
+                            }, 3500);
+                            setTimeout(function() { 
+                                document.getElementById('canvas').style.zIndex = "0";
+                                document.getElementById('congratMsg').style.zIndex = "0";
+                            }, 5000);
                             return;
                         }
                     });
@@ -248,7 +270,27 @@ function findMatch(){
                                 console.log("YOU ENTERED AN EXISTING QUERY!");
                                 console.log("You are matching with: ", oUser.email)
                                 instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
-                                document.getElementById("chatGuide").innerHTML = "";
+                                document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!";
+                                document.getElementById("matchBtn").style.display = "block"; 
+                                document.getElementById("cancelBtn").style.display = "none"; 
+                                document.getElementById("loadingIcon").style.display = "none"; 
+                                document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!"; 
+                                document.getElementById('canvas').style.visibility = "visible";
+                                document.getElementById('canvas').style.opacity = "1";
+                                document.getElementById('canvas').style.zIndex = "8";
+                                document.getElementById('congratMsg').style.visibility = "visible";
+                                document.getElementById('congratMsg').style.opacity = "0.8";
+                                document.getElementById('congratMsg').style.zIndex = "12";
+                                setTimeout(function() { 
+                                    document.getElementById('canvas').style.visibility = "hidden";
+                                    document.getElementById('canvas').style.opacity = "0";
+                                    document.getElementById('congratMsg').style.visibility = "hidden";
+                                    document.getElementById('congratMsg').style.opacity = "0";
+                                }, 3500);
+                                setTimeout(function() { 
+                                    document.getElementById('canvas').style.zIndex = "0";
+                                    document.getElementById('congratMsg').style.zIndex = "0";
+                                }, 5000);
                                 return;
                             }
                         });
@@ -288,7 +330,27 @@ function findMatch(){
                                 console.log("OTHER USER ENTERED THE QUERY!");
                                 console.log("You are matching with: ", oUser.email)
                                 instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
-                                document.getElementById("chatGuide").innerHTML = "";
+                                document.getElementById("matchBtn").style.display = "block"; 
+                                document.getElementById("cancelBtn").style.display = "none"; 
+                                document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!";
+                                document.getElementById("loadingIcon").style.display = "none"; 
+                                document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!"; 
+                                document.getElementById('canvas').style.visibility = "visible";
+                                document.getElementById('canvas').style.opacity = "1";
+                                document.getElementById('canvas').style.zIndex = "8";
+                                document.getElementById('congratMsg').style.visibility = "visible";
+                                document.getElementById('congratMsg').style.opacity = "0.8";
+                                document.getElementById('congratMsg').style.zIndex = "12";
+                                setTimeout(function() { 
+                                    document.getElementById('canvas').style.visibility = "hidden";
+                                    document.getElementById('canvas').style.opacity = "0";
+                                    document.getElementById('congratMsg').style.visibility = "hidden";
+                                    document.getElementById('congratMsg').style.opacity = "0";
+                                }, 3500);
+                                setTimeout(function() { 
+                                    document.getElementById('canvas').style.zIndex = "0";
+                                    document.getElementById('congratMsg').style.zIndex = "0";
+                                }, 5000);
                                 return;
                             }
                         });
@@ -302,6 +364,7 @@ function findMatch(){
 function dequeueMatch(){
     document.getElementById("matchBtn").style.display = "block"; 
     document.getElementById("cancelBtn").style.display = "none"; 
+    
     //if there is a queue with one person and id is mine, remove the queue
     firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
         snapshot.forEach(function(childSnapshot) {
@@ -313,12 +376,14 @@ function dequeueMatch(){
                         //remove the queue
                         console.log("key: ", childSnapshot.key);
                         firebase.database().ref("livechat/queues/"+childSnapshot.key).remove();
-                        document.getElementById("chatGuide").innerHTML = "You are dequeued from the match";
-                        setTimeout(function() { 
-                            if(document.getElementById("chatGuide").innerHTML != "You are on queue for a new match..."){
-                                document.getElementById("chatGuide").innerHTML = "Welcome to Triton Groups Live Chat!"; 
-                            }
-                        }, 3000);
+                        // document.getElementById("chatGuide").innerHTML = "You are dequeued from the match";
+                        document.getElementById("loadingIcon").style.display = "none"; 
+                        // setTimeout(function() { 
+                        //     if(document.getElementById("chatGuide").innerHTML != "You are on queue for a new match..."){
+                        //         document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!"; 
+                        //     }
+                        // }, 1500);
+                        document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!"; 
                     }
                 });
             }
