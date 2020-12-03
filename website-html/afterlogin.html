@@ -29,10 +29,13 @@
 									&nbsp;
 									|
 									&nbsp;
-									<a href="#one" class="no-style more scrolly one-text">Contact Us</a>
+									<a href="#one" class="no-style more scrolly one-text">Live Chat</a>
 									&nbsp;
 									|
 									&nbsp;
+									<a href="#two" class="no-style more scrolly two-text">Contact Us</a>
+									&nbsp;
+									|
 									<img id="profilePicUserProfile" src="" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
                					    <a href="userprofile.html" class="no-style more scrolly four-text">Profile</a>
                					    &nbsp;
@@ -82,9 +85,18 @@
 					</div>
 				</section>
 
+				<section id="one" class="wrapper style3 special">
+                    <div class="inner">
+                    <i id="chatGuide">Press New Match Button to Connect</i>
+                    <!-- container element in which TalkJS will display a chat UI -->
+                    <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px"></div>
+                    <button onclick="newMatch()" style="border:white solid 1px; margin-right:15px; width: 150px; padding:0px;">New Match</button>
+                    <button onclick="disconnect()" style="border:white solid 1px; margin-left:15px; width: 150px; padding:0px;"> Disconnect</button>
+				</section>
+
 
 				<!-- one -->
-				<section id="one" class="wrapper style3 special">
+				<section id="two" class="wrapper style3 special">
 					<div class="inner">
 						<header class="major">
 							<h2>Contact Us</h2>
@@ -152,24 +164,42 @@
 			<script src="assets/js/searchClass.js"></script>
 			<script src="assets/js/searchCommunity.js"></script>
 			<script src="assets/js/feedback.js"></script>
-			<!-- <script src="assets/js/livechat.js"></script> -->
+			<script src="assets/js/livechat.js"></script>
 
 
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			<script>
 			   var top1 = $('#one').offset().top;
+			   var top2 = $('#two').offset().top;
 
 			   $(document).scroll(function() {
 				 var scrollPos = $(document).scrollTop()+100; //100: buffer
 				 if (scrollPos < top1) {
-				   $('.zero-text').css('font-weight', 'bold');
-				   $('.one-text').css('font-weight', 'normal');
-				 } 
-				 else {
-				   $('.zero-text').css('font-weight', 'normal');
-				   $('.one-text').css('font-weight', 'bold');
-				 } 
+					// console.log("passed1!!")
+					$('.zero-text').css('font-weight', 'bold');
+					$('.one-text').css('font-weight', 'normal');
+					$('.two-text').css('font-weight', 'normal');
+					// $('.three-text').css('font-weight', 'normal');
+					// $('.colorchange').css('background', '#555555');
+					// $('.colorchange').css('background-color', '#555555 !important');
+				  } else if (scrollPos >= top1 && scrollPos < top2) {
+					// console.log("passed1!")
+					$('.zero-text').css('font-weight', 'normal');
+					$('.one-text').css('font-weight', 'bold');
+					$('.two-text').css('font-weight', 'normal');
+					// $('.three-text').css('font-weight', 'normal');
+					// $('.colorchange').css('background', '#555555');
+					// $('.colorchange').css('background-color', '#555555 !important');
+				  } else if (scrollPos >= top2) {
+					// console.log("passed3!")
+					$('.zero-text').css('font-weight', 'normal');
+					$('.one-text').css('font-weight', 'normal');
+					$('.two-text').css('font-weight', 'bold');
+					// $('.three-text').css('font-weight', 'bold');
+					// $('.colorchange').css('background', '#333333 !important');
+					// $('.colorchange').css('background-color', '#333333 !important');
+				  }
 			   });
 		   </script>
 	<script>
