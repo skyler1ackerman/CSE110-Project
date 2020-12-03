@@ -2140,7 +2140,7 @@ input, select, textarea {
 		}
 
 	ul {
-		list-style: disc;
+		list-style: none;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
 	}
@@ -2697,6 +2697,16 @@ input, select, textarea {
 			width: 60%;
 		}
 
+		.spotlight .listContent {
+			padding: 2em 2em 0.1em 3em ;
+			-moz-order: 2;
+			-webkit-order: 2;
+			-ms-order: 2;
+			order: 2;
+			max-width: 48em;
+			width: 60%;
+		}
+
 		.spotlight:nth-child(2n) {
 			-moz-flex-direction: row-reverse;
 			-webkit-flex-direction: row-reverse;
@@ -2820,7 +2830,7 @@ input, select, textarea {
 
 		.wrapper.style1 {
 			/* background-color: #e89980; */
-			color: #c8ece9;
+			color: #ffffff; /* #c8ece9; */
 		}
 
 			.wrapper.style1 strong, .wrapper.style1 b {
@@ -2852,7 +2862,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style1 header.major p {
-				color: #c8ece9;
+				color: #ffffff; /* #c8ece9; */
 			}
 
 			.wrapper.style1 label {
