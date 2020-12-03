@@ -171,7 +171,9 @@ function instantiateSession(otherID, otherName, otherEmail, otherPhotoUrl, other
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 const queueMatch = async () => {
-    document.getElementById("cancelMatchBtn").style.display = "inline"; 
+    document.getElementById("matchBtn").style.display = "none"; 
+    document.getElementById("cancelBtn").style.display = "block"; 
+    
     document.getElementById("chatGuide").innerHTML = "You are on queue for a new match..."; 
     // do a bunch of stuff here regarding matching
     findMatch();
@@ -298,6 +300,8 @@ function findMatch(){
 }
 
 function dequeueMatch(){
+    document.getElementById("matchBtn").style.display = "block"; 
+    document.getElementById("cancelBtn").style.display = "none"; 
     //if there is a queue with one person and id is mine, remove the queue
     firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
         snapshot.forEach(function(childSnapshot) {
@@ -345,10 +349,22 @@ function getClaimByName(Name){
     });
 }
 
+function toggleChatContainer(){
+    if(document.getElementById('talkjs-container').style.display == 'none'){
+        document.getElementById('talkjs-container').style.display = 'block';
+        document.getElementById('matchBtn').style.display = 'block';
+        document.getElementById('chatGuide').style.display = 'block';
+        
+    } else{
+        document.getElementById('talkjs-container').style.display = 'none';
+        document.getElementById('matchBtn').style.display = 'none';
+        document.getElementById('chatGuide').style.display = 'none';
+    }
+}
 setCurrentUserObj();
 // initiateDefaultPopupSession();
 initiateDefaultSession();
 // instantiateSession();
 
-//when user opens up, in default, inbox should appear : click the button programactically
-//match and unmatch buttons. and welcome message or on qeuue message
+//when user opens up, in default, inbox should appear : click the button programactically (didnt work...)
+//match and unmatch buttons. and welcome message or on qeuue message 

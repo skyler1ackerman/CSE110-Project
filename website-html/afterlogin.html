@@ -14,19 +14,17 @@
 		<script src="/__/firebase/init.js"></script>
 		<script src="assets/js/auth.js"></script>
 	</head>
-	<div id="talkjs-container"style="position:fixed; right:0px; bottom:110px; width:300px; height:520px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:8px; display:none;"></div>
+	<div id="chatGuide"style="position:fixed; right:0px; bottom:620px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:#D3D3D3; color:black; border-radius:8px 8px 0px 0px; display:none; text-align: center; padding-top:10px;">Welcome To Triton Chat!</div>
+	<div id="talkjs-container"style="position:fixed; right:0px; bottom:140px; width:300px; height:480px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:0px 0px 0px 0px; display:none;"></div>
+	<div onclick="queueMatch()" id="matchBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+		Start New Match
+	</div>
+	<div onclick="dequeueMatch()" id="cancelBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; color:white; font-weight:bold; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+		Cancel
+	</div>
 	<div style="position:fixed; right:10px; bottom:5px; width:80px; height:80px;  padding:0px; z-index: 10"> 
 		<img src="images/chaticon.png" width="50px" height="50px" onclick="toggleChatContainer();" />
 	</div>
-	<script>
-		function toggleChatContainer(){
-			if(document.getElementById('talkjs-container').style.display == 'none'){
-				document.getElementById('talkjs-container').style.display = 'block';
-			} else{
-				document.getElementById('talkjs-container').style.display = 'none';
-			}
-		}
-	</script>
 	<body class="landing is-preload">
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
@@ -100,7 +98,7 @@
 
 				<section id="one" class="wrapper style4 special">
                     <div class="inner">
-                    <i id="chatGuide">Welcome to Triton Groups Live Chat</i>
+                    <!-- <i id="chatGuide">Welcome to Triton Groups Live Chat</i> -->
                     <!-- container element in which TalkJS will display a chat UI -->
 					<!-- <div id="talkjs-container" style="width: 100%; margin: 30px; height: 500px"></div> -->
 					<!-- <button id="btn-getInTouch" style="border:white solid 1px; margin-right:15px; width: 150px; padding:0px;">GET IN TOUCH</button> -->
