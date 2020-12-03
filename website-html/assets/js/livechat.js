@@ -394,13 +394,7 @@ function dequeueMatch(){
                         //remove the queue
                         console.log("key: ", childSnapshot.key);
                         firebase.database().ref("livechat/queues/"+childSnapshot.key).remove();
-                        // document.getElementById("chatGuide").innerHTML = "You are dequeued from the match";
                         document.getElementById("loadingIcon").style.display = "none"; 
-                        // setTimeout(function() { 
-                        //     if(document.getElementById("chatGuide").innerHTML != "You are on queue for a new match..."){
-                        //         document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!"; 
-                        //     }
-                        // }, 1500);
                         document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!"; 
                     }
                 });
@@ -433,14 +427,47 @@ function getClaimByName(Name){
 
 function toggleChatContainer(){
     if(document.getElementById('talkjs-container').style.display == 'none'){
+        console.log("toggle btn clicked");
         document.getElementById('talkjs-container').style.display = 'block';
         document.getElementById('matchBtn').style.display = 'block';
+        // document.getElementById('cancelBtn').style.display = 'block';
         document.getElementById('chatGuide').style.display = 'block';
+        // document.getElementById('loadingIcon').style.display = 'flex';
+
+        //if there is a queue with one person and id is mine, put loadingIcon and cancelBtn
+        firebase.database().ref("livechat/queues").once('value').then((snapshot) => {
+            snapshot.forEach(function(childSnapshot) {
+                //if there is a queue with one person, check it if it's me, and if it's me, remove the queue room.
+                if(childSnapshot.child("participants").numChildren() == 1){
+                    childSnapshot.child("participants").forEach(function(grandChildSnapshot){
+                        //if the only participant's ID is same as my ID, remove the queue room
+                        if(grandChildSnapshot.key==currentUser.id){
+                            //remove the queue
+                            console.log("there is my queue going on")
+                            document.getElementById('talkjs-container').style.display = 'block';
+                            document.getElementById('chatGuide').style.display = 'block';
+                            document.getElementById('loadingIcon').style.display = 'flex';
+                            document.getElementById('cancelBtn').style.display = 'block';
+                            return;
+                        }
+                    });
+                }
+            });
+        }); 
+
+
+        
+        //if user on queue: loading icon and cancelBtn
+        
+
+        //if user not on queue: chatGuide.innerhtml="welcome" and connect with triton 
         
     } else{
         document.getElementById('talkjs-container').style.display = 'none';
         document.getElementById('matchBtn').style.display = 'none';
+        document.getElementById('cancelBtn').style.display = 'none';
         document.getElementById('chatGuide').style.display = 'none';
+        document.getElementById('loadingIcon').style.display = 'none';
     }
 }
 setCurrentUserObj();

@@ -25,14 +25,14 @@
 	<div id="loadingIcon" class="loading loading--full-height" style="position:fixed; right:142px; bottom:622px; z-index: 11; display: none;"></div>
 	<div id="chatGuide"style="position:fixed; right:0px; bottom:620px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:	10px; background-color:#D3D3D3; color:black; border-radius:8px 8px 0px 0px; display:none; text-align: center; padding-top:10px;">Welcome To Triton Chat!</div>
 	<div id="talkjs-container"style="position:fixed; right:0px; bottom:140px; width:300px; height:480px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:0px 0px 0px 0px; display:none;"></div>
-	<div onclick="queueMatch()" id="matchBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+	<div class="buttonMatch" onclick="queueMatch()" id="matchBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
 		Connect with a Triton
 	</div>	
-	<div onclick="dequeueMatch()" id="cancelBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; color:white; font-weight:bold; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+	<div class="buttonCancel" onclick="dequeueMatch()" id="cancelBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; color:white; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
 		Cancel
 	</div>
 	<div style="position:fixed; right:10px; bottom:5px; width:80px; height:80px;  padding:0px; z-index: 10"> 
-		<img src="images/chaticon.png" width="50px" height="50px" onclick="toggleChatContainer();" />
+		<img class="buttonChatbox" src="images/chaticon.png" width="50px" height="50px" onclick="toggleChatContainer();" />
 	</div>
 	<body class="landing is-preload">
 		<!-- Page Wrapper -->
