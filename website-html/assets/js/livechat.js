@@ -367,3 +367,5 @@ initiateDefaultSession();
 
 //when user opens up, in default, inbox should appear : click the button programactically (didnt work...)
 //match and unmatch buttons. and welcome message or on qeuue message 
+
+//aftre mathing there is cancel button. change it to new matching
