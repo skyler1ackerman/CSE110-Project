@@ -231,15 +231,21 @@ function findMatch(){
                             document.getElementById('congratMsg').style.visibility = "visible";
                             document.getElementById('congratMsg').style.opacity = "0.8";
                             document.getElementById('congratMsg').style.zIndex = "12";
+                            var fireworkSound = new Audio('assets/audio/fireworkWhistle.mp3');
+                            fireworkSound.play();
                             setTimeout(function() { 
                                 document.getElementById('canvas').style.visibility = "hidden";
                                 document.getElementById('canvas').style.opacity = "0";
                                 document.getElementById('congratMsg').style.visibility = "hidden";
                                 document.getElementById('congratMsg').style.opacity = "0";
+                                fireworkSound.volume = 0.2;
                             }, 3500);
                             setTimeout(function() { 
                                 document.getElementById('canvas').style.zIndex = "0";
                                 document.getElementById('congratMsg').style.zIndex = "0";
+                                fireworkSound.pause();
+                                fireworkSound.currentTime = 0;
+                                fireworkSound.volume = 0.2;
                             }, 5000);
                             return;
                         }
@@ -281,15 +287,21 @@ function findMatch(){
                                 document.getElementById('congratMsg').style.visibility = "visible";
                                 document.getElementById('congratMsg').style.opacity = "0.8";
                                 document.getElementById('congratMsg').style.zIndex = "12";
+                                var fireworkSound = new Audio('assets/audio/fireworkWhistle.mp3');
+                                fireworkSound.play();
                                 setTimeout(function() { 
                                     document.getElementById('canvas').style.visibility = "hidden";
                                     document.getElementById('canvas').style.opacity = "0";
                                     document.getElementById('congratMsg').style.visibility = "hidden";
                                     document.getElementById('congratMsg').style.opacity = "0";
+                                    fireworkSound.volume = 0.2;
                                 }, 3500);
                                 setTimeout(function() { 
                                     document.getElementById('canvas').style.zIndex = "0";
                                     document.getElementById('congratMsg').style.zIndex = "0";
+                                    fireworkSound.pause();
+                                    fireworkSound.currentTime = 0;
+                                    fireworkSound.volume = 0.2;
                                 }, 5000);
                                 return;
                             }
@@ -341,15 +353,21 @@ function findMatch(){
                                 document.getElementById('congratMsg').style.visibility = "visible";
                                 document.getElementById('congratMsg').style.opacity = "0.8";
                                 document.getElementById('congratMsg').style.zIndex = "12";
+                                var fireworkSound = new Audio('assets/audio/fireworkWhistle.mp3');
+                                fireworkSound.play();
                                 setTimeout(function() { 
                                     document.getElementById('canvas').style.visibility = "hidden";
                                     document.getElementById('canvas').style.opacity = "0";
                                     document.getElementById('congratMsg').style.visibility = "hidden";
                                     document.getElementById('congratMsg').style.opacity = "0";
+                                    fireworkSound.volume = 0.2;
                                 }, 3500);
                                 setTimeout(function() { 
                                     document.getElementById('canvas').style.zIndex = "0";
                                     document.getElementById('congratMsg').style.zIndex = "0";
+                                    fireworkSound.pause();
+                                    fireworkSound.currentTime = 0;
+                                    fireworkSound.volume = 0.2;
                                 }, 5000);
                                 return;
                             }
