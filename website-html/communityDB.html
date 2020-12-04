@@ -20,43 +20,56 @@
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
-                <!-- Header -->
-					<header id="header" class="alt">
-						<!-- <h1><a href="index.html">TritonGroups</a></h1> -->
-						<nav id="nav">
-							<!-- <ul> -->
-								<!-- <li class="special"> -->
-									<ul class="menuToggle">
-										<a href="afterlogin.html" class="no-style more scrolly zero-text">Back to Homepage</a>
-										&nbsp;
-										|
-										&nbsp;
-										<!-- <a href="#one" class="no-style more scrolly one-text">About Us</a>
-										&nbsp;
-										|
-										&nbsp;
-										<a href="#two" class="no-style more scrolly two-text">How It Works</a>
-										&nbsp;
-										|
-										&nbsp;
-										<a href="#three" class="no-style more scrolly three-text">Search</a>
-										&nbsp;
-										&nbsp;
-										&nbsp; -->
-									</ul>
-								<!-- </li> -->
-							<!-- </ul> -->
-						</nav>
-					</header>
+				<!-- Header -->
+				<!-- Header -->
+				<header id="header" class="alt">
+					<nav id="nav">
+						<ul class="menuToggle">
+							<a href="afterlogin.html" class="no-style more scrolly zero-text">Home</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="browse-community.html" class="no-style more scrolly two-text" style="font-weight: bold;">Communities</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+							&nbsp;
+							&nbsp;
+							&nbsp;
+						</ul>
+					</nav>
+				</header>
                 <script>
 
                     window.onload = function() {
 						// document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
 						// getDiscordInfo(localStorage.getItem("classinput")); //get 5 discord infos from DB
 						// getClassSnapshot(); //get all class info from DB for search engine
+						// to top right away
+						if ( window.location.hash ) scroll(0,0);
+						// void some browsers issue
+						setTimeout( function() { scroll(0,0); }, 1);
+
+						if(window.location.hash) {
+							var hash = window.location.hash;
+							$('html, body').animate({
+								scrollTop: $(hash).offset().top
+							}, 1500, 'swing');
+						}
 						const communityName = document.getElementById("communityName").innerHTML=localStorage.getItem("communityInput");
 						getCommunitySnapshot();
 						getCommunityByKeyword(communityName);
+						//var el = document.getElementById('queryResults');
+						//el.scrollIntoView(true);
                     }
                 </script>
 				<!-- Banner -->
@@ -139,7 +152,7 @@
 					</div>
 				</section>
 
-				<section class="wrapper style5">
+				<section id="displayResults" class="wrapper style5">
 
 					<div id="results" class="inner">
 						<h2 style="text-align: center;" id="communityName"></h2>

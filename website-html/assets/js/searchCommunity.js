@@ -37,9 +37,14 @@ function getCommunitySnapshot(){
 function submit_community(){
   var communityInput = document.getElementById("inputCommunities").value;
   //check if user input is valid
-  if(communitiesArr.includes(communityInput)){
+  if(communitiesArr.includes(communityInput) && window.location.hash){
       localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
-      window.location.href = "communityDB.html";
+      window.location.href = "communityDB.html#displayResults";
+      location.reload();
+  }
+  else if(communitiesArr.includes(communityInput)){
+      localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
+      window.location.href = "communityDB.html#displayResults";
   }
   else{
       alert("The community you entered is not in our Database.");
@@ -110,9 +115,16 @@ function getCommunityByKeyword(communityName){
 // Category Search
 
 function submit_community_category(categoryInput){
-    //check if user input is valid
+
+    if(window.location.hash){
         localStorage.setItem("categoryInput", categoryInput);
-        window.location.href = "community-categoryDB.html";
+        window.location.href = "community-categoryDB.html#displayResults";
+        location.reload();
+    }
+    else{
+        localStorage.setItem("categoryInput", categoryInput);
+        window.location.href = "community-categoryDB.html#displayResults";
+    }
 }
 
 function getCommunityCategory(category){

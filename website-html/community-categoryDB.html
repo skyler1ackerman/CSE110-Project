@@ -51,6 +51,16 @@
     <script>
 
         window.onload = function() {
+            if ( window.location.hash ) scroll(0,0);
+            // void some browsers issue
+            setTimeout( function() { scroll(0,0); }, 1);
+
+            if(window.location.hash) {
+                var hash = window.location.hash;
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 1500, 'swing');
+            }
             const communityName = document.getElementById("community-category").innerHTML=localStorage.getItem("categoryInput");
             getCommunitySnapshot();
             getCommunityCategory(communityName);
@@ -137,7 +147,7 @@
         </div>
     </section>
 
-    <section class="wrapper style5">
+    <section id="displayResults" class="wrapper style5">
 
         <div id="results" class="inner">
             <h2 style="text-align: center;" id="community-category"></h2>
