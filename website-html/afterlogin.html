@@ -148,26 +148,7 @@
 				</footer>
 
 			</div>
-			<script>
-				window.onload = function() {
-					//get all class info from FB databse
-					// getClassSnapshot();
-					getCommunitySnapshot();
-					getClassSnapshot();
-
-					var profileImgUrl = localStorage.getItem("user-profileimgurl");
-                	//profileImgUrl = profileImgUrl.replace("s96-c", "s256-c");
-					document.getElementById("profilePicUserProfile").src=profileImgUrl;
-					// document.getElementById("email").placeholder=localStorage.getItem("user-email");
-					// document.getElementById("email").value=localStorage.getItem("user-email");
-					// // localStorage.removeItem("user-email");
-					// document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-					// document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-					// localStorage.removeItem("user-displayname");
-					//remove local storage items in signout function for security.
-					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
-				}
-			</script>
+			
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -177,7 +158,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-      <script src="assets/js/login.js"></script>
+      		<script src="assets/js/login.js"></script>
 			<!-- <script src="assets/js/searchClass.js"></script>
 			<script src="assets/js/searchCommunity.js"></script> -->
 			<script src="assets/js/feedback.js"></script>
@@ -203,21 +184,26 @@
 			// 	 } 
 			//    });
 		   </script>
-	<script>
-		firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
-			snapshot.forEach(function (childSnapshot){
-				if(localStorage.getItem("user-email")==childSnapshot.val().email){
-					let header = document.querySelector('#header');
-					let button= document.createElement('button');
-					button.innerText = "Admin DashBoard";
-					button.addEventListener("click",function (){
-						window.location.href="afterAdminLogin.html";
-					})
-					header.append(button);
-				}
-			});
-		});
-	</script>
+		   <script>
+				var profileImgUrl = localStorage.getItem("user-profileimgurl");
+				document.getElementById("profilePicUserProfile").src=profileImgUrl;
+				document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+			</script>
+			<script>
+				firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
+					snapshot.forEach(function (childSnapshot){
+						if(localStorage.getItem("user-email")==childSnapshot.val().email){
+							let header = document.querySelector('#header');
+							let button= document.createElement('button');
+							button.innerText = "Admin DashBoard";
+							button.addEventListener("click",function (){
+								window.location.href="afterAdminLogin.html";
+							})
+							header.append(button);
+						}
+					});
+				});
+			</script>
 
 
 	</body>
