@@ -25,8 +25,10 @@ function getCommunitySnapshot(){
   var ref = firebase.database().ref("clubs");
   ref.on("value", function(snapshot) {
    snapshot.forEach(function(childSnapshot) {
-    var communityName = childSnapshot.key;
-    communitiesArr.push(communityName);
+       childSnapshot.forEach(function(clubSnapshot){
+           var communityName = clubSnapshot.key;
+           communitiesArr.push(communityName);
+       });
    });
   });
   console.log("communitiesArr:! ", communitiesArr);
@@ -43,6 +45,67 @@ function submit_community(){
       alert("The community you entered is not in our Database.");
   }
 }
+// Keyword Search
+
+function getCommunityByKeyword(communityName){
+    var ref = firebase.database().ref("clubs");
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            childSnapshot.forEach(function(clubSnapshot){
+                if(clubSnapshot.key === communityName){
+                    console.log("Club Snapshot!");
+                    console.log(clubSnapshot.key);
+                    console.log(clubSnapshot.val().status);
+
+                    var resultsString = { str : "" };
+                        resultsString.str += "<li class='community'>";
+                        //resultsString.str += `<button class=\"collapsible\">${clubInfo.key}</button>`;
+                        resultsString.str += "<div>";
+                        resultsString.str += "<p></p>";
+                        if(clubSnapshot.val().status !== "") {
+                            resultsString.str +=   `<p><b>Status: </b>${clubSnapshot.val().status}</p>`;
+                        };
+                        if(clubSnapshot.val().org_type !== "") {
+                            resultsString.str +=   `<p><b>Type: </b>${clubSnapshot.val().org_type}</p>`;
+                        };
+                        if(clubSnapshot.val().contact !== ""){
+                            resultsString.str +=   `<p><b>Contact: </b>${clubSnapshot.val().contact}</p>`;
+                        };
+                        if(clubSnapshot.val().description !== "") {
+                            resultsString.str +=   `<p><b>Description: </b>${clubSnapshot.val().description}</p>`;
+                        };
+                        if(clubSnapshot.val().inviteLink !== "") {
+                            resultsString.str +=   `<a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                            resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="text-align: center;">Report</a>`;
+
+                        };
+                        if(clubSnapshot.val().social_media !== "") {
+                            resultsString.str +=   `<p><b>Social Media: </b>${clubSnapshot.val().social_media}</p>`;
+                        };
+                        resultsString.str += "<p></p>";
+                        resultsString.str += "</div>";
+                        resultsString.str += "</li>";
+                    document.getElementById("queryResults").innerHTML = resultsString.str;
+                    var container = document.querySelector(" #results > #queryResults ");
+                    var coll = container.querySelectorAll(" .community > .collapsible")
+                   /* var i;
+                    for (i = 0; i < coll.length; i++) {
+                        coll[i].addEventListener("click", function() {
+                            this.classList.toggle("active");
+                            var content = this.nextElementSibling;
+                            if (content.style.display === "block") {
+                                content.style.display = "none";
+                            } else {
+                                content.style.display = "block";
+                            }
+                        });
+                    }*/
+                }
+            });
+        });
+    });
+}
+
 
 // Category Search
 
@@ -53,7 +116,7 @@ function submit_community_category(categoryInput){
 }
 
 function getCommunityCategory(category){
-    console.log("getCommunityCategory() called :)");
+    //console.log("getCommunityCategory() called :)");
     //console.log("CATEGORY: ", category);
 
     var catRef = "clubs/".concat(category);
@@ -79,8 +142,8 @@ function getCommunityCategory(category){
                 resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
             };
             if(childNodes.val().inviteLink !== "") {
-                resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="justify-content: center;">Join Discord</a>`;
-                resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="justify-content: center;">Report</a>`;
+                resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="text-align: center;">Report</a>`;
 
             };
             if(childNodes.val().social_media !== "") {

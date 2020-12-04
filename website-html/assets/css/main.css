@@ -1877,7 +1877,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75em;
+		height: 2.55em;
 	}
 
 	textarea {
@@ -2161,7 +2161,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				border-top: solid 1px #fff;
+				/*border-top: solid 1px #fff;*/
 				padding: 0.5em 0;
 			}
 
@@ -2426,7 +2426,7 @@ input, select, textarea {
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-		max-width: 30em;
+		/*max-width: 30em;*/
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -4235,7 +4235,7 @@ input, select, textarea {
 	padding: 10px;
 	cursor: pointer;
 	background-color: darkgray;  
-	border-bottom: 1px solid #111111;  
+	border-bottom: 1px solid #111111;
   }
   
   /*when hovering an item:*/
@@ -4439,7 +4439,7 @@ input, select, textarea {
 	height: 3.125em;
 	letter-spacing: 0.175em;
 	line-height: 3.125em;
-	max-width: 30em;
+	/*max-width: 30em;*/
 	padding: 0 1.75em;
 	text-align: center;
 	text-decoration: none;

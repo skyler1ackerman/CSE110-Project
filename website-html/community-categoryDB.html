@@ -52,7 +52,8 @@
 
         window.onload = function() {
             const communityName = document.getElementById("community-category").innerHTML=localStorage.getItem("categoryInput");
-            getCommunityCategory(communityName)
+            getCommunitySnapshot();
+            getCommunityCategory(communityName);
         }
     </script>
 
@@ -146,9 +147,7 @@
 
             </ul>
         </div>
-        <div id="openformButton">
-            <a href="add-community.html" class="button">+ Add Community</a>
-        </div>
+
     </section>
     <!-- Footer -->
     <footer id="footer">

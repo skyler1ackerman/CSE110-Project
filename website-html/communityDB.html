@@ -54,80 +54,154 @@
 						// document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
 						// getDiscordInfo(localStorage.getItem("classinput")); //get 5 discord infos from DB
 						// getClassSnapshot(); //get all class info from DB for search engine
-						const communityName = document.getElementById("mycommunity").innerHTML=localStorage.getItem("communityInput");
-						getCommunitySnapshot()
-						getCommunityInfoByName(communityName)
+						const communityName = document.getElementById("communityName").innerHTML=localStorage.getItem("communityInput");
+						getCommunitySnapshot();
+						getCommunityByKeyword(communityName);
                     }
                 </script>
 				<!-- Banner -->
-					<section id="banner">
-                        <ul class="actions special" style="margin-bottom:0px;">
-                            <!-- <li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li> -->
-                            <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+				<section id="banner">
 
-                            <form autocomplete="off" action="/action_page.php">
-								<div class="autocomplete" style="width:400px;">
-								  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities" />
-								</div>
-                            </form>
-                        </ul>
-                        <div style="text-align:center; margin-bottom:50px;"> <input type="submit" onclick="submit_community()"></div>
+					<div class="inner">
+						<br><br><br><br>
 
-						<div class="inner">
-							<h2 id="mycommunity"></h2>
-                        <div>
-                            <h5>Academic Year</h5><span id="community-academic-year">2020</span>
-                            <h5>Created</h5><span id="community-date-created">9/24/2020</span>
-                            <h5>Status</h5><span id='community-status'>Current</span>
-                            <h5>Organization Type</h5><span id="community-organization-type">Undergraduate</span>
-                            <h5>Purpose</h5><div id="community-purpose">Undergraduate</div>
-                            <h5>Discord Invite Link</h5><span id="community-discord-link">socialmedia.com</span>
-                            <h5>Social Media</h5><span id="community-socialmedia">ucsdacadivdivellachoir@gmail.com</span>
-                            <h5>Email</h5><span id="community-email">ucsdacadivdivellachoir@gmail.com</span>
-                        </div>
+						<h2>Browse UCSD Communities</h2>
+
+						<p></p>
+						<div class="small-buttons">
+
+							<div class="row">
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Academic</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Career</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Cooperative</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Cultural</a>
+							</div>
+							<div class="row">
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Dance</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Educational</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Fraternities</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Media</a>
+							</div>
+							<div class="row">
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Medical</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Music and Performance</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Political</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Service</a>
+							</div>
+							<div class="row">
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Social</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Sororities</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Spiritual</a>
+								<a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Sports</a>
+							</div>
 						</div>
-						<!-- <a href="#one" class="more scrolly">About Us</a> -->
-					</section>
+					</div>
+					<div id="search" class="align-center">
+						<ul class="actions special">
+							<!--<div class="row gtr-0">
+                            <div class="dropdown">
+                                <a href="#" class="button primary" id="dropdown" onclick="toggle()">Category
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+                                <div class="dropdown-content" id="myDropdown">
+                                    <a href="#" class="dropdown-item" onclick="submit_community_category(this.textContent)">Academic</a>
+                                    <a href="#" class="dropdown-item" onclick="submit_community_category(this.textContent)">Career</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Cooperative</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Cultural</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Dance</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Educational</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Fraternities</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Media</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Medical</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Music and Performance</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Political</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Service</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Social</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Sororities</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Spiritual</a>
+                                    <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Sports</a>
+                                </div>
 
+                            </div>-->
+
+							<form autocomplete="off"action="/action_page.php">
+								<div class="row gtr-25">
+									<div class="autocomplete" style="width:400px;">
+										<input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+									</div>
+									<div id="openformButton">
+										<a href="add-community.html" class="button">+</a>
+									</div>
+								</div>
+							</form>
+						</ul>
+						<div class="submit-community-button"> <input type="submit" onclick="submit_community()"></div>
+					</div>
+				</section>
+
+				<section class="wrapper style5">
+
+					<div id="results" class="inner">
+						<h2 style="text-align: center;" id="communityName"></h2>
+
+						<!-- Display query results here -->
+						<ul id="queryResults" class="alt">
+
+						</ul>
+					</div>
+
+				</section>
 				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<!-- <li><a href="#" class="icon brands fa-twitter"><slabelan class="label">Twitter</slabelan></a></li> -->
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright"></br>
-							<li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
-							<li>(408) 533-5213 |</li> </br>
-							<li>spryleaf@spryleaf.io |</li> </br>
-						</ul>
-					</footer>
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright"></br>
+						<li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+					</ul>
+				</footer>
 
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/login.js"></script>
-			<script src="assets/js/searchClass.js"></script>
-			<script src="assets/js/searchCommunity.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/login.js"></script>
+		<script src="assets/js/searchClass.js"></script>
+		<script src="assets/js/searchCommunity.js"></script>
 
 
-			<!-- below is firebase SDKs-->
-			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
-			<!-- this works only when we are using firebase hosting service-->
-			<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-			<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-  			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-  			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-			<script src="/__/firebase/init.js"></script> -->
-		</body>
-	</html>
+		<!-- below is firebase SDKs-->
+		<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+		<!-- this works only when we are using firebase hosting service-->
+		<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+		<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+        <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+        <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+        <script src="/__/firebase/8.0.1/firebase-database.js"></script>
+        <script src="/__/firebase/init.js"></script> -->
+		<!--
+        <script>
+        function toggle() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(e) {
+            if (!e.target.matches('#dropdown')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }</script>-->
+	</body>
+</html>
+

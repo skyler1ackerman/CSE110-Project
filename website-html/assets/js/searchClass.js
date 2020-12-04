@@ -1,11 +1,11 @@
 function searchbarClassSelected(){
-    console.log("searchbarClassSelected() called");
+    //console.log("searchbarClassSelected() called");
     document.getElementById("clubSearchBar").style.display = "none";
     document.getElementById("classSearchBar").style.display = "block";
 }
 
 function getClassSnapshot(){
-    console.log("getClassSnapshot() called :)");
+    //console.log("getClassSnapshot() called :)");
     var ref = firebase.database().ref("classes");
     ref.on("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -17,9 +17,9 @@ function getClassSnapshot(){
 
 //reads in every discord info from a class
 async function getDiscordInfo(className){
-    console.log("getDiscordInfo() called");
+    //console.log("getDiscordInfo() called");
     var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
+    //console.log("Finding class ->", className);
     var ref = firebase.database().ref(classRef);
     var resultsString = { str : "" };
     var results = {};
@@ -92,8 +92,6 @@ async function constructHTML(className){
         //};
 
     });
-    console.log("After for each loop");
-    console.log(resultsString.str);
     document.getElementById("queryResults").innerHTML = resultsString.str;
 
     var container = document.querySelector(" #results > #queryResults ");
@@ -114,11 +112,11 @@ async function constructHTML(className){
 };
 
 function addDiscordInfotoDB(){
-    console.log("addDiscordInfotoDB() called!");
+    //console.log("addDiscordInfotoDB() called!");
     //First, count number of children in the class
     var className = localStorage.getItem("classinput")
     var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
+    //console.log("Finding class ->", className);
     var class_ref = firebase.database().ref(classRef);
     var counter = 1;
     class_ref.on("value", function(snapshot) {
@@ -129,7 +127,7 @@ function addDiscordInfotoDB(){
 
     //now add a discordinfo inside class DB
     var discordRef = "classes/" + className + "/discordInfo" + counter;
-    console.log(discordRef);
+    //console.log(discordRef);
     var discord_ref = firebase.database().ref(discordRef);
     discord_ref.set({
         inviteURL: document.getElementById("invitelink").value,
@@ -140,11 +138,11 @@ function addDiscordInfotoDB(){
 }
 
 function resetDB(){
-    console.log("addDiscordInfotoDB() called!");
+    //log("addDiscordInfotoDB() called!");
     //First, count number of children in the class
     var className = localStorage.getItem("classinput")
     var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
+    //console.log("Finding class ->", className);
     var class_ref = firebase.database().ref(classRef);
     class_ref.set({
         discordInfo1: "",
@@ -217,10 +215,10 @@ function autocompleteClass(inp, arr) {
             if(e.deltaY>0&&a.childElementCount>7){
                 nodesBuffer.appendChild(a.firstChild);
                 a.removeChild(a.firstChild);
-                console.log("scroll up");
+                //console.log("scroll up");
             }else if(e.deltaY<0){
                 if(nodesBuffer.hasChildNodes()){
-                    console.log("buffer not empty");
+                    //console.log("buffer not empty");
                     a.insertBefore(nodesBuffer.lastChild,a.firstChild);
                 }
             }
