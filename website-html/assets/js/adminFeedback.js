@@ -1,60 +1,3 @@
-// function getFeedbackValues(){
-//     var a = document.getElementById("email").value;
-//     var b = document.getElementById("fullname").value;
-//     var c = document.getElementById("Issue_type").value;
-//     var d = document.getElementById("explanation").value;
-//     var msg = a.concat(b.concat(c.concat(d)));
-//     alert(msg);
-// }
-function getFeedbackValues(){
-    console.log("getFeedbackValues() called!");
-
-    // var feedback_ref = firebase.database().ref("Feedbacks/");
-    var fbRef = "Feedback/UCSD";
-    firebase.database().ref(fbRef).push().set({
-        email: document.getElementById("email").value,
-        fullname: document.getElementById("fullname").value,
-        issue_type: document.getElementById("Issue_type").value,
-        explanation: document.getElementById("explanation").value,
-        time:Date(Date.now()).toString()
-    });
-
-    firebase.database().ref(fbRef).once("child_added").then(function (){
-        document.getElementById("Issue_type").value='';
-        document.getElementById("explanation").value='';
-        console.log("Output clear")
-
-    });
-
-    alert("Successfully submitted! Thank you for your feedback!");
-}
-
-function getFeedbackOutside(){
-  console.log("getFeedbackValues() called!");
-
-
-  var fbRef = "Feedback/Outside";
-  firebase.database().ref(fbRef).push().set({
-      email: document.getElementById("email").value,
-      fullname: document.getElementById("fullname").value,
-      issue_type: document.getElementById("Issue_type").value,
-      explanation: document.getElementById("explanation").value,
-      time:Date(Date.now()).toString()
-  });
-
-
-
-  firebase.database().ref(fbRef).once("child_added").then(function (){
-          document.getElementById("email").value='';
-          document.getElementById("fullname").value='';
-          document.getElementById("Issue_type").value='';
-          document.getElementById("explanation").value='';
-        console.log("Output clear")
-  });
-
-  alert("Successfully submitted! Thank you for your feedback!");
-}
-
 function retrieveFeedbackUCSD() {
     console.log("retrieveFeedbackUCSD() called :)");
 
@@ -65,10 +8,10 @@ function retrieveFeedbackUCSD() {
 
     firebase.database().ref(refUCSD).on("value", function(snapshot) {
         if(feedbackUCSDElement != null){
-        while(feedbackUCSDElement.hasChildNodes()){
-            feedbackUCSDElement.removeChild(feedbackUCSDElement.lastChild);
+            while(feedbackUCSDElement.hasChildNodes()){
+                feedbackUCSDElement.removeChild(feedbackUCSDElement.lastChild);
+            }
         }
-    }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
             let newFeedbackBoxElement = document.createElement('div')
@@ -130,7 +73,7 @@ function retrieveFeedbackUCSD() {
 
             feedbackUCSDArr.push(feedback);
             if(feedbackUCSDElement != null) {
-            feedbackUCSDElement.append(newFeedbackBoxElement)
+                feedbackUCSDElement.append(newFeedbackBoxElement)
             }
 
 
@@ -148,10 +91,10 @@ function retrieveResolvedUCSD() {
 
     ref.on("value", function(snapshot) {
         if(resolvedUCSDElement != null){
-        while(resolvedUCSDElement.hasChildNodes()){
-            resolvedUCSDElement.removeChild(resolvedUCSDElement.lastChild);
+            while(resolvedUCSDElement.hasChildNodes()){
+                resolvedUCSDElement.removeChild(resolvedUCSDElement.lastChild);
+            }
         }
-    }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
 
@@ -218,7 +161,7 @@ function retrieveResolvedUCSD() {
             newFeedbackBoxElement.appendChild(removed)
 
             if(resolvedUCSDElement != null){
-            resolvedUCSDElement.append(newFeedbackBoxElement)
+                resolvedUCSDElement.append(newFeedbackBoxElement)
             }
 
             resolvedUCSDArr.push(feedback);
@@ -236,10 +179,10 @@ function retrieveFeedbackOutside() {
 
     ref.on("value", function(snapshot) {
         if(feedbackOutsideElement != null){
-        while(feedbackOutsideElement.hasChildNodes()){
-            feedbackOutsideElement.removeChild(feedbackOutsideElement.lastChild);
+            while(feedbackOutsideElement.hasChildNodes()){
+                feedbackOutsideElement.removeChild(feedbackOutsideElement.lastChild);
+            }
         }
-    }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
 
@@ -299,7 +242,7 @@ function retrieveFeedbackOutside() {
             newFeedbackBoxElement.appendChild(resolved)
 
             if(feedbackOutsideElement != null) {
-            feedbackOutsideElement.append(newFeedbackBoxElement)
+                feedbackOutsideElement.append(newFeedbackBoxElement)
             }
 
             feedbackOutsideArr.push(feedback);
@@ -318,10 +261,10 @@ function retrieveResolvedOutside() {
 
     ref.on("value", function(snapshot) {
         if(resolvedOutsideElement != null){
-        while(resolvedOutsideElement.hasChildNodes()){
-            resolvedOutsideElement.removeChild(resolvedOutsideElement.lastChild);
+            while(resolvedOutsideElement.hasChildNodes()){
+                resolvedOutsideElement.removeChild(resolvedOutsideElement.lastChild);
+            }
         }
-    }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
 
@@ -388,7 +331,7 @@ function retrieveResolvedOutside() {
             newFeedbackBoxElement.appendChild(removed)
 
             if(resolvedOutsideElement != null){
-            resolvedOutsideElement.append(newFeedbackBoxElement)
+                resolvedOutsideElement.append(newFeedbackBoxElement)
             }
 
             resolvedOutsideArr.push(feedback);
@@ -440,4 +383,3 @@ retrieveFeedbackUCSD()
 retrieveFeedbackOutside()
 retrieveResolvedOutside()
 retrieveResolvedUCSD()
-

@@ -1,3 +1,4 @@
+
 function retrieveDiscordRequests() {
     console.log("retrieveDiscordRequests() called :)");
 
@@ -11,59 +12,57 @@ function retrieveDiscordRequests() {
             var discordRequest = childSnapshot.val();
             let newDiscordRequestBoxElement = document.createElement('div')
             newDiscordRequestBoxElement.setAttribute("id", childSnapshot.key);
-            newDiscordRequestBoxElement.style.border = "solid #FFFFFF"
+            //newFeedbackBoxElement.style.border = "solid gainsboro"
             newDiscordRequestBoxElement.style.marginBottom = "10px"
 
             // Time
-            let timeLabel = document.createElement('label')
-            timeLabel.innerText = "time created"
-
-            let time = document.createElement('span')
+            let time = document.createElement('textarea')
             time.innerText = discordRequest.time || 'N/A'
+            time.rows =1
+            time.readOnly=true
+            time.style.textAlign = "center"
+
 
             // Email
-            let emailLabel = document.createElement('label')
-            emailLabel.innerText = "email"
-
-            let email = document.createElement('span')
+            let email = document.createElement('textarea')
             email.innerText = discordRequest.email || 'N/A'
+            email.rows =1
+            email.readOnly=true
+            email.style.textAlign = "center"
 
             // Classname
-            let classNameLabel = document.createElement('label')
-            classNameLabel.innerText = "className"
-
-            let className = document.createElement('span')
+            let className = document.createElement('textarea')
             className.innerText = discordRequest.className || 'N/A'
+            className.rows =1
+            className.readOnly=true
+            className.style.textAlign = "center"
 
             // Invite URL
-            let inviteURLLabel = document.createElement('label')
-            inviteURLLabel.innerText = "Invite URL"
-
-            let inviteURL = document.createElement('span')
+            let inviteURL = document.createElement('textarea')
             inviteURL.innerText = discordRequest.inviteURL || 'N/A'
-
+            inviteURL.rows =1
+            inviteURL.readOnly=true
+            inviteURL.style.textAlign = "center"
             // Prof Name
-            let profNameLabel = document.createElement('label')
-            profNameLabel.innerText = "Proffessor Name"
-
-            let profName = document.createElement('span')
+            let profName = document.createElement('textarea')
             profName.innerText = discordRequest.profName || 'N/A'
+            profName.rows =1
+            profName.readOnly=true
+            profName.style.textAlign = "center"
 
             // Quarter
-            let quarterLabel = document.createElement('label')
-            quarterLabel.innerText = "Quarter"
-
-            let quarter = document.createElement('span')
+            let quarter = document.createElement('textarea')
             quarter.innerText = discordRequest.quarter || 'N/A'
-
+            quarter.rows =1
+            quarter.readOnly=true
+            quarter.style.textAlign = "center"
             // Year
-            let yearLabel = document.createElement('label')
-            yearLabel.innerText = "Year"
-
-            let year = document.createElement('span')
+            let year = document.createElement('textarea')
             year.innerText = discordRequest.year || 'N/A'
+            year.rows =1
+            year.readOnly=true
+            year.style.textAlign = "center"
 
-            let new_Line = document.createElement('br')
             let acceptBtn = document.createElement('button')
             acceptBtn.innerText = "Accept"
             acceptBtn.addEventListener("click",function(){
@@ -71,23 +70,22 @@ function retrieveDiscordRequests() {
                 discordRequestsRef.child(newDiscordRequestBoxElement.id).remove();
             });
 
-            newDiscordRequestBoxElement.appendChild(timeLabel)
-            newDiscordRequestBoxElement.appendChild(time)
-            newDiscordRequestBoxElement.appendChild(emailLabel)
-            newDiscordRequestBoxElement.appendChild(email)
-            newDiscordRequestBoxElement.appendChild(classNameLabel)
-            newDiscordRequestBoxElement.appendChild(className)
-            newDiscordRequestBoxElement.appendChild(inviteURLLabel)
-            newDiscordRequestBoxElement.appendChild(inviteURL)
-            newDiscordRequestBoxElement.appendChild(profNameLabel)
-            newDiscordRequestBoxElement.appendChild(profName)
-            newDiscordRequestBoxElement.appendChild(quarterLabel)
-            newDiscordRequestBoxElement.appendChild(quarter)
-            newDiscordRequestBoxElement.appendChild(yearLabel)
-            newDiscordRequestBoxElement.appendChild(year)
-            newDiscordRequestBoxElement.appendChild(new_Line)
-            newDiscordRequestBoxElement.appendChild(acceptBtn)
+            let rejectBtn = document.createElement('button')
+            rejectBtn.innerText = "Reject"
+            rejectBtn.addEventListener("click",function(){
+                discordRequestsRef.child(newDiscordRequestBoxElement.id).remove();
+            });
 
+
+            newDiscordRequestBoxElement.appendChild(time)
+            newDiscordRequestBoxElement.appendChild(email)
+            newDiscordRequestBoxElement.appendChild(className)
+            newDiscordRequestBoxElement.appendChild(inviteURL)
+            newDiscordRequestBoxElement.appendChild(profName)
+            newDiscordRequestBoxElement.appendChild(quarter)
+            newDiscordRequestBoxElement.appendChild(year)
+            newDiscordRequestBoxElement.appendChild(acceptBtn)
+            newDiscordRequestBoxElement.appendChild(rejectBtn)
             discordRequestArr.push(discordRequest);
             discordRequestsElement.append(newDiscordRequestBoxElement)
         });
@@ -102,23 +100,18 @@ function addDiscordInfotoDBFromAdminPage(className, inviteURL, profName, quarter
     var classRef = "classes/".concat(className);
     console.log("Finding class ->", className);
     var class_ref = firebase.database().ref(classRef);
-    var counter = 1;
     class_ref.on("value", function(snapshot) {
-     snapshot.forEach(function(snapshot) {
-      counter++;
-     });
+        var discordRef = "classes/" + className + "/discordInfo" + snapshot.numChildren();
+        console.log(discordRef);
+        var discord_ref = firebase.database().ref(discordRef);
+        discord_ref.set({
+            inviteURL: inviteURL,
+            profName: profName,
+            quarter : quarter,
+            year: year,
+        });
     });
 
-    //now add a discordinfo inside class DB
-    var discordRef = "classes/" + className + "/discordInfo" + counter;
-    console.log(discordRef);
-    var discord_ref = firebase.database().ref(discordRef);
-    discord_ref.set({
-      inviteURL: inviteURL,
-      profName: profName,
-      quarter : quarter,
-      year: year,
-    });
   }
 
 discordRequestArr = []
