@@ -31,35 +31,50 @@ top = "Assignments"
 async def on_ready():
 	print(f'{bot.user.name} has connected to Discord!')
 
-
+#!addAssign "assignment name" mm/dd/yyyy
 @bot.command(name='addAssign', help='Adds a new assignment to the list')
 async def newEvent(ctx, name=None, *date):
 	content = ctx.message.content
+	#check for proper name format
 	if name is not None and (content.count('\"') == 2):
-		print('past')
 		title = content.split('"')[1].strip()
 		date1 = content[content.rindex('"')+1:].strip()
+		#strip out mm/dd/yyyy format from following 
 		dateFound = re.search('(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}' , date1)
-		print(title)
+		#check date format, if date at all, if empty quotes
 		if dateFound and title:
-			if db.child(ctx.channel.id).child(top).child(name).shallow().get().val():
+			#check if assignment name already exists in db
+			if db.child(ctx.channel.id).child(top).child(title).shallow().get().val():
 				await ctx.send('Assignment "' + name + ' already exists!')
 			else:
-				db.child(ctx.channel.id).child(top).child(name).set(''.join(str(dateFound.group())))
+				db.child(ctx.channel.id).child(top).child(title).set(''.join(str(dateFound.group())))
 				await ctx.send('Added assignment "' + name + '"')
 		else:
 			await ctx.send('Please use the format: !addAssign "Assignment Name" mm/dd/yyyy')
 	else:
 		await ctx.send('Please use the format: !addAssign "Assignment Name" mm/dd/yyyy')
 
+#!delAssign "assignment name"
 @bot.command(name='delAssign', help='Deletes an assignment from the list')
-async def delEvent(ctx, name):
-	if db.child(ctx.channel.id).child(top).child(name).shallow().get().val():
-		db.child(ctx.channel.id).child(top).child(name).remove()
-		await ctx.send('Removed assignment "' + name + '"')
+async def delEvent(ctx, name=None):
+	content = ctx.message.content
+	#check empty argument and in quotes
+	if name is not None and (content.count('\"') == 2):
+		titleDel = content.split('"')[1].strip()
+		#check empty quotes
+		if titleDel:
+			#check exists then removes from db
+			if db.child(ctx.channel.id).child(top).child(titleDel).shallow().get().val():
+				db.child(ctx.channel.id).child(top).child(titleDel).remove()
+				await ctx.send('Removed assignment "' + titleDel + '"')
+			else:
+				await ctx.send('Assignment "' + name + '" does not exist')
+		else:
+			await ctx.send('Please use the format: !delAssign "Assignment Name"')
 	else:
-		await ctx.send('Assignment "' + name + '" does not exist')
+			await ctx.send('Please use the format: !delAssign "Assignment Name"')
 
+#!listAssign
 @bot.command(name='listAssign', help='Lists all assignments')
 async def listEvents(ctx):
 	if db.child(ctx.channel.id).child(top).shallow().get():
