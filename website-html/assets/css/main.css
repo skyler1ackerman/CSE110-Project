@@ -4713,4 +4713,7 @@ div textarea{
 	transform: translate(-6px, -6px);
 }
 
+.profileCard:hover {
+	background-color: #000033;
+}
 /* document.getElementById("myImg").style.filter = "grayscale(100%)"; */
