@@ -1,116 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Add A Community</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <meta charset="UTF-8">
 </head>
+
 <body>
-<div id="page-wrapper">
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="index.html">Triton Groups</a></h1>
-        <nav id="nav">
-            <ul>
-                <li class="special">
-                    <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                    <div id="menu">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="generic.html">Generic</a></li>
-                            <li><a href="elements.html">Elements</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                            <li><a href="#">Log In</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <article id="main">
-        <header>
-            <h2>Add a Community</h2>
-            <p>Have a Club or UCSD Discord server you want to share?</p>
-        </header>
-        <section class="wrapper style5">
-            <div class="inner">
-
-                <section>
-                    <h4>Community Information</h4>
-                    <form method="post" action="#" class="was-validated">
-                        <div class="row gtr-uniform">
-                            <div class="col-12">
-                                <input type="text" placeholder="Club Name/Discord Server Name" required/>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" name="url" id="discord link" placeholder="Discord Link"/>
-                            </div>
-
-                            <div class="col-6 col-12-xsmall">
-                                <select name="category" id="type" required>
-                                    <option value="">- Type -</option>
-                                    <option value="1">Undergraduate</option>
-                                    <option value="1">Graduate</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12">
-                                <select name="category" id="com category" required>
-                                    <option value="">- Category -</option>
-                                    <option value="1">Academic</option>
-                                    <option value="1">Career</option>
-                                    <option value="1">Cooperative</option>
-                                    <option value="1">Cultural</option>
-                                    <option value="1">Dance</option>
-                                    <option value="1">Educational</option>
-                                    <option value="1">Fraternities</option>
-                                    <option value="1">Media</option>
-                                    <option value="1">Medical</option>
-                                    <option value="1">Music and Performance</option>
-                                    <option value="1">Political</option>
-                                    <option value="1">Service</option>
-                                    <option value="1">Social</option>
-                                    <option value="1">Sororities</option>
-                                    <option value="1">Spiritual</option>
-                                    <option value="1">Sports</option>           
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <input type="email" name="email" id="email" value="" placeholder="Contact Email" required/>
-                            </div>
-                            <div class="col-12">
-                                <textarea name="text" id="description" placeholder="Enter a short description..." rows="6" required></textarea>
-                            </div>
-                            <blockquote>
-                                <h4>Important Reminder</h4>
-                                Ensure that the Discord invite link you share is a permanent invite. <br>To create a permanent invite, select "never" under "expire after" and "no limit" under "max uses."
-                                <p>Don't know to retrieve the invite link? <a href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">Look no further!</a> </p>
-                            </blockquote>
-
-                            <div class="col-12">
-                                <ul class="actions">
-                                    <li><input type="submit" value="Submit" class="primary"/></li>
-                                    <li><input type="reset" value="Cancel"/></li>
-                                </ul>
-                            </div>
-                            
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="index.html">Triton Groups</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li class="special">
+                        <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                        <div id="menu">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="generic.html">Generic</a></li>
+                                <li><a href="elements.html">Elements</a></li>
+                                <li><a href="#">Sign Up</a></li>
+                                <li><a href="#">Log In</a></li>
+                            </ul>
                         </div>
-                    </form>
-                </section>
-            </div>
-        </section>
-    </article>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <article id="main">
+            <header>
+                <h2>Add a Community</h2>
+                <p>Have a Club or UCSD Discord server you want to share?</p>
+            </header>
+            <section class="wrapper style5">
+                <div class="inner">
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-</div>
+                    <section>
+                        <h4>Community Information</h4>
+                        <form method="post" action="#" class="was-validated">
+                            <div class="row gtr-uniform">
+                                <div class="col-12">
+                                    <input type="text" id="serverName" placeholder="Club Name/Discord Server Name" required />
+                                </div>
+                                <div class="col-6 col-12-xsmall">
+                                    <input type="text" name="url" id="discordLink" placeholder="Discord Link" />
+                                </div>
+
+                                <div class="col-6 col-12-xsmall">
+                                    <select name="category" id="type" required>
+                                        <option value="">- Type -</option>
+                                        <option value="1">Undergraduate</option>
+                                        <option value="1">Graduate</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <select name="category" id="comCategory" required>
+                                        <option value="">- Category -</option>
+                                        <option value="1">Academic</option>
+                                        <option value="1">Career</option>
+                                        <option value="1">Cooperative</option>
+                                        <option value="1">Cultural</option>
+                                        <option value="1">Dance</option>
+                                        <option value="1">Educational</option>
+                                        <option value="1">Fraternities</option>
+                                        <option value="1">Media</option>
+                                        <option value="1">Medical</option>
+                                        <option value="1">Music and Performance</option>
+                                        <option value="1">Political</option>
+                                        <option value="1">Service</option>
+                                        <option value="1">Social</option>
+                                        <option value="1">Sororities</option>
+                                        <option value="1">Spiritual</option>
+                                        <option value="1">Sports</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <input type="email" name="email" id="email" value="" placeholder="Contact Email"
+                                        required />
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="text" id="description" placeholder="Enter a short description..."
+                                        rows="6" required></textarea>
+                                </div>
+                                <blockquote>
+                                    <h4>Important Reminder</h4>
+                                    Ensure that the Discord invite link you share is a permanent invite. <br>To create a
+                                    permanent invite, select "never" under "expire after" and "no limit" under "max
+                                    uses."
+                                    <p>Don't know to retrieve the invite link? <a
+                                            href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">Look
+                                            no further!</a> </p>
+                                </blockquote>
+
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><input type="submit" value="Submit" class="primary" id="submitBtn" onclick="checkIfExists"/></li>
+                                        <li><input type="reset" value="Cancel" /></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </section>
+        </article>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+    </div>
 </body>
+
 </html>
