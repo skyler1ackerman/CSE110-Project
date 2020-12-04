@@ -13,7 +13,27 @@
 		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
 		<script src="/__/firebase/init.js"></script>
 		<script src="assets/js/auth.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
+	<label class="switch" style="position:fixed; left:50px; bottom:25px; z-index:20;"><input type="checkbox" id="togBtn" onclick="toggleChatPlayground()"><div class="slider round"></div></label>
+	<div style="position:fixed; left:65px; bottom:50px; width:80px; height:80px;  padding:0px; z-index: 10;"> 
+		<img id="playgroundToggleImg" src="images/playgroundOff.png" width="50px" height="50px" />
+	</div>
+	<canvas id="canvasPlayground" style="position:fixed; width:100%; height:100%;z-index: 3; display: none;">Canvas is not supported in your browser.</canvas>
+	<div id="congratMsg" style="position:fixed; z-index: 12; width:100%; height:100%; display:block; text-align: center; top: 30%; visibility: hidden; opacity: 0; transition: visibility 1s linear, opacity 1.0s linear; font-size:30px;">Congratulations! <br><br>You have a new connection</div>
+	<canvas id="canvas" style="position:fixed; z-index: 8; visibility: hidden; opacity: 0; transition: visibility 1.5s linear, opacity 1.5s linear; "></canvas>
+	<div id="loadingIcon" class="loading loading--full-height" style="position:fixed; right:142px; bottom:622px; z-index: 11; display: none;"></div>
+	<div id="chatGuide"style="position:fixed; right:0px; bottom:620px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:	10px; background-color:#D3D3D3; color:black; border-radius:8px 8px 0px 0px; display:none; text-align: center; padding-top:10px;">Welcome To Triton Chat!</div>
+	<div id="talkjs-container"style="position:fixed; right:0px; bottom:140px; width:300px; height:480px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:0px 0px 0px 0px; display:none;"></div>
+	<div class="buttonMatch" onclick="queueMatch()" id="matchBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+		Connect with a Triton
+	</div>	
+	<div class="buttonCancel" onclick="dequeueMatch()" id="cancelBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; color:white; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+		Cancel
+	</div>
+	<div style="position:fixed; right:10px; bottom:5px; width:80px; height:80px;  padding:0px; z-index: 10"> 
+		<img class="buttonChatbox" src="images/chaticon.png" width="50px" height="50px" onclick="toggleChatContainer();" />
+	</div>
 	<body class="landing is-preload">
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
@@ -29,7 +49,7 @@
 									&nbsp;
 									|
 									&nbsp;
-									<a href="#one" class="no-style more scrolly one-text">Contact Us</a>
+									<a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
 									&nbsp;
 									|
 									&nbsp;
@@ -50,7 +70,7 @@
 								<!-- </li> -->
                         <!-- </ul> -->
                     </nav>
-                </header>
+				</header>
 
 				<!-- Banner -->
 				<section id="banner">
@@ -58,12 +78,12 @@
 						<h2>Triton Groups</h2>
 						<br><br><br><br>
 						<p id="welcomeMessage"></p>
-						<input type="radio" name="editList" id="searchOptionClasses" value="" checked onclick="searchbarClassSelected()"/>
+						<!-- <input type="radio" name="editList" id="searchOptionClasses" value="" checked onclick="searchbarClassSelected()"/>
 						<label for="searchOptionClasses">Classes</label>				
 						<input type="radio" name="editList" id="searchOptionClubs" value="" onclick="searchbarClubSelected()"/>
-						<label for="searchOptionClubs">Clubs</label>
+						<label for="searchOptionClubs">Clubs</label> -->
 						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
-						<div id="classSearchBar" style="display: block;">
+						<!-- <div id="classSearchBar" style="display: block;">
 							<ul class="actions special">
 								<form autocomplete="off" action="/action_page.php">
 									<div class="autocomplete" style="width:400px;">
@@ -82,13 +102,15 @@
 								</form>
 							</ul>
 							<input type="submit" onclick="submit_community()" value="SEARCH">
-						</div>
+						</div> -->
 					</div>
 				</section>
 
+			
+
 
 				<!-- one -->
-				<section id="one" class="wrapper style3 special">
+				<!-- <section id="one" class="wrapper style3 special">
 					<div class="inner">
 						<header class="major">
 							<h2>Contact Us</h2>
@@ -107,10 +129,10 @@
 							<input id="Submit" onclick="getFeedbackValues()" type="submit" style="border: 1px solid #cccccc"></input>
 						</form>
 					</div>
-				</section>
+				</section> -->
 
 				<footer id="footer">
-					<ul class="icons">
+					<!-- <ul class="icons">
 						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
@@ -119,33 +141,54 @@
 						<li>9500 Gilman Dr, La Jolla, CA 92093 |</li> </br>
 						<li>(858) 534-2230 |</li> </br>
 						<li>TRITON GROUPS |</li> </br>
-					</ul>
+					</ul> -->
 				</footer>
 
 			</div>
+			
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+      		<script src="assets/js/login.js"></script>
+			<!-- <script src="assets/js/searchClass.js"></script>
+			<script src="assets/js/searchCommunity.js"></script> -->
+			<script src="assets/js/feedback.js"></script>
+			<script src="assets/js/livechat.js"></script>
+			<script src="assets/js/firework.js"></script>
+			<script src="assets/js/fireworkPlayground.js"></script>
+
+
+			<!-- Jquery starts here: Javascript event handler for nav bar -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			<script>
-				window.onload = function() {
-					//get all class info from FB databse
-					// getClassSnapshot();
-					getCommunitySnapshot();
-					getClassSnapshot();
+			//    var top1 = $('#one').offset().top;
 
-					var profileImgUrl = localStorage.getItem("user-profileimgurl");
-                	//profileImgUrl = profileImgUrl.replace("s96-c", "s256-c");
-					document.getElementById("profilePicUserProfile").src=profileImgUrl;
-					document.getElementById("profilePicUserProfile2").src=profileImgUrl;
-					document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
-					document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
-					document.getElementById("email").placeholder=localStorage.getItem("user-email");
-					document.getElementById("email").value=localStorage.getItem("user-email");
-					// localStorage.removeItem("user-email");
-					document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-					// localStorage.removeItem("user-displayname");
-					//remove local storage items in signout function for security.
-					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
-				}
-
+			//    $(document).scroll(function() {
+			// 	 var scrollPos = $(document).scrollTop()+100; //100: buffer
+			// 	 if (scrollPos < top1) {
+			// 	   $('.zero-text').css('font-weight', 'bold');
+			// 	   $('.one-text').css('font-weight', 'normal');
+			// 	 } 
+			// 	 else {
+			// 	   $('.zero-text').css('font-weight', 'normal');
+			// 	   $('.one-text').css('font-weight', 'bold');
+			// 	 } 
+			//    });
+		   </script>
+		   <script>
+			   	// get profile pic, name, email for popout
+				var profileImgUrl = localStorage.getItem("user-profileimgurl");
+				document.getElementById("profilePicUserProfile").src=profileImgUrl;
+				document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+				document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
+				document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
+				// get name for welcome message
+				document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
 				// open profile popout
 				function openForm() {
 					if (document.getElementById("myForm").style.display == "grid") {
@@ -159,64 +202,31 @@
 				function closeForm() {
   					document.getElementById("myForm").style.display = "none";
 				}
-				
-			</script>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-            <script src="assets/js/login.js"></script>
-			<script src="assets/js/searchClass.js"></script>
-			<script src="assets/js/searchCommunity.js"></script>
-			<script src="assets/js/feedback.js"></script>
-			<!-- <script src="assets/js/livechat.js"></script> -->
-
-
-			<!-- Jquery starts here: Javascript event handler for nav bar -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-			<script>
-			   var top1 = $('#one').offset().top;
-
-			   $(document).scroll(function() {
-				 var scrollPos = $(document).scrollTop()+100; //100: buffer
-				 if (scrollPos < top1) {
-				   $('.zero-text').css('font-weight', 'bold');
-				   $('.one-text').css('font-weight', 'normal');
-				 } 
-				 else {
-				   $('.zero-text').css('font-weight', 'normal');
-				   $('.one-text').css('font-weight', 'bold');
-				 } 
-			   });
-
-			   // this will close the profile popout element if anything else besides that and profile pic is clicked
-			   $(document).click(function(e){
+				// this will close the profile popout element if anything else besides that and profile pic is clicked
+				$(document).click(function(e){
 					if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0)) {
 						return false;
 					}
 					closeForm();
 			   });
-		   </script>
-	<script>
-		firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
-			snapshot.forEach(function (childSnapshot){
-				if(localStorage.getItem("user-email")==childSnapshot.val().email){
-					let header = document.querySelector('#header');
-					let button= document.createElement('button');
-					button.innerText = "Admin DashBoard";
-					button.addEventListener("click",function (){
-						window.location.href="afterAdminLogin.html";
-					})
-					header.append(button);
-				}
-			});
-		});
-	</script>
+
+			</script>
+			<script>
+				firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
+					snapshot.forEach(function (childSnapshot){
+						if(localStorage.getItem("user-email")==childSnapshot.val().email){
+							let header = document.querySelector('#header');
+							let button= document.createElement('button');
+							button.innerText = "Admin DashBoard";
+							button.addEventListener("click",function (){
+								window.location.href="afterAdminLogin.html";
+							})
+							header.append(button);
+						}
+					});
+				});
+			</script>
 
 
 	</body>

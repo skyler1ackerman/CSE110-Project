@@ -24,28 +24,37 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<nav id="nav">
-			<ul class="menuToggle">
-				<a href="index.html" class="no-style more scrolly zero-text">Home</a>
-				&nbsp;
-				|
-				&nbsp;
-				<a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
-				&nbsp;
-				|
-				&nbsp;
-				<a href="browse-community.html" class="no-style more scrolly two-text" style="font-weight: bold;">Communities</a>
-				&nbsp;
-				|
-				&nbsp;
-				<a href="#three" class="no-style more scrolly three-text">Contact Us</a>
-				&nbsp;
-				|
-				&nbsp;
-				<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
-				&nbsp;
-				&nbsp;
-				&nbsp;
-			</ul>
+			<!-- <ul> -->
+				<!-- <li class="special"> Navigation bar starts here -->
+					<ul class="menuToggle" >
+						<a href="afterlogin.html" class="no-style more scrolly zero-text">Home</a>
+						&nbsp;
+						|
+						&nbsp;
+						<a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
+						&nbsp;
+						|
+						&nbsp;
+						<a href="browse-community.html" class="no-style more scrolly one-text"  style="font-weight: bold;">Communities</a>
+						&nbsp;
+						|
+						&nbsp;
+						<a href="contactUs.html" class="no-style more scrolly one-text">Contact Us</a>
+						&nbsp;
+						|
+						&nbsp;
+						<img id="profilePicUserProfile" src="" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
+						   <a href="userprofile.html" class="no-style more scrolly four-text">Profile</a>
+						   &nbsp;
+						|
+						&nbsp;
+						<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+						&nbsp;
+						&nbsp;
+						&nbsp;
+					</ul>
+					<!-- </li> -->
+			<!-- </ul> -->
 		</nav>
 	</header>
 	<script>
@@ -53,11 +62,11 @@
 			//get all class info from FB databse
 			getCommunitySnapshot();
 
-			document.getElementById("email").placeholder=localStorage.getItem("user-email");
-			document.getElementById("email").value=localStorage.getItem("user-email");
-			// localStorage.removeItem("user-email");
-			document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-			document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+			// document.getElementById("email").placeholder=localStorage.getItem("user-email");
+			// document.getElementById("email").value=localStorage.getItem("user-email");
+			// // localStorage.removeItem("user-email");
+			// document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+			// document.getElementById("fullname").value=localStorage.getItem("user-displayname");
 			// localStorage.removeItem("user-displayname");
 			//remove local storage items in signout function for security.
 		}
@@ -122,12 +131,12 @@
 	<!-- Footer -->
 	<footer id="footer">
 		<ul class="icons">
-			<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+			<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 			<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-			<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li> -->
 		</ul>
 		<ul class="copyright"></br>
-			<li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+			<li></li> </br>
 		</ul>
 	</footer>
 
@@ -142,7 +151,7 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/login.js"></script>
-<script src="assets/js/searchClass.js"></script>
+<!-- <script src="assets/js/searchClass.js"></script> -->
 <script src="assets/js/searchCommunity.js"></script>
 
 
