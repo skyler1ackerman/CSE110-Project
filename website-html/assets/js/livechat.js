@@ -169,11 +169,16 @@ function findMatch(){
                             //detach eventlistener
                             firebase.database().ref("livechat/queues").child(key).off();
                             //and match
+                            //first, set UI as if the user is not on the queue
+                            console.log("toggle btn clicked");
+                            document.getElementById('talkjs-container').style.display = 'block';
+                            document.getElementById('matchBtn').style.display = 'block';
+                            document.getElementById('chatGuide').style.display = 'block';
+                            //then do stuff
                             console.log("OTHER USER ENTERED THE QUERY!");
                             console.log("You are matching with: ", oUser.email)
                             instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
-                            document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!";
-                            document.getElementById("matchBtn").style.display = "block"; 
+                            document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!"
                             document.getElementById("cancelBtn").style.display = "none"; 
                             document.getElementById("loadingIcon").style.display = "none"; 
                             document.getElementById('canvas').style.visibility = "visible";
@@ -184,6 +189,9 @@ function findMatch(){
                             document.getElementById('congratMsg').style.zIndex = "12";
                             var fireworkSound = new Audio('assets/audio/fireworkWhistle.mp3');
                             fireworkSound.play();
+                            setTimeout(function() { 
+                                fireworkSound.volume = 0.4;
+                            }, 2500);
                             setTimeout(function() { 
                                 document.getElementById('canvas').style.visibility = "hidden";
                                 document.getElementById('canvas').style.opacity = "0";
@@ -196,7 +204,7 @@ function findMatch(){
                                 document.getElementById('congratMsg').style.zIndex = "0";
                                 fireworkSound.pause();
                                 fireworkSound.currentTime = 0;
-                                fireworkSound.volume = 0.2;
+                                fireworkSound.volume = 0.1;
                             }, 5000);
                             return;
                         }
@@ -226,9 +234,13 @@ function findMatch(){
                                 var oUser = grandChildSnapshot.val();
                                 console.log("YOU ENTERED AN EXISTING QUERY!");
                                 console.log("You are matching with: ", oUser.email)
+                                //first, set UI as if the user is not on the queue
+                                console.log("toggle btn clicked");
+                                document.getElementById('talkjs-container').style.display = 'block';
+                                document.getElementById('matchBtn').style.display = 'block';
+                                document.getElementById('chatGuide').style.display = 'block';
                                 instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
                                 document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!";
-                                document.getElementById("matchBtn").style.display = "block"; 
                                 document.getElementById("cancelBtn").style.display = "none"; 
                                 document.getElementById("loadingIcon").style.display = "none"; 
                                 document.getElementById('canvas').style.visibility = "visible";
@@ -239,6 +251,9 @@ function findMatch(){
                                 document.getElementById('congratMsg').style.zIndex = "12";
                                 var fireworkSound = new Audio('assets/audio/fireworkWhistle.mp3');
                                 fireworkSound.play();
+                                setTimeout(function() { 
+                                    fireworkSound.volume = 0.4;
+                                }, 2500);
                                 setTimeout(function() { 
                                     document.getElementById('canvas').style.visibility = "hidden";
                                     document.getElementById('canvas').style.opacity = "0";
@@ -291,8 +306,13 @@ function findMatch(){
                                 //and match
                                 console.log("OTHER USER ENTERED THE QUERY!");
                                 console.log("You are matching with: ", oUser.email)
+                                //first, set UI as if the user is not on the queue
+                                console.log("toggle btn clicked");
+                                document.getElementById('talkjs-container').style.display = 'block';
+                                document.getElementById('matchBtn').style.display = 'block';
+                                document.getElementById('chatGuide').style.display = 'block';
+                                //then do stuff
                                 instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
-                                document.getElementById("matchBtn").style.display = "block"; 
                                 document.getElementById("cancelBtn").style.display = "none"; 
                                 document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!";
                                 document.getElementById("loadingIcon").style.display = "none"; 
@@ -305,6 +325,9 @@ function findMatch(){
                                 var fireworkSound = new Audio('assets/audio/fireworkWhistle.mp3');
                                 fireworkSound.play();
                                 setTimeout(function() { 
+                                    fireworkSound.volume = 0.4;
+                                }, 2500);
+                                setTimeout(function() { 
                                     document.getElementById('canvas').style.visibility = "hidden";
                                     document.getElementById('canvas').style.opacity = "0";
                                     document.getElementById('congratMsg').style.visibility = "hidden";
@@ -316,7 +339,7 @@ function findMatch(){
                                     document.getElementById('congratMsg').style.zIndex = "0";
                                     fireworkSound.pause();
                                     fireworkSound.currentTime = 0;
-                                    fireworkSound.volume = 0.2;
+                                    fireworkSound.volume = 0.1;
                                 }, 5000);
                                 return;
                             }
