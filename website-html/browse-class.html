@@ -58,6 +58,8 @@
         </nav>
     </header>
     <script>
+        var profileImgUrl = localStorage.getItem("user-profileimgurl");
+		document.getElementById("profilePicUserProfile").src=profileImgUrl;
         window.onload = function() {
             //get all class info from FB databse
             getClassSnapshot();
@@ -76,11 +78,9 @@
     <section id="banner">
 
         <div class="inner">
-            <br><br><br><br>
-
+            <br>
             <h2>Browse Classes</h2>
-
-            <p></p>
+            <br><br>
             <div id="classSearchBar" style="display: block;">
                 <ul class="actions special">
                     <form autocomplete="off" action="/action_page.php">

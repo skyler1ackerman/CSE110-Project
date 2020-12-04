@@ -58,6 +58,8 @@
 		</nav>
 	</header>
 	<script>
+		var profileImgUrl = localStorage.getItem("user-profileimgurl");
+		document.getElementById("profilePicUserProfile").src=profileImgUrl;
 		window.onload = function() {
 			//get all class info from FB databse
 			getCommunitySnapshot();
