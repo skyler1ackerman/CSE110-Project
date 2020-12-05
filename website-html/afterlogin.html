@@ -13,7 +13,27 @@
 		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
 		<script src="/__/firebase/init.js"></script>
 		<script src="assets/js/auth.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
+	<label class="switch" style="position:fixed; left:50px; bottom:25px; z-index:20;"><input type="checkbox" id="togBtn" onclick="toggleChatPlayground()"><div class="slider round"></div></label>
+	<div style="position:fixed; left:65px; bottom:50px; width:80px; height:80px;  padding:0px; z-index: 10;"> 
+		<img id="playgroundToggleImg" src="images/playgroundOff.png" width="50px" height="50px" />
+	</div>
+	<canvas id="canvasPlayground" style="position:fixed; width:100%; height:100%;z-index: 3; display: none;">Canvas is not supported in your browser.</canvas>
+	<div id="congratMsg" style="position:fixed; z-index: 12; width:100%; height:100%; display:block; text-align: center; top: 30%; visibility: hidden; opacity: 0; transition: visibility 1s linear, opacity 1.0s linear; font-size:30px;">Congratulations! <br><br>You have a new connection</div>
+	<canvas id="canvas" style="position:fixed; z-index: 8; visibility: hidden; opacity: 0; transition: visibility 1.5s linear, opacity 1.5s linear; "></canvas>
+	<div id="loadingIcon" class="loading loading--full-height" style="position:fixed; right:142px; bottom:622px; z-index: 11; display: none;"></div>
+	<div id="chatGuide"style="position:fixed; right:0px; bottom:620px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:	10px; background-color:#D3D3D3; color:black; border-radius:8px 8px 0px 0px; display:none; text-align: center; padding-top:10px;">Welcome To Triton Chat!</div>
+	<div id="talkjs-container"style="position:fixed; right:0px; bottom:140px; width:300px; height:480px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:0px 0px 0px 0px; display:none;"></div>
+	<div class="buttonMatch" onclick="queueMatch()" id="matchBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+		Connect with a Triton
+	</div>	
+	<div class="buttonCancel" onclick="dequeueMatch()" id="cancelBtn"style="position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; color:white; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;">
+		Cancel
+	</div>
+	<div style="position:fixed; right:10px; bottom:5px; width:80px; height:80px;  padding:0px; z-index: 10"> 
+		<img id="toggleChatContainerImg" class="buttonChatbox" src="images/chaticon.png" width="50px" height="50px" style="cursor: pointer;" onclick="toggleChatContainer();" />
+	</div>
 	<body class="landing is-preload">
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
@@ -25,42 +45,53 @@
                         <!-- <ul> -->
                             <!-- <li class="special"> Navigation bar starts here -->
 								<ul class="menuToggle" >
-									<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold;">Home</a>
+									<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
 									&nbsp;
 									|
 									&nbsp;
-									<a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
+									<a href="browse-class.html" class="no-style more scrolly one-text" style="cursor: pointer;">Classes</a>
 									&nbsp;
 									|
 									&nbsp;
-									<a href="browse-community.html" class="no-style more scrolly two-text">Communities</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="contactUs.html" class="no-style more scrolly three-text">Contact Us</a>
-									&nbsp;
-									|
-									&nbsp;
-									<img id="profilePicUserProfile" src="" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
-               					    <a href="userprofile.html" class="no-style more scrolly four-text">Profile</a>
-               					    &nbsp;
-									|
-									&nbsp;
-									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
-									&nbsp;
+									<a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
+                                    &nbsp;
+                                    |
+                                    &nbsp;
+									<img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
 									&nbsp;
 									&nbsp;
 								</ul>
 								<!-- </li> -->
                         <!-- </ul> -->
-                    </nav>
-                </header>
+					</nav>
+				</header>
+				<div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+					<div style="padding: 0px 20px 0px 20px;">
+						<img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+						
+						<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
+						<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
+						
+						<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
+						<br>
+						<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+						<div style="width:200px;">
+							<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Contact Us</div>
+							<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+							<div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">About Us</div>
+							<br>
+							<div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard" style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Admin Dashboard</div>
+						</div>
+						
+					</div>	
+				</div>
 
 				<!-- Banner -->
 				<section id="banner">
 					<div class="inner">
+						<img src="images/logo.png" style="width:400px; height:auto;"alt="" /><br>
 						<h2>Triton Groups</h2>
-						<br><br><br><br>
+						<br><br>
 						<p id="welcomeMessage"></p>
 						<!-- <input type="radio" name="editList" id="searchOptionClasses" value="" checked onclick="searchbarClassSelected()"/>
 						<label for="searchOptionClasses">Classes</label>				
@@ -90,31 +121,8 @@
 					</div>
 				</section>
 
-
-				<!-- one -->
-				<!-- <section id="one" class="wrapper style3 special">
-					<div class="inner">
-						<header class="major">
-							<h2>Contact Us</h2>
-						</header>
-						<form id="feedbackForm">
-							<textarea placeholder="Email" rows="1" id="email" readonly></textarea>
-							<textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
-							<select name="Issue_type" rows="1" id="Issue_type">
-								<option value="">Select Message Type</option>
-								<option value="Bug">Bug</option>
-								<option value="Suggestion">Suggestion</option>
-								<option value="FeedBack">Feedback</option>
-								<option value="Other">Other</option>
-							</select>
-							<textarea placeholder="Explanation" rows="8" cols="100" id="explanation"></textarea>
-							<input id="Submit" onclick="getFeedbackValues()" type="submit" style="border: 1px solid #cccccc"></input>
-						</form>
-					</div>
-				</section> -->
-
-				<footer id="footer">
-					<!-- <ul class="icons">
+				<!-- <footer id="footer">
+					<ul class="icons">
 						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
@@ -123,31 +131,11 @@
 						<li>9500 Gilman Dr, La Jolla, CA 92093 |</li> </br>
 						<li>(858) 534-2230 |</li> </br>
 						<li>TRITON GROUPS |</li> </br>
-					</ul> -->
-				</footer>
+					</ul>
+				</footer> -->
 
 			</div>
-			<script>
-				window.onload = function() {
-					//get all class info from FB databse
-					// getClassSnapshot();
-					getCommunitySnapshot();
-					getClassSnapshot();
-
-					var profileImgUrl = localStorage.getItem("user-profileimgurl");
-                	//profileImgUrl = profileImgUrl.replace("s96-c", "s256-c");
-					document.getElementById("profilePicUserProfile").src=profileImgUrl;
-					// document.getElementById("email").placeholder=localStorage.getItem("user-email");
-					// document.getElementById("email").value=localStorage.getItem("user-email");
-					// // localStorage.removeItem("user-email");
-					// document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-					// document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-					// localStorage.removeItem("user-displayname");
-					//remove local storage items in signout function for security.
-					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
-				}
-			</script>
-
+			
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -156,11 +144,15 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-            <script src="assets/js/login.js"></script>
-			<script src="assets/js/searchClass.js"></script>
-			<script src="assets/js/searchCommunity.js"></script>
-			<script src="assets/js/feedback.js"></script>
-			<!-- <script src="assets/js/livechat.js"></script> -->
+      		<script src="assets/js/login.js"></script>
+			<!-- <script src="assets/js/searchClass.js"></script>
+			<script src="assets/js/searchCommunity.js"></script> -->
+			<script src="assets/js/feedbackDiscordUtil.js"></script>
+			<script src="assets/js/livechat.js"></script>
+			<script src="assets/js/firework.js"></script>
+			<script src="assets/js/fireworkPlayground.js"></script>
+			<script src="assets/js/profileCard.js"></script>
+
 
 
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
@@ -180,22 +172,45 @@
 			// 	 } 
 			//    });
 		   </script>
-	<script>
-		firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
-			snapshot.forEach(function (childSnapshot){
-				if(localStorage.getItem("user-email")==childSnapshot.val().email){
-					let header = document.querySelector('#header');
-					let button= document.createElement('button');
-					button.innerText = "Admin DashBoard";
-					button.addEventListener("click",function (){
-						window.location.href="afterAdminLogin.html";
-					})
-					header.append(button);
+		   <script>
+			   	// get profile pic, name, email for popout
+				var profileImgUrl = localStorage.getItem("user-profileimgurl");
+				document.getElementById("profilePicUserProfile").src=profileImgUrl;
+				document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+				document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
+				document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
+				// get name for welcome message
+				document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+				// open profile popout
+				function openForm() {
+					if (document.getElementById("myForm").style.display == "grid") {
+						document.getElementById("myForm").style.display = "none";
+					} else {
+					  	document.getElementById("myForm").style.display = "grid"; 
+					}
 				}
-			});
-		});
-	</script>
 
+				// close profile popout
+				function closeForm() {
+  					document.getElementById("myForm").style.display = "none";
+				}
 
+	
+				// jquery !!
+				// this will close the profile popout element if anything else besides that and profile pic is clicked
+				$(document).click(function(e){
+					if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+						return true;
+					}
+					closeForm();
+				});
+				// $(document).click(function(e){
+				// 	if($(e.target).closest("#talkjs-container").length > 0 || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+				// 		return false;
+				// 	}
+				// 	closeForm();
+			   	// });
+
+			</script>
 	</body>
 </html>
