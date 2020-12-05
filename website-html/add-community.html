@@ -51,15 +51,16 @@
                         <form method="post" action="#" class="was-validated">
                             <div class="row gtr-uniform">
                                 <div class="col-12">
-                                    <input type="text" id="serverName" placeholder="Club Name/Discord Server Name" required />
+                                    <input type="text" id="serverName" placeholder="Club Name/Discord Server Name*" required />
                                 </div>
+
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" id="discordLink" placeholder="Discord Link" />
                                 </div>
 
                                 <div class="col-6 col-12-xsmall">
                                     <select name="category" id="type" required>
-                                        <option value="">- Type -</option>
+                                        <option value="">- Type* -</option>
                                         <option value="Undergraduate">Undergraduate</option>
                                         <option value="Graduate">Graduate</option>
                                     </select>
@@ -67,7 +68,7 @@
 
                                 <div class="col-12">
                                     <select name="category" id="comCategory" required>
-                                        <option value="">- Category -</option>
+                                        <option value="">- Category* -</option>
                                         <option value="Academic">Academic</option>
                                         <option value="Career">Career</option>
                                         <option value="Cooperative">Cooperative</option>
@@ -86,20 +87,23 @@
                                         <option value="Sports">Sports</option>
                                     </select>
                                 </div>
+
                                 <div class="col-12">
-                                    <input type="email" name="email" id="email" value="" placeholder="Contact Email"
+                                    <input type="email" name="email" id="email" value="" placeholder="Contact Email*"
                                         required />
                                 </div>
+
                                 <div class="col-12">
-                                    <textarea name="text" id="description" placeholder="Enter a short description..."
+                                    <textarea name="text" id="description" placeholder="Enter a short description*"
                                         rows="6" required></textarea>
                                 </div>
+
                                 <blockquote>
                                     <h4>Important Reminder</h4>
                                     Ensure that the Discord invite link you share is a permanent invite. <br>To create a
-                                    permanent invite, select "never" under "expire after" and "no limit" under "max
+                                    permanent invite, select "never" under "expire after" and <br>"no limit" under "max
                                     uses."
-                                    <p>Don't know to retrieve the invite link? <a
+                                    <p>Don't know how to retrieve the invite link? <a
                                             href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">Look
                                             no further!</a> </p>
                                 </blockquote>
@@ -107,7 +111,7 @@
                                 <div class="inner">
                                     <ul class="actions">
                                         <button class="primary" type="button" onclick="submit_community()">Submit</button>
-                                        <li><input type="reset" value="Cancel" /></li>
+                                        <button type="button" onclick="resetAddCommunity()">Clear</button>
                                     </ul>
                                 </div>
 
@@ -117,7 +121,7 @@
                 </div>
             </section>
         </article>
-        
+
         <script src="assets/js/add-Community.js"></script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.scrollex.min.js"></script>
@@ -126,6 +130,7 @@
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
+
     </div>
 </body>
 
