@@ -84,7 +84,9 @@ async function constructHTML(className){
         result[key].forEach(function(elem) {
             resultsString.str += `<tr class="classList">
                                      <td style=\"text-align: center; vertical-align: middle;\">${elem['prof']}</td>
-                                     <td><button  class=\"buttonPrimary\" id=\"${elem['id']}\">REMOVE DISCORD</button>
+                                     <td>
+                                     <a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Discord Link</a>
+                                     <a  class=\"buttonPrimary button primary\" id=\"${elem['id']}\">REMOVE DISCORD</a>
                                      </td> </tr>`;
 
 
@@ -110,16 +112,7 @@ async function constructHTML(className){
     var removeBts = container.querySelectorAll(".buttonPrimary");
     var tabs = document.querySelectorAll(".classList");
     var i;
-    for(i=0;i < tabs.length; i++){
-        tabs[i].addEventListener("click",function (){
-           console.log(this);
-            if(this.childElementCount==0){
-                var element = this.parentNode.parentNode.parentNode.parentNode.parentNode;
-                element.parentNode.removeChild(element);
-            }
 
-        });
-    }
     for(i = 0; i < removeBts.length; i++){
         var Bid=removeBts[i].id;
         console.log();
@@ -131,6 +124,12 @@ async function constructHTML(className){
                 if(element.parentNode.childElementCount==1){
                     element=element.parentNode.parentNode.parentNode.parentNode.parentNode;
                     element.parentNode.removeChild(element);
+                    if(container.childElementCount==0){
+                        let me = document.createElement('p')
+                        me.innerHTML="There is no discord server for this class yet. Add a new one!";
+                        container.append(me);
+
+                    }
                 }else{
                     element.parentNode.removeChild(element);
                 }
