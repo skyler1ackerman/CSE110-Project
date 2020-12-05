@@ -1,3 +1,9 @@
+
+function removeClass(className,Bid){
+    var classRef = "classes/".concat(className);
+    firebase.database().ref(classRef).child(Bid).remove();
+}
+
 function searchbarClassSelected(){
     console.log("searchbarClassSelected() called");
     document.getElementById("clubSearchBar").style.display = "none";
@@ -26,6 +32,7 @@ async function getDiscordInfo(className){
     //This loop iterates over the clubs associated with the category
     await ref.once("value", function(snapshot) {
         snapshot.forEach(function (snapshot) {
+            var info_id = snapshot.key;
             var info_year = snapshot.child("year").val(); //discord info
             var info_quarter = snapshot.child("quarter").val(); //discord info
             var info_profname = snapshot.child("profName").val(); //discord info
@@ -42,7 +49,7 @@ async function getDiscordInfo(className){
             // Add to list associated with Quarter Year
             // results = Dictionary where
             // { Fall 2020 : [ {prof: ... , discord : ... } , {...} ] }
-            var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl};
+            var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl, "id" : info_id};
             results[item].push(profDiscordInfo);
             //console.log(results);
 
@@ -61,7 +68,7 @@ async function constructHTML(className){
     console.log("constructHTML");
     //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = {str : ""};
-    if (jQuery.isEmptyObject(result)){
+    if (localStorage.getItem("reviewClassInput")!=null&&jQuery.isEmptyObject(result)){
         resultsString.str += "<p>There is no discord server for this class yet. Add a new one!</p>";
     }
     //console.log(Object.values(result).length);
@@ -75,11 +82,11 @@ async function constructHTML(className){
             "                            <thead></thead>\n" +
             "                            <tbody>";
         result[key].forEach(function(elem) {
-            resultsString.str += `<tr>
+            resultsString.str += `<tr class="classList">
                                      <td style=\"text-align: center; vertical-align: middle;\">${elem['prof']}</td>
-                                     <td><a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
-                                         <a href=\"#\" target=\"_blank\" class=\"button\">Report</a>
+                                     <td><button  class=\"buttonPrimary\" id=\"${elem['id']}\">REMOVE DISCORD</button>
                                      </td> </tr>`;
+
 
         });
 
@@ -99,8 +106,38 @@ async function constructHTML(className){
     document.getElementById("queryResults").innerHTML = resultsString.str;
 
     var container = document.querySelector(" #results > #queryResults ");
-    var coll = container.querySelectorAll(" .community > .collapsible")
+    var coll = container.querySelectorAll(" .community > .collapsible");
+    var removeBts = container.querySelectorAll(".buttonPrimary");
+    var tabs = document.querySelectorAll(".classList");
     var i;
+    for(i=0;i < tabs.length; i++){
+        tabs[i].addEventListener("click",function (){
+           console.log(this);
+            if(this.childElementCount==0){
+                var element = this.parentNode.parentNode.parentNode.parentNode.parentNode;
+                element.parentNode.removeChild(element);
+            }
+
+        });
+    }
+    for(i = 0; i < removeBts.length; i++){
+        var Bid=removeBts[i].id;
+        console.log();
+        removeBts[i].addEventListener("click",function (className,Bid,e){
+            var classRef = "classes/".concat(className);
+            firebase.database().ref(classRef).child(Bid).remove();
+            var element = document.getElementById(Bid).parentNode.parentNode;
+
+            if(element.parentNode.childElementCount==1){
+                element=element.parentNode.parentNode.parentNode.parentNode.parentNode;
+                element.parentNode.removeChild(element);
+            }else{s
+                element.parentNode.removeChild(element);
+            }
+            alert("Discord successfully removed from the database!")
+        }.bind(removeBts[i],className,Bid));
+
+    }
 
     for (i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
@@ -112,53 +149,21 @@ async function constructHTML(className){
                 content.style.display = "block";
             }
         });
+
+
     }
 };
 
-function addDiscordInfotoDB(){
-    console.log("addDiscordInfotoDB() called!");
-    //First, count number of children in the class
-    var className = localStorage.getItem("classinput")
-    var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
-    var class_ref = firebase.database().ref(classRef);
-    var counter = 1;
-    class_ref.on("value", function(snapshot) {
-        snapshot.forEach(function(snapshot) {
-            counter++;
-        });
-    });
 
-    //now add a discordinfo inside class DB
-    var discordRef = "classes/" + className + "/discordInfo" + counter;
-    console.log(discordRef);
-    var discord_ref = firebase.database().ref(discordRef);
-    discord_ref.set({
-        inviteURL: document.getElementById("invitelink").value,
-        profName: document.getElementById("professor").value,
-        quarter : document.getElementById("quarter").value,
-        year: document.getElementById("year").value,
-    });
-}
 
-function resetDB(){
-    console.log("addDiscordInfotoDB() called!");
-    //First, count number of children in the class
-    var className = localStorage.getItem("classinput")
-    var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
-    var class_ref = firebase.database().ref(classRef);
-    class_ref.set({
-        discordInfo1: "",
-    });
-}
+
 
 function submit_class(){
-    var classInput = document.getElementById("inputClasses").value;
+    var reviewClassInput = document.getElementById("inputClasses").value;
     //check if user input is valid
-    if(classesArr.includes(classInput)){
-        localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
-        window.location.href = "classDB.html";
+    if(classesArr.includes(reviewClassInput)){
+        localStorage.setItem("reviewClassInput", reviewClassInput); //save data to local storage cause we dont wanna use php lmao
+        window.location.href = "admin-discord-review.html";
     }
     else{
         alert("The class you entered is not in our Database.");
