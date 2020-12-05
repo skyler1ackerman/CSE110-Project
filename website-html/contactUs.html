@@ -148,6 +148,7 @@
 			//    });
 		   </script>
 	<script>
+		// kaiwen's jquery thing to make a new button on page for admin, change if wanted
 		firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
 			snapshot.forEach(function (childSnapshot){
 				if(localStorage.getItem("user-email")==childSnapshot.val().email){

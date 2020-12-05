@@ -211,12 +211,13 @@
 
 			</script>
 			<script>
+				// kaiwen's jquery thing to make a new button on page for admin, change if wanted
 				firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
 					snapshot.forEach(function (childSnapshot){
 						if(localStorage.getItem("user-email")==childSnapshot.val().email){
-							let header = document.querySelector('#header');
+							let header = document.querySelector('#myForm');
 							let button= document.createElement('button');
-							button.innerText = "Admin DashBoard";
+							button.innerText = "Admin";
 							button.addEventListener("click",function (){
 								window.location.href="afterAdminLogin.html";
 							})
