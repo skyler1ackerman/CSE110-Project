@@ -36,18 +36,8 @@
 									<a href="browse-community.html" class="no-style more scrolly two-text">Communities</a>
 									&nbsp;
 									|
-									&nbsp;
-									<a href="contactUs.html" class="no-style more scrolly three-text" style="font-weight: bold;">Contact Us</a>
-									&nbsp;
-									|
-									&nbsp;
-									<img id="profilePicUserProfile" src="" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
-               					    <a href="userprofile.html" class="no-style more scrolly four-text">Profile</a>
-               					    &nbsp;
-									|
-									&nbsp;
-									<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
-									&nbsp;
+                                    &nbsp;
+									<img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
 									&nbsp;
 									&nbsp;
 								</ul>
@@ -55,6 +45,24 @@
                         <!-- </ul> -->
                     </nav>
                 </header>
+				<div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+					<div style="padding: 0px 20px 0px 20px;">
+						<img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+						
+						<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
+						<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
+						
+						<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:30px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Profile</button>
+						<br>
+						<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+						<div style="width:200px;">
+							<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
+							<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+							<div class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
+						</div>
+						
+					</div>	
+				</div>
 
 				<!-- Banner -->
 				<section id="banner" class="wrapper style3 special">
@@ -94,24 +102,40 @@
 
 			</div>
 			<script>
-				window.onload = function() {
-					//get all class info from FB databse
-					// getClassSnapshot();
-					getCommunitySnapshot();
-					getClassSnapshot();
 
-					var profileImgUrl = localStorage.getItem("user-profileimgurl");
-                	//profileImgUrl = profileImgUrl.replace("s96-c", "s256-c");
-					document.getElementById("profilePicUserProfile").src=profileImgUrl;
-					document.getElementById("email").placeholder=localStorage.getItem("user-email");
-					document.getElementById("email").value=localStorage.getItem("user-email");
-					// localStorage.removeItem("user-email");
-					document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-					document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-					// localStorage.removeItem("user-displayname");
-					//remove local storage items in signout function for security.
-					document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + ", welcome!";
+				// load for popout
+				var profileImgUrl = localStorage.getItem("user-profileimgurl");
+				document.getElementById("profilePicUserProfile").src=profileImgUrl;
+				document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+				document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
+				document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
+
+				// load for form 
+				
+				document.getElementById("email").placeholder=localStorage.getItem("user-email");
+				document.getElementById("email").value=localStorage.getItem("user-email");
+				// localStorage.removeItem("user-email");
+				document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+				document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+
+				// open profile popout
+				function openForm() {
+					if (document.getElementById("myForm").style.display == "grid") {
+						document.getElementById("myForm").style.display = "none";
+					} else {
+					  	document.getElementById("myForm").style.display = "grid"; 
+					}
 				}
+
+				// close profile popout
+				function closeForm() {
+  					document.getElementById("myForm").style.display = "none";
+				}
+
+				function goToContactUs(){
+       				window.location.href = "contactUs.html";
+        		}
+        
 			</script>
 
 		<!-- Scripts -->
@@ -123,15 +147,22 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
             <script src="assets/js/login.js"></script>
-			<script src="assets/js/searchClass.js"></script>
-			<script src="assets/js/searchCommunity.js"></script>
-			<script src="assets/js/feedback.js"></script>
+			<!--<script src="assets/js/searchClass.js"></script>
+			<script src="assets/js/searchCommunity.js"></script> -->
+			<script src="assets/js/feedbackDiscordUtil.js"></script>
 			<!-- <script src="assets/js/livechat.js"></script> -->
 
 
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 			<script>
+				// this will close the profile popout element if anything else besides that and profile pic is clicked
+				$(document).click(function(e){
+					if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+						return true;
+					}
+           				closeForm();
+   				 });
 			//    var top1 = $('#one').offset().top;
 
 			//    $(document).scroll(function() {

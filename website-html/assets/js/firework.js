@@ -52,11 +52,20 @@ $(function() {
 		return color;
 	}
 
-	(function loop() {
-		requestAnimationFrame(loop);
-		update();
-		draw();
-	})();
+	function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    (async function loop() {
+        if(document.getElementById("canvas").style.visibility=="visible"){
+            requestAnimationFrame(loop);
+            update();
+            draw();
+        } else{
+            await sleep(100);
+            loop();
+        }    
+    })();
 
 	function update() {
 		for (var i = 0; i < listFire.length; i++) {
