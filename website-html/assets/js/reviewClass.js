@@ -134,7 +134,7 @@ async function constructHTML(className){
             }else{s
                 element.parentNode.removeChild(element);
             }
-
+            alert("Discord successfully removed from the database!")
         }.bind(removeBts[i],className,Bid));
 
     }
