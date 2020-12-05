@@ -23,13 +23,13 @@ function dbFunction(arr) {
 
 function populateClasses(arr) {
   for(i = 0; i < arr.length; i++) {
-    writeClasses(arr[i], 'A', 'B', 'C', 'D')
+    writeClasses(arr[i], "", "", "", "")
   }
 }
 function writeClasses(name, profname, qtr, yr, link) {
 
   firebase.database().ref('classes/').child(name).set({
-    discordInfo1: {
+    placeholderServer: {
       profName: profname,
       quarter: qtr,
       year: yr,
