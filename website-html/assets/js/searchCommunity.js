@@ -90,7 +90,7 @@ function getCommunityCategory(category){
             resultsString.str += "</div>";
             resultsString.str += "</li>";
         });
-        console.log(resultsString.str);
+        // console.log(resultsString.str);
         document.getElementById("queryResults").innerHTML = resultsString.str;
         var container = document.querySelector(" #results > #queryResults ");
         var coll = container.querySelectorAll(" .community > .collapsible")
