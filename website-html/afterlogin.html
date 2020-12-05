@@ -77,9 +77,9 @@
 						<br>
 						<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
 						<div style="width:200px;">
-							<div class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
+							<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none;">Contact Us</div>
 							<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
-							<div class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
+							<div href="#" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
 						</div>
 						
 					</div>	
@@ -192,10 +192,15 @@
   					document.getElementById("myForm").style.display = "none";
 				}
 
+				function goToContactUs(){
+       				window.location.href = "contactUs.html";
+    			}
+
+				// jquery !!
 				// this will close the profile popout element if anything else besides that and profile pic is clicked
 				$(document).click(function(e){
 					if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
-						return false;
+						return true;
 					}
 					closeForm();
 				});
