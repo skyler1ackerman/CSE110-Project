@@ -20,31 +20,16 @@
 
 				<!-- Header -->
                 <header id="header" class="alt">
-                    <!-- <h1><a href="index.html">TritonGroups</a></h1> -->
-                    <nav id="nav">
-                        <!-- <ul> -->
-                            <!-- <li class="special"> Navigation bar starts here -->
-								<ul class="menuToggle" >
-									<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="browse-class.html" class="no-style more scrolly one-text" style="cursor: pointer;">Classes</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
-                                    &nbsp;
-                                    |
-                                    &nbsp;
-									<img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
-									&nbsp;
-									&nbsp;
-								</ul>
-								<!-- </li> -->
-                        <!-- </ul> -->
-                    </nav>
-                </header>
+					<nav id="nav">
+						<ul class="menuToggle">
+							<a href="afterlogin.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Back to Homepage</a>
+							&nbsp;
+							|
+							&nbsp;
+							&nbsp;
+						</ul>
+					</nav>
+				</header>
 				<div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
 					<div style="padding: 0px 20px 0px 20px;">
 						<img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
@@ -65,7 +50,7 @@
 				</div>
 
 				<!-- Banner -->
-				<section id="banner" class="wrapper style3 special">
+				<section class="wrapper style3 special" style="height:100%;">
                     <br><br><br><br>
 					<div class="inner">
 						<header class="major">
@@ -82,31 +67,18 @@
 								<option value="Other">Other</option>
 							</select>
 							<textarea placeholder="Explanation" rows="8" cols="100" id="explanation"></textarea>
+							<br><br>
 							<input id="Submit" onclick="getFeedbackValues()" type="submit" style="border: 1px solid #cccccc"></input>
 						</form>
 					</div>
                 </section>
-
-				<footer id="footer">
-					<!-- <ul class="icons">
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright"></br>
-						<li>9500 Gilman Dr, La Jolla, CA 92093 |</li> </br>
-						<li>(858) 534-2230 |</li> </br>
-						<li>TRITON GROUPS |</li> </br>
-					</ul> -->
-				</footer>
-
 			</div>
 			<script>
 
 				// load for popout
-				var profileImgUrl = localStorage.getItem("user-profileimgurl");
-				document.getElementById("profilePicUserProfile").src=profileImgUrl;
-				document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+				// var profileImgUrl = localStorage.getItem("user-profileimgurl");
+				// document.getElementById("profilePicUserProfile").src=profileImgUrl;
+				// document.getElementById("profilePicUserProfile2").src=profileImgUrl;
 				document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
 				document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
 
@@ -142,9 +114,9 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-      <script src="assets/js/login.js"></script>
-			<script src="assets/js/searchClass.js"></script>
-			<script src="assets/js/searchCommunity.js"></script>
+      		<script src="assets/js/login.js"></script>
+			<!-- <script src="assets/js/searchClass.js"></script> -->
+			<!-- <script src="assets/js/searchCommunity.js"></script> -->
 
 			<script src="assets/js/feedbackDiscordUtil.js"></script>
 			<!-- <script src="assets/js/livechat.js"></script> -->
