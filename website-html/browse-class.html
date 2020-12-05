@@ -58,9 +58,9 @@
             <br>
             <button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
             <div style="width:200px;">
-                <div onclick="goToContactUs()" profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
+                <div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
                 <div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
-                <div href="#" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
+                <div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
             </div>
             
         </div>	
@@ -87,9 +87,6 @@
   			document.getElementById("myForm").style.display = "none";
 		}
         
-        function goToContactUs(){
-       		window.location.href = "contactUs.html";
-        }
 
         window.onload = function() {
             //get all class info from FB databse
@@ -110,13 +107,13 @@
 
         <div class="inner">
             <br>
-            <h2>Browse Classes</h2>
+            <h2>Browse Class Servers </h2>
             <br><br>
             <div id="classSearchBar" style="display: block;">
                 <ul class="actions special">
                     <form autocomplete="off" action="/action_page.php">
                         <div class="autocomplete" style="width:400px;">
-                            <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Classes">
+                            <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Enter Class Name e.g. CSE110">
                         </div>
                     </form>
                 </ul>
@@ -125,7 +122,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
+    <!-- <footer id="footer"> -->
         <!-- <ul class="icons">
             <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
@@ -134,7 +131,7 @@
         <ul class="copyright"></br>
             <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
         </ul> -->
-    </footer>
+    <!-- </footer> -->
 
 </div>
 
@@ -148,6 +145,7 @@
 <script src="assets/js/main.js"></script>
 <script src="assets/js/login.js"></script>
 <script src="assets/js/searchClass.js"></script>
+<script src="assets/js/profileCard.js"></script>
 <!-- <script src="assets/js/searchCommunity.js"></script> -->
 
 <!--JQuery script-->

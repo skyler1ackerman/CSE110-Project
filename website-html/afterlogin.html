@@ -78,7 +78,7 @@
 						<div style="width:200px;">
 							<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none;">Contact Us</div>
 							<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
-							<div href="#" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
+							<div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none;">About Us</div>
 						</div>
 						
 					</div>	
@@ -149,6 +149,8 @@
 			<script src="assets/js/livechat.js"></script>
 			<script src="assets/js/firework.js"></script>
 			<script src="assets/js/fireworkPlayground.js"></script>
+			<script src="assets/js/profileCard.js"></script>
+
 
 
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
@@ -191,10 +193,7 @@
   					document.getElementById("myForm").style.display = "none";
 				}
 
-				function goToContactUs(){
-       				window.location.href = "contactUs.html";
-    			}
-
+	
 				// jquery !!
 				// this will close the profile popout element if anything else besides that and profile pic is clicked
 				$(document).click(function(e){
