@@ -26,25 +26,20 @@
 						<nav id="nav">
 							<!-- <ul> -->
 								<!-- <li class="special"> -->
-									<ul class="menuToggle">
-										<a href="afterlogin.html" class="no-style more scrolly zero-text">Home</a>
+									<ul class="menuToggle" >
+										<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="browse-class.html" class="no-style more scrolly one-text" style="font-weight: bold;"> Classes</a>
+										<a href="browse-class.html" class="no-style more scrolly one-text" style="cursor: pointer;">Classes</a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="browse-community.html" class="no-style more scrolly two-text">Communities</a>
+										<a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
 										&nbsp;
 										|
 										&nbsp;
-										<a href="#three" class="no-style more scrolly three-text">Contact Us</a>
-										&nbsp;
-										|
-										&nbsp;
-										<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
-										&nbsp;
+										<img id="profilePicUserProfile" src="" onclick="openProfileForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
 										&nbsp;
 										&nbsp;
 									</ul>
@@ -52,6 +47,26 @@
 							<!-- </ul> -->
 						</nav>
 					</header>
+					<div class="form-popup" id="profileForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+						<div style="padding: 0px 20px 0px 20px;">
+							<img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+							
+							<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
+							<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
+							
+							<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
+							<br>
+							<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+							<div style="width:200px;">
+								<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Contact Us</div>
+								<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+								<div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">About Us</div>
+								<br>
+								<div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard" style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Admin Dashboard</div>
+							</div>
+							
+						</div>	
+					</div>
                 <script>
                     window.onload = function() {
 						document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
@@ -69,7 +84,26 @@
 						// localStorage.removeItem("user-displayname");
 						//remove local storage items in signout function for security.
                     }
-                </script>
+					// load profile pic, load name, load email
+					var profileImgUrl = localStorage.getItem("user-profileimgurl");
+					document.getElementById("profilePicUserProfile").src=profileImgUrl;
+					document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+					document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
+					document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
+        			// open profile popout
+					function openProfileForm() {
+						if (document.getElementById("profileForm").style.display == "grid") {
+							document.getElementById("profileForm").style.display = "none";
+						} else {
+							document.getElementById("profileForm").style.display = "grid"; 
+						}
+					}
+
+					// close profile popout
+					function closeProfileForm() {
+  						document.getElementById("profileForm").style.display = "none";
+					}
+				</script>
 				<!-- Banner -->
 				<section id="banner">
 
@@ -87,13 +121,13 @@
 									</div>
 								</form>
 							</ul>
-							<input type="submit" onclick="submit_class()" value="SEARCH">
+							<input id="searchButton" type="submit" onclick="submit_class_DB()" value="SEARCH">
 						</div>
 					</div>
 
 				</section>
 
-				<section class="wrapper style5">
+				<section id="displayResults" class="wrapper style5">
 
 					<div id="results" class="inner" style="text-align: center">
 						<h2 style="text-align: center" id="myclass"></h2>
@@ -195,8 +229,20 @@
             <script src="assets/js/login.js"></script>
             <script src="assets/js/searchClass.js"></script>
 			<script src="assets/js/feedbackDiscordUtil.js"></script>
+			<script src="assets/js/profileCard.js"></script>
 			<!-- <script src="assets/js/searchCommunity.js"></script> -->
 
+			<!--JQuery script-->
+			<script>
+		    // this will close the profile popout element if anything else besides that and profile pic is clicked
+			$(document).click(function(e){
+				if($(e.target).closest("#profileForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0)) {
+					return true;
+			}
+        	    closeProfileForm();
+    		});
+        
+			</script>
 
 			<!-- below is firebase SDKs-->
 			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->

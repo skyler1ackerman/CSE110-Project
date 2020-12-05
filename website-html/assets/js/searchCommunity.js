@@ -25,31 +25,144 @@ function getCommunitySnapshot(){
   var ref = firebase.database().ref("clubs");
   ref.on("value", function(snapshot) {
    snapshot.forEach(function(childSnapshot) {
-    var communityName = childSnapshot.key;
-    communitiesArr.push(communityName);
+       childSnapshot.forEach(function(clubSnapshot){
+           var communityName = clubSnapshot.key;
+           communitiesArr.push(communityName);
+       });
    });
   });
   console.log("communitiesArr:! ", communitiesArr);
 }
 
-function submit_community(){
-  var communityInput = document.getElementById("inputCommunities").value;
-  //check if user input is valid
-  if(communitiesArr.includes(communityInput)){
-      localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
-      window.location.href = "communityDB.html";
-  }
-  else{
-      alert("The community you entered is not in our Database.");
-  }
+function submit_community() {
+    var communityInput = document.getElementById("inputCommunities").value;
+    document.getElementById('displayResults').style.display = "block";
+
+    location.hash = 'displayResults';
+
+
+    // Animation for moving the screen
+    if (window.location.hash) scroll(0,0);
+
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+
+    // Removes previous title of Community from previous search query from page,
+    // otherwise it keeps adding the element but never gets deleted on new search
+
+    var remove1 = document.querySelector(" #results > #community-category ");
+    var remove2 = document.querySelector(" #results > #communityName ");
+    if(remove1 !== null){
+        remove1.parentNode.removeChild(remove1);
+    }
+    if(remove2 !== null){
+        remove2.parentNode.removeChild(remove2);
+    }
+
+
+    if (communitiesArr.includes(communityInput)) {
+        localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
+        getCommunityByKeyword(communityInput);
+    }
+    else {
+        alert("The community you entered is not in our Database.");
+    }
+
 }
+
+// Keyword Search
+
+function getCommunityByKeyword(communityName){
+    var ref = firebase.database().ref("clubs");
+    ref.on("value", function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            childSnapshot.forEach(function(clubSnapshot){
+                if(clubSnapshot.key === communityName){
+                    console.log("Club Snapshot!");
+                    console.log(clubSnapshot.key);
+                    console.log(clubSnapshot.val().status);
+
+                    var resultsString = { str : "" };
+                        resultsString.str += "<li class='community'>";
+                        //resultsString.str += `<button class=\"collapsible\">${clubInfo.key}</button>`;
+                        resultsString.str += "<div>";
+                        resultsString.str += "<p></p>";
+                        if(clubSnapshot.val().status !== "") {
+                            resultsString.str +=   `<p><b>Status: </b>${clubSnapshot.val().status}</p>`;
+                        };
+                        if(clubSnapshot.val().org_type !== "") {
+                            resultsString.str +=   `<p><b>Type: </b>${clubSnapshot.val().org_type}</p>`;
+                        };
+                        if(clubSnapshot.val().contact !== ""){
+                            resultsString.str +=   `<p><b>Contact: </b>${clubSnapshot.val().contact}</p>`;
+                        };
+                        if(clubSnapshot.val().description !== "") {
+                            resultsString.str +=   `<p><b>Description: </b>${clubSnapshot.val().description}</p>`;
+                        };
+                        if(clubSnapshot.val().inviteLink !== "") {
+                            resultsString.str +=   `<a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                            resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="text-align: center;">Report</a>`;
+
+                        };
+                        if(clubSnapshot.val().social_media !== "") {
+                            resultsString.str +=   `<p><b>Social Media: </b>${clubSnapshot.val().social_media}</p>`;
+                        };
+                        resultsString.str += "<p></p>";
+                        resultsString.str += "</div>";
+                        resultsString.str += "</li>";
+
+                    document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"communityName\">${communityName}</h2>\n` + document.getElementById("results").innerHTML;
+                    document.getElementById("queryResults").innerHTML = resultsString.str;
+
+                }
+            });
+        });
+    });
+}
+
 
 // Category Search
 
 function submit_community_category(categoryInput){
-    //check if user input is valid
-        localStorage.setItem("categoryInput", categoryInput);
-        window.location.href = "community-categoryDB.html";
+    document.getElementById('displayResults').style.display = "block";
+
+    location.hash = 'displayResults';
+
+    // Animation for moving the screen
+    window.scrollBy(0, 1);//programatically scroll down a bit. otherwise animation sometimes doesnt work.
+    if (window.location.hash) scroll(0,0);
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        console.log(hash);
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing', );
+    }
+    // Removes previous title of Community from previous search query from page,
+    // otherwise it keeps adding the element but never gets deleted on new search
+
+    var remove1 = document.querySelector(" #results > #community-category ");
+    var remove2 = document.querySelector(" #results > #communityName ");
+    if(remove1 !== null){
+        remove1.parentNode.removeChild(remove1);
+    }
+    if(remove2 !== null){
+        remove2.parentNode.removeChild(remove2);
+    }
+
+    localStorage.setItem("categoryInput", categoryInput);
+    getCommunityCategory(categoryInput);
+
 }
 
 function getCommunityCategory(category){
@@ -79,8 +192,8 @@ function getCommunityCategory(category){
                 resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
             };
             if(childNodes.val().inviteLink !== "") {
-                resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="justify-content: center;">Join Discord</a>`;
-                resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="justify-content: center;">Report</a>`;
+                resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                resultsString.str +=   `<a href=\"#\" target="_blank" class="button" style="text-align: center;">Report</a>`;
 
             };
             if(childNodes.val().social_media !== "") {
@@ -90,11 +203,13 @@ function getCommunityCategory(category){
             resultsString.str += "</div>";
             resultsString.str += "</li>";
         });
-        console.log(resultsString.str);
+        document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"community-category\">${category}</h2>\n` + document.getElementById("results").innerHTML;
         document.getElementById("queryResults").innerHTML = resultsString.str;
+
         var container = document.querySelector(" #results > #queryResults ");
         var coll = container.querySelectorAll(" .community > .collapsible")
         var i;
+
         for (i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
@@ -116,6 +231,9 @@ function autocompleteCommunity(inp, arr) {
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
+    if(inp === null){
+        return;
+    }
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/

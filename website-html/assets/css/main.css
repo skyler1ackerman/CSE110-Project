@@ -1877,7 +1877,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75em;
+		height: 2.55em;
 	}
 
 	textarea {
@@ -2161,7 +2161,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				border-top: solid 1px #fff;
+				/*border-top: solid 1px #fff;*/
 				padding: 0.5em 0;
 			}
 
@@ -2426,7 +2426,7 @@ input, select, textarea {
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-		max-width: 30em;
+		/*max-width: 30em;*/
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -3337,10 +3337,10 @@ input, select, textarea {
 /* Page Wrapper + Menu */
 
 	#page-wrapper {
-		-moz-transition: opacity 0.5s ease;
-		-webkit-transition: opacity 0.5s ease;
-		-ms-transition: opacity 0.5s ease;
-		transition: opacity 0.5s ease;
+		-moz-transition: opacity 0.2s ease;
+		-webkit-transition: opacity 0.2s ease;
+		-ms-transition: opacity 0.2s ease;
+		transition: opacity 0.2s ease;
 		opacity: 1;
 		padding-top: 3em;
 	}
@@ -3363,10 +3363,10 @@ input, select, textarea {
 		-webkit-transform: translateX(20em);
 		-ms-transform: translateX(20em);
 		transform: translateX(20em);
-		-moz-transition: -moz-transform 0.5s ease;
-		-webkit-transition: -webkit-transform 0.5s ease;
-		-ms-transition: -ms-transform 0.5s ease;
-		transition: transform 0.5s ease;
+		-moz-transition: -moz-transform 0.2s ease;
+		-webkit-transition: -webkit-transform 0.2s ease;
+		-ms-transition: -ms-transform 0.2s ease;
+		transition: transform 0.2s ease;
 		-webkit-overflow-scrolling: touch;
 		background: #e89980;
 		color: #ffffff;
@@ -3606,10 +3606,10 @@ input, select, textarea {
 			-webkit-transform: scale(1);
 			-ms-transform: scale(1);
 			transform: scale(1);
-			-moz-transition: -moz-transform 0.5s ease, opacity 0.5s ease;
-			-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
-			-ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
-			transition: transform 0.5s ease, opacity 0.5s ease;
+			-moz-transition: -moz-transform 0.2s ease, opacity 0.2s ease;
+			-webkit-transition: -webkit-transform 0.2s ease, opacity 0.2s ease;
+			-ms-transition: -ms-transform 0.2s ease, opacity 0.2s ease;
+			transition: transform 0.2s ease, opacity 0.2s ease;
 			display: inline-block;
 			font-size: 1.75em;
 			opacity: 1;
@@ -3619,14 +3619,14 @@ input, select, textarea {
 		}
 
 			#banner h2:before, #banner h2:after {
-				-moz-transition: width 0.85s ease;
-				-webkit-transition: width 0.85s ease;
-				-ms-transition: width 0.85s ease;
-				transition: width 0.85s ease;
-				-moz-transition-delay: 0.25s;
-				-webkit-transition-delay: 0.25s;
-				-ms-transition-delay: 0.25s;
-				transition-delay: 0.25s;
+				-moz-transition: width 0.6s ease;
+				-webkit-transition: width 0.6s ease;
+				-ms-transition: width 0.6s ease;
+				transition: width 0.6s ease;
+				-moz-transition-delay: 0.2s;
+				-webkit-transition-delay: 0.2s;
+				-ms-transition-delay: 0.2s;
+				transition-delay: 0.2s;
 				background: #fff;
 				content: '';
 				display: block;
@@ -3655,14 +3655,14 @@ input, select, textarea {
 			}
 
 		#banner .more {
-			-moz-transition: -moz-transform 0.75s ease, opacity 0.75s ease;
-			-webkit-transition: -webkit-transform 0.75s ease, opacity 0.75s ease;
-			-ms-transition: -ms-transform 0.75s ease, opacity 0.75s ease;
-			transition: transform 0.75s ease, opacity 0.75s ease;
-			-moz-transition-delay: 2.0s;
-			-webkit-transition-delay: 2.0s;
-			-ms-transition-delay: 2.0s;
-			transition-delay: 2.0s;
+			-moz-transition: -moz-transform 0.3s ease, opacity 0.3s ease;
+			-webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
+			-ms-transition: -ms-transform 0.3s ease, opacity 0.3s ease;
+			transition: transform 0.3s ease, opacity 0.3s ease;
+			-moz-transition-delay: 0.5s;
+			-webkit-transition-delay: 0.5s;
+			-ms-transition-delay: 0.5s;
+			transition-delay: 0.5s;
 			-moz-transform: translateY(0);
 			-webkit-transform: translateY(0);
 			-ms-transform: translateY(0);
@@ -3702,14 +3702,14 @@ input, select, textarea {
 
 		#banner:after {
 			pointer-events: none;
-			-moz-transition: opacity 3s ease-in-out;
-			-webkit-transition: opacity 3s ease-in-out;
-			-ms-transition: opacity 3s ease-in-out;
-			transition: opacity 3s ease-in-out;
-			-moz-transition-delay: 1.25s;
-			-webkit-transition-delay: 1.25s;
-			-ms-transition-delay: 1.25s;
-			transition-delay: 1.25s;
+			-moz-transition: opacity 1.0s ease-in-out;
+			-webkit-transition: opacity 1.0s ease-in-out;
+			-ms-transition: opacity 1.0s ease-in-out;
+			transition: opacity 1.0s ease-in-out;
+			-moz-transition-delay: 0.8s;
+			-webkit-transition-delay: 0.8s;
+			-ms-transition-delay: 0.8s;
+			transition-delay: 0.8s;
 			content: '';
 			background: #2e3842;
 			display: block;
@@ -4235,7 +4235,7 @@ input, select, textarea {
 	padding: 10px;
 	cursor: pointer;
 	background-color: darkgray;  
-	border-bottom: 1px solid #111111;  
+	border-bottom: 1px solid #111111;
   }
   
   /*when hovering an item:*/
@@ -4439,7 +4439,7 @@ input, select, textarea {
 	height: 3.125em;
 	letter-spacing: 0.175em;
 	line-height: 3.125em;
-	max-width: 30em;
+	/*max-width: 30em;*/
 	padding: 0 1.75em;
 	text-align: center;
 	text-decoration: none;
@@ -4476,7 +4476,7 @@ input, select, textarea {
 	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	background-color: transparent;
-	display: block;
+	/*display: block;*/
 	width: 100%;
 	border-radius: 3px;
 	border: 0;
@@ -4488,14 +4488,16 @@ input, select, textarea {
 	height: 3.125em;
 	letter-spacing: 0.225em;
 	line-height: 3.125em;
-	padding: 0 2.75em;
+	padding: 0 9.75em;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	padding: 0 8px 0 8px;
 }
+
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
@@ -4510,6 +4512,16 @@ input, select, textarea {
 	display: none;
 	overflow: hidden;
 	background-color: #f1f1f1;
+
+}
+
+.content-class {
+	width: inherit;
+	font: inherit;
+	display: none;
+	overflow: hidden;
+	background-color: #ffffff;
+
 }
 
 #openformButton{
@@ -4586,7 +4598,6 @@ div textarea{
 	background-color: gainsboro;
 	border-color: gainsboro;
 	border-width: 1px;
-
 }
 
 /* LOADING*/
@@ -4723,7 +4734,7 @@ div textarea{
 .buttonChatbox:hover {
 	/* background-color: black !important; */
 	filter: "grayscale(100%)" !important;
-	transform: translate(-6px, -6px);
+	transform: translate(-3px, -3px);
 }
 
 .profileCard:hover {

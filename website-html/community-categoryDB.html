@@ -24,20 +24,20 @@
     <!-- Header -->
     <header id="header" class="alt">
         <nav id="nav">
-            <ul class="menuToggle">
-                <a href="afterlogin.html" class="no-style more scrolly zero-text">Home</a>
+            <ul class="menuToggle" >
+                <a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
                 &nbsp;
                 |
                 &nbsp;
-                <a href="browse-class.html" class="no-style more scrolly one-text">Classes</a>
+                <a href="browse-class.html" class="no-style more scrolly one-text" style="cursor: pointer;">Classes</a>
                 &nbsp;
                 |
                 &nbsp;
-                <a href="browse-community.html" class="no-style more scrolly two-text" style="font-weight: bold;">Communities</a>
+                <a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
                 &nbsp;
                 |
                 &nbsp;
-                <img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
+                <img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
                 &nbsp;
                 &nbsp;
             </ul>
@@ -50,14 +50,16 @@
 			<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
 			<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
 			
-			<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:30px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Profile</button>
-			<br>
-			<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
-			<div style="width:200px;">
-				<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
-				<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
-				<div href="#" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
-			</div>
+			<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
+            <br>
+            <button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+            <div style="width:200px;">
+                <div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Contact Us</div>
+                <div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+                <div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">About Us</div>
+                <br>
+                <div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard" style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Admin Dashboard</div>
+            </div>
 			
 		</div>	
     </div>
@@ -83,14 +85,20 @@
   			document.getElementById("myForm").style.display = "none";
         }
         
-        function goToContactUs(){
-       		window.location.href = "contactUs.html";
-        }
-        
-
         window.onload = function() {
+            if ( window.location.hash ) scroll(0,0);
+            // void some browsers issue
+            setTimeout( function() { scroll(0,0); }, 1);
+
+            if(window.location.hash) {
+                var hash = window.location.hash;
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 1500, 'swing');
+            }
             const communityName = document.getElementById("community-category").innerHTML=localStorage.getItem("categoryInput");
-            getCommunityCategory(communityName)
+            getCommunitySnapshot();
+            getCommunityCategory(communityName);
         }
     </script>
 
@@ -174,7 +182,7 @@
         </div>
     </section>
 
-    <section class="wrapper style5">
+    <section id="displayResults" class="wrapper style5">
 
         <div id="results" class="inner">
             <h2 style="text-align: center;" id="community-category"></h2>
@@ -184,9 +192,7 @@
 
             </ul>
         </div>
-        <div id="openformButton">
-            <a href="add-community.html" class="button">+ Add Community</a>
-        </div>
+
     </section>
     <!-- Footer -->
     <footer id="footer">
@@ -213,6 +219,7 @@
 <script src="assets/js/login.js"></script>
 <!-- <script src="assets/js/searchClass.js"></script> -->
 <script src="assets/js/searchCommunity.js"></script>
+<script src="assets/js/profileCard.js"></script>
 
 <!--JQuery script-->
 <script>
