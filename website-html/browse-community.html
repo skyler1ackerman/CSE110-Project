@@ -43,13 +43,7 @@
 						&nbsp;
 						|
 						&nbsp;
-						<img id="profilePicUserProfile" src="" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
-						   <a href="userprofile.html" class="no-style more scrolly four-text">Profile</a>
-						   &nbsp;
-						|
-						&nbsp;
-						<a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
-						&nbsp;
+						<img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px;height:32px">
 						&nbsp;
 						&nbsp;
 					</ul>
@@ -57,9 +51,62 @@
 			<!-- </ul> -->
 		</nav>
 	</header>
+	<div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+		<div style="padding: 0px 20px 0px 20px;">
+			<img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+			
+			<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
+			<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
+			
+			<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:30px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Profile</button>
+			<br>
+			<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+			<div style="width:200px;">
+				<div class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
+				<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+				<div class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
+			</div>
+			
+		</div>	
+	</div>
+
 	<script>
+		// load profile pic, load name, load email
 		var profileImgUrl = localStorage.getItem("user-profileimgurl");
 		document.getElementById("profilePicUserProfile").src=profileImgUrl;
+		document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+		document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
+		document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
+        // open profile popout
+		function openForm() {
+			if (document.getElementById("myForm").style.display == "grid") {
+				document.getElementById("myForm").style.display = "none";
+			} else {
+				document.getElementById("myForm").style.display = "grid"; 
+			}
+		}
+
+		// close profile popout
+		function closeForm() {
+  			document.getElementById("myForm").style.display = "none";
+		}
+
+		// this will close the profile popout element if anything else besides that and profile pic is clicked
+		$(document).click(function(e){
+			if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+				return false;
+			}
+			closeForm();
+		});
+
+		// this will close the profile popout element if anything else besides that and profile pic is clicked
+		$(document).click(function(e){
+			if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+				return false;
+			}
+				closeForm();
+		});
+
 		window.onload = function() {
 			//get all class info from FB databse
 			getCommunitySnapshot();
@@ -156,6 +203,17 @@
 <!-- <script src="assets/js/searchClass.js"></script> -->
 <script src="assets/js/searchCommunity.js"></script>
 
+<!--JQuery script-->
+<script>
+    // this will close the profile popout element if anything else besides that and profile pic is clicked
+	$(document).click(function(e){
+		if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+			return false;
+		}
+			closeForm();
+    });
+        
+</script>
 
 <!-- below is firebase SDKs-->
 <!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
