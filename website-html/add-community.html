@@ -2,13 +2,18 @@
 <html lang="en">
 
 <head>
-    <title>Add A Community</title>
+    <title>tritongroups</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <meta charset="UTF-8">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="assets/js/auth.js"></script>
 </head>
 
 <body>
@@ -49,36 +54,36 @@
                                     <input type="text" id="serverName" placeholder="Club Name/Discord Server Name" required />
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="url" id="discordLink" placeholder="Discord Link" />
+                                    <input type="text" id="discordLink" placeholder="Discord Link" />
                                 </div>
 
                                 <div class="col-6 col-12-xsmall">
                                     <select name="category" id="type" required>
                                         <option value="">- Type -</option>
-                                        <option value="1">Undergraduate</option>
-                                        <option value="1">Graduate</option>
+                                        <option value="Undergraduate">Undergraduate</option>
+                                        <option value="Graduate">Graduate</option>
                                     </select>
                                 </div>
 
                                 <div class="col-12">
                                     <select name="category" id="comCategory" required>
                                         <option value="">- Category -</option>
-                                        <option value="1">Academic</option>
-                                        <option value="1">Career</option>
-                                        <option value="1">Cooperative</option>
-                                        <option value="1">Cultural</option>
-                                        <option value="1">Dance</option>
-                                        <option value="1">Educational</option>
-                                        <option value="1">Fraternities</option>
-                                        <option value="1">Media</option>
-                                        <option value="1">Medical</option>
-                                        <option value="1">Music and Performance</option>
-                                        <option value="1">Political</option>
-                                        <option value="1">Service</option>
-                                        <option value="1">Social</option>
-                                        <option value="1">Sororities</option>
-                                        <option value="1">Spiritual</option>
-                                        <option value="1">Sports</option>
+                                        <option value="Academic">Academic</option>
+                                        <option value="Career">Career</option>
+                                        <option value="Cooperative">Cooperative</option>
+                                        <option value="Cultural">Cultural</option>
+                                        <option value="Dance">Dance</option>
+                                        <option value="Education">Educational</option>
+                                        <option value="Fraternities">Fraternities</option>
+                                        <option value="Media">Media</option>
+                                        <option value="Medical">Medical</option>
+                                        <option value="Music and Performance">Music and Performance</option>
+                                        <option value="Political">Political</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Social">Social</option>
+                                        <option value="Sororities">Sororities</option>
+                                        <option value="Spiritual">Spiritual</option>
+                                        <option value="Sports">Sports</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
@@ -99,9 +104,9 @@
                                             no further!</a> </p>
                                 </blockquote>
 
-                                <div class="col-12">
+                                <div class="inner">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Submit" class="primary" id="submitBtn" onclick="checkIfExists"/></li>
+                                        <button class="primary" type="submit" onclick="submit_community()">Submit</button>
                                         <li><input type="reset" value="Cancel" /></li>
                                     </ul>
                                 </div>
@@ -112,7 +117,8 @@
                 </div>
             </section>
         </article>
-
+        
+        <script src="assets/js/add-Community.js"></script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.scrollex.min.js"></script>
         <script src="assets/js/jquery.scrolly.min.js"></script>
