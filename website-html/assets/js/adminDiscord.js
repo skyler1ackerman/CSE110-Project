@@ -99,20 +99,15 @@ function addDiscordInfotoDBFromAdminPage(className, inviteURL, profName, quarter
     //First, count number of children in the class
     var classRef = "classes/".concat(className);
     console.log("Finding class ->", className);
-    var class_ref = firebase.database().ref(classRef);
-    class_ref.on("value", function(snapshot) {
-        var discordRef = "classes/" + className + "/discordInfo" + snapshot.numChildren();
-        console.log(discordRef);
-        var discord_ref = firebase.database().ref(discordRef);
-        discord_ref.set({
-            inviteURL: inviteURL,
-            profName: profName,
-            quarter : quarter,
-            year: year,
-        });
+    firebase.database().ref(classRef).push().set({
+        inviteURL: inviteURL,
+        profName: profName,
+        quarter : quarter,
+        year: year,
     });
 
-  }
+
+}
 
 discordRequestArr = []
 retrieveDiscordRequests()

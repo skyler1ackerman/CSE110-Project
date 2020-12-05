@@ -4565,9 +4565,22 @@ div textarea{
 .whiteBackground .inner label{
 	color: black;
 }
+.whiteBackground .inner h2{
+	color: black;
+}
+
+.whiteBackground .inner input{
+	color: black;
+	background-color: gainsboro;
+}
+.whiteBackground .inner strong{
+	color: black;
+}
+
 .whiteBackground div{
 	border-color: gainsboro;
 }
+
 .whiteBackground button{
 	color:black;
 	background-color: gainsboro;
