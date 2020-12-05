@@ -83,11 +83,6 @@
   			document.getElementById("myForm").style.display = "none";
         }
         
-        function goToContactUs(){
-       		window.location.href = "contactUs.html";
-        }
-        
-
         window.onload = function() {
             const communityName = document.getElementById("community-category").innerHTML=localStorage.getItem("categoryInput");
             getCommunityCategory(communityName)
@@ -213,6 +208,7 @@
 <script src="assets/js/login.js"></script>
 <!-- <script src="assets/js/searchClass.js"></script> -->
 <script src="assets/js/searchCommunity.js"></script>
+<script src="assets/js/profileCard.js"></script>
 
 <!--JQuery script-->
 <script>
