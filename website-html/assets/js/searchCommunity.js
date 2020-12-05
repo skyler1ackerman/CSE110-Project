@@ -34,22 +34,49 @@ function getCommunitySnapshot(){
   console.log("communitiesArr:! ", communitiesArr);
 }
 
-function submit_community(){
-  var communityInput = document.getElementById("inputCommunities").value;
-  //check if user input is valid
-  if(communitiesArr.includes(communityInput) && window.location.hash){
-      localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
-      window.location.href = "communityDB.html#displayResults";
-      location.reload();
-  }
-  else if(communitiesArr.includes(communityInput)){
-      localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
-      window.location.href = "communityDB.html#displayResults";
-  }
-  else{
-      alert("The community you entered is not in our Database.");
-  }
+function submit_community() {
+    var communityInput = document.getElementById("inputCommunities").value;
+    document.getElementById('displayResults').style.display = "block";
+
+    location.hash = 'displayResults';
+
+
+    // Animation for moving the screen
+    if (window.location.hash) scroll(0,0);
+
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+
+    // Removes previous title of Community from previous search query from page,
+    // otherwise it keeps adding the element but never gets deleted on new search
+
+    var remove1 = document.querySelector(" #results > #community-category ");
+    var remove2 = document.querySelector(" #results > #communityName ");
+    if(remove1 !== null){
+        remove1.parentNode.removeChild(remove1);
+    }
+    if(remove2 !== null){
+        remove2.parentNode.removeChild(remove2);
+    }
+
+
+    if (communitiesArr.includes(communityInput)) {
+        localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
+        getCommunityByKeyword(communityInput);
+    }
+    else {
+        alert("The community you entered is not in our Database.");
+    }
+
 }
+
 // Keyword Search
 
 function getCommunityByKeyword(communityName){
@@ -90,21 +117,10 @@ function getCommunityByKeyword(communityName){
                         resultsString.str += "<p></p>";
                         resultsString.str += "</div>";
                         resultsString.str += "</li>";
+
+                    document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"communityName\">${communityName}</h2>\n` + document.getElementById("results").innerHTML;
                     document.getElementById("queryResults").innerHTML = resultsString.str;
-                    var container = document.querySelector(" #results > #queryResults ");
-                    var coll = container.querySelectorAll(" .community > .collapsible")
-                   /* var i;
-                    for (i = 0; i < coll.length; i++) {
-                        coll[i].addEventListener("click", function() {
-                            this.classList.toggle("active");
-                            var content = this.nextElementSibling;
-                            if (content.style.display === "block") {
-                                content.style.display = "none";
-                            } else {
-                                content.style.display = "block";
-                            }
-                        });
-                    }*/
+
                 }
             });
         });
@@ -115,20 +131,41 @@ function getCommunityByKeyword(communityName){
 // Category Search
 
 function submit_community_category(categoryInput){
+    document.getElementById('displayResults').style.display = "block";
 
-    if(window.location.hash){
-        localStorage.setItem("categoryInput", categoryInput);
-        window.location.href = "community-categoryDB.html#displayResults";
-        location.reload();
+    location.hash = 'displayResults';
+
+    // Animation for moving the screen
+    if (window.location.hash) scroll(0,0);
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        console.log(hash);
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing', );
     }
-    else{
-        localStorage.setItem("categoryInput", categoryInput);
-        window.location.href = "community-categoryDB.html#displayResults";
+    // Removes previous title of Community from previous search query from page,
+    // otherwise it keeps adding the element but never gets deleted on new search
+
+    var remove1 = document.querySelector(" #results > #community-category ");
+    var remove2 = document.querySelector(" #results > #communityName ");
+    if(remove1 !== null){
+        remove1.parentNode.removeChild(remove1);
     }
+    if(remove2 !== null){
+        remove2.parentNode.removeChild(remove2);
+    }
+
+    localStorage.setItem("categoryInput", categoryInput);
+    getCommunityCategory(categoryInput);
+
 }
 
 function getCommunityCategory(category){
-    //console.log("getCommunityCategory() called :)");
+    console.log("getCommunityCategory() called :)");
     //console.log("CATEGORY: ", category);
 
     var catRef = "clubs/".concat(category);
@@ -165,11 +202,13 @@ function getCommunityCategory(category){
             resultsString.str += "</div>";
             resultsString.str += "</li>";
         });
-        console.log(resultsString.str);
+        document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"community-category\">${category}</h2>\n` + document.getElementById("results").innerHTML;
         document.getElementById("queryResults").innerHTML = resultsString.str;
+
         var container = document.querySelector(" #results > #queryResults ");
         var coll = container.querySelectorAll(" .community > .collapsible")
         var i;
+
         for (i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
@@ -191,6 +230,9 @@ function autocompleteCommunity(inp, arr) {
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
+    if(inp === null){
+        return;
+    }
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/

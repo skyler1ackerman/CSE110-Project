@@ -4488,7 +4488,7 @@ input, select, textarea {
 	height: 3.125em;
 	letter-spacing: 0.225em;
 	line-height: 3.125em;
-	padding: 0 2.75em;
+	padding: 0 9.75em;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -4496,6 +4496,7 @@ input, select, textarea {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
@@ -4510,6 +4511,16 @@ input, select, textarea {
 	display: none;
 	overflow: hidden;
 	background-color: #f1f1f1;
+
+}
+
+.content-class {
+	width: inherit;
+	font: inherit;
+	display: none;
+	overflow: hidden;
+	background-color: #ffffff;
+
 }
 
 #openformButton{
@@ -4573,5 +4584,4 @@ div textarea{
 	background-color: gainsboro;
 	border-color: gainsboro;
 	border-width: 1px;
-
 }

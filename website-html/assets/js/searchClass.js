@@ -44,7 +44,7 @@ async function getDiscordInfo(className){
             // { Fall 2020 : [ {prof: ... , discord : ... } , {...} ] }
             var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl};
             results[item].push(profDiscordInfo);
-            //console.log(results);
+            console.log(results);
 
         });
     });
@@ -64,10 +64,10 @@ async function constructHTML(className){
     var resultsString = {str : ""};
     //console.log(Object.values(result).length);
     Object.keys(result).forEach(function(key) {
-        resultsString.str += "<li class='community' style=\"display: inline;\">";
+        resultsString.str += "<li class='community'>";
         resultsString.str += `<button class=\"collapsible\">${key}</button>`;
-        resultsString.str += "<div class=\"content\">";
-        resultsString.str += "<p></p>";
+        resultsString.str += "<div class=\"content-class\">";
+        //resultsString.str += "<p></p>";
         resultsString.str += "<div class=\"table-wrapper\" style=\"align-content: center;\">\n" +
             "                        <table class=\"alt\" style=\"align-self: center;\">\n" +
             "                            <thead></thead>\n" +
@@ -93,6 +93,7 @@ async function constructHTML(className){
 
     });
     document.getElementById("queryResults").innerHTML = resultsString.str;
+    document.getElementById("myclass").innerHTML = className;
 
     var container = document.querySelector(" #results > #queryResults ");
     var coll = container.querySelectorAll(" .community > .collapsible")
@@ -149,16 +150,29 @@ function resetDB(){
     });
 }
 
-function submit_class(){
+async function submit_class(){
     var classInput = document.getElementById("inputClasses").value;
-    //check if user input is valid
-    if(classesArr.includes(classInput)){
+    document.getElementById('displayResults').style.display = "block";
+    location.hash = 'displayResults';
+
+    // void some browsers issue
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+    if(classesArr.includes(classInput)) {
         localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
-        window.location.href = "classDB.html";
+        await constructHTML(classInput);
     }
     else{
         alert("The class you entered is not in our Database.");
     }
+
 }
 
 function autocompleteClass(inp, arr) {
@@ -166,6 +180,9 @@ function autocompleteClass(inp, arr) {
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
+    if(inp === null){
+        return;
+    }
     inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/

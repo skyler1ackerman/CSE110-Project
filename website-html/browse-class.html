@@ -91,6 +91,79 @@
                 </ul>
                 <input type="submit" onclick="submit_class()" value="SEARCH">
             </div>
+        </div>
+    </section>
+
+    <section id="displayResults" class="wrapper style5" style="display: none;">
+
+        <div id="results" class="inner" style="text-align: center">
+            <h2 style="text-align: center" id="myclass"></h2>
+
+            <!-- Display query results here -->
+            <ul id="queryResults" class="alt" style="display: inline-block;">
+
+            </ul>
+        </div>
+        <div id="openformButton">
+            <button class="	open-button" onclick="openForm()">&#43;</button>
+        </div>
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+                document.getElementById("openformButton").style.display = "none";
+                document.getElementById("formsection").style.display = "none";
+                document.getElementById("searchbarsubmit").style.display = "none";
+            }
+
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+                document.getElementById("openformButton").style.display = "block";
+                document.getElementById("openformButton").style.margin = "auto"; //necessary for button position
+                document.getElementById("formsection").style.display = "block";
+                document.getElementById("searchbarsubmit").style.display = "block";
+            }
+        </script>
+        <div class="form-popup" id="myForm">
+            <form class="form-container">
+                <div class="row gtr-uniform">
+                    <div class="col-12" style="text-align: center;">
+
+                        <h4>Add a New Discord Server</h4>
+                    </div>
+                    <div class="col-12">
+                        <select name="selectyear" rows="1" id="year">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <select name="selectquarter" rows="1" id="quarter">
+                            <option value="">Select Quarter</option>
+                            <option value="spring">Spring</option>
+                            <option value="summer">Summer</option>
+                            <option value="fall">Fall</option>
+                            <option value="winter">Winter</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" placeholder="Professor" id="professor" required>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" placeholder="Discord Invite Link" id="invitelink" required>
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><input type="submit" value="Submit" class="primary"/></li>
+                            <li><input type="reset" value="Close" onclick="closeForm()"/></li>
+                        </ul>
+                        <!--<button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px; font: inherit;">Submit</button>
+                        <button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px; font: inherit;">Close</button>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </section>
 
     <!-- Footer -->

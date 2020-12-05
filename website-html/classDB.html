@@ -53,22 +53,36 @@
 						</nav>
 					</header>
                 <script>
-                    window.onload = function() {
-						document.getElementById("myclass").innerHTML=localStorage.getItem("classinput");
-						//getDiscordInfo(localStorage.getItem("classinput")); //get 5 discord infos from DB
-						constructHTML(localStorage.getItem("classinput"));
-						getClassSnapshot();
-						//get all class info from DB for search engine
-						//get all class info from FB database
 
-						document.getElementById("email").placeholder=localStorage.getItem("user-email");
-						document.getElementById("email").value=localStorage.getItem("user-email");
-						// localStorage.removeItem("user-email");
-						document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-						document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-						// localStorage.removeItem("user-displayname");
-						//remove local storage items in signout function for security.
-                    }
+					window.onload = function() {
+						$(document).ready(function() {
+							if (window.location.hash) scroll(0, 0);
+							// void some browsers issue
+							setTimeout(function () {
+								scroll(0, 0);
+							}, 1);
+							if (window.location.hash) {
+								var hash = window.location.hash;
+								$('html, body').animate({
+									scrollTop: $(hash).offset().top
+								}, 1500, 'swing');
+							}
+							//document.getElementById("myclass").innerHTML = localStorage.getItem("classinput");
+							getDiscordInfo(localStorage.getItem("classinput")); //get 5 discord infos from DB
+							constructHTML(localStorage.getItem("classinput"));
+							getClassSnapshot();
+							//get all class info from DB for search engine
+							//get all class info from FB database
+
+							document.getElementById("email").placeholder = localStorage.getItem("user-email");
+							document.getElementById("email").value = localStorage.getItem("user-email");
+							// localStorage.removeItem("user-email");
+							document.getElementById("fullname").placeholder = localStorage.getItem("user-displayname");
+							document.getElementById("fullname").value = localStorage.getItem("user-displayname");
+							// localStorage.removeItem("user-displayname");
+							//remove local storage items in signout function for security.
+						});
+                   }
                 </script>
 				<!-- Banner -->
 				<section id="banner">
@@ -87,13 +101,13 @@
 									</div>
 								</form>
 							</ul>
-							<input type="submit" onclick="submit_class()" value="SEARCH">
+							<input id="searchButton" type="submit" onclick="submit_class_DB()" value="SEARCH">
 						</div>
 					</div>
 
 				</section>
 
-				<section class="wrapper style5">
+				<section id="displayResults" class="wrapper style5">
 
 					<div id="results" class="inner" style="text-align: center">
 						<h2 style="text-align: center" id="myclass"></h2>
