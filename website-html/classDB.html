@@ -54,13 +54,15 @@
 							<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
 							<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
 							
-							<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:30px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Profile</button>
+							<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
 							<br>
-							<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+							<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
 							<div style="width:200px;">
-								<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
+								<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Contact Us</div>
 								<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
-								<div href="#" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
+								<div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">About Us</div>
+								<br>
+								<div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard" style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Admin Dashboard</div>
 							</div>
 							
 						</div>	

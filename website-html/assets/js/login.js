@@ -43,20 +43,19 @@ function testFunction() {
             localStorage.setItem("user-profileimgurl", user.photoURL);
             console.log(user.photoURL, "saved to local storage");
             console.log("signin successful!");
-            var link="afterlogin.html";
-            firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
-               snapshot.forEach(function (childSnapshot){
+            window.location.href = "afterlogin.html";
+            // var link="afterlogin.html";
+            // firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
+            //    snapshot.forEach(function (childSnapshot){
 
-                   if(user.email==childSnapshot.val().email){
-                       link="afterAdminLogin.html";
-                           window.location.href=link;
-                   }
+            //        if(user.email==childSnapshot.val().email){
+            //            link="afterAdminLogin.html";
+            //                window.location.href=link;
+            //        }
 
-               });
-                window.location.href = link;
-            });
-
-
+            //    });
+            //     window.location.href = link;
+            // });
       }
       // ...
     }).catch(function(error) {
