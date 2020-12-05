@@ -4,7 +4,7 @@ import asyncio
 import time
 from datetime import datetime, timedelta, timezone
 from config import fireConfig
-from config import TOKEN
+from config import DISCORD_TOKEN as TOKEN
 from discord.ext import commands, tasks
 
 # class variables
@@ -79,12 +79,12 @@ async def delEvent(ctx, *inputEventMsg):
 		return newMessage.author == ctx.author
 	# admin check, short circuit this with AND until final decision
 	if not ctx.message.author.guild_permissions.administrator and False:
-		msg = "You're not an admin {0.author.mention}, so you can't call this command.".format(ctx.message)  
+		msg = "Whoops {0.author.mention}, you aren't an admin! If you an admin nicely, they might add and event for you.".format(ctx)  
 		await ctx.send(msg)
 		return
 	# if no argument given, query for event name
 	if len(inputEventMsg) == 0:
-		await ctx.send('Enter eventName of the event to be removed.')
+		await ctx.send('Enter the name of the event to be removed.')
 		inputEventMsg = await bot.wait_for("message", timeout=30, check=verifyUser)
 		eventName = inputEventMsg.content
 	# else, turn tuple argument into one string
@@ -101,10 +101,10 @@ async def delEvent(ctx, *inputEventMsg):
 async def delEventError(ctx, error):
 	# only give specific response for timeout, dont think anything else worth it
 	if isinstance(error.original, asyncio.exceptions.TimeoutError):
-		await ctx.send('Error: no response / time-out.')
+		await ctx.send('Sorry {0}, you waited too long and I got bored!'.format(ctx.author.mention))
 	else: 
 		print(error)
-		await ctx.send('Error: unknown error.')
+		await ctx.send('Sorry {0}, something went wrong!'.format(ctx.author.mention))
 
 # listEvents will access firebase db and list all events found for specific server
 @bot.command(name='schedule',aliases=['showevents','showschedule','showplan','showplanned','listevents'], help="Lists all events in the server's schedule.")

@@ -3,11 +3,12 @@ import re
 import pyrebase
 from urllib import request
 from discord.ext import commands
-from config import firebaseConfig, DISCORD_TOKEN
+from config import fireConfig
+from config import DISCORD_TOKEN as TOKEN
 
 
 """ DECLARATIONS """
-firebase = pyrebase.initialize_app(firebaseConfig)
+firebase = pyrebase.initialize_app(fireConfig)
 auth = firebase.auth()
 db = firebase.database()
 storage = firebase.storage()
@@ -170,6 +171,11 @@ async def add_rule(ctx, *, args = None):
             guildExists = True
             await ctx.send("Rule added successfully!")
 
+# Regular shut down of the bot
+@discordClient.command(name='s',help='Shuts down the script')
+async def shutdown(ctx):
+    await ctx.send('Shutting down ReportBot')
+    await ctx.bot.logout()
 
 def default_Dict():
     retDict = {}
@@ -217,4 +223,4 @@ def delete_element(someDict, a = None):
     return retDict
 
 
-discordClient.run("c4ODg3NjkyMDExMTc1OTM2.X7YhsA.9mw4oL88gEaoN1Wnq9ZkBa1_XGI")
+discordClient.run(TOKEN)
