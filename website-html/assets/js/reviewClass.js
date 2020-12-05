@@ -127,14 +127,15 @@ async function constructHTML(className){
             var classRef = "classes/".concat(className);
             firebase.database().ref(classRef).child(Bid).remove();
             var element = document.getElementById(Bid).parentNode.parentNode;
-
-            if(element.parentNode.childElementCount==1){
-                element=element.parentNode.parentNode.parentNode.parentNode.parentNode;
-                element.parentNode.removeChild(element);
-            }else{s
-                element.parentNode.removeChild(element);
+            if(confirm("Are you sure you want to remove it?")){
+                if(element.parentNode.childElementCount==1){
+                    element=element.parentNode.parentNode.parentNode.parentNode.parentNode;
+                    element.parentNode.removeChild(element);
+                }else{
+                    element.parentNode.removeChild(element);
+                }
             }
-            alert("Discord successfully removed from the database!")
+
         }.bind(removeBts[i],className,Bid));
 
     }
