@@ -4495,6 +4495,7 @@ input, select, textarea {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	padding: 0 8px 0 8px;
 }
 
 

@@ -136,6 +136,7 @@ function submit_community_category(categoryInput){
     location.hash = 'displayResults';
 
     // Animation for moving the screen
+    window.scrollBy(0, 1);//programatically scroll down a bit. otherwise animation sometimes doesnt work.
     if (window.location.hash) scroll(0,0);
     setTimeout(function () {
         scroll(0, 0);
