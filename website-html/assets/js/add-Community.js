@@ -37,7 +37,7 @@ async function submit_community() {
     var desc = document.getElementById("description").value;
     
     //check if filled out then populate array
-    if(![serverName, category, type, email, desc].every(Boolean)){
+    if([serverName, category, type, email, desc].every(Boolean)){
         getClubSnapshot();
     //if not in database submit, else raise alert
         if (clubsArr.includes(serverName)){
