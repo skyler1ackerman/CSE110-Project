@@ -147,22 +147,5 @@
 			// 	 } 
 			//    });
 		   </script>
-	<script>
-		firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
-			snapshot.forEach(function (childSnapshot){
-				if(localStorage.getItem("user-email")==childSnapshot.val().email){
-					let header = document.querySelector('#header');
-					let button= document.createElement('button');
-					button.innerText = "Admin DashBoard";
-					button.addEventListener("click",function (){
-						window.location.href="afterAdminLogin.html";
-					})
-					header.append(button);
-				}
-			});
-		});
-	</script>
-
-
 	</body>
 </html>
