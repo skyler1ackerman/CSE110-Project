@@ -4723,7 +4723,7 @@ div textarea{
 .buttonChatbox:hover {
 	/* background-color: black !important; */
 	filter: "grayscale(100%)" !important;
-	transform: translate(-6px, -6px);
+	transform: translate(-3px, -3px);
 }
 
 .profileCard:hover {
