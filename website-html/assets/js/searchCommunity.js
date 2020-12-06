@@ -145,7 +145,7 @@ function submit_community_category(categoryInput){
         console.log(hash);
         $('html, body').animate({
             scrollTop: $(hash).offset().top
-        }, 1500, 'swing', );
+        }, 1500, 'swing');
     }
     // Removes previous title of Community from previous search query from page,
     // otherwise it keeps adding the element but never gets deleted on new search
