@@ -4713,30 +4713,6 @@ div textarea{
   /*--------- END --------*/
   /*playground switch*/
 
-  /*buttons hover effect for chatbox and matchbutton*/
-.buttonMatch:hover {
-	background-color: #484848 !important; 
-	/* font-weight: bold !important; */
-}
-.buttonMatch:active {
-  background-color: black !important;
-  transform: translateY(4px);
-}
-.buttonCancel:hover {
-	background-color: #484848 !important;
-	/* font-weight: bold !important;  */
-}
-.buttonCancel:active {
-  background-color: black !important;
-  transform: translateY(4px);
-}
-
-.buttonChatbox:hover {
-	/* background-color: black !important; */
-	filter: "grayscale(100%)" !important;
-	transform: translate(-3px, -3px);
-}
-
 .profileCard:hover {
 	background-color: #000033;
 }
