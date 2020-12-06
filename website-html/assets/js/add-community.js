@@ -63,16 +63,10 @@ async function submit_community() {
                 time: Date(Date.now()).toString()
             });
 
-            alert("Successfully submitted! Thank you for your contribution!");
+            alert("Successfully submitted! Thank you for adding the community!");
         }
         resetAddCommunity();
     } else {
         alert("Fill all required fields.");
     }
 }
-
-
-// why is it white, why is it pink??
-// drop down
-// nav bar
-// 

@@ -1,32 +1,32 @@
 var classesArr = []
-getClassSnapshot();
 
 async function resetAddClass() {
     console.log("resetAddClass() called :)");
-    document.getElementById("deptCode").value = '';
-    document.getElementById("courseNum").value = '';
-    document.getElementById("instructor").value = '';
+    document.getElementById("invitelink").value = '';
+    document.getElementById("professor").value = '';
     document.getElementById("quarter").value = '';
-    document.getElementById("discordUrl").value = '';
+    document.getElementById("year").value = '';
 }
 
 
-async function getClassSnapshot() {
-    console.log("getClassSnapshot() called :)");
-    var ref = firebase.database().ref("classes");
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            var className = childSnapshot.key;
-            classesArr.push(className);
-        });
-    });
-}
+// async function getClassSnapshot() {
+//     console.log("getClassSnapshot() called :)");
+//     var ref = firebase.database().ref("classes");
+//     ref.on("value", function (snapshot) {
+//         snapshot.forEach(function (childSnapshot) {
+//             var className = childSnapshot.key;
+//             classesArr.push(className);
+//         });
+//     });
+// }
 
 
 // we want to check if the community already exists in the database
 // we do this by comparing community name
 function submitClass() {
 
+    console.log(localStorage.getItem("classinput"));
+    console.log(localStorage.getItem("user-email"));
     //field variables
     var inviteURL = document.getElementById("invitelink").value;
     var profName = document.getElementById("professor").value;
@@ -43,15 +43,16 @@ function submitClass() {
         firebase.database().ref(fbRef).child("Classes").push().set({
             email: localStorage.getItem("user-email"),
             className: localStorage.getItem("classinput"),
-            inviteURL: discordUrl,
-            profName: instructor,
+            inviteURL: inviteURL,
+            profName: profName,
             quarter: quarter,
             year: year,
             time: Date(Date.now()).toString()
         });
-
-        alert("Successfully submitted! Thank you for your contribution!");
-
+        
+        alert("Successfully submitted! Thank you for adding the class!");
+        resetAddClass();
+        
         // firebase.database().ref('clubs').child(category).child(serverName).set({
         //     inviteLink: link,
         //     org_type: type,
@@ -59,8 +60,6 @@ function submitClass() {
         //     description: desc,
         // });
         // alert("Successful submission!");
-
-        resetAddClass();
 
     } else {
         alert("Fill all required fields.");

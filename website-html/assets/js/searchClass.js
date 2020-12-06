@@ -1,6 +1,7 @@
-function storeClassName() {
-    localStorage.setItem("classinput", document.getElementById("myclass").value);
-}
+// function storeClassName() {
+//     console.log("storeclassname called")
+//     localStorage.setItem("classinput", document.getElementById("myclass").value);
+// }
 
 function searchbarClassSelected() {
     //console.log("searchbarClassSelected() called");
