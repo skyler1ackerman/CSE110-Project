@@ -114,37 +114,7 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
       		<script src="assets/js/login.js"></script>
-			<!-- <script src="assets/js/searchClass.js"></script> -->
-			<!-- <script src="assets/js/searchCommunity.js"></script> -->
-
 			<script src="assets/js/feedbackDiscordUtil.js"></script>
-			<!-- <script src="assets/js/livechat.js"></script> -->
-			<script src="assets/js/profileCard.js"></script>
-
-
-			<!-- Jquery starts here: Javascript event handler for nav bar -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-			<script>
-				// this will close the profile popout element if anything else besides that and profile pic is clicked
-				$(document).click(function(e){
-					if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
-						return true;
-					}
-           				closeForm();
-   				 });
-			//    var top1 = $('#one').offset().top;
-
-			//    $(document).scroll(function() {
-			// 	 var scrollPos = $(document).scrollTop()+100; //100: buffer
-			// 	 if (scrollPos < top1) {
-			// 	   $('.zero-text').css('font-weight', 'bold');
-			// 	   $('.one-text').css('font-weight', 'normal');
-			// 	 } 
-			// 	 else {
-			// 	   $('.zero-text').css('font-weight', 'normal');
-			// 	   $('.one-text').css('font-weight', 'bold');
-			// 	 } 
-			//    });
-		   </script>
+			
 	</body>
 </html>

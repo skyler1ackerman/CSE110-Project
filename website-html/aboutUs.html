@@ -8,6 +8,12 @@
 		<link rel="shortcut icon" href="images/logosquare.png" type="image/x-icon"/>
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+  		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+  		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+		<script src="/__/firebase/init.js"></script>
+		<script src="assets/js/auth.js"></script>
 	</head>
 	<body class="landing is-preload">
 
@@ -66,11 +72,11 @@
 						<br/>
 						<br/>
 
-						<ul class="icons major">
+						<!-- <ul class="icons major">
 							<li><span class="icon solid fa-laptop major style1"><span class="label">Lorem</span></span></li>
 							<li><span class="icon solid fa-headphones major style2"><span class="label">Ipsum</span></span></li>
 							<li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
-						</ul>
+						</ul> -->
 				</div>
 				</section>
 
@@ -82,11 +88,7 @@
 			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
 			<!-- this works only when we are using firebase hosting service-->
 			<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-			<script src="/__/firebase/8.0.1/firebase-app.js"></script>
-  			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-  			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-			<script src="/__/firebase/init.js"></script>
+		
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -98,11 +100,11 @@
 			 <script src="assets/js/util.js"></script>
 			 <script src="assets/js/main.js"></script>
 			 <script src="assets/js/login.js"></script>
-			 <script src="assets/js/feedbackDiscordUtil.js"></script>
-			 <script>
-				var top1 = $('#one').offset().top;
-				var top2 = $('#two').offset().top;
-				var top3 = $('#three').offset().top;
+			 <!-- <script src="assets/js/feedbackDiscordUtil.js"></script> -->
+			 <!-- <script>
+					var top1 = $('#one').offset().top;
+					var top2 = $('#two').offset().top;
+					var top3 = $('#three').offset().top;
 				$(document).scroll(function() {
 				  var scrollPos = $(document).scrollTop()+100; //100: buffer
 				  if (scrollPos < top1) {
@@ -140,7 +142,7 @@
 					// $('.colorchange').css('background-color', '#333333 !important');
 				  }
 				});
-			</script>
+			</script> -->
 
 	</body>
 </html>
