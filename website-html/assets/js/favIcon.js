@@ -1,16 +1,17 @@
-lightSchemeIcon = document.querySelector('link#light-scheme-icon');
-darkSchemeIcon = document.querySelector('link#dark-scheme-icon');
+// lightSchemeIcon = document.querySelector("link[id=light-scheme-icon]");
+// darkSchemeIcon = document.querySelector("link[id=dark-scheme-icon]");
+// OR can be grabbed like ^
+lightSchemeIcon = document.querySelector("link#light-scheme-icon");
+darkSchemeIcon = document.querySelector("link#dark-scheme-icon");
 
-function onUpdate() {
-  console.log("onupdate  called");
+async function onUpdate() {
   if (matcher.matches) {
     lightSchemeIcon.remove();
     document.head.append(darkSchemeIcon);
-    console.log("one called");
   } else {
     document.head.append(lightSchemeIcon);
+    console.log(darkSchemeIcon);
     darkSchemeIcon.remove();
-    console.log("two called");
   }
 }
 
