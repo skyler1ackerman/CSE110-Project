@@ -83,7 +83,7 @@ function autocompleteClass(inp, arr) {
         //         }
         //     }
         // });
-        a.style.maxHeight="40vh"
+        a.style.maxHeight="42vh"
         a.style.overflowY="scroll";
         a.style.borderColor="transparent";
     });
