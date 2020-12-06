@@ -4495,6 +4495,7 @@ input, select, textarea {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	padding: 0 8px 0 8px;
 }
 
 
@@ -4740,3 +4741,28 @@ div textarea{
 	background-color: #000033;
 }
 /* document.getElementById("myImg").style.filter = "grayscale(100%)"; */
+
+.autocomplete-items::-webkit-scrollbar {
+	width: 10px;
+	scroll-behavior: smooth;
+}
+.autocomplete-items::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 10px;
+	/*border: 10px solid transparent;*/
+	background-clip: content-box;
+}
+.autocomplete-items::-webkit-scrollbar-track:hover {
+
+	background: rgba(255,255,255,0.1);
+}
+
+.autocomplete-items::-webkit-scrollbar-thumb {
+	/*background: red;*/
+	border-radius: 10px;
+	min-height: 15%;
+	background-color: gainsboro;
+}
+.autocomplete-items::-webkit-scrollbar-button{
+	display: none;
+}

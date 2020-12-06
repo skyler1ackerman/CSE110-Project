@@ -136,6 +136,8 @@ function submit_community_category(categoryInput){
     location.hash = 'displayResults';
 
     // Animation for moving the screen
+
+    window.scrollBy(0, 1);//programatically scroll down a bit. otherwise animation sometimes doesnt work.
     if (window.location.hash) scroll(0,0);
     setTimeout(function () {
         scroll(0, 0);
@@ -145,7 +147,11 @@ function submit_community_category(categoryInput){
         console.log(hash);
         $('html, body').animate({
             scrollTop: $(hash).offset().top
+<<<<<<< HEAD
         }, 1500, 'swing');
+=======
+        }, 1500, 'swing', );
+>>>>>>> website-html
     }
     // Removes previous title of Community from previous search query from page,
     // otherwise it keeps adding the element but never gets deleted on new search
@@ -267,6 +273,9 @@ function autocompleteCommunity(inp, arr) {
           a.appendChild(b);
         }
       }
+      a.style.maxHeight="20vh"
+      a.style.overflowY="scroll";
+      a.style.borderColor="transparent";
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
