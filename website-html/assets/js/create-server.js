@@ -25,45 +25,43 @@ async function getClassSnapshot() {
 
 // we want to check if the community already exists in the database
 // we do this by comparing community name
-async function submitClass() {
+function submitClass() {
+
     //field variables
-    var deptCode = document.getElementById("deptCode").value;
-    var courseNum = document.getElementById("courseNum").value;
-    var instructor = document.getElementById("instructor").value;
-    var quarter= document.getElementById("quarter").value;
-    var discordUrl= document.getElementById("discordUrl").value;
+    var inviteURL = document.getElementById("invitelink").value;
+    var profName = document.getElementById("professor").value;
+    var quarter = document.getElementById("quarter").value;
     var year = document.getElementById("year").value;
 
+    console.log(inviteURL);
     //check if filled out then populate array
-    if ([deptCode, courseNum, instructor, quarter, discordUrl].every(Boolean)) {
+    if ([inviteURL, profName, quarter, year].every(Boolean)) {
         // getClassSnapshot();
         //if not in database submit, else raise alert
-        if (!classesArr.includes(deptCode + courseNum)) {
-            alert(deptCode + courseNum + " course doesn't exist.");
-        } else {
-            // just pasted it here coz there is no export in the original file
-            var fbRef = "DiscordServerRequests/";
-            firebase.database().ref(fbRef).child("Classes").push().set({
-                email: localStorage.getItem("user-email"),
-                className: localStorage.getItem("classinput"),
-                inviteURL: discordUrl,
-                profName: instructor,
-                quarter: quarter,
-                year: year,
-                time: Date(Date.now()).toString()
-            });
+        // just pasted it here coz there is no export in the original file
+        var fbRef = "DiscordServerRequests/";
+        firebase.database().ref(fbRef).child("Classes").push().set({
+            email: localStorage.getItem("user-email"),
+            className: localStorage.getItem("classinput"),
+            inviteURL: discordUrl,
+            profName: instructor,
+            quarter: quarter,
+            year: year,
+            time: Date(Date.now()).toString()
+        });
 
-            alert("Successfully submitted! Thank you for your contribution!");
+        alert("Successfully submitted! Thank you for your contribution!");
 
-            // firebase.database().ref('clubs').child(category).child(serverName).set({
-            //     inviteLink: link,
-            //     org_type: type,
-            //     contact: email,
-            //     description: desc,
-            // });
-            // alert("Successful submission!");
-        }
+        // firebase.database().ref('clubs').child(category).child(serverName).set({
+        //     inviteLink: link,
+        //     org_type: type,
+        //     contact: email,
+        //     description: desc,
+        // });
+        // alert("Successful submission!");
+
         resetAddClass();
+
     } else {
         alert("Fill all required fields.");
     }

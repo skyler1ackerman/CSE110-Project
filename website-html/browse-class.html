@@ -1,145 +1,169 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <title>Classes</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="icon" href="images/logosquare.png" type="image/ico"/>
-    <link rel="shortcut icon" href="images/logosquare.png" type="image/x-icon"/>
+    <link rel="icon" href="images/logosquare.png" type="image/ico" />
+    <link rel="shortcut icon" href="images/logosquare.png" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
-	<script src="/__/firebase/init.js"></script>
-	<script src="assets/js/auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="assets/js/auth.js"></script>
 </head>
+
 <body class="landing is-preload">
 
 
-<!-- Page Wrapper -->
-<div id="page-wrapper">
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
 
-    <!-- Header -->
-    <!-- Header -->
-    <header id="header" class="alt">
-        <nav id="nav">
-            <!-- <ul> -->
+        <!-- Header -->
+        <!-- Header -->
+        <header id="header" class="alt">
+            <nav id="nav">
+                <!-- <ul> -->
                 <!-- <li class="special"> Navigation bar starts here -->
-                    <ul class="menuToggle" >
-                        <a href="afterlogin.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Home</a>
-                        &nbsp;
-                        |
-                        &nbsp;
-                        <a href="browse-class.html" class="no-style more scrolly one-text" style="font-weight: bold; cursor: pointer;">Classes</a>
-                        &nbsp;
-                        |
-                        &nbsp;
-                        <a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
-                        &nbsp;
-                        |
-                        &nbsp;
-                        <img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
-                        &nbsp;
-                        &nbsp;
-                    </ul>
-                    <!-- </li> -->
-            <!-- </ul> -->
-        </nav>
-    </header>
-    <div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
-        <div style="padding: 0px 20px 0px 20px;">
-            <img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
-            
-            <div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
-            <div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
-            
-            <button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
-            <br>
-            <button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
-            <div style="width:200px;">
-                <div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Contact Us</div>
-                <div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
-                <div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">About Us</div>
-                <br>
-                <div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard" style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Admin Dashboard</div>
-            </div>
-            
-        </div>	
-    </div>
-
-    <script>
-        // load profile pic, load name, load email
-        var profileImgUrl = localStorage.getItem("user-profileimgurl");
-        document.getElementById("profilePicUserProfile").src=profileImgUrl;
-		document.getElementById("profilePicUserProfile2").src=profileImgUrl;
-		document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
-		document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
-        // open profile popout
-		function openForm() {
-			if (document.getElementById("myForm").style.display == "grid") {
-				document.getElementById("myForm").style.display = "none";
-			} else {
-				document.getElementById("myForm").style.display = "grid"; 
-			}
-		}
-
-		// close profile popout
-		function closeForm() {
-  			document.getElementById("myForm").style.display = "none";
-		}
-        
-
-        window.onload = function() {
-            //get all class info from FB databse
-            getClassSnapshot();
-
-            // document.getElementById("email").placeholder=localStorage.getItem("user-email");
-            // document.getElementById("email").value=localStorage.getItem("user-email");
-            // localStorage.removeItem("user-email");
-            // document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-            // document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-            // localStorage.removeItem("user-displayname");
-            //remove local storage items in signout function for security.
-        }
-    </script>
-
-    <!-- Banner -->
-    <section id="banner">
-
-        <div class="inner">
-            <br>
-            <h2>Browse Class Servers </h2>
-            <br><br>
-            <div id="classSearchBar" style="display: block;">
-                <ul class="actions special">
-                    <form autocomplete="off" action="/action_page.php">
-                        <div class="autocomplete" style="width:400px; height: 100%">
-                            <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Enter Class Name e.g. CSE110">
-                        </div>
-                    </form>
+                <ul class="menuToggle">
+                    <a href="afterlogin.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Home</a>
+                    &nbsp;
+                    |
+                    &nbsp;
+                    <a href="browse-class.html" class="no-style more scrolly one-text"
+                        style="font-weight: bold; cursor: pointer;">Classes</a>
+                    &nbsp;
+                    |
+                    &nbsp;
+                    <a href="browse-community.html" class="no-style more scrolly two-text"
+                        style="cursor: pointer;">Communities</a>
+                    &nbsp;
+                    |
+                    &nbsp;
+                    <img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer"
+                        class="avatar" alt=""
+                        style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
+                    &nbsp;
+                    &nbsp;
                 </ul>
-                <input type="submit" onclick="submit_class()" value="SEARCH">
+                <!-- </li> -->
+                <!-- </ul> -->
+            </nav>
+        </header>
+        <div class="form-popup" id="myForm"
+            style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+            <div style="padding: 0px 20px 0px 20px;">
+                <img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt=""
+                    style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+
+                <div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;">
+                    User</div>
+                <div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;">
+                    Email</div>
+
+                <button type="button" onclick="location.href='userprofile.html'"
+                    style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
+                <br>
+                <button type="button" onclick="signOutFunction()"
+                    style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign
+                    out</button>
+                <div style="width:200px;">
+                    <div onclick="goToContactUs()" class="profileCard"
+                        style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        Contact Us</div>
+                    <div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+                    <div onclick="goToAboutUs()" class="profileCard"
+                        style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        About Us</div>
+                    <br>
+                    <div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard"
+                        style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        Admin Dashboard</div>
+                </div>
+
             </div>
         </div>
-    </section>
 
-    <section id="displayResults" class="wrapper style5" style="display: none;">
+        <script>
+            // load profile pic, load name, load email
+            var profileImgUrl = localStorage.getItem("user-profileimgurl");
+            document.getElementById("profilePicUserProfile").src = profileImgUrl;
+            document.getElementById("profilePicUserProfile2").src = profileImgUrl;
+            document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
+            document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
+            // open profile popout
+            function openForm() {
+                if (document.getElementById("myForm").style.display == "grid") {
+                    document.getElementById("myForm").style.display = "none";
+                } else {
+                    document.getElementById("myForm").style.display = "grid";
+                }
+            }
 
-        <div id="results" class="inner" style="text-align: center">
-            <h2 style="text-align: center" id="myclass"></h2>
+            // close profile popout
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
 
-            <!-- Display query results here -->
-            <ul id="queryResults" class="alt" style="display: inline-block;">
 
-            </ul>
-        </div>
-        <div id="openformButton">
-            <button class="	open-button">&#43;</button>
-        </div>
-        <!--
+            window.onload = function () {
+                //get all class info from FB databse
+                getClassSnapshot();
+
+                // document.getElementById("email").placeholder=localStorage.getItem("user-email");
+                // document.getElementById("email").value=localStorage.getItem("user-email");
+                // localStorage.removeItem("user-email");
+                // document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+                // document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+                // localStorage.removeItem("user-displayname");
+                //remove local storage items in signout function for security.
+            }
+        </script>
+
+        <!-- Banner -->
+        <section id="banner">
+
+            <div class="inner">
+                <br>
+                <h2>Browse Class Servers </h2>
+                <br><br>
+                <div id="classSearchBar" style="display: block;">
+                    <ul class="actions special">
+                        <form autocomplete="off" action="/action_page.php">
+                            <div class="autocomplete" style="width:400px; height: 100%">
+                                <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;"
+                                    placeholder="Enter Class Name e.g. CSE110">
+                            </div>
+                        </form>
+                    </ul>
+                    <input type="submit" onclick="submit_class()" value="SEARCH">
+                </div>
+            </div>
+        </section>
+
+        <section id="displayResults" class="wrapper style5" style="display: none;">
+
+            <div id="results" class="inner" style="text-align: center">
+                <h2 style="text-align: center" id="myclass"></h2>
+
+                <!-- Display query results here -->
+                <ul id="queryResults" class="alt" style="display: inline-block;">
+
+                </ul>
+            </div>
+            <div id="openformButton">
+                <!-- <a class="open-button" onclick="storeClassName()" href="create-server.html" >&#43;</a> -->
+                <a href="javascript:void(0)" onclick="storeClassName(); window.location='create-server.html'">&#43;</a>
+
+            </div>
+            <!-- <h1><a href="afterlogin.html">Triton Groups</a></h1> -->
+            <!--
         <script>
             function openForm() {
                 document.getElementById("myForm").style.display = "block";
@@ -156,7 +180,7 @@
                 document.getElementById("searchbarsubmit").style.display = "block";
             }
         </script>-->
-        <!--<div class="form-popup" id="myForm">
+            <!--<div class="form-popup" id="myForm">
             <form class="form-container">
                 <div class="row gtr-uniform">
                     <div class="col-12" style="text-align: center;">
@@ -197,10 +221,10 @@
             </form>
         </div>-->
 
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <!-- <footer id="footer"> -->
+        <!-- Footer -->
+        <!-- <footer id="footer"> -->
         <!-- <ul class="icons">
             <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
             <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
@@ -209,44 +233,45 @@
         <ul class="copyright"></br>
             <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
         </ul> -->
-    <!-- </footer> -->
+        <!-- </footer> -->
 
-</div>
+    </div>
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/login.js"></script>
-<script src="assets/js/searchClass.js"></script>
-<script src="assets/js/profileCard.js"></script>
-<!-- <script src="assets/js/searchCommunity.js"></script> -->
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/searchClass.js"></script>
+    <script src="assets/js/profileCard.js"></script>
+    <!-- <script src="assets/js/searchCommunity.js"></script> -->
 
-<!--JQuery script-->
-<script>
-    // this will close the profile popout element if anything else besides that and profile pic is clicked
-	$(document).click(function(e){
-		if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
-			return true;
-		}
-			closeForm();
-    });
-        
-</script>
+    <!--JQuery script-->
+    <script>
+        // this will close the profile popout element if anything else besides that and profile pic is clicked
+        $(document).click(function (e) {
+            if ($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+                return true;
+            }
+            closeForm();
+        });
 
-<!-- below is firebase SDKs-->
-<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
-<!-- this works only when we are using firebase hosting service-->
-<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+    </script>
+
+    <!-- below is firebase SDKs-->
+    <!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+    <!-- this works only when we are using firebase hosting service-->
+    <!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+    <!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
 <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
 <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
 <script src="/__/firebase/8.0.1/firebase-database.js"></script>
 <script src="/__/firebase/init.js"></script> -->
 
 </body>
+
 </html>
