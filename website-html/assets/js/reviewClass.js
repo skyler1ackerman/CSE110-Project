@@ -217,22 +217,24 @@ function autocompleteClass(inp, arr) {
             }
 
         }
-
-        a.addEventListener("wheel",function (e){
-            e.preventDefault();
-
-            if(e.deltaY>0&&a.childElementCount>7){
-                nodesBuffer.appendChild(a.firstChild);
-                a.removeChild(a.firstChild);
-                console.log("scroll up");
-            }else if(e.deltaY<0){
-                if(nodesBuffer.hasChildNodes()){
-                    console.log("buffer not empty");
-                    a.insertBefore(nodesBuffer.lastChild,a.firstChild);
-                }
-            }
-
-        });
+        a.style.maxHeight="40vh"
+        a.style.overflowY="scroll";
+        a.style.borderColor="transparent";
+        // a.addEventListener("wheel",function (e){
+        //     e.preventDefault();
+        //
+        //     if(e.deltaY>0&&a.childElementCount>7){
+        //         nodesBuffer.appendChild(a.firstChild);
+        //         a.removeChild(a.firstChild);
+        //         console.log("scroll up");
+        //     }else if(e.deltaY<0){
+        //         if(nodesBuffer.hasChildNodes()){
+        //             console.log("buffer not empty");
+        //             a.insertBefore(nodesBuffer.lastChild,a.firstChild);
+        //         }
+        //     }
+        //
+        // });
 
     });
 
