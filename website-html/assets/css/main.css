@@ -1877,7 +1877,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75em;
+		height: 2.55em;
 	}
 
 	textarea {
@@ -2161,7 +2161,7 @@ input, select, textarea {
 		}
 
 			ul.alt li {
-				border-top: solid 1px #fff;
+				/*border-top: solid 1px #fff;*/
 				padding: 0.5em 0;
 			}
 
@@ -2426,7 +2426,7 @@ input, select, textarea {
 		height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-		max-width: 30em;
+		/*max-width: 30em;*/
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -4235,7 +4235,7 @@ input, select, textarea {
 	padding: 10px;
 	cursor: pointer;
 	background-color: darkgray;  
-	border-bottom: 1px solid #111111;  
+	border-bottom: 1px solid #111111;
   }
   
   /*when hovering an item:*/
@@ -4439,7 +4439,7 @@ input, select, textarea {
 	height: 3.125em;
 	letter-spacing: 0.175em;
 	line-height: 3.125em;
-	max-width: 30em;
+	/*max-width: 30em;*/
 	padding: 0 1.75em;
 	text-align: center;
 	text-decoration: none;
@@ -4476,7 +4476,7 @@ input, select, textarea {
 	-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 	background-color: transparent;
-	display: block;
+	/*display: block;*/
 	width: 100%;
 	border-radius: 3px;
 	border: 0;
@@ -4488,14 +4488,16 @@ input, select, textarea {
 	height: 3.125em;
 	letter-spacing: 0.225em;
 	line-height: 3.125em;
-	padding: 0 2.75em;
+	padding: 0 9.75em;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	padding: 0 8px 0 8px;
 }
+
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
@@ -4510,6 +4512,16 @@ input, select, textarea {
 	display: none;
 	overflow: hidden;
 	background-color: #f1f1f1;
+
+}
+
+.content-class {
+	width: inherit;
+	font: inherit;
+	display: none;
+	overflow: hidden;
+	background-color: #ffffff;
+
 }
 
 #openformButton{
@@ -4586,7 +4598,6 @@ div textarea{
 	background-color: gainsboro;
 	border-color: gainsboro;
 	border-width: 1px;
-
 }
 
 /* LOADING*/
@@ -4702,31 +4713,32 @@ div textarea{
   /*--------- END --------*/
   /*playground switch*/
 
-  /*buttons hover effect for chatbox and matchbutton*/
-.buttonMatch:hover {
-	background-color: #484848 !important; 
-	/* font-weight: bold !important; */
-}
-.buttonMatch:active {
-  background-color: black !important;
-  transform: translateY(4px);
-}
-.buttonCancel:hover {
-	background-color: #484848 !important;
-	/* font-weight: bold !important;  */
-}
-.buttonCancel:active {
-  background-color: black !important;
-  transform: translateY(4px);
-}
-
-.buttonChatbox:hover {
-	/* background-color: black !important; */
-	filter: "grayscale(100%)" !important;
-	transform: translate(-3px, -3px);
-}
-
 .profileCard:hover {
 	background-color: #000033;
 }
 /* document.getElementById("myImg").style.filter = "grayscale(100%)"; */
+
+.autocomplete-items::-webkit-scrollbar {
+	width: 10px;
+	scroll-behavior: smooth;
+}
+.autocomplete-items::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 10px;
+	/*border: 10px solid transparent;*/
+	background-clip: content-box;
+}
+.autocomplete-items::-webkit-scrollbar-track:hover {
+
+	background: rgba(255,255,255,0.1);
+}
+
+.autocomplete-items::-webkit-scrollbar-thumb {
+	/*background: red;*/
+	border-radius: 10px;
+	min-height: 15%;
+	background-color: gainsboro;
+}
+.autocomplete-items::-webkit-scrollbar-button{
+	display: none;
+}

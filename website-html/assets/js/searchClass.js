@@ -1,11 +1,11 @@
 function searchbarClassSelected(){
-    console.log("searchbarClassSelected() called");
+    //console.log("searchbarClassSelected() called");
     document.getElementById("clubSearchBar").style.display = "none";
     document.getElementById("classSearchBar").style.display = "block";
 }
 
 function getClassSnapshot(){
-    console.log("getClassSnapshot() called :)");
+    //console.log("getClassSnapshot() called :)");
     var ref = firebase.database().ref("classes");
     ref.on("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -17,9 +17,9 @@ function getClassSnapshot(){
 
 //reads in every discord info from a class
 async function getDiscordInfo(className){
-    console.log("getDiscordInfo() called");
+    //console.log("getDiscordInfo() called");
     var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
+    //console.log("Finding class ->", className);
     var ref = firebase.database().ref(classRef);
     var resultsString = { str : "" };
     var results = {};
@@ -44,7 +44,7 @@ async function getDiscordInfo(className){
             // { Fall 2020 : [ {prof: ... , discord : ... } , {...} ] }
             var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl};
             results[item].push(profDiscordInfo);
-            //console.log(results);
+            console.log(results);
 
         });
     });
@@ -58,7 +58,7 @@ async function constructHTML(className){
 
     // result is still empty even when using async/await
     let result = await getDiscordInfo(className);
-    console.log("constructHTML");
+    //console.log("constructHTML");
     //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = {str : ""};
     if (jQuery.isEmptyObject(result)){
@@ -66,10 +66,10 @@ async function constructHTML(className){
     }
     //console.log(Object.values(result).length);
     Object.keys(result).forEach(function(key) {
-        resultsString.str += "<li class='community' style=\"display: inline;\">";
+        resultsString.str += "<li class='community'>";
         resultsString.str += `<button class=\"collapsible\">${key}</button>`;
-        resultsString.str += "<div class=\"content\">";
-        resultsString.str += "<p></p>";
+        resultsString.str += "<div class=\"content-class\">";
+        //resultsString.str += "<p></p>";
         resultsString.str += "<div class=\"table-wrapper\" style=\"align-content: center;\">\n" +
             "                        <table class=\"alt\" style=\"align-self: center;\">\n" +
             "                            <thead></thead>\n" +
@@ -94,9 +94,8 @@ async function constructHTML(className){
         //};
 
     });
-    console.log("After for each loop");
-    console.log(resultsString.str);
     document.getElementById("queryResults").innerHTML = resultsString.str;
+    document.getElementById("myclass").innerHTML = className;
 
     var container = document.querySelector(" #results > #queryResults ");
     var coll = container.querySelectorAll(" .community > .collapsible")
@@ -116,11 +115,11 @@ async function constructHTML(className){
 };
 
 function addDiscordInfotoDB(){
-    console.log("addDiscordInfotoDB() called!");
+    //console.log("addDiscordInfotoDB() called!");
     //First, count number of children in the class
     var className = localStorage.getItem("classinput")
     var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
+    //console.log("Finding class ->", className);
     var class_ref = firebase.database().ref(classRef);
     var counter = 1;
     class_ref.on("value", function(snapshot) {
@@ -131,7 +130,7 @@ function addDiscordInfotoDB(){
 
     //now add a discordinfo inside class DB
     var discordRef = "classes/" + className + "/discordInfo" + counter;
-    console.log(discordRef);
+    //console.log(discordRef);
     var discord_ref = firebase.database().ref(discordRef);
     discord_ref.set({
         inviteURL: document.getElementById("invitelink").value,
@@ -142,27 +141,40 @@ function addDiscordInfotoDB(){
 }
 
 function resetDB(){
-    console.log("addDiscordInfotoDB() called!");
+    //log("addDiscordInfotoDB() called!");
     //First, count number of children in the class
     var className = localStorage.getItem("classinput")
     var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
+    //console.log("Finding class ->", className);
     var class_ref = firebase.database().ref(classRef);
     class_ref.set({
         discordInfo1: "",
     });
 }
 
-function submit_class(){
+async function submit_class(){
     var classInput = document.getElementById("inputClasses").value;
-    //check if user input is valid
-    if(classesArr.includes(classInput)){
+    document.getElementById('displayResults').style.display = "block";
+    location.hash = 'displayResults';
+
+    // void some browsers issue
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+    if(classesArr.includes(classInput)) {
         localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
-        window.location.href = "classDB.html";
+        await constructHTML(classInput);
     }
     else{
         alert("The class you entered is not in our Database.");
     }
+
 }
 
 function autocompleteClass(inp, arr) {
@@ -170,6 +182,9 @@ function autocompleteClass(inp, arr) {
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
+    if(inp === null){
+        return;
+    }
     inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/
@@ -212,22 +227,26 @@ function autocompleteClass(inp, arr) {
             }
 
         }
+        a.style.maxHeight="40vh"
+        a.style.overflowY="scroll";
+        a.style.borderColor="transparent";
 
-        a.addEventListener("wheel",function (e){
-            e.preventDefault();
 
-            if(e.deltaY>0&&a.childElementCount>7){
-                nodesBuffer.appendChild(a.firstChild);
-                a.removeChild(a.firstChild);
-                console.log("scroll up");
-            }else if(e.deltaY<0){
-                if(nodesBuffer.hasChildNodes()){
-                    console.log("buffer not empty");
-                    a.insertBefore(nodesBuffer.lastChild,a.firstChild);
-                }
-            }
-
-        });
+        // a.addEventListener("wheel",function (e){
+          //     e.preventDefault();
+        //
+        //     if(e.deltaY>0&&a.childElementCount>7){
+        //         nodesBuffer.appendChild(a.firstChild);
+        //         a.removeChild(a.firstChild);
+        //         //console.log("scroll up");
+        //     }else if(e.deltaY<0){
+        //         if(nodesBuffer.hasChildNodes()){
+        //             //console.log("buffer not empty");
+        //             a.insertBefore(nodesBuffer.lastChild,a.firstChild);
+        //         }
+        //     }
+        //
+        // });
 
     });
 

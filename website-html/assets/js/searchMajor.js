@@ -62,27 +62,27 @@ function autocompleteClass(inp, arr) {
                     closeAllLists();
                 });
                 a.appendChild(b);
-                // this limits length of buffer, no scroll
-                if(a.childNodes.length == 7){
-                    break;
-                }
+                
             }
         }
 
-        a.addEventListener("wheel", function (e) {
-            e.preventDefault();
-
-            if (e.deltaY > 0 && a.childElementCount > 7) {
-                nodesBuffer.appendChild(a.firstChild);
-                a.removeChild(a.firstChild);
-                //console.log("scroll up");
-            } else if (e.deltaY < 0) {
-                if (nodesBuffer.hasChildNodes()) {
-                    //console.log("buffer not empty");
-                    a.insertBefore(nodesBuffer.lastChild, a.firstChild);
-                }
-            }
-        });
+        // a.addEventListener("wheel", function (e) {
+        //     e.preventDefault();
+        //
+        //     if (e.deltaY > 0 && a.childElementCount > 7) {
+        //         nodesBuffer.appendChild(a.firstChild);
+        //         a.removeChild(a.firstChild);
+        //         //console.log("scroll up");
+        //     } else if (e.deltaY < 0) {
+        //         if (nodesBuffer.hasChildNodes()) {
+        //             //console.log("buffer not empty");
+        //             a.insertBefore(nodesBuffer.lastChild, a.firstChild);
+        //         }
+        //     }
+        // });
+        a.style.maxHeight="42vh"
+        a.style.overflowY="scroll";
+        a.style.borderColor="transparent";
     });
 
     /*execute a function presses a key on the keyboard:*/

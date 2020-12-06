@@ -103,8 +103,7 @@
 					function closeProfileForm() {
   						document.getElementById("profileForm").style.display = "none";
 					}
-					
-                </script>
+				</script>
 				<!-- Banner -->
 				<section id="banner">
 
@@ -122,13 +121,13 @@
 									</div>
 								</form>
 							</ul>
-							<input type="submit" onclick="submit_class()" value="SEARCH">
+							<input id="searchButton" type="submit" onclick="submit_class_DB()" value="SEARCH">
 						</div>
 					</div>
 
 				</section>
 
-				<section class="wrapper style5">
+				<section id="displayResults" class="wrapper style5">
 
 					<div id="results" class="inner" style="text-align: center">
 						<h2 style="text-align: center" id="myclass"></h2>

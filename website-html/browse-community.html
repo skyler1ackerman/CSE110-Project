@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>tritongroups</title>
+	<title>Communities</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" href="images/logosquare.png" type="image/ico"/>
+    <link rel="shortcut icon" href="images/logosquare.png" type="image/x-icon"/>
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	<script src="/__/firebase/8.0.1/firebase-app.js"></script>
@@ -95,7 +97,7 @@
         
 
 		window.onload = function() {
-			//get all class info from FB databse
+			//get all class info from FB database
 			getCommunitySnapshot();
 
 			// document.getElementById("email").placeholder=localStorage.getItem("user-email");
@@ -160,6 +162,18 @@
 				</form>
 			</ul>
 			<div class="submit-community-button"> <input type="submit" onclick="submit_community()"></div>
+		</div>
+
+	</section>
+
+	<section id="displayResults" class="wrapper style5" style="display: none;">
+
+		<div id="results" class="inner">
+
+			<!-- Display query results here -->
+			<ul id="queryResults" class="alt">
+
+			</ul>
 		</div>
 
 	</section>

@@ -70,9 +70,10 @@ function testFunction() {
     });
 }
  function signOutFunction() {
-    console.log("signOutFunction called :)");
-    var answer = window.confirm("Do you want to logout?");
+     console.log("signOutFunction called :)");
+    var answer = true;
     if (answer) {
+   
       firebase.auth().signOut().then(function() {
         // Sign-out successful.
         //remove user info
@@ -84,11 +85,11 @@ function testFunction() {
     }).catch(function(error) {
       // An error happened.
       console.log("signout error!");
-    });
-  }
-  else {
-     console.log("user does not want to logout")
-  }
+     });
+    }
+  // else {
+  //    console.log("user does not want to logout")
+  // }
  
  
 }
