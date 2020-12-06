@@ -32,8 +32,9 @@
 
 									<a href="afterlogin.html" class="no-style more" >Home</a>
 									|
-									<a class="no-style more" style="font-weight: bold;">Feedback Review</a>
-
+                                    <a href="admin-dashboard.html" class="no-style more">Feedback Review</a>
+                                    |
+									<a class="no-style more" style="font-weight: bold;">Report Review</a>
 									&nbsp;
 									|
 									&nbsp;
@@ -61,25 +62,25 @@
 				<!-- Banner -->
 				<section id="banner" style="margin: 5%">
                     <div class="inner" style="margin-top: 40px;">
-						<input type="radio" name="editList" id="feedbackOptionUCSD" value="" checked onclick="feedbackUCSDSelected()"/>
-						<label for="feedbackOptionUCSD">Feedback UCSD</label>
-						<input type="radio" name="editList" id="resolvedOptionUCSD" value=""  onclick="resolvedUCSDSelected()"/>
-						<label for="resolvedOptionUCSD">Resolved UCSD</label>
-						<input type="radio" name="editList" id="feedbackOptionOutside" value="" onclick="feedbackOutsideSelected()"/>
-						<label for="feedbackOptionOutside">Feedback Outside</label>
-						<input type="radio" name="editList" id="resolvedOptionOutside" value="" onclick="resolvedOutsideSelected()"/>
-						<label for="resolvedOptionOutside">Resolved Outside</label>
+						<input type="radio" name="editList" id="reportOptionCommunity" value="" checked onclick="reportCommunitySelected()"/>
+						<label for="reportOptionCommunity">Report Community</label>
+						<input type="radio" name="editList" id="resolvedOptionCommunity" value=""  onclick="resolvedCommunitySelected()"/>
+						<label for="resolvedOptionCommunity">Resolved Community</label>
+						<input type="radio" name="editList" id="reportOptionClass" value="" onclick="reportClassSelected()"/>
+						<label for="reportOptionClass">Report Class</label>
+						<input type="radio" name="editList" id="resolvedOptionClass" value="" onclick="resolvedClassSelected()"/>
+						<label for="resolvedOptionClass">Resolved Class</label>
 						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
 
                     </div>
                     <div style="overflow: auto;" >
-                        <div id="feedbackUCSD" style="display: block; margin:auto; width: 60%;">
+                        <div id="reportCommunity" style="display: block; margin:auto; width: 60%;">
 						</div>
-						<div id="resolvedUCSD" style="display: none; margin:auto; width: 60%;">
+						<div id="resolvedCommunity" style="display: none; margin:auto; width: 60%;">
 						</div>
-						<div id="feedbackOutside" style="display: none; margin:auto; width: 60%;">
+						<div id="reportClass" style="display: none; margin:auto; width: 60%;">
 						</div>
-						<div id="resolvedOutside" style="display: none; margin:auto; width: 60%;">
+						<div id="resolvedClass" style="display: none; margin:auto; width: 60%;">
 						</div>
                     </div>
 				</section>
@@ -108,7 +109,7 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/login.js"></script>
-		<script src="assets/js/adminFeedback.js"></script>
+		<script src="assets/js/adminReport.js"></script>
 
 	</body>
 </html>

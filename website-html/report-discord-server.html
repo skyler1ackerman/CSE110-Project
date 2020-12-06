@@ -18,7 +18,7 @@
 <body>
 <div id="page-wrapper">
     <!-- Header -->
-    <!-- <header id="header">
+    <header id="header">
         <h1><a href="index.html">Triton Groups</a></h1>
         <nav id="nav">
             <ul>
@@ -26,17 +26,15 @@
                     <a href="#menu" class="menuToggle"><span>Menu</span></a>
                     <div id="menu">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="generic.html">Generic</a></li>
-                            <li><a href="elements.html">Elements</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                            <li><a href="#">Log In</a></li>
+                            <li><a href="afterlogin.html">Home</a></li>
+                            <li><a href="browse-community.html">Communities</a></li>
+                            <li><a href="browse-class.html">Classes</a></li>
                         </ul>
                     </div>
                 </li>
             </ul>
         </nav>
-    </header> -->
+    </header>
     <article id="main">
         <header>
             <h2>Report a Discord Server</h2>
@@ -62,9 +60,16 @@
                                 <textarea id="reportReason" name="Reason" placeholder="Reason for reporting..." rows="6"></textarea>
                             </div>
                             <div class="col-12">
+                            <select name="server_type" rows="1" id="server_type">
+								<option value="">Select Server Type</option>
+								<option value="Community">Community</option>
+								<option value="Class">Class</option>
+                            </select>
+                            </div>
+                            <div class="col-12">
                                 <ul class="actions">
-                                    <li><input onclick="submitCommunityReport()" type="button" value="Submit" class="primary"/></li>
-                                    <li><input type="reset" value="Cancel"/></li>
+                                    <li><input onclick="submitReport()" type="button" value="Submit" class="primary"/></li>
+                                    <li><button onclick="location.href = 'afterlogin.html';"  type="button">Cancel</button></li>
                                 </ul>
                             </div>
                         </div>
