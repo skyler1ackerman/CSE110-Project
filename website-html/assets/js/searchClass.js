@@ -58,7 +58,7 @@ async function constructHTML(className){
 
     // result is still empty even when using async/await
     let result = await getDiscordInfo(className);
-    console.log("constructHTML");
+    //console.log("constructHTML");
     //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = {str : ""};
     if (jQuery.isEmptyObject(result)){
