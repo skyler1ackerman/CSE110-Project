@@ -30,7 +30,7 @@ function getFeedbackValues(){
 }
 
 function getFeedbackOutside(){
-  console.log("getFeedbackValues() called!");
+  console.log("getFeedbackOutside() called!");
 
 
   var fbRef = "Feedback/Outside";
@@ -57,6 +57,7 @@ function getFeedbackOutside(){
 
 function getDiscordRequests(){
     console.log("getDiscordRequests() called :)");
+    console.log(firebase)
     var fbRef = "DiscordServerRequests/";
     firebase.database().ref(fbRef).push().set({
         email: localStorage.getItem("user-email"),
