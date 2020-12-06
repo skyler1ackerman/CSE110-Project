@@ -1,15 +1,15 @@
-function retrieveFeedbackUCSD() {
-    console.log("retrieveFeedbackUCSD() called :)");
+function retrieveFeedbackVerified() {
+    console.log("retrieveFeedbackVerified() called :)");
 
-    let feedbackUCSDElement = document.querySelector('#feedbackUCSD');
-    var ResolvedRef="Feedback/ResolvedUCSD";
-    var refUCSD = "Feedback/UCSD";
+    let feedbackVerifiedElement = document.querySelector('#feedbackVerified');
+    var ResolvedRef="Feedback/ResolvedVerified";
+    var refVerified = "Feedback/Verified";
 
 
-    firebase.database().ref(refUCSD).on("value", function(snapshot) {
-        if(feedbackUCSDElement != null){
-            while(feedbackUCSDElement.hasChildNodes()){
-                feedbackUCSDElement.removeChild(feedbackUCSDElement.lastChild);
+    firebase.database().ref(refVerified).on("value", function(snapshot) {
+        if(feedbackVerifiedElement != null){
+            while(feedbackVerifiedElement.hasChildNodes()){
+                feedbackVerifiedElement.removeChild(feedbackVerifiedElement.lastChild);
             }
         }
         snapshot.forEach(function(childSnapshot) {
@@ -61,7 +61,7 @@ function retrieveFeedbackUCSD() {
                     explanation: feedback.explanation,
                     time: feedback.time
                 })
-                firebase.database().ref(refUCSD).child(newFeedbackBoxElement.id).remove();
+                firebase.database().ref(refVerified).child(newFeedbackBoxElement.id).remove();
             });
 
             newFeedbackBoxElement.appendChild(time)
@@ -71,28 +71,28 @@ function retrieveFeedbackUCSD() {
             newFeedbackBoxElement.appendChild(explanation)
             newFeedbackBoxElement.appendChild(resolved)
 
-            feedbackUCSDArr.push(feedback);
-            if(feedbackUCSDElement != null) {
-                feedbackUCSDElement.append(newFeedbackBoxElement)
+            feedbackVerifiedArr.push(feedback);
+            if(feedbackVerifiedElement != null) {
+                feedbackVerifiedElement.append(newFeedbackBoxElement)
             }
 
 
         });
     });
 
-    console.log("feedbackUCSDArr:! ", feedbackUCSDArr);
+    console.log("feedbackVerifiedArr:! ", feedbackVerifiedArr);
 }
-function retrieveResolvedUCSD() {
-    console.log("retrieveResolvedUCSD() called :)");
-    var ref=firebase.database().ref("Feedback/ResolvedUCSD");
-    var UnresolvedRef = firebase.database().ref("Feedback/UCSD");
-    let resolvedUCSDElement = document.querySelector('#resolvedUCSD')
+function retrieveResolvedVerified() {
+    console.log("retrieveResolvedVerified() called :)");
+    var ref=firebase.database().ref("Feedback/ResolvedVerified");
+    var UnresolvedRef = firebase.database().ref("Feedback/Verified");
+    let resolvedVerifiedElement = document.querySelector('#resolvedVerified')
 
 
     ref.on("value", function(snapshot) {
-        if(resolvedUCSDElement != null){
-            while(resolvedUCSDElement.hasChildNodes()){
-                resolvedUCSDElement.removeChild(resolvedUCSDElement.lastChild);
+        if(resolvedVerifiedElement != null){
+            while(resolvedVerifiedElement.hasChildNodes()){
+                resolvedVerifiedElement.removeChild(resolvedVerifiedElement.lastChild);
             }
         }
         snapshot.forEach(function(childSnapshot) {
@@ -160,27 +160,27 @@ function retrieveResolvedUCSD() {
             newFeedbackBoxElement.appendChild(unresolved)
             newFeedbackBoxElement.appendChild(removed)
 
-            if(resolvedUCSDElement != null){
-                resolvedUCSDElement.append(newFeedbackBoxElement)
+            if(resolvedVerifiedElement != null){
+                resolvedVerifiedElement.append(newFeedbackBoxElement)
             }
 
-            resolvedUCSDArr.push(feedback);
+            resolvedVerifiedArr.push(feedback);
         });
-    });
-    console.log("resolvedUCSDArr:! ", resolvedUCSDArr);
+});
+    console.log("resolvedVerifiedArr:! ", resolvedVerifiedArr);
 }
 
-function retrieveFeedbackOutside() {
-    console.log("retrieveFeedbackOutside() called :)");
-    var ResolvedRef=firebase.database().ref("Feedback/ResolvedOutside");
-    var ref = firebase.database().ref("Feedback/Outside");
-    let feedbackOutsideElement = document.querySelector('#feedbackOutside')
+function retrieveFeedbackUnverified() {
+    console.log("retrieveFeedbackUnverified() called :)");
+    var ResolvedRef=firebase.database().ref("Feedback/ResolvedUnverified");
+    var ref = firebase.database().ref("Feedback/Unverified");
+    let feedbackUnverifiedElement = document.querySelector('#feedbackUnverified')
 
 
     ref.on("value", function(snapshot) {
-        if(feedbackOutsideElement != null){
-            while(feedbackOutsideElement.hasChildNodes()){
-                feedbackOutsideElement.removeChild(feedbackOutsideElement.lastChild);
+        if(feedbackUnverifiedElement != null){
+            while(feedbackUnverifiedElement.hasChildNodes()){
+                feedbackUnverifiedElement.removeChild(feedbackUnverifiedElement.lastChild);
             }
         }
         snapshot.forEach(function(childSnapshot) {
@@ -241,28 +241,28 @@ function retrieveFeedbackOutside() {
             newFeedbackBoxElement.appendChild(explanation)
             newFeedbackBoxElement.appendChild(resolved)
 
-            if(feedbackOutsideElement != null) {
-                feedbackOutsideElement.append(newFeedbackBoxElement)
+            if(feedbackUnverifiedElement != null) {
+                feedbackUnverifiedElement.append(newFeedbackBoxElement)
             }
 
-            feedbackOutsideArr.push(feedback);
+            feedbackUnverifiedArr.push(feedback);
         });
     });
-    console.log("feedbackOutsideArr:! ", feedbackOutsideArr);
+    console.log("feedbackUnverifiedArr:! ", feedbackUnverifiedArr);
 }
 
 
-function retrieveResolvedOutside() {
-    console.log("retrieveResolvedOutside() called :)");
-    var ref=firebase.database().ref("Feedback/ResolvedOutside");
-    var UnresolvedRef = firebase.database().ref("Feedback/Outside");
-    let resolvedOutsideElement = document.querySelector('#resolvedOutside')
+function retrieveResolvedUnverified() {
+    console.log("retrieveResolvedUnverified() called :)");
+    var ref=firebase.database().ref("Feedback/ResolvedUnverified");
+    var UnresolvedRef = firebase.database().ref("Feedback/Unverified");
+    let resolvedUnverifiedElement = document.querySelector('#resolvedUnverified')
 
 
     ref.on("value", function(snapshot) {
-        if(resolvedOutsideElement != null){
-            while(resolvedOutsideElement.hasChildNodes()){
-                resolvedOutsideElement.removeChild(resolvedOutsideElement.lastChild);
+        if(resolvedUnverifiedElement != null){
+            while(resolvedUnverifiedElement.hasChildNodes()){
+                resolvedUnverifiedElement.removeChild(resolvedUnverifiedElement.lastChild);
             }
         }
         snapshot.forEach(function(childSnapshot) {
@@ -330,56 +330,56 @@ function retrieveResolvedOutside() {
             newFeedbackBoxElement.appendChild(unresolved)
             newFeedbackBoxElement.appendChild(removed)
 
-            if(resolvedOutsideElement != null){
-                resolvedOutsideElement.append(newFeedbackBoxElement)
+            if(resolvedUnverifiedElement != null){
+                resolvedUnverifiedElement.append(newFeedbackBoxElement)
             }
 
-            resolvedOutsideArr.push(feedback);
+            resolvedUnverifiedArr.push(feedback);
         });
     });
-    console.log("resolvedOutsideArr:! ", resolvedOutsideArr);
+    console.log("resolvedUnverifiedArr:! ", resolvedUnverifiedArr);
 }
 
-function feedbackUCSDSelected(){
-    console.log("feedbackUCSDSelected() called");
-    document.getElementById("feedbackOutside").style.display = "none";
-    document.getElementById("feedbackUCSD").style.display = "block";
-    document.getElementById("resolvedOutside").style.display = "none";
-    document.getElementById("resolvedUCSD").style.display = "none";
+function feedbackVerifiedSelected(){
+    console.log("feedbackVerifiedSelected() called");
+    document.getElementById("feedbackUnverified").style.display = "none";
+    document.getElementById("feedbackVerified").style.display = "block";
+    document.getElementById("resolvedUnverified").style.display = "none";
+    document.getElementById("resolvedVerified").style.display = "none";
 }
 
-function feedbackOutsideSelected(){
-    console.log("feedbackOutsideSelected() called");
-    document.getElementById("feedbackOutside").style.display = "block";;
-    document.getElementById("feedbackUCSD").style.display = "none";
-    document.getElementById("resolvedOutside").style.display = "none";
-    document.getElementById("resolvedUCSD").style.display = "none";
-
-}
-
-function resolvedUCSDSelected(){
-    console.log("ResolvedUCSDSelected() called");
-    document.getElementById("feedbackOutside").style.display = "none";
-    document.getElementById("feedbackUCSD").style.display = "none";
-    document.getElementById("resolvedOutside").style.display = "none";
-    document.getElementById("resolvedUCSD").style.display = "block";
-}
-
-function resolvedOutsideSelected(){
-    console.log("ResolvedOutsideSelected() called");
-    document.getElementById("feedbackOutside").style.display = "none";
-    document.getElementById("feedbackUCSD").style.display = "none";
-    document.getElementById("resolvedOutside").style.display = "block";
-    document.getElementById("resolvedUCSD").style.display = "none";
+function feedbackUnverifiedSelected(){
+    console.log("feedbackUnverifiedSelected() called");
+    document.getElementById("feedbackUnverified").style.display = "block";;
+    document.getElementById("feedbackVerified").style.display = "none";
+    document.getElementById("resolvedUnverified").style.display = "none";
+    document.getElementById("resolvedVerified").style.display = "none";
 
 }
 
-feedbackUCSDArr = []
-feedbackOutsideArr = []
-resolvedUCSDArr = []
-resolvedOutsideArr = []
+function resolvedVerifiedSelected(){
+    console.log("ResolvedVerifiedSelected() called");
+    document.getElementById("feedbackUnverified").style.display = "none";
+    document.getElementById("feedbackVerified").style.display = "none";
+    document.getElementById("resolvedUnverified").style.display = "none";
+    document.getElementById("resolvedVerified").style.display = "block";
+}
 
-retrieveFeedbackUCSD()
-retrieveFeedbackOutside()
-retrieveResolvedOutside()
-retrieveResolvedUCSD()
+function resolvedUnverifiedSelected(){
+    console.log("ResolvedUnverifiedSelected() called");
+    document.getElementById("feedbackUnverified").style.display = "none";
+    document.getElementById("feedbackVerified").style.display = "none";
+    document.getElementById("resolvedUnverified").style.display = "block";
+    document.getElementById("resolvedVerified").style.display = "none";
+
+}
+
+feedbackVerifiedArr = []
+feedbackUnverifiedArr = []
+resolvedVerifiedArr = []
+resolvedUnverifiedArr = []
+
+retrieveFeedbackVerified()
+retrieveFeedbackUnverified()
+retrieveResolvedUnverified()
+retrieveResolvedVerified()

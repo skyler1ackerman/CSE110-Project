@@ -10,7 +10,7 @@ function getFeedbackValues(){
     console.log("getFeedbackValues() called!");
 
     // var feedback_ref = firebase.database().ref("Feedbacks/");
-    var fbRef = "Feedback/UCSD";
+    var fbRef = "Feedback/Verified";
     firebase.database().ref(fbRef).push().set({
         email: document.getElementById("email").value,
         fullname: document.getElementById("fullname").value,
@@ -29,11 +29,11 @@ function getFeedbackValues(){
     alert("Successfully submitted! Thank you for your feedback!");
 }
 
-function getFeedbackOutside(){
-  console.log("getFeedbackOutside() called!");
+function getFeedbackUnverified(){
+  console.log("getFeedbackUnverified() called!");
 
 
-  var fbRef = "Feedback/Outside";
+  var fbRef = "Feedback/Unverified";
   firebase.database().ref(fbRef).push().set({
       email: document.getElementById("email").value,
       fullname: document.getElementById("fullname").value,
