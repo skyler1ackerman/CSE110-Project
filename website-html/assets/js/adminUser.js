@@ -44,14 +44,14 @@ function retrieveAdminUser() {
 
 
 
-            let removed = document.createElement('button')
-            removed.innerText = "Removed"
-            removed.addEventListener("click",function(){
+            let remove = document.createElement('button')
+            remove.innerText = "Remove"
+            remove.addEventListener("click",function(){
                 ref.child(adminRowElement.id).remove();
             });
             adminRowElement.appendChild(email)
             adminRowElement.appendChild(IsAdmin)
-            adminRowElement.appendChild(removed)
+            adminRowElement.appendChild(remove)
 
             if(AdminUserElement != null){
                 AdminUserElement.append(adminRowElement)

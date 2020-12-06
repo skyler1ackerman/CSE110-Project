@@ -158,9 +158,9 @@ function retrieveResolvedCommunity() {
                 ref.child(newReportBoxElement.id).remove();
             });
 
-            let removed = document.createElement('button')
-            removed.innerText = "Removed"
-            removed.addEventListener("click",function(){
+            let remove = document.createElement('button')
+            remove.innerText = "Remove"
+            remove.addEventListener("click",function(){
                 ref.child(newReportBoxElement.id).remove();
             });
             newReportBoxElement.appendChild(time)
@@ -170,7 +170,7 @@ function retrieveResolvedCommunity() {
             newReportBoxElement.appendChild(fullname)
             newReportBoxElement.appendChild(reason)
             newReportBoxElement.appendChild(unresolved)
-            newReportBoxElement.appendChild(removed)
+            newReportBoxElement.appendChild(remove)
 
             if(resolvedCommunityElement != null){
                 resolvedCommunityElement.append(newReportBoxElement)
@@ -342,9 +342,9 @@ function retrieveResolvedClass() {
                 ref.child(newReportBoxElement.id).remove();
             });
 
-            let removed = document.createElement('button')
-            removed.innerText = "Removed"
-            removed.addEventListener("click",function(){
+            let remove = document.createElement('button')
+            remove.innerText = "Remove"
+            remove.addEventListener("click",function(){
                 ref.child(newReportBoxElement.id).remove();
             });
             newReportBoxElement.appendChild(time)
@@ -354,7 +354,7 @@ function retrieveResolvedClass() {
             newReportBoxElement.appendChild(fullname)
             newReportBoxElement.appendChild(reason)
             newReportBoxElement.appendChild(unresolved)
-            newReportBoxElement.appendChild(removed)
+            newReportBoxElement.appendChild(remove)
 
             if(resolvedClassElement != null){
                 resolvedClassElement.append(newReportBoxElement)

@@ -147,9 +147,9 @@ function retrieveResolvedVerified() {
                 ref.child(newFeedbackBoxElement.id).remove();
             });
 
-            let removed = document.createElement('button')
-            removed.innerText = "Removed"
-            removed.addEventListener("click",function(){
+            let remove = document.createElement('button')
+            remove.innerText = "Remove"
+            remove.addEventListener("click",function(){
                 ref.child(newFeedbackBoxElement.id).remove();
             });
             newFeedbackBoxElement.appendChild(time)
@@ -158,7 +158,7 @@ function retrieveResolvedVerified() {
             newFeedbackBoxElement.appendChild(issue_type)
             newFeedbackBoxElement.appendChild(explanation)
             newFeedbackBoxElement.appendChild(unresolved)
-            newFeedbackBoxElement.appendChild(removed)
+            newFeedbackBoxElement.appendChild(remove)
 
             if(resolvedVerifiedElement != null){
                 resolvedVerifiedElement.append(newFeedbackBoxElement)
@@ -317,9 +317,9 @@ function retrieveResolvedUnverified() {
                 ref.child(newFeedbackBoxElement.id).remove();
             });
 
-            let removed = document.createElement('button')
-            removed.innerText = "Removed"
-            removed.addEventListener("click",function(){
+            let remove = document.createElement('button')
+            remove.innerText = "Remove"
+            remove.addEventListener("click",function(){
                 ref.child(newFeedbackBoxElement.id).remove();
             });
             newFeedbackBoxElement.appendChild(time)
@@ -328,7 +328,7 @@ function retrieveResolvedUnverified() {
             newFeedbackBoxElement.appendChild(issue_type)
             newFeedbackBoxElement.appendChild(explanation)
             newFeedbackBoxElement.appendChild(unresolved)
-            newFeedbackBoxElement.appendChild(removed)
+            newFeedbackBoxElement.appendChild(remove)
 
             if(resolvedUnverifiedElement != null){
                 resolvedUnverifiedElement.append(newFeedbackBoxElement)
