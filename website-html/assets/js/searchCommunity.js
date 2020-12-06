@@ -268,6 +268,9 @@ function autocompleteCommunity(inp, arr) {
           a.appendChild(b);
         }
       }
+      a.style.maxHeight="20vh"
+      a.style.overflowY="scroll";
+      a.style.borderColor="transparent";
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
