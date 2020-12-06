@@ -4,131 +4,330 @@
     <title>Create A Discord Server</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <meta charset="UTF-8">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
-	<script src="/__/firebase/init.js"></script>
-	<script src="assets/js/auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="assets/js/auth.js"></script>
 </head>
-<body>
-<div id="page-wrapper">
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="index.html">Triton Groups</a></h1>
-        <nav id="nav">
-            <ul>
-                <li class="special">
-                    <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                    <div id="menu">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="generic.html">Generic</a></li>
-                            <li><a href="elements.html">Elements</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                            <li><a href="#">Log In</a></li>
-                        </ul>
-                    </div>
-                </li>
+
+<body class="landing is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header">
+            <!-- <h1><a href="afterlogin.html">Triton Groups</a></h1> -->
+            <nav id="nav">
+            <ul class="menuToggle">
+                <a href="index.html" class="no-style more scrolly zero-text">Home</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-class.html" class="no-style more scrolly one-text" style="font-weight: bold;">Classes</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-community.html" class="no-style more scrolly two-text">Communities</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="#three" class="no-style more scrolly three-text">Contact Us</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="javascript:signOutFunction();" class="no-style more scrolly four-text">Logout</a>
+                &nbsp;
+                &nbsp;
+                &nbsp;
             </ul>
-        </nav>
-    </header>
-    <article id="main">
-        <header>
-            <h2>Create a Discord Server</h2>
-            <p>Want to create a Discord server for a UCSD course?</p>
+            </nav>
         </header>
-        <section id="three" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Template</h2>
-                    <p>Use our Discord server template customized specifically for UCSD courses!</p>
-                    <!--<p><b>Important:</b> Ensure the Server Name is as follows: Department Code - Course Number</p>-->
-                </header>
+
+        <article id="main">
+            <header>
+                <h2>Create a Discord Server</h2>
+                <p>Want to create a Discord server for a UCSD course?</p>
+            </header>
+
+            <section id="makeServer" class="wrapper style5 special">
                 <ul class="features">
                     <li class="icon">
-                        <!--<i class="fas fa-robot"></i>-->
-                        <h3>UCSD Course Template</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">Use</a>
+                        <h2>Make your server!</h2>
+                        <p>
+                            1. Head to <a href="https://discord.com" style="color: blue;">discord.com</a> to login.<br>
+                            Either Log into the app from top right or click “Open Discord in browser." <br>
+                            <br>
+                            2. Simply clicking <a href=" https://discord.new/WbjVhdGn3ahy" style="color: blue;">here</a> will redirect you to a
+                            template designed for UCSD classes.<br>
+                            <br>
+                            3. Fill in the server name accordingly and then add your server to our site so that others can find you!
+                        </p>
+                    </li>
+                    <li class="icon">
+
+                        <img src="/images/discord-screen.jpg" style="width:479px;height:254px;">
                     </li>
                 </ul>
-            </div>
-        </section>
-        <section class="wrapper style5">
-            <div class="inner">
+            </section>
 
-                <section>
-                    <h4>Discord Server Information</h4>
+            <section id="customize" class="wrapper style4 special">
+                <div class="inner">
+                    <header class="major">
+                        <h2>Customize your server with bots!</h2>
+                        <p>
+                            Consider adding our custom Discord bot to your server!
+                            Simply click this <a href="" style="color: blue;">link</a>, make sure you are an admin, and select add to server!
+                        </p>
+                    </header>
+                    <ul class="features">
+                        <li class="icon">
+                            <!--<i class="fas fa-robot"></i>-->
+                            <h3>Event Commands</h3>
+                            <p>
+                                Keep track of events and be notified on the day they happen!<br>
+                                Command Format:<br>
+                                !setevent event name <br>
+                                !deleteevent event name <br>
+                                !schedule
+                            </p>
+                        </li>
+                        <li class="icon">
+                            <h3>Assignment Commands</h3>
+                            <p>
+                                Keep track of assignments and <br>be reminded on the due date!<br>
+                                Command Format:<br>
+                                !addAssign assignment name mm/dd/yyyy <br>
+                                !delAssign assignment name <br>
+                                !listAssign
+                            </p>
+                        </li>
+                        <li class="icon">
+                            <h3>Rules Commands</h3>
+                            <p>
+                                Make rules for members to follow!<br>
+                                Command Format:<br>
+                                !deleterule number <br>
+                                !addrule "title" description<br>
+                                !rule number optional, lists all rules if no argument<br>
+                                !swaprules num1 num2
+                            </p>
+                        </li>
+                        <li class="icon">
+                            <h3>Report Commands</h3>
+                            <p>
+                                React to a message with the red square reaction to report a message to the admins of the server in the case of server policy or an academic integrity violation.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+        <section id="displayResults" class="wrapper style5">
+        
+            <div id="results" class="inner" style="text-align: center">
+                <h2 style="text-align: center" id="myclass"></h2>
+        
+                <!-- Display query results here -->
+                <ul id="queryResults" class="alt" style="display: inline-block;">
+        
+                </ul>
+            </div>
+            <!-- <div id="openformButton">
+                <button class="	open-button" onclick="openForm()">&#43;</button>
+            </div> -->
+            <script>
+                function openForm() {
+                    document.getElementById("myForm").style.display = "block";
+                    document.getElementById("openformButton").style.display = "none";
+                    document.getElementById("formsection").style.display = "none";
+                    document.getElementById("searchbarsubmit").style.display = "none";
+                }
+
+                function closeForm() {
+                    document.getElementById("myForm").style.display = "none";
+                    document.getElementById("openformButton").style.display = "block";
+                    document.getElementById("openformButton").style.margin = "auto"; //necessary for button position
+                    document.getElementById("formsection").style.display = "block";
+                    document.getElementById("searchbarsubmit").style.display = "block";
+                }
+            </script>
+
+
+            <div class="form-popup" id="myForm">
+                <form class="form-container">
+                    <div class="row gtr-uniform">
+                        <div class="col-12" style="text-align: center;">
+            
+                            <h4>Add a New Discord Server</h4>
+                        </div>
+                        <div class="col-12">
+                            <select name="selectyear" rows="1" id="year">
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <select name="selectquarter" rows="1" id="quarter">
+                                <option value="">Select Quarter</option>
+                                <option value="spring">Spring</option>
+                                <option value="summer">Summer</option>
+                                <option value="fall">Fall</option>
+                                <option value="winter">Winter</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" placeholder="Professor" id="professor" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" placeholder="Discord Invite Link" id="invitelink" required>
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" value="Submit" class="primary" onclick="getDiscordRequests()" /></li>
+                                <li><input type="reset" value="Close" onclick="closeForm()" /></li>
+                            </ul>
+                            <!--<button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px; font: inherit;">Submit</button>
+                                        <button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px; font: inherit;">Close</button>-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- <section id="addClass" class="wrapper style5 special">
+                <div class="inner">
+                    <h2>Now Add it to Our Website!</h2>
+                    <br>
+                    <br>
                     <form method="post" action="#" class="was-validated">
                         <div class="row gtr-uniform">
                             <div class="col-6 col-12-xsmall">
-                                <input type="text" placeholder="Department Code (i.e. CSE, COGS, etc.)" required/>
+                                <input id="deptCode" type="text" placeholder="Department Code (i.e. CSE, MATH, etc.)" required />
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <input type="text" name="course-num" id="course-num" placeholder="Course Number" required/>
+                                <input type="text" name="course-num" id="courseNum" placeholder="Course Number"
+                                    required />
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <input type="text" name="instructor" id="instructor" value="" placeholder="Instructor"/>
+                                <input type="text" name="instructor" id="instructor" value="" placeholder="Instructor"
+                                    required />
                             </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" placeholder="Quarter" required/>
+                            <div class="col-6 col-12-xsmall" style="width: 25%;">
+                                <input id="quarter" type="text" placeholder="Quarter" required />
+                            </div>
+                            <div class="col-6 col-12-xsmall"
+                            style="width: 25%;">
+                                <input id="year" type="text" placeholder="Year" required />
                             </div>
                             <div class="col-12">
-                                <input type="text" name="discord-url" id="discord-url" value="" placeholder="Discord Link" required/>
+                                <input type="text" name="discord-url" id="discordUrl" value=""
+                                placeholder="Discord Link" required />
+                                <br>
                             </div>
-                            <h5>Important Reminder</h5>
-                            <blockquote>Ensure that the Discord invite link you share is a permanent invite. To create a permanent invite, select "never" under "expire after" and "no limit" under "max uses."
-                                <p>Don't know to retrieve the invite link? <a href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">Look no further!</a> </p>
-                            </blockquote>
+
+                            <q >
+                                <h5 style="text-align: left;">Important Reminder</h5>
+                                <p style="text-align: left;"> Ensure that the Discord invite link you share is a permanent invite.<br>
+                                    To create a permanent invite, select "never" under "expire after" and "no limit" under "max uses."<br>
+                                    Don't know to retrieve the invite link? <a
+                                        href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">Look no
+                                        further!</a>
+                                </p>
+                            </q>
+                                <div class="inner" style="position: relative; left: 18px;">
+                                    <ul class="actions">
+                                        <button class="primary" type="button" onclick="submitClass()">Submit</button>
+                                        <li><input type="reset" value="Clear" onclick="resetAddClass()" /></li>
+                                    </ul>
+                                </div>
+
+                        </div>
+                    </form>
+            </section> -->
+
+            <section id="displayResults" class="wrapper style5">
+            
+                <div id="results" class="inner" style="text-align: center">
+                    <h2 style="text-align: center" id="myclass"></h2>
+            
+                    <!-- Display query results here -->
+                    <ul id="queryResults" class="alt" style="display: inline-block;">
+            
+                    </ul>
+                </div>
+                <div id="openformButton">
+                    <button class="	open-button" onclick="openForm()">&#43;</button>
+                </div>
+                <script>
+                    function openForm() {
+                        document.getElementById("myForm").style.display = "block";
+                        document.getElementById("openformButton").style.display = "none";
+                        document.getElementById("formsection").style.display = "none";
+                        document.getElementById("searchbarsubmit").style.display = "none";
+                    }
+
+                    function closeForm() {
+                        document.getElementById("myForm").style.display = "none";
+                        document.getElementById("openformButton").style.display = "block";
+                        document.getElementById("openformButton").style.margin = "auto"; //necessary for button position
+                        document.getElementById("formsection").style.display = "block";
+                        document.getElementById("searchbarsubmit").style.display = "block";
+                    }
+                </script>
+                <div class="form-popup" id="myForm">
+                    <form class="form-container">
+                        <div class="row gtr-uniform">
+                            <div class="col-12" style="text-align: center;">
+            
+                                <h4>Add a New Discord Server</h4>
+                            </div>
+                            <div class="col-12">
+                                <select name="selectyear" rows="1" id="year">
+                                    <option value="">Select Year</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <select name="selectquarter" rows="1" id="quarter">
+                                    <option value="">Select Quarter</option>
+                                    <option value="spring">Spring</option>
+                                    <option value="summer">Summer</option>
+                                    <option value="fall">Fall</option>
+                                    <option value="winter">Winter</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" placeholder="Professor" id="professor" required>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" placeholder="Discord Invite Link" id="invitelink" required>
+                            </div>
                             <div class="col-12">
                                 <ul class="actions">
-                                    <li><input type="submit" value="Submit" class="primary"/></li>
-                                    <li><input type="reset" value="Cancel"/></li>
+                                    <li><input type="submit" value="Submit" class="primary" onclick="getDiscordRequests()" /></li>
+                                    <li><input type="reset" value="Close" onclick="closeForm()" /></li>
                                 </ul>
+                                <!--<button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px; font: inherit;">Submit</button>
+            							<button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px; font: inherit;">Close</button>-->
                             </div>
                         </div>
                     </form>
-                </section>
-            </div>
-        </section>
-        <section id="three" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Customize</h2>
-                    <p>Consider adding our custom Discord bots for additional functionality!</p>
-                </header>
-                <ul class="features">
-                    <li class="icon">
-                        <!--<i class="fas fa-robot"></i>-->
-                        <h3>Bot #1</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                    <li class="icon">
-                        <h3>Bot #2</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                    <li class="icon">
-                        <h3>Bot #3</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                    <li class="icon">
-                        <h3>Bot #4</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                </ul>
-            </div>
-        </section>
+                </div>
+            
+            </section>
+    </div>
+    </section>
+
     </article>
 
+    <script src="assets/js/create-server.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -136,6 +335,7 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-</div>
+    </div>
 </body>
+
 </html>
