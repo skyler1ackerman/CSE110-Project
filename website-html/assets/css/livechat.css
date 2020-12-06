@@ -1,57 +1,61 @@
 @media screen and (max-height: 800px) {
-    .loadingIcon {
-        bottom:542px !important;
-    }
-    .chatguide {
-        bottom:540px !important; 
-    }
-    .talkjscontainer {
-        height:400px !important; 
-    }
-    .buttonMatch {
-        
-    }
-    .buttonCancel {
-        
-    }
+  .loadingIcon {
+      bottom:542px !important;
+  }
+  .chatguide {
+      bottom:540px !important; 
+  }
+  .talkjscontainer {
+      height:400px !important; 
+  }
+  .buttonMatch {
+      
+  }
+  .buttonCancel {
+      
+  }
 }
 
 .loadingIcon {
-	position:fixed; right:142px; bottom:622px; z-index: 11; display: none;
+position:fixed; right:142px; bottom:622px; z-index: 11; display: none;
 }
 .chatguide {
-	position:fixed; right:0px; bottom:620px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:	10px; background-color:#D3D3D3; color:black; border-radius:8px 8px 0px 0px; display:none; text-align: center; padding-top:10px;
+position:fixed; right:0px; bottom:620px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:	10px; background-color:#D3D3D3; color:black; border-radius:8px 8px 0px 0px; display:none; text-align: center; padding-top:10px;
 }
 .talkjscontainer {
-	position:fixed; right:0px; bottom:140px; width:300px; height:480px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:0px 0px 0px 0px; display:none;
+position:fixed; right:0px; bottom:140px; width:300px; height:480px; z-index: 10; padding:0px; margin-right:10px; background-color:white; border-radius:0px 0px 0px 0px; display:none;
 }
 .buttonMatch {
-	position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;
+position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;
 }
 .buttonCancel {
-	position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; color:white; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;
+position:fixed; right:0px; bottom:100px; width:300px; height:40px; z-index: 10; padding:0px; margin-right:10px; background-color:gray; color:white; border-radius:0px 0px 8px 8px; display:none; text-align: center; padding-top:8px; border: white solid 1px;
 }
 
 
 .buttonMatch:hover {
-	background-color: #484848 !important; 
-	/* font-weight: bold !important; */
+background-color: #484848 !important; 
+cursor: pointer;
+/* font-weight: bold !important; */
 }
 .buttonMatch:active {
-  background-color: black !important;
-  transform: translateY(4px);
+background-color: black !important;
+cursor: pointer;
+transform: translateY(4px);
 }
 .buttonCancel:hover {
-	background-color: #484848 !important;
-	/* font-weight: bold !important;  */
+background-color: #484848 !important;
+cursor: pointer;
+/* font-weight: bold !important;  */
 }
 .buttonCancel:active {
-  background-color: black !important;
-  transform: translateY(4px);
+background-color: black !important;
+cursor: pointer;
+transform: translateY(4px);
 }
 
 .buttonChatbox:hover {
-	/* background-color: black !important; */
-	filter: "grayscale(100%)" !important;
-	transform: translate(-3px, -3px);
+/* background-color: black !important; */
+filter: "grayscale(100%)" !important;
+transform: translate(-3px, -3px);
 }
