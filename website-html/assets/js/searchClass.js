@@ -176,7 +176,8 @@ async function submit_class() {
         localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
         await constructHTML(classInput);
     }
-    else {
+    else{
+        document.getElementById('displayResults').style.display = "none";
         alert("The class you entered is not in our Database.");
     }
 
