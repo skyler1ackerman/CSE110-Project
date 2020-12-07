@@ -16,7 +16,7 @@ DEFAULT_RULES_NAME = 'DefaultRules'
 @bot.event
 async def on_ready():
     if not db.child(DEFAULT_RULES_NAME).get().val():
-        with open('discord-rule-bot-default-export.json') as j:
+        with open('defaultRules.json') as j:
             data = json.load(j)
             db.child(DEFAULT_RULES_NAME).set(data)
     print("Bot is online.")

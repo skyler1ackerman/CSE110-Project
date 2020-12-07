@@ -1,0 +1,45 @@
+[ {
+  "desc" : "Please make sure to read and follow the rules for a smoother experience in this server.",
+  "index" : 0,
+  "title" : "Welcome to the server!"
+}, {
+  "desc" : "Please treat all users with respect, regardless of your liking towards them. The use of profane language will be flagged. Harrasement of any kind is not tolerated, both in this server and through DMs.",
+  "index" : 1,
+  "title" : "**Be Respectful**"
+}, {
+  "desc" : "Please do not engage in behavior that degrades your Academic Integrity. You may exchange ideas on how to solve problems, but please do not share your solutions. Let others have the joy and honor of finding their own answers.",
+  "index" : 2,
+  "title" : "**Uphold Academic Integrity**"
+}, {
+  "desc" : "Please don't send a lot of small messages right after each other. Do not disrupt chat by spamming.",
+  "index" : 3,
+  "title" : "**No spamming**"
+}, {
+  "desc" : "This is a community server meant for academic discussion, and not meant to share this kind of material.",
+  "index" : 4,
+  "title" : "**No pornographic/adult/other NSFW material**"
+}, {
+  "desc" : "Please set your name to something that is not inappropirate. We encourage you to set your profile name to your preferred name! ",
+  "index" : 5,
+  "title" : "**No inappropirate names and profile pictures**"
+}, {
+  "desc" : "Raiding or mentions of raiding are not allowed. Let's all live in peace and let's let others live in peace too.",
+  "index" : 6,
+  "title" : "**Server Raiding**"
+}, {
+  "desc" : "Threats to other users of DDoS, Death, DoX, abuse, and other malicious threats are absolutely prohibited and disallowed.",
+  "index" : 7,
+  "title" : "**Direct & Indirect Threats**"
+}, {
+  "desc" : "You can find them here: https://discordapp.com/guidelines",
+  "index" : 8,
+  "title" : "**Follow the Discord Community Guidelines**"
+}, {
+  "desc" : "If you see that a study voice channel has a free spot, it is alright to join and ask whether the group has an open spot, but leave if your presence is not wanted by whoever was there first. Treat the voice servers like study rooms on campus. However, feel free to join the general voice channel whenever you'd like! Just remember to conduct yourself well :)",
+  "index" : 9,
+  "title" : "**Be Courteous when you join a voice channel**"
+}, {
+  "desc" : "Please do not use this community to engage in piracy, drug solitication, or any other illegal activity.",
+  "index" : 10,
+  "title" : "**No Illegal Activity**"
+} ]
