@@ -20,7 +20,7 @@ class RuleBot(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases = ['rule', 'Rule', 'Rules', 'listrule', 'listRules', 'listr', 'listR', 'showrule', 'showRule', 'showrules', 'showRules'])
+    @commands.command(aliases = ['rule', 'Rule', 'Rules', 'listrule', 'listRules', 'listr', 'listR', 'showrule', 'showRule', 'showrules', 'showRules'], help='Lists rules on a server. Run with no commands for all rules, or with a rule number for a specific rule!')
     async def rules(self, ctx, a = None):
         if not db.child(ctx.guild.id).child(FOLDER_STR).get().val():
             ruleDict = self.default_Dict()
@@ -37,7 +37,7 @@ class RuleBot(commands.Cog):
             else:
                 await ctx.send(a + ". "+ ruleDict[int(a)]["title"] + ": " + ruleDict[int(a)]["desc"]) 
 
-    @commands.command(aliases = ['addrule', 'newrule', 'newRule', 'addr', 'addR', 'newr', 'newR'])
+    @commands.command(aliases = ['addrule', 'newrule', 'newRule', 'addr', 'addR', 'newr', 'newR'], help='Adds a new rule to the server. Format: !addRule "<RuleTitle>" <RuleDesc>')
     async def addRule(self, ctx, *, args = None):
         content = ctx.message.content
         newTitle = "**" + content.split('"')[1].strip() + "**"
@@ -58,7 +58,7 @@ class RuleBot(commands.Cog):
             db.child(ctx.guild.id).child(FOLDER_STR).child(index).child("desc").set(newDesc)
             await ctx.send("Rule added successfully!")
 
-    @commands.command(aliases = ['deleterule', 'delrule', 'delRule', 'delr', 'delR', 'deleter', 'deleteR'])
+    @commands.command(aliases = ['deleterule', 'delrule', 'delRule', 'delr', 'delR', 'deleter', 'deleteR'], help='Deletes rule from the server. Format: !delRule <RuleNum>')
     async def deleteRule(self, ctx, a = None):
         if not a:
             await ctx.send("Please enter a rule number to delete. If you do not know the number for a rule, enter !rules to see all the rules with their numbers.")
@@ -78,7 +78,7 @@ class RuleBot(commands.Cog):
             db.child(ctx.guild.id).child(FOLDER_STR).set(delDict)
             await ctx.send("Rule deleted successfully.")
 
-    @commands.command(aliases = ['swaprule','swaprules', 'swapRules', 'switchrules', 'switchRule', 'swap', 'switch'])
+    @commands.command(aliases = ['swaprule','swaprules', 'swapRules', 'switchrules', 'switchRule', 'swap', 'switch'], help='Switches two rules on the list.  Format: !swap <RuleOne> <RuleTwo>')
     async def swapRule(self, ctx, a = None, b = None):
         
         length = len(db.child(ctx.guild.id).child(FOLDER_STR).get().val())

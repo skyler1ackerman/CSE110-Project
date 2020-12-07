@@ -25,7 +25,7 @@ class EventBot(commands.Cog):
 		self.bot.loop.create_task(self.checkSchedule())
 
 	# newEvent will add a new event folder with data to firebase db given user input, for specific server folder
-	@commands.command(aliases=['addevent', 'addEvent', 'newevent', 'adde', 'addE', 'newe', 'newE'], help="Adds a new event to the current server's schedule. Optional event name with command.")
+	@commands.command(aliases=['addevent', 'addEvent', 'newevent', 'adde', 'addE', 'newe', 'newE'], help='Adds a new assignment to the server. Format: !addAssign <EventName> (Optional)')
 	async def newEvent(self, ctx, *inputEventMsg):
 		# nested fuction, to use in secondary queries to only respond to same user
 		def verifyUser(newMessage):
@@ -73,7 +73,7 @@ class EventBot(commands.Cog):
 			await ctx.send('Error: unknown error.')
 
 	# delEvent will access firebase db and delete matching event folder for specific server
-	@commands.command(aliases=['delevent', 'deleteevent', 'deleteEvent', 'dele', 'delE', 'deletee', 'deleteE'], help="Deletes an event from the server's schedule. Optional event name with command.")
+	@commands.command(aliases=['delevent', 'deleteevent', 'deleteEvent', 'dele', 'delE', 'deletee', 'deleteE'], help="Deletes an event from the server's schedule. Format !delEvent <EventName> (Optional)")
 	async def delEvent(self, ctx, *inputEventMsg):
 		def verifyUser(newMessage):
 			return newMessage.author == ctx.author
@@ -107,7 +107,7 @@ class EventBot(commands.Cog):
 			await ctx.send('Error: unknown error.')
 
 	# listEvents will access firebase db and list all events found for specific server
-	@commands.command(aliases = ['listevents', 'listE', 'liste', 'allevents', 'allEvents'], help="Lists all events in the server's schedule.")
+	@commands.command(aliases = ['listevents', 'listE', 'liste', 'allevents', 'allEvents'], help="Lists all events in the server's schedule. Format: !listEvents")
 	async def listEvents(self, ctx):
 		guildAllEvents = db.child(ctx.guild.id).child(FOLDER_STR).get().val()
 		# working null db check

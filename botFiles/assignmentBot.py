@@ -19,7 +19,7 @@ class AssignmentBot(commands.Cog):
 		self.bot = bot
 
 	#!addAssign "assignment name" mm/dd/yyyy
-	@commands.command(aliases = ['addassign', 'newassign', 'newAssign', 'adda', 'addA', 'newa', 'newA'], help='Adds a new assignment to the list')
+	@commands.command(aliases = ['addassign', 'newassign', 'newAssign', 'adda', 'addA', 'newa', 'newA'], help='Adds a new assignment to the server. Format: !addAssign "<AssignmentName>" mm/dd/yyyy')
 	async def addAssign(self, ctx, name=None, *date):
 		content = ctx.message.content
 		#check for proper name format
@@ -44,7 +44,7 @@ class AssignmentBot(commands.Cog):
 			await ctx.send('Please use the format: !addAssign "Assignment Name" mm/dd/yyyy')
 
 	#!delAssign "assignment name"
-	@commands.command(aliases = ['delassign', 'deleteassign', 'deleteAssign', 'dela', 'delA', 'deletea', 'deleteA'], help='Deletes an assignment from the list')
+	@commands.command(aliases = ['delassign', 'deleteassign', 'deleteAssign', 'dela', 'delA', 'deletea', 'deleteA'], help='Deletes an assignment to the server. Format: !delAssign "<AssignmentName>"')
 	async def delAssign(self, ctx, name=None):
 		content = ctx.message.content
 		#check empty argument and in quotes
@@ -64,7 +64,7 @@ class AssignmentBot(commands.Cog):
 				await ctx.send('Please use the format: !delAssign "Assignment Name"')
 
 	#!listAssign
-	@commands.command(aliases = ['listassign', 'listA', 'lista', 'allassign', 'allAssign'], help='Lists all assignments')
+	@commands.command(aliases = ['listassign', 'listA', 'lista', 'allassign', 'allAssign'], help='Lists all assignments on a server. Format: !listAssign')
 	async def listAssign(self, ctx):
 		if db.child(ctx.guild.id).child(top).get().val():
 			assignDict = dict(db.child(ctx.guild.id).child(top).get().val())
