@@ -60,6 +60,9 @@ class RuleBot(commands.Cog):
 
     @commands.command(aliases = ['deleterule', 'delrule', 'delRule', 'delr', 'delR', 'deleter', 'deleteR'], help='Deletes rule from the server. Format: !delRule <RuleNum>')
     async def deleteRule(self, ctx, a = None):
+        if not db.child(ctx.guild.id).child(FOLDER_STR).get().val():
+                defDict = self.default_Dict()
+                db.child(ctx.guild.id).child(FOLDER_STR).update(defDict)
         if not a:
             await ctx.send("Please enter a rule number to delete. If you do not know the number for a rule, enter !rules to see all the rules with their numbers.")
         elif not a.isnumeric():
@@ -80,7 +83,9 @@ class RuleBot(commands.Cog):
 
     @commands.command(aliases = ['swaprule','swaprules', 'swapRules', 'switchrules', 'switchRule', 'swap', 'switch'], help='Switches two rules on the list.  Format: !swap <RuleOne> <RuleTwo>')
     async def swapRule(self, ctx, a = None, b = None):
-        
+        if not db.child(ctx.guild.id).child(FOLDER_STR).get().val():
+                defDict = self.default_Dict()
+                db.child(ctx.guild.id).child(FOLDER_STR).update(defDict)
         length = len(db.child(ctx.guild.id).child(FOLDER_STR).get().val())
         if not a or not b:
             await ctx.send("Error: Please enter two rule numbers to swap.")
