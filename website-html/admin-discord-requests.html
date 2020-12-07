@@ -56,14 +56,19 @@
 
 				<!-- Banner -->
 
-				<section class="align-center" style="margin-top: 5vh">
+				<section class="align-center" style="margin-top: 10vh">
 
-                    <div class="inner">
-						<label>Discord Requests</label>
-						<p id="EmptyMessage">No discord requests submitted at this time.</p>
-                    </div>
+					<div class="inner">
+						<input type="radio" name="editList" id="classDicordsOption" value="" checked onclick="classRequests()"/>
+						<label for="classDicordsOption">Class Requests</label>
+						<input type="radio" name="editList" id="communityDicordsOption" value=""  onclick="communitiesRequests()"/>
+						<label for="communityDicordsOption">Community Requests</label>
+
+					</div>
                     <div>
                         <div id="discordRequests" style="display: block; margin:auto; width: 60%; ">
+						</div>
+						<div id="communitiesRequests" style="display: none; margin:auto; width: 60%; ">
 						</div>
 
                     </div>
@@ -71,15 +76,6 @@
 
 			</div>
 
-		<script>
-			let box = document.getElementById("discordRequests");
-			let message = document.getElementById('EmptyMessage');
-			if(box.childElementCount!=0){
-				message.style.display='none';
-			}else{
-				message.style.display="unset";
-			}
-		</script>
 		<!-- Scripts -->
 		<!-- below is firebase SDKs-->
 		<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
