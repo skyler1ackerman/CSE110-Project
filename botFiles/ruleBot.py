@@ -27,8 +27,19 @@ class RuleBot(commands.Cog):
         else:
             ruleDict = {k: v for k, v in enumerate(db.child(ctx.guild.id).child(FOLDER_STR).get().val())}
         if not a:
+            masterString = ''
             for key in ruleDict:
-                await ctx.send(str(key) + ". "+ ruleDict[key]["title"] + ": " + ruleDict[key]["desc"])
+                curString = str(key) + ". "+ ruleDict[key]["title"] + ": " + ruleDict[key]["desc"] + '\n'
+                if len(masterString) + len(curString) >= 2000:
+                    print('Went over')
+                    await ctx.send(masterString)
+                    masterString = curString
+                else:
+                    masterString += curString
+            if(masterString):
+                await ctx.send(masterString)
+
+                
         else:
             if not a.isnumeric():
                 await ctx.send("Error: Not a valid rule number." + '\n' + "Please enter a non-negative number to view a specific rule, or no number to view all rules.")
