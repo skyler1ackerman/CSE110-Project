@@ -30,7 +30,7 @@ class RuleBot(commands.Cog):
             masterString = ''
             for key in ruleDict:
                 curString = str(key) + ". "+ ruleDict[key]["title"] + ": " + ruleDict[key]["desc"] + '\n'
-                if len(masterString) + len(curString) >= 2000:
+                if len(masterString) + len(curString) >= 700:
                     print('Went over')
                     await ctx.send(masterString)
                     masterString = curString
