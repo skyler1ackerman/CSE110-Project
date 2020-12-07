@@ -160,7 +160,7 @@
             </section> -->
 
             <section id="customize" class="wrapper style5 special" style="padding-top: 10px;" >
-                <section class="spotlight" style="justify-content: 10px;">
+                <section class="spotlight">
                     <div class="inner" style=" width: 60%;">
                         <!-- <header class="major">
                             
@@ -181,51 +181,68 @@
                                     can find you!
                                 </p>
                             </li>
-                            <h2>Customize your server with bots!</h2>
-                            <p>
+                            <h2 style="padding: 2em 2em 0em 2em;">Customize your server with bots!</h2>
+                            <p style="padding: 0em 6em 0em 6em;">
                                 Consider adding our custom Discord bot to your server!
                                 Simply click this <a href="https://discord.com/api/oauth2/authorize?client_id=784663151382888449&permissions=8&scope=bot" style="color: rgb(0, 0, 255);">link</a>, make sure you are an admin, and
                                 select add to server!
                             </p>
-                            <li class="icon">
-                                <h3><i class="fas fa-robot"></i>Event Commands</h3>
-                                <p>
-                                    Keep track of events and be notified on the day they happen!<br>
-                                    Command Format:<br>
-                                    1. !setevent event name <br>
-                                    2. !deleteevent event name <br>
-                                    3. !schedule event name
-                                </p>
-                            </li>
-                            <li class="icon">
-                                <h3><i class="fas fa-robot"></i>Assignment Commands</h3>
-                                <p>
-                                    Keep track of assignments and <br>be reminded on the due date!<br>
-                                    Command Format:<br>
-                                    1. !listAssign <br>
-                                    2. !delAssign assignment name <br>
-                                    3. !addAssign assignment name mm/dd/yyyy <br>
-                                </p>
-                            </li>
-                            <li class="icon">
-                                <h3><i class="fas fa-robot"></i>Rules Commands</h3>
-                                <p>
-                                    Make rules for members to follow!<br>
-                                    Command Format:<br>
-                                    1. !deleterule number <br>
-                                    2. !addrule "title" description<br>
-                                    3. !swaprules num1 num2<br>
-                                    4. !rule number optional, lists all rules if no argument<br>
-                                </p>
-                            </li>
-                            <li class="icon">
-                                <h3><i class="fas fa-robot"></i>Report Commands</h3>
-                                <p>
-                                    In case of server policy or academic integrity violation:
-                                    React to a message with the red square reaction to report a message to the admins of the
-                                    server.
-                                </p>
-                            </li>
+                            <section class="spotlight" style="width:auto; height:auto;">
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Event Commands</h3>
+                                        <p>
+                                            Keep track of events and be notified on the day they happen!<br>
+                                            Command Format:<br>
+                                            <ul>
+                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!setevent event name</li>
+                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteevent event name</li>
+                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!schedule event name</li>
+                                            </ul>
+                                        </p>
+                                    </li>
+                                </div>
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Assignment Commands</h3>
+                                        <p>
+                                            Keep track of assignments and be reminded on the due date!<br>
+                                            Command Format:<br>
+                                            <ul>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!listAssign</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!delAssign assignment name</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addAssign assignment name mm/dd/yyyy</li>
+                                            </ul>
+                                        </p>
+                                    </li>
+                                </div>
+                            </section>
+                            <section class="spotlight" style="width:auto; height:auto;">
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Rules Commands</h3>
+                                        <p>
+                                            Make rules for members to follow!<br>
+                                            Command Format:<br>
+                                            <ul>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleterule number</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addrule "title" description</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!swaprules num1 num2</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!rule number optional, lists all rules if no argument</li>
+                                        </p>
+                                    </li>
+                                </div>
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Report Commands</h3>
+                                        <p>
+                                            In case of server policy or academic integrity violation:
+                                            React to a message with the red square reaction to report a message to the admins of the
+                                            server.
+                                        </p>
+                                    </li>
+                                </div>
+                            </section>
                         </ul>
                     </div><div class="inner" style=" width: 40%;">
                         <ul class="features">
