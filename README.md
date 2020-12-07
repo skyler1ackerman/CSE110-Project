@@ -1,5 +1,4 @@
 # CSE110-Project
-
 1. npm install -g firebase-tools
 2. firebase login
 3. cd website-html (go to root directory of your website project) 

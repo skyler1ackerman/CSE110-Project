@@ -1,0 +1,416 @@
+{
+  "Table Of Contents ": {
+    "Invite": "(click on name to jump to location)",
+    "Admin": "",
+    "Who": "TABLE OF CONTENTS2",
+    "Desc": "Social // Casual // Class of XX5"
+  },
+  "Raccoon Dungeon": {
+    "Invite": "https://discord.gg/p2BaAxf",
+    "Admin": "Victoria",
+    "Who": "anyone",
+    "Desc": "We're a general UCSD server for students and alumni to meet new people, get advice on classes or post-graduation plans, discuss interests, and more."
+  },
+  "Confessions At UCSD": {
+    "Invite": "https://discord.gg/xsQbTRD",
+    "Admin": "Curtis",
+    "Who": "anyone",
+    "Desc": "Discord server for the Confessions at UCSD org and Facebook Group. (Confessions at UCSD is also an org)"
+  },
+  "UCSD Lgbtqia+": {
+    "Invite": "https://discord.gg/JzfGmsZ",
+    "Admin": "Anjali (Anj)",
+    "Who": "College students (especially those attending UCSD) who are members of the LGBTQIA+ community! All classes welcome!",
+    "Desc": "This is a social server for members of the LGBTQIA+ community at UCSD to connect and express themselves in a safe space online!"
+  },
+  "UCSD \u201822": {
+    "Invite": "https://discord.gg/Zbhkxs8",
+    "Admin": "Irene",
+    "Who": "anyone",
+    "Desc": "All are welcome to join! We play games, host giveaways, watch movies together, do irl meetups (when it\u2019s safer),...you name it! This is the server for you to get help and have fun in the same place. Transfers welcome too :)"
+  },
+  "UCSD \u201823": {
+    "Invite": "https://discord.gg/PZtGH3s",
+    "Admin": "Sam",
+    "Who": "anyone",
+    "Desc": "A place for the class of 2023 students to connect and play games together!"
+  },
+  "UCSD \u201824": {
+    "Invite": "discord.gg/ucsd24",
+    "Admin": "Katelyn",
+    "Who": "anyone",
+    "Desc": "We're a community for the class of 24 at UC San Diego, but other class levels and high school/college students are welcome as guests. We provide a space for students to develop social bonds, share academic advice, and participate in community events."
+  },
+  "Ebe Club": {
+    "Invite": "https://discord.gg/dBhyGGN",
+    "Admin": "Jasmine",
+    "Who": "for Ecology or environmental-science related majors, or anyone just interested in ecology!",
+    "Desc": "We post events that we hold (documentary/movie nights, game nights, etc.), ecology and marine biology seminars, and student opportunities (lab volunteers, internships)! Feel free to also share cool nature photos and get to know everyone too :)"
+  },
+  "Lonely Transfers UCSD": {
+    "Invite": "https://discord.gg/dfNQbKB",
+    "Admin": "Carly",
+    "Who": "All transfer students",
+    "Desc": "This server is a place for transfers to meet and become friends. This is also a good place to ask any questions transfer students may have."
+  },
+  "Ostem @ UCSD": {
+    "Invite": "https://discord.gg/dgnbDqw",
+    "Admin": "Sebastian",
+    "Who": "LGBTQIA+ students at UCSD, especially STEM majors",
+    "Desc": "A channel where Queer STEM students can meet one another and talk about anything they want to (: Contacting server moderators is easy, so new channels can be created as they are needed! A fun channel that already exists is the #gardening channel!"
+  },
+  "Sixth Orientation Server :)": {
+    "Invite": "https://discord.gg/fFd8Q4U",
+    "Admin": "Kaela",
+    "Who": "Students of Sixth College",
+    "Desc": "A place for orientees and orientation leaders to connect with each other! If you have any questions regarding Sixth College or UCSD, definitely check this server out! The Orientation Leaders of Sixth College are here to serve you!"
+  },
+  "UCSD Transfers 2020 \ud83d\udd31": {
+    "Invite": "https://discord.gg/RHaTJFd",
+    "Admin": "Franklin",
+    "Who": "Anyone",
+    "Desc": "This server's main intention is to allow transfers to connect with each other and talk about pretty much anything ranging from school, games, sports, life, etc."
+  },
+  "UCSD Bio ": {
+    "Invite": "https://discord.gg/PYZXMsg",
+    "Admin": "Sid",
+    "Who": "anyone",
+    "Desc": "It's mainly a server for UCSD bio majors to connect, ask questions, help each other out, vibe, chill, make friends or just talk about literally anything because we can't because of rona."
+  },
+  "UCSD Bioengineering Students": {
+    "Invite": "https://discord.gg/4MEW2mF",
+    "Admin": "Audrey",
+    "Who": "UCSD BENG students or anyone interested in BENG",
+    "Desc": "uh, we vibe, talk to each other about classes/advice and any BENG events or cool BENG things"
+  },
+  "Cognitive Science Study Group (Cssg)": {
+    "Invite": "https://discord.gg/TYFnHbZ",
+    "Admin": "Abby",
+    "Who": "anyone",
+    "Desc": "A hangout place and study group for students studying cognitive science! Whether you're just taking 1 or 2 cogs classes or a cogs major, anyone is welcome to come join."
+  },
+  "UCSD Cse Study Group": {
+    "Invite": "https://discord.gg/F6P2PsT",
+    "Admin": "Abby",
+    "Who": "Anyone interested in Computer Science!",
+    "Desc": "Want to geek out and connect with like-minded people? Want a virtual CS dungeon to share the frustrations of programming assignments? If you're interested in Computer Science at all, join the CSE Study Group so we can all have fun (and suffer) together! Start early, start often, and join today!"
+  },
+  "UCSD Engineering": {
+    "Invite": "https://discord.gg/3pUtDAe",
+    "Admin": "Kyle",
+    "Who": "engineering students",
+    "Desc": "General engineering server where people can find others in their major and chat about anything related."
+  },
+  "UCSD Mae Zoomiversity": {
+    "Invite": "https://discord.gg/Aun5es9",
+    "Admin": "Irene",
+    "Who": "UCSD MAE (mechanical, aerospace, environmental engineering) students, or those intending to switch, anyone taking MAE courses",
+    "Desc": "A place to find other people who may be in the same class as you, along with academic opportunities that people may share. Complain about how matlab starts indexing at 1 and share memes about it."
+  },
+  "UCSD Math 20D": {
+    "Invite": "https://discord.gg/pueNARS",
+    "Admin": "Sharron",
+    "Who": "All students taking Math 20D, or interested in helping w/ studying for math or physics",
+    "Desc": "Originally for the Sp20 quarter for Math 20D with Kitsela; now changed to be a continuing place for people to study together and learn from each other, as well as interact with their peers. (We have an inside joke of a \"Union of Chad\" as well...you'd have to ask the Chads.)"
+  },
+  "UCSD Mathematics": {
+    "Invite": "https://discord.gg/t5BcsDF",
+    "Admin": "Sebasti\u00e1n",
+    "Who": "UCSD students enrolled in math courses, though everyone is welcome",
+    "Desc": "The goal of our server is to provide a centralized place for UCSD's mathematics community to discuss math, form study groups, receive peer advising, and meet one another. We encourage students to help each other in a way that upholds academic integrity, as we have a zero tolerance policy against cheating."
+  },
+  "UCSD Mmw": {
+    "Invite": "https://discord.gg/WNAZMmN",
+    "Admin": "Kristie",
+    "Who": "For people with MMW classes",
+    "Desc": "we discuss anything mmw related most of the time."
+  },
+  "Nanoengineering UCSD": {
+    "Invite": "https://discord.gg/323qbqU",
+    "Admin": "Tayler",
+    "Who": "Nanoengineering students",
+    "Desc": "It has channels for every class offered in the department"
+  },
+  "Phys2 Series": {
+    "Invite": "https://discord.gg/PuYSpEH",
+    "Admin": "Nithish",
+    "Who": "Physics 2 Series students",
+    "Desc": "This server was created for PHYS2B students in spring quarter 2020 but has transitioned to being a PHYS2 series discord server since the chat history for 2B could be useful for those taking 2B later, and the 2B students taking 2C could continue to talk to friends they had already made."
+  },
+  "Acm Uc San Diego": {
+    "Invite": "https://discord.gg/mK9Zrf4",
+    "Admin": "Edward",
+    "Who": "anyone",
+    "Desc": "ACM is the world's largest computing society and we're UCSD's official Chapter. This is ACM's home on the internet where we play games, host fun events, post CS memes, and cry over PAs together. We're a member-first community open to people of all backgrounds and skill levels - not just CS majors!"
+  },
+  "Active Minds UCSD": {
+    "Invite": "https://discord.gg/t2aXDjV",
+    "Admin": "Maddie",
+    "Who": "Members of Active Minds at UCSD",
+    "Desc": "Active Minds is an organization focused on mental health. This discord will provide information on our club events and provide a safe space for students to chat with one another."
+  },
+  "Aiaa @ UCSD": {
+    "Invite": "https://discord.gg/jpHmEWz",
+    "Admin": "Ignatius",
+    "Who": "Anyone! We especially want ppl who like aerospace",
+    "Desc": "We're the pre-professional org for Aerospace stuff - so that means if you like space and/or things that fly, we're here for you. We do career stuff like networking and resume workshops, exciting stuff like model rockets, and social events to boot!"
+  },
+  "UCSD Apamsa": {
+    "Invite": "https://discord.gg/uXYVRhQ",
+    "Admin": "Kailee",
+    "Who": "Geared towards pre-med/pre-health students, but there are no restrictions on who can join",
+    "Desc": "APAMSA is a pre-med org at UCSD - We made this server to allow members and officers to interact with each other easily and develop a sense of community among students with similar interests! Usually used for casual chatting, game nights, or updates."
+  },
+  "Boardgame Club At UCSD": {
+    "Invite": "https://discord.gg/jzAFkNZ",
+    "Admin": "Akash",
+    "Who": "Boardgame players",
+    "Desc": "Our server is a place where students can socialize and play board games together. We will be hosting weekly board game nights every Sunday, where a couple of veteran players will set up and teach games for the general member body to join."
+  },
+  "Cal Animage Beta": {
+    "Invite": "https://discord.gg/jvUuBv9",
+    "Admin": "Marshall",
+    "Who": "anyone",
+    "Desc": "The anime/manga club at UCSD. We hold regular meetings and weekend events, usually themed around anime."
+  },
+  "Cambodian Student Association Of UCSD": {
+    "Invite": "https://discord.gg/FEy7qjP",
+    "Admin": "Keith",
+    "Who": "Anyone may join, but verification will be more thorough for unknown entities",
+    "Desc": "This server acts as a platform to connect all members of UCSD's CSA, along with friends and those who are interested in Khmer culture."
+  },
+  "UCSD Circle K": {
+    "Invite": "bit.ly/ucsdckidiscord",
+    "Admin": "Justin",
+    "Who": "Anyone, but particularly those interested in community service!",
+    "Desc": "We're the largest int'l collegiate community service organization - if you wanna make a difference by working with underserved communities or just wanna make new friends, we're here for you! Come join us to play games, watch movies, cry for finals together, forge new friendships, and so much more <3"
+  },
+  "Climate Change Review": {
+    "Invite": "https://discord.gg/kVxz2yT",
+    "Admin": "Ethan",
+    "Who": "anyone interested in actively participating in our club, attending weekly zooms, learning about climate change, etc",
+    "Desc": "Our server supports the club, we announce meetings, store helpful links, and answer members' questions in the discord"
+  },
+  "Computer Science & Engineering Society": {
+    "Invite": "https://discord.gg/uqVzRQg",
+    "Admin": "Carleen",
+    "Who": "any UCSD student",
+    "Desc": "The CSES Discord server is dedicated to all students hoping to share resources, get feedback and/or advice for technical/professional development, and connect with others! CSES announcements on upcoming workshops, applications, and other events will also be posted throughout the school year."
+  },
+  "Darkstar": {
+    "Invite": "https://discord.gg/wxGxK4B",
+    "Admin": "Thea",
+    "Who": "any UCSD student",
+    "Desc": "We are UCSDs Sci fi and Fantasy Club/Library Darkstar. We run a bunch of different events ranging from book clubs to game nights. We want to be home to UCSDs Sci fi and Fantasy fans"
+  },
+  "UCSD Dragonboat": {
+    "Invite": "https://discord.gg/58URZRc",
+    "Admin": "Justin",
+    "Who": "UCSD Dragonboat members and potential new recruits",
+    "Desc": "Our server is primarily used for UCSD Dragonboat virtual socials and for members to just chat in general. We usually host game nights for games such as Among Us, Jackbox, League, etc. The discord is also open to those who are interested in trying out to help them get to know the team better."
+  },
+  "UCSD Dance Community": {
+    "Invite": "https://discord.gg/JgKrNKK",
+    "Admin": "Henry",
+    "Who": "People looking to try out dance and interact with the school's dance community.",
+    "Desc": "To build a sense of community and lasting relationships among the UCSD students through the power of dance."
+  },
+  "Ds3@UCSD": {
+    "Invite": "https://discord.gg/NqHx8h3",
+    "Admin": "Aaron",
+    "Who": "Anyone interested in data science!",
+    "Desc": "DS3's discord server for all data science academic/professional/social needs! This server is dedicated to creating a community around data science for UCSD students. Come join if you have any questions about data science classes, interested in building a data science career, or meet new people!"
+  },
+  "Engineers For A Sustainable World (Esw)": {
+    "Invite": "https://discord.gg/jEkYvm",
+    "Admin": "Candice",
+    "Who": "anyone and everyone",
+    "Desc": "This is the official discord for Engineers for a Sustainable World, (ESW), a pre-professional sustainability oriented engineering organization. Come join the discord if you are interested in checking out the club or if you just want to chat! See y'all on the channel! :)"
+  },
+  "Hanbit": {
+    "Invite": "https://discord.gg/rQwdBdq",
+    "Admin": "Erin",
+    "Who": "Korean-Americans and Koreans! Especially those looking for a Christian Korean Community.",
+    "Desc": "Our server is for updates and announcements for church! It is also a place to interact with each other in a more casual setting, play games, and study. We use both English and Korean!"
+  },
+  "Ieee Uc San Diego Discord": {
+    "Invite": "tinyurl.com/ieeediscord",
+    "Admin": "William",
+    "Who": "anyone",
+    "Desc": "IEEE UC San Diego Student Branch is part of a larger organization that spans internationally and focuses on innovating technology. Here at UCSD, our organization offers multiple projects, workshops, and events throughout the year. Join our discord if you want to stay updated or just chill!"
+  },
+  "UCSD Jsa": {
+    "Invite": "https://discord.gg/gkgtBD4",
+    "Admin": "Christopher",
+    "Who": "Anyone",
+    "Desc": "The Japanese Student Association at UCSD is for students whose home country is Japan and for those who wish to experience Japanese culture."
+  },
+  "UCSD Kasa \u201820-\u201921": {
+    "Invite": "https://discord.gg/V4RKQVV(Link is expired - new permanent link needed)",
+    "Admin": "Cristina",
+    "Who": "UCSD KASA, anyone is free to join !!",
+    "Desc": "A discord for UCSD KASA that anyone is free to join to be part of the family <3"
+  },
+  "League Of Tritons": {
+    "Invite": "bit.ly/LeagueOfTritons",
+    "Admin": "Jenny",
+    "Who": "Any LoL players or people who play Riot Games (Valorant, TFT, Legends of Runeterra)",
+    "Desc": "We just play League (and other games sometimes) together and promote LoL-related events or opportunities! It's just a community/social space :)"
+  },
+  "Muir Quarterly (Mq)": {
+    "Invite": "https://discord.gg/tpjpQJh",
+    "Admin": "Andrew",
+    "Who": "People who want to join/are in the MQ",
+    "Desc": "We have a nice chat for MQers"
+  },
+  "Neurotech At UCSD": {
+    "Invite": "https://discord.gg/6sMWWhp",
+    "Admin": "Geeling",
+    "Who": "Anyone with interest in NeuroTech",
+    "Desc": "Talk about NeuroTech news, share upcoming events, and network! We compete in the annual NeuroTechX Competition, create workshops, and host networking opportunities to help you grow your knowledge and career in neurosciences, data science, and engineering. neurotechx.ucsd.edu"
+  },
+  "Nanoengineering And Technology Society": {
+    "Invite": "https://discord.gg/NwhYrDh",
+    "Admin": "Emily",
+    "Who": "For Nanoengineering students, as well anyone interested in nanotechnology opportunities",
+    "Desc": "The NanoEngineering and Technology Society (NETS) discord is open to all who want to learn more about the exciting field of NanoEngineering! Please come if you are interested in emerging nanotechnologies in medicine, materials and more! We are open to students of all backgrounds and majors!"
+  },
+  "Open Source @ UCSD": {
+    "Invite": "https://discord.gg/HXa8Ndb",
+    "Admin": "Vivian",
+    "Who": "Anyone",
+    "Desc": "We foster an inclusive open source community at UCSD and introduce open source to a wider audience."
+  },
+  "Open Dyalog": {
+    "Invite": "https://discord.gg/EdaR5PP",
+    "Admin": "Jay",
+    "Who": "Anyone",
+    "Desc": "OD is a student-run organization and a platform for sharing perspectives and experiences in an open conversation. We hope to help people develop greater empathy and a deeper understanding of one another. For more information, you can visit https://www.opendyalog.com/"
+  },
+  "Paranormal Society At UCSD": {
+    "Invite": "https://discord.gg/jcpP6ySAP8",
+    "Admin": "Amy",
+    "Who": "Undergraduate students looking to get involved.",
+    "Desc": "Our purpose is to learn, investigate, and research about various places that are or may be experiencing unusual activity in order to verify if whether or not it is paranormal using logical reasoning."
+  },
+  "Quidditch At UCSD": {
+    "Invite": "https://discord.gg/xhqK7Ue",
+    "Admin": "Amanda",
+    "Who": "Anyone",
+    "Desc": "A group of Harry Potter nerds coming together to talk about the universe and live it out by playing quidditch in real life! We are a close community of friends who hang out and are looking forward to meeting new wizards and witches!"
+  },
+  "Role Playing Games (Rpg) Club": {
+    "Invite": "https://discord.gg/8nzkSdd",
+    "Admin": "Patrick",
+    "Who": "Role Playing Gamers",
+    "Desc": "We are the premier board and tabletop RPG club at UCSD, and one of the largest gaming clubs in the greater San Diego area. Whether you want to play in one-off sessions, long-term campaigns, intense board games, or even just socialize with other gamers, RPG Club is the place for you."
+  },
+  "Sase @ Uc San Diego": {
+    "Invite": "https://tinyurl.com/ucsdsasediscord",
+    "Admin": "Kaitlyn",
+    "Who": "Students who are a part of SASE (Society of Asian Scientists and Engineers), or anyone who's interested in joining :)",
+    "Desc": "Our server *serves* a variety of purposes, such as a platform to continue GBMs, host social events, have impromptu game nights, and a place for pre-professional help and advice! We have channels for members to ask questions about future careers, classes, get advice on resumes and more!"
+  },
+  "Sun God Archery @ UCSD": {
+    "Invite": "https://discord.gg/EMc4fTP",
+    "Admin": "Jason",
+    "Who": "anyone interested in archery",
+    "Desc": "This is the official discord server for the archery club at UCSD. We usually just chill, hangout and play games, with the occasional game or movie nights. Anyone who wants to learn more about archery at UCSD can hop in and ask us anything!"
+  },
+  "UCSD Tea Club": {
+    "Invite": "https://discord.gg/RJvPjsa",
+    "Admin": "Jan",
+    "Who": "Anybody!",
+    "Desc": "Tea Club is an inclusive club aimed at promoting the love, knowledge, and appreciation of all things tea. We host tea tastings and variety events every two weeks! Feel free to join the discord to chat, talk about what tea you're drinking, recommendations, and just hang!"
+  },
+  "Triton Halo": {
+    "Invite": "https://discord.gg/nbt6vsj",
+    "Admin": "Andrew",
+    "Who": "People interested in Halo!",
+    "Desc": "We run meetings there and have some fun discussions and streams!"
+  },
+  "Triton Gaming": {
+    "Invite": "https://discord.gg/tritongaming",
+    "Admin": "Ryan \u2018Tai\u2019",
+    "Who": "Anyone",
+    "Desc": "Triton Gaming is the premier gaming organization at UCSD. We host epic Gaming events throughout the year from massive conventions to cozy inhouses. If you're interested in League, Valorant, Smash, or any other games... you can find our Divisions in our Division Directory! We hope to see you there :)"
+  },
+  "Triton Rocket League": {
+    "Invite": "https://discord.gg/qq85K72",
+    "Admin": "Fernando",
+    "Who": "Anyone",
+    "Desc": "A fun and friendly group of active Rocket League players, with ranks all over. We host leagues and frequent inhouses. Our high ranked players are always down for coaching as well. Hope to see you there! :)"
+  },
+  "Tritons Of Aether": {
+    "Invite": "https://discord.gg/8waer68AEt",
+    "Admin": "Jay",
+    "Who": "Primarily for Rivals of Aether players, but anyone is welcome to hop in \u2728\ud83c\udfae",
+    "Desc": "Tritons of Aether is a student organization that aims to grow a community for both casual and competitive players of Rivals of Aether within UCSD and the San Diego area."
+  },
+  "Triton Robosub": {
+    "Invite": "https://discord.gg/qrr8kar",
+    "Admin": "Patrick",
+    "Who": "Anyone interested in autonomous underwater vehicles, oceanography, robotics and research!",
+    "Desc": "We\u2019re Triton Robosub, a multi-disciplinary organization focused on designing, building and testing autonomous underwater vehicles! We compete in an international competition hosted in San Diego every summer and pursue research topics relating to oceanography, robotics and ML!"
+  },
+  "Triton Splatoon": {
+    "Invite": "https://discord.gg/HXa8Ndb",
+    "Admin": "Adam",
+    "Who": "Anyone",
+    "Desc": "We're a bunch of squids/octos that play Splatoon. Join us for League sessions, Private Battles, just hanging out, and the opportunity to play competitively!"
+  },
+  "Uc Star Dazing": {
+    "Invite": "https://discord.gg/jNxkVSM",
+    "Admin": "Brandon",
+    "Who": "Anyone",
+    "Desc": "Students who are interested in astronomy and are looking to get out and do some star gazing together (with adequate social distance and masks of course)."
+  },
+  "Undergraduate Trading Society": {
+    "Invite": "https://discord.gg/2T6aNNP",
+    "Admin": "Nathan",
+    "Who": "Anyone",
+    "Desc": "We are the largest student trading club on campus. The undergraduate trading society at UCSD helps student traders and investors navigate the ins and outs of the stock market with guidance from experienced traders on the exec board."
+  },
+  "Vgdc @ UCSD": {
+    "Invite": "https://discord.gg/ZeSrhSp",
+    "Admin": "Brent",
+    "Who": "People interested in video game development",
+    "Desc": "We talk about video game development, hold workshops, etc!"
+  },
+  "UCSD Vietnamese Student Association": {
+    "Invite": "https://discord.gg/KH9SGPr",
+    "Admin": "Vincent",
+    "Who": "Anyone",
+    "Desc": "We are an all-inclusive student organization that is founded under the pillars of Social, Academic, Community, and Culture to preserve and foster the growth of Vietnamese Culture. We hold GBM's, social events, fundraisers, our annual Vietnamese Culture Night, and many other events!"
+  },
+  "UCSD Arts": {
+    "Invite": "https://discord.gg/3NZJjRa",
+    "Admin": "Yuri",
+    "Who": "anyone",
+    "Desc": "Server is intended as a place for UCSD students who do arts and crafts to connect and share their hobbies. Basically, an art-oriented UCSD Discord server."
+  },
+  "Comic Book Club/Ink": {
+    "Invite": "https://discord.gg/cysrR33",
+    "Admin": "Ryan",
+    "Who": "anyone",
+    "Desc": "The discord server for people who want to make, read, or talk about comic books and manga. Get recommendations, share comic art, or just find like minded people!"
+  },
+  "UCSD Factions": {
+    "Invite": "https://discord.gg/G8VbYqa",
+    "Admin": "Henry",
+    "Who": "anyone",
+    "Desc": "UCSD in-house but instead of competing against different residential colleges, you can team up with others in different factions! We will host events, games, tournaments, and competitions to earn scores for the factions you represent."
+  },
+  "UCSD Pogo": {
+    "Invite": "https://discord.gg/snAGxg7",
+    "Admin": "Vivian",
+    "Who": "anyone, active pogo players preferred!",
+    "Desc": "We're an all inclusive Pokemon Go discord at UCSD, we use this discord to chat with other players, show off mons, discuss news, invite each other to raids and just talk about Pokemon in general."
+  },
+  "Star Wars Club @ UCSD": {
+    "Invite": "https://discord.gg/aRJ4cHY",
+    "Admin": "Anish",
+    "Who": "anyone",
+    "Desc": "This is a space for Star Wars fans to gather and socialize. We welcome fans of the movies, TV shows, books, and other Star Wars media, both canon and legends material. Our purpose is to cultivate a community of Star Wars fans at UCSD, through social events like watch parties and discussions."
+  }
+}
