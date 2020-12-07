@@ -1,4 +1,5 @@
-# CSE110-Project
+To test firebase locally, follow the steps below. 
+
 1. npm install -g firebase-tools
 2. firebase login
 3. cd website-html (go to root directory of your website project) 

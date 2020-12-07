@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Create A Discord Server</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="assets/js/auth.js"></script>
+</head>
+
+<body class="landing is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <!-- Header -->
+        <!-- Header -->
+        <header id="header" class="alt">
+            <nav id="nav">
+                <ul class="menuToggle">
+                    <a href="browse-class.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Back to Classes</a>
+                    &nbsp;
+                    |
+                    &nbsp;
+                    &nbsp;
+                </ul>
+            </nav>
+        </header>
+
+        <div class="form-popup" id="myForm"
+            style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+            <div style="padding: 0px 20px 0px 20px;">
+                <img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt=""
+                    style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+
+                <div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;">
+                    User</div>
+                <div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;">
+                    Email</div>
+
+                <button type="button" onclick="location.href='userprofile.html'"
+                    style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
+                <br>
+                <button type="button" onclick="signOutFunction()"
+                    style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign
+                    out</button>
+                <div style="width:200px;">
+                    <div onclick="goToContactUs()" class="profileCard"
+                        style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        Contact Us</div>
+                    <div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+                    <div onclick="goToAboutUs()" class="profileCard"
+                        style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        About Us</div>
+                    <br>
+                    <div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard"
+                        style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        Admin Dashboard</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <script>
+            // load profile pic, load name, load email
+            var profileImgUrl = localStorage.getItem("user-profileimgurl");
+            document.getElementById("profilePicUserProfile").src = profileImgUrl;
+            document.getElementById("profilePicUserProfile2").src = profileImgUrl;
+            document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
+            document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
+            // open profile popout
+            function openForm() {
+                if (document.getElementById("myForm").style.display == "grid") {
+                    document.getElementById("myForm").style.display = "none";
+                } else {
+                    document.getElementById("myForm").style.display = "grid";
+                }
+            }
+
+            // close profile popout
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+
+
+            // window.onload = function () {
+                //get all class info from FB databse
+                // getClassSnapshot();
+
+
+                // BS BELOW THIS LINE
+                // document.getElementById("email").placeholder=localStorage.getItem("user-email");
+                // document.getElementById("email").value=localStorage.getItem("user-email");
+                // localStorage.removeItem("user-email");
+                // document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+                // document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+                // localStorage.removeItem("user-displayname");
+                //remove local storage items in signout function for security.
+            // }
+        </script>
+
+
+        <article id="main">
+            <header>
+                <h2>Create a Discord Server</h2>
+                <p>Want to create a Discord server for a UCSD course?</p>
+                <form action="#bottom">
+                    <input type="submit" value="Already have a server? Click here to add it" class="primary"
+                        style="margin-bottom: 0 auto;" />
+                </form>
+            </header>
+
+            <!-- <section id="makeServer" class="wrapper style5 special" >
+                <ul class="features">
+                    <li class="icon">
+                        <h2>Make your server!</h2>
+                        <p>
+                            1. Head to <a href="https://discord.com" target="_blank" style="color: blue;">discord.com</a> to login.<br>
+                            Either Log into the app from top right or click “Open Discord in browser." <br>
+                            <br>
+                            2. Simply clicking <a href="https://discord.new/WbjVhdGn3ahy" target="_blank" style="color: blue;">here</a>
+                            will redirect you to a
+                            template designed for UCSD classes.<br>
+                            If you do not want to use this template, click
+                            <a style="color: blue;"
+                                href="https://www.howtogeek.com/364075/how-to-create-set-up-and-manage-your-discord-server/" target="_blank">
+                                here </a>to see how to create a Discord server.<br>
+                            <br>
+                            3. Fill in the server name accordingly and then add your server to our site so that others
+                            can find you!
+                        </p>
+                    </li>
+                    <li class="iconimage">
+                        <img src="/images/try2.png" style="width:100%; height:auto;">
+                    </li>
+                </ul>
+            </section> -->
+
+            <section id="customize" class="wrapper style5 special" style="padding-top: 10px;" >
+                <section class="spotlight">
+                    <div class="inner" style=" width: 60%;">
+                        <!-- <header class="major">
+                            
+                        </header> -->
+                        
+                        <ul class="features">
+                            <li class="icon">
+                                <h2>Make your server!</h2>
+                                <p>
+                                    1. Head to <a href="https://discord.com" target="_blank" style="color: blue;">discord.com</a> to login.<br>
+                                    Either Log into the app from top right or click “Open Discord in browser." <br>
+                                    <br>
+                                    2. Simply clicking <a href="https://discord.new/WbjVhdGn3ahy" target="_blank" style="color: blue;">here</a>
+                                    will redirect you to a
+                                    template designed for UCSD classes.<br>
+                                    <br>
+                                    3. Fill in the server name accordingly and then add your server to our site so that others
+                                    can find you!
+                                </p>
+                            </li>
+                            <h2 style="padding: 3em 2em 0em 2em;">Customize your server with bots!</h2>
+                            <p style="padding: 0em 6em 2em 6em;">
+                                Consider adding our custom Discord bot to your server!
+                                Simply click this <a href="https://discord.com/api/oauth2/authorize?client_id=784663151382888449&permissions=8&scope=bot" target="_blank" style="color: rgb(0, 0, 255);">link</a>, make sure you are an admin, and
+                                select add to server!
+                            </p>
+                            <section class="spotlight" style="width:auto; height:auto;">
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Event Commands</h3>
+                                        <p>
+                                            Keep track of events and be notified on the day they happen!<br>
+                                            Command Format:<br>
+                                            <ul>
+                                            <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addEvent &lt;EventName&gt;</li>
+                                            <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteEvent &lt;EventName&gt;</li>
+                                            <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!listEvent &lt;EventName&gt;</li>
+                                            </ul>
+                                        </p>
+                                    </li>
+                                </div>
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Assignment Commands</h3>
+                                        <p>
+                                            Keep track of assignments and be reminded on the due date!<br>
+                                            Command Format:<br>
+                                            <ul>
+                                                <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!listAssign</li>
+                                                <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteAssign &lt;AssignName&gt;</li>
+                                                <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addAssign &lt;AssignName&gt; mm/dd/yyyy</li>
+                                            </ul>
+                                        </p>
+                                    </li>
+                                </div>
+                            </section>
+                            <section class="spotlight" style="width:auto; height:auto;">
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Rules Commands</h3>
+                                        <p>
+                                            Make rules for members to follow!<br>
+                                            Command Format:<br>
+                                            <ul>
+                                                <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteRule &lt;RuleName&gt;</li>
+                                                <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addRule "title" &lt;RuleDesc&gt;</li>
+                                                <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!swapRule &lt;RuleNum1&gt; &lt;RuleNum2&gt;</li>
+                                                <li class="inList"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!listRule &lt;RuleNum&gt; (optional)</li>
+                                        </p>
+                                    </li>
+                                </div>
+                                <div class="insideL">
+                                    <li class="insideList">
+                                        <h3><i class="fas fa-robot">&nbsp;</i>Report Commands</h3>
+                                        <p>
+                                            In case of server policy or academic integrity violation:
+                                            React to a message with the red square reaction to report a message to the admins of the
+                                            server.
+                                        </p>
+                                    </li>
+                                </div>
+                            </section>
+                        </ul>
+                    </div><div class="inner" style=" width: 40%;">
+                        <ul class="features">
+                            <li class="iconimage">
+                                <img src="/images/try2.png" style="width:100%; height:auto;">
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+        </article>
+
+        <div class="wrapper style5 special">
+            <div style="width: 67%; margin: 0 auto;">
+                <form class="form-container">
+                    <div class="row gtr-uniform">
+                        <div class="col-12" style="text-align: center;">
+
+                            <h4>Add a New Discord Server</h4>
+                        </div>
+                        <div class="col-12">
+                            <select name="selectyear" rows="1" id="year" required>
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <select name="selectquarter" rows="1" id="quarter" required>
+                                <option value="">Select Quarter</option>
+                                <option value="spring">Spring</option>
+                                <option value="summer">Summer</option>
+                                <option value="fall">Fall</option>
+                                <option value="winter">Winter</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" placeholder="Professor" id="professor" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" placeholder="Discord Invite Link" id="invitelink" required>
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="button" value="Submit" class="primary" onclick="submitClass()" />
+                                </li>
+                                <li><input id="bottom" type="reset" value="Clear" onclick="resetAddClass()" /></li>
+                            </ul>
+                            <!--<button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px; font: inherit;">Submit</button>
+                        							<button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px; font: inherit;">Close</button>-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- <script src="assets/js/feedbackDiscordUtil.js"></script> -->
+        <script src="assets/js/create-server.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/profileCard.js"></script>
+        <script src="assets/js/searchClass.js" />
+        <script src="assets/js/login.js" />
+
+        </div>
+</body>
+
+</html>
