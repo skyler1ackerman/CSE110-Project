@@ -73,7 +73,7 @@ function submit_community() {
     }
     else {
         document.getElementById('displayResults').style.display = "none";
-        alert("The community you entered is not in our Database.");
+        showLoginAlert();
     }
 
 }
@@ -329,6 +329,11 @@ function autocompleteCommunity(inp, arr) {
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
   });
+}
+
+//alert box for invlaid community name search
+function showLoginAlert(){
+    document.getElementById("customAlert").style.display="block";
 }
 
 var communitiesArr =[];
