@@ -73,7 +73,7 @@ function submit_community() {
     }
     else {
         document.getElementById('displayResults').style.display = "none";
-        showLoginAlert();
+        showInvalidCommunityAlert();
     }
 
 }
@@ -332,7 +332,7 @@ function autocompleteCommunity(inp, arr) {
 }
 
 //alert box for invlaid community name search
-function showLoginAlert(){
+function showInvalidCommunityAlert(){
     document.getElementById("customAlert").style.display="block";
 }
 

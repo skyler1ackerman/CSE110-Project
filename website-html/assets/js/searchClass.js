@@ -178,7 +178,7 @@ async function submit_class() {
     }
     else{
         document.getElementById('displayResults').style.display = "none";
-        showLoginAlert();
+        showInvalidClassAlert();
     }
 
 }
@@ -324,7 +324,7 @@ function autocompleteClass(inp, arr) {
 }
 
 //alert box for invlaid class name search
-function showLoginAlert(){
+function showInvalidClassAlert(){
     document.getElementById("customAlert").style.display="block";
 }
 
