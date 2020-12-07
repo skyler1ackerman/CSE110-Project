@@ -48,12 +48,12 @@ class EventBot(commands.Cog):
 			await ctx.send('Event "' + eventName + '" already exists!')
 		else:
 			# take user input for date and time, only accept same user's input
-			await ctx.send("Enter date of event, MM DD YYYY (spaces required).")
+			await ctx.send("Enter date of event, mm/dd/yyyy (spaces required).")
 			eventDateMsg = await self.bot.wait_for("message", timeout=30, check=verifyUser)
-			await ctx.send("Enter time of event, HH MM (pm/am) (spaces required).")
+			await ctx.send("Enter time of event, HH:MM (pm/am) (spaces required).")
 			eventTimeMsg = await self.bot.wait_for("message", timeout=30, check=verifyUser)
 			# parse user input to generate datetime object, set format string
-			eventDateTime = datetime.strptime(eventDateMsg.content + " " + eventTimeMsg.content, '%m %d %Y %I %M %p')
+			eventDateTime = datetime.strptime(eventDateMsg.content + " " + eventTimeMsg.content, '%m/%d/%Y %I:%M %p')
 			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("date").set(eventDateTime.isoformat(' '))
 			# get channel for event announcements, by taking command's current channel
 			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("channel").set(ctx.channel.id)
