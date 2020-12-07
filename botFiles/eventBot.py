@@ -25,7 +25,7 @@ class EventBot(commands.Cog):
 		self.bot.loop.create_task(self.checkSchedule())
 
 	# newEvent will add a new event folder with data to firebase db given user input, for specific server folder
-	@commands.command(name='newevent', aliases=['addevent','plan','setevent'], help="Adds a new event to the current server's schedule. Optional event name with command.")
+	@commands.command(aliases=['addevent', 'addEvent', 'newevent', 'adde', 'addE', 'newe', 'newE'], help='Adds a new assignment to the server. Format: !addAssign <EventName> (Optional)')
 	async def newEvent(self, ctx, *inputEventMsg):
 		# nested fuction, to use in secondary queries to only respond to same user
 		def verifyUser(newMessage):
@@ -48,12 +48,12 @@ class EventBot(commands.Cog):
 			await ctx.send('Event "' + eventName + '" already exists!')
 		else:
 			# take user input for date and time, only accept same user's input
-			await ctx.send("Enter date of event, MM DD YYYY (spaces required).")
+			await ctx.send("Enter date of event, mm/dd/yyyy (spaces required).")
 			eventDateMsg = await self.bot.wait_for("message", timeout=30, check=verifyUser)
-			await ctx.send("Enter time of event, HH MM (pm/am) (spaces required).")
+			await ctx.send("Enter time of event, HH:MM (pm/am) (spaces required).")
 			eventTimeMsg = await self.bot.wait_for("message", timeout=30, check=verifyUser)
 			# parse user input to generate datetime object, set format string
-			eventDateTime = datetime.strptime(eventDateMsg.content + " " + eventTimeMsg.content, '%m %d %Y %I %M %p')
+			eventDateTime = datetime.strptime(eventDateMsg.content + " " + eventTimeMsg.content, '%m/%d/%Y %I:%M %p')
 			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("date").set(eventDateTime.isoformat(' '))
 			# get channel for event announcements, by taking command's current channel
 			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("channel").set(ctx.channel.id)
@@ -73,7 +73,7 @@ class EventBot(commands.Cog):
 			await ctx.send('Error: unknown error.')
 
 	# delEvent will access firebase db and delete matching event folder for specific server
-	@commands.command(name='deleteevent', aliases=['removeevent','cancelevent','unplan','delevent'], help="Deletes an event from the server's schedule. Optional event name with command.")
+	@commands.command(aliases=['delevent', 'deleteevent', 'deleteEvent', 'dele', 'delE', 'deletee', 'deleteE'], help="Deletes an event from the server's schedule. Format !delEvent <EventName> (Optional)")
 	async def delEvent(self, ctx, *inputEventMsg):
 		def verifyUser(newMessage):
 			return newMessage.author == ctx.author
@@ -107,7 +107,7 @@ class EventBot(commands.Cog):
 			await ctx.send('Error: unknown error.')
 
 	# listEvents will access firebase db and list all events found for specific server
-	@commands.command(name='schedule',aliases=['showevents','showschedule','showplan','showplanned','listevents'], help="Lists all events in the server's schedule.")
+	@commands.command(aliases = ['listevents', 'listE', 'liste', 'allevents', 'allEvents'], help="Lists all events in the server's schedule. Format: !listEvents")
 	async def listEvents(self, ctx):
 		guildAllEvents = db.child(ctx.guild.id).child(FOLDER_STR).get().val()
 		# working null db check

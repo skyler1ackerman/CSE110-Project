@@ -20,15 +20,25 @@ class RuleBot(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases = ['rules', 'Rule', 'Rules'])
-    async def rule(self, ctx, a = None):
+    @commands.command(aliases = ['rule', 'Rule', 'Rules', 'listrule', 'listRules', 'listr', 'listR', 'showrule', 'showRule', 'showrules', 'showRules'], help='Lists rules on a server. Run with no commands for all rules, or with a rule number for a specific rule!')
+    async def rules(self, ctx, a = None):
         if not db.child(ctx.guild.id).child(FOLDER_STR).get().val():
             ruleDict = self.default_Dict()
         else:
             ruleDict = {k: v for k, v in enumerate(db.child(ctx.guild.id).child(FOLDER_STR).get().val())}
         if not a:
+            masterString = ''
             for key in ruleDict:
-                await ctx.send(str(key) + ". "+ ruleDict[key]["title"] + ": " + ruleDict[key]["desc"])
+                curString = str(key) + ". "+ ruleDict[key]["title"] + ": " + ruleDict[key]["desc"] + '\n'
+                if len(masterString) + len(curString) >= 700:
+                    await ctx.send(masterString)
+                    masterString = curString
+                else:
+                    masterString += curString
+            if(masterString):
+                await ctx.send(masterString)
+
+                
         else:
             if not a.isnumeric():
                 await ctx.send("Error: Not a valid rule number." + '\n' + "Please enter a non-negative number to view a specific rule, or no number to view all rules.")
@@ -37,8 +47,8 @@ class RuleBot(commands.Cog):
             else:
                 await ctx.send(a + ". "+ ruleDict[int(a)]["title"] + ": " + ruleDict[int(a)]["desc"]) 
 
-    @commands.command(aliases = ['addRule', 'addrule'])
-    async def add_rule(self, ctx, *, args = None): 
+    @commands.command(aliases = ['addrule', 'newrule', 'newRule', 'addr', 'addR', 'newr', 'newR'], help='Adds a new rule to the server. Format: !addRule "<RuleTitle>" <RuleDesc>')
+    async def addRule(self, ctx, *, args = None):
         content = ctx.message.content
         newTitle = "**" + content.split('"')[1].strip() + "**"
         newDesc = content[content.rindex('"')+1:].strip()
@@ -58,8 +68,11 @@ class RuleBot(commands.Cog):
             db.child(ctx.guild.id).child(FOLDER_STR).child(index).child("desc").set(newDesc)
             await ctx.send("Rule added successfully!")
 
-    @commands.command(aliases = ['deleteRule', 'deleterule'])
-    async def delete_rule(self, ctx, a = None):
+    @commands.command(aliases = ['deleterule', 'delrule', 'delRule', 'delr', 'delR', 'deleter', 'deleteR'], help='Deletes rule from the server. Format: !delRule <RuleNum>')
+    async def deleteRule(self, ctx, a = None):
+        if not db.child(ctx.guild.id).child(FOLDER_STR).get().val():
+                defDict = self.default_Dict()
+                db.child(ctx.guild.id).child(FOLDER_STR).update(defDict)
         if not a:
             await ctx.send("Please enter a rule number to delete. If you do not know the number for a rule, enter !rules to see all the rules with their numbers.")
         elif not a.isnumeric():
@@ -78,9 +91,11 @@ class RuleBot(commands.Cog):
             db.child(ctx.guild.id).child(FOLDER_STR).set(delDict)
             await ctx.send("Rule deleted successfully.")
 
-    @commands.command(aliases = ['swaprule', 'swapRule', 'swaprules', 'swapRules'])
-    async def swap_rule(self, ctx, a = None, b = None):            
-        
+    @commands.command(aliases = ['swaprule','swaprules', 'swapRules', 'switchrules', 'switchRule', 'swap', 'switch'], help='Switches two rules on the list.  Format: !swap <RuleOne> <RuleTwo>')
+    async def swapRule(self, ctx, a = None, b = None):
+        if not db.child(ctx.guild.id).child(FOLDER_STR).get().val():
+                defDict = self.default_Dict()
+                db.child(ctx.guild.id).child(FOLDER_STR).update(defDict)
         length = len(db.child(ctx.guild.id).child(FOLDER_STR).get().val())
         if not a or not b:
             await ctx.send("Error: Please enter two rule numbers to swap.")
