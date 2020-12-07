@@ -2671,6 +2671,7 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
+		
 	}
 
 		.spotlight .image {
@@ -2707,7 +2708,7 @@ input, select, textarea {
 			width: 60%;
 		}
 
-		.spotlight:nth-child(2n) {
+		/* .spotlight:nth-child(2n) {
 			-moz-flex-direction: row-reverse;
 			-webkit-flex-direction: row-reverse;
 			-ms-flex-direction: row-reverse;
@@ -2716,8 +2717,8 @@ input, select, textarea {
 
 		.spotlight:nth-child(1) {
 			background-color: rgba(0, 0, 0, 0.075);
-		}
-
+		} */
+/* 
 		.spotlight:nth-child(2) {
 			background-color: rgba(0, 0, 0, 0.15);
 		}
@@ -2752,7 +2753,7 @@ input, select, textarea {
 
 		.spotlight:nth-child(10) {
 			background-color: rgba(0, 0, 0, 0.75);
-		}
+		} */
 
 		@media screen and (max-width: 1280px) {
 
