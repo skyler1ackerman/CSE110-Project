@@ -215,7 +215,7 @@
                 }
                 else{
                     //alert("The class you entered is not in our Database.");
-                    document.getElementById("inputClassesErr").innerHTML = "The class you entered is not in our Database.";
+                    document.getElementById("inputClassesErr").innerHTML = "The class you entered is not in our database.";
                     return false;
                 }
                 //console.log("Add " +  currentCourse);
@@ -247,7 +247,8 @@
                     userMajor = currentMajor;
                     //alert("The major you entered will be saved.");
                     document.getElementById("inputMajorsErr").style.color = "green"; 
-                    document.getElementById("inputMajorsErr").innerHTML = "Major saved!";
+                    console.log("Major saved!");
+                    // document.getElementById("inputMajorsErr").innerHTML = "Major saved!";
                 }
                 else{
                     //alert("The major you entered is not in our database, will not be saved.");
@@ -280,7 +281,8 @@
 
                 //alert("Enrolled courses saved!")
                 document.getElementById("saveErr").style.color = "green";
-                document.getElementById("saveErr").innerHTML = "Enrolled courses saved!";
+                console.log("Enrolled courses saved!");
+                document.getElementById("saveErr").innerHTML = "Your changes have been saved.";
                 document.getElementById("inputClasses").value = "";
                 document.getElementById("inputClassesErr").innerHTML = "";
 
