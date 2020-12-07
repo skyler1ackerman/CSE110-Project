@@ -53,8 +53,9 @@ async function submit_community() {
             alert("The community already exists. Try using the search communities page");
         } else {
             var fbRef = "DiscordServerRequests/";
-            firebase.database().ref(fbRef).child("Communities").child(category.toString()).push().set({
+            firebase.database().ref(fbRef).child("Communities").push().set({
                 contact: localStorage.getItem("user-email"),
+                category: category,
                 name: serverName,
                 description: desc,
                 inviteLink: link,
