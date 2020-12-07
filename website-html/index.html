@@ -4,9 +4,10 @@
 		<title>Triton Groups</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="icon" href="images/logosquare.png" type="image/ico"/>
-        <link rel="shortcut icon" href="images/logosquare.png" type="image/x-icon"/>
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="images/lightmode.png" id="light-scheme-icon"/>
+		<link rel="icon" href="images/darkmode.png" id="dark-scheme-icon"/>
+		<script src="assets/js/favIcon.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="landing is-preload">
@@ -74,7 +75,7 @@
 						<h2>How It Works<br />
 						</h2>
 					</header>
-					
+
 					<section class="spotlight">
 						<div class="listContent"><h4>Search for a Class Discord Server</h4>
 							<p><ul class="tridentList">
@@ -113,7 +114,7 @@
 								<ul class="tridentList">
 									<li>Match with another triton that’s online and chat instantly</li>
 									<li>Make new connections and friends at UCSD!</li>
-								</ul>					
+								</ul>
 							</p>
 						</div>
 					</section>
@@ -122,15 +123,15 @@
 				<section id="two" class="wrapper style3 special">
 					<div class="inner" style="padding: 0 70px 0 70px;">
 							<h2>About Us</h2>
-						<p>Triton Groups is a platform made by Tritons, for Tritons. 
-							The idea of Triton Groups came about as a response to the COVID-19 pandemic 
+						<p>Triton Groups is a platform made by Tritons, for Tritons.
+							The idea of Triton Groups came about as a response to the COVID-19 pandemic
 							that caused all of us to change how we learn. No longer can we talk to the person
 							next to us in class. The way we socialize, the way we study, the way we network has all changed.
 							Making friends, connections and study mates has become more challenging than ever.
 						</p>
 
 						<p>
-							Our mission is to make distance learning less distant and help students at UCSD connect easily. 
+							Our mission is to make distance learning less distant and help students at UCSD connect easily.
 							This is a platform where students can discover new connections with their classmates, communities
 							and other students.
 						</p>
@@ -139,26 +140,30 @@
 
 						<h4>Contributors</h4>
 						<p>Triton Groups wouldn't be possible without these awesome people!</p>
-						Amrita Kohli <br>
-						Skyler Ackerman <br>
-						Younseo Ryu <br>
-						Jennifer Purevsuren <br>
-						Aaron Broukhim <br>
-						Gauravdeep Cheema <br>
-						Kaiwen Tan <br>
-						Andrew Erwin <br>
-						Steffe Reyes <br>
-						Dennis Juanito <br>
-						Aldrik Ramos <br>
+						<br>
+						Andrew Erwin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Steffe Reyes <br><br>
+						Amrita Kohli &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Aaron Broukhim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Younseo Ryu <br><br>
+						Jennifer Purevsuren &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Gauravdeep Cheema <br><br>
+						Dennis Juanito &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Aldrik Ramos <br><br>
+						Skyler Ackerman<br><br>
+						Kaiwen Tan
 						<br/>
 						<br/>
 						<br/>
 
-						<ul class="icons major">
+						<!-- <ul class="icons major">
 							<li><span class="icon solid fa-laptop major style1"><span class="label">Lorem</span></span></li>
 							<li><span class="icon solid fa-headphones major style2"><span class="label">Ipsum</span></span></li>
 							<li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
-						</ul>
+						</ul> -->
 					</div>
 				</section>
 
@@ -179,7 +184,7 @@
 								<option value="Other">Other</option>
 							</select>
 							<textarea placeholder="Explanation" rows="8" cols="100" id="explanation"></textarea>
-							<input id="Submit" onclick="getFeedbackOutside()" type="submit" style="border: 1px solid #cccccc"></input>
+							<input id="Submit" onclick="getFeedbackUnverified()" type="submit" style="border: 1px solid #cccccc"></input>
 						</form>
 
 					</div>
@@ -221,6 +226,7 @@
 			 <script src="assets/js/main.js"></script>
 			 <script src="assets/js/login.js"></script>
 			 <script src="assets/js/feedbackDiscordUtil.js"></script>
+
 			 <script>
 				var top1 = $('#one').offset().top;
 				var top2 = $('#two').offset().top;

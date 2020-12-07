@@ -83,7 +83,7 @@ async function constructHTML(className) {
             resultsString.str += `<tr>
                                      <td style=\"text-align: center; vertical-align: middle;\">${elem['prof']}</td>
                                      <td><a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
-                                         <a href=\"#\" target=\"_blank\" class=\"button\">Report</a>
+                                         <a href="report-discord-server.html" class=\"button\">Report</a>
                                      </td> </tr>`;
 
         });
