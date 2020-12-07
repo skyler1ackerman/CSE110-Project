@@ -66,9 +66,9 @@ class AssignmentBot(commands.Cog):
 	#!listAssign
 	@commands.command(name='listAssign', help='Lists all assignments')
 	async def listEvents(self, ctx):
-		assignDict = dict(db.child(ctx.guild.id).child(top).get().val())
-		assignDict = dict(sorted(assignDict.items(), key=lambda k_v: datetime.strptime(k_v[1]['date'], '%m/%d/%Y')))
-		if assignDict:
+		if db.child(ctx.guild.id).child(top).get().val():
+			assignDict = dict(db.child(ctx.guild.id).child(top).get().val())
+			assignDict = dict(sorted(assignDict.items(), key=lambda k_v: datetime.strptime(k_v[1]['date'], '%m/%d/%Y')))
 			for assKey in assignDict:
 				await ctx.send(assignDict[assKey]['title'] + ' due on ' + assignDict[assKey]['date'])
 		else:
@@ -91,4 +91,4 @@ class AssignmentBot(commands.Cog):
 						if channel:
 							await channel.send("@everyone, " + assignDict[assKey]['title'] + " was due.")
 							db.child(guild.id).child(top).child(assKey).remove()
-			await asyncio.sleep(28800)
+			await asyncio.sleep(10)
