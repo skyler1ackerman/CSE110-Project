@@ -178,7 +178,7 @@ async function submit_class() {
     }
     else{
         document.getElementById('displayResults').style.display = "none";
-        alert("The class you entered is not in our Database.");
+        showInvalidClassAlert();
     }
 
 }
@@ -323,7 +323,10 @@ function autocompleteClass(inp, arr) {
     });
 }
 
-
+//alert box for invlaid class name search
+function showInvalidClassAlert(){
+    document.getElementById("customAlert").style.display="block";
+}
 
 var classesArr = [];
 autocompleteClass(document.getElementById("inputClasses"), classesArr);

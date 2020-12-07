@@ -29,7 +29,7 @@ function testFunction() {
         //if not ucsd email, sign out
         firebase.auth().signOut().then(function() {
           console.log("signout successful!");   
-          alert("Access granted only to UCSD students.\n Login with @ucsd.edu email.");
+          showLoginAlert();
         }).catch(function(error) {
           console.log("signout error!");
         });
@@ -92,4 +92,10 @@ function testFunction() {
   // }
  
  
+}
+
+
+//alert box for non-ucsd sign in alert
+function showLoginAlert(){
+  document.getElementById("customAlert").style.display="block";
 }
