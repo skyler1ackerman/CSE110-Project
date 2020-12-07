@@ -172,6 +172,7 @@ async function submit_class(){
         await constructHTML(classInput);
     }
     else{
+        document.getElementById('displayResults').style.display = "none";
         alert("The class you entered is not in our Database.");
     }
 
