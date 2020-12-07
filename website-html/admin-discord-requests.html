@@ -10,14 +10,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     </head>
-    <style>
-
-/*  For debugging
-  * {
-	  outline: 1px solid red  !important;
-  } */
-
-    </style>
 
 
 	<body class="whiteBackground">
@@ -64,20 +56,25 @@
 
 				<!-- Banner -->
 
-				<section id="banner" style="margin: 5%">
+				<section class="align-center" style="margin-top: 10vh">
 
-                    <div class="inner" style="margin-top: 5px;">
-						<label>Discord Requests</label>
-                    </div>
-                    <div style="margin-bottom: 140px; overflow: auto;">
-                        <div id="discordRequests" style="display: block; margin:auto; width: 60%;">
+					<div class="inner">
+						<input type="radio" name="editList" id="classDicordsOption" value="" checked onclick="classRequests()"/>
+						<label for="classDicordsOption">Class Requests</label>
+						<input type="radio" name="editList" id="communityDicordsOption" value=""  onclick="communitiesRequests()"/>
+						<label for="communityDicordsOption">Community Requests</label>
+
+					</div>
+                    <div>
+                        <div id="discordRequests" style="display: block; margin:auto; width: 60%; ">
+						</div>
+						<div id="communitiesRequests" style="display: none; margin:auto; width: 60%; ">
 						</div>
 
                     </div>
 				</section>
 
 			</div>
-
 
 		<!-- Scripts -->
 		<!-- below is firebase SDKs-->

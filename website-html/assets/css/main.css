@@ -2147,6 +2147,7 @@ input, select, textarea {
 
 		ul li {
 			padding-left: 0.5em;
+			margin-bottom: 3px;
 		}
 
 		.tridentList li:before {
@@ -2693,6 +2694,7 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
+		
 	}
 
 		.spotlight .image {
@@ -2749,8 +2751,8 @@ input, select, textarea {
 
 		.spotlight:nth-child(1) {
 			background-color: rgba(0, 0, 0, 0.075);
-		}
-
+		} */
+/* 
 		.spotlight:nth-child(2) {
 			background-color: rgba(0, 0, 0, 0.15);
 		}
@@ -4775,3 +4777,35 @@ div textarea{
 .autocomplete-items::-webkit-scrollbar-button{
 	display: none;
 }
+
+.customalert {
+	position:fixed;
+	z-index: 999;
+	left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+	font-family: "Trebuchet MS", sans-serif;
+	font-size:16px;
+    border-radius: 10px;
+	width: 430px;
+	display: none;
+	padding: 20px;
+	background-color: #1f3861;
+	border: solid white 1px;
+	color: gold;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: gold;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}    

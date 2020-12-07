@@ -12,7 +12,13 @@ function retrieveReportCommunity() {
                 reportCommunityElement.removeChild(reportCommunityElement.lastChild);
             }
         }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No report submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            reportCommunityElement.append(emptyMessage);
+        }
         snapshot.forEach(function(childSnapshot) {
+
             var report = childSnapshot.val();
             let newReportBoxElement = document.createElement('div')
             newReportBoxElement.setAttribute("id", childSnapshot.key);
@@ -100,6 +106,11 @@ function retrieveResolvedCommunity() {
             while(resolvedCommunityElement.hasChildNodes()){
                 resolvedCommunityElement.removeChild(resolvedCommunityElement.lastChild);
             }
+        }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No report submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            resolvedCommunityElement.append(emptyMessage);
         }
         snapshot.forEach(function(childSnapshot) {
             var report = childSnapshot.val();
@@ -195,6 +206,11 @@ function retrieveReportClass() {
                 reportClassElement.removeChild(reportClassElement.lastChild);
             }
         }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No report submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            reportClassElement.append(emptyMessage);
+        }
         snapshot.forEach(function(childSnapshot) {
             var report = childSnapshot.val();
 
@@ -284,6 +300,11 @@ function retrieveResolvedClass() {
             while(resolvedClassElement.hasChildNodes()){
                 resolvedClassElement.removeChild(resolvedClassElement.lastChild);
             }
+        }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No report submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            resolvedClassElement.append(emptyMessage);
         }
         snapshot.forEach(function(childSnapshot) {
             var report = childSnapshot.val();

@@ -176,8 +176,9 @@ async function submit_class() {
         localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
         await constructHTML(classInput);
     }
-    else {
-        alert("The class you entered is not in our Database.");
+    else{
+        document.getElementById('displayResults').style.display = "none";
+        showInvalidClassAlert();
     }
 
 }
@@ -322,7 +323,10 @@ function autocompleteClass(inp, arr) {
     });
 }
 
-
+//alert box for invlaid class name search
+function showInvalidClassAlert(){
+    document.getElementById("customAlert").style.display="block";
+}
 
 var classesArr = [];
 autocompleteClass(document.getElementById("inputClasses"), classesArr);

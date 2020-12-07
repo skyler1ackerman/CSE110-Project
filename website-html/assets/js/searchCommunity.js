@@ -72,7 +72,8 @@ function submit_community() {
         getCommunityByKeyword(communityInput);
     }
     else {
-        alert("The community you entered is not in our Database.");
+        document.getElementById('displayResults').style.display = "none";
+        showInvalidCommunityAlert();
     }
 
 }
@@ -108,7 +109,7 @@ function getCommunityByKeyword(communityName){
                         };
                         if(clubSnapshot.val().inviteLink !== "") {
                             resultsString.str +=   `<a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                            resultsString.str +=   `<a href="report-discord-server.html" target="_blank" class="button" style="text-align: center;">Report</a>`;
+                            resultsString.str +=   `<a href="report-discord-server.html" class=\"button\">Report</a>`;
 
                         };
                         if(clubSnapshot.val().social_media !== "") {
@@ -194,7 +195,7 @@ function getCommunityCategory(category){
             };
             if(childNodes.val().inviteLink !== "") {
                 resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                resultsString.str +=   `<a href="report-discord-server.html" target="_blank" class="button" style="text-align: center;">Report</a>`;
+                resultsString.str +=   `<a href="report-discord-server.html" class="button" style="text-align: center;">Report</a>`;
 
             };
             if(childNodes.val().social_media !== "") {
@@ -328,6 +329,11 @@ function autocompleteCommunity(inp, arr) {
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
   });
+}
+
+//alert box for invlaid community name search
+function showInvalidCommunityAlert(){
+    document.getElementById("customAlert").style.display="block";
 }
 
 var communitiesArr =[];

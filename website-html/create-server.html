@@ -5,9 +5,7 @@
     <title>Create A Discord Server</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="icon" href="images/lightmode.png" id="light-scheme-icon"/>
-    <link rel="icon" href="images/darkmode.png" id="dark-scheme-icon"/>
-    <script src="assets/js/favIcon.js"></script>
+
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
@@ -134,6 +132,10 @@
             <header>
                 <h2>Create a Discord Server</h2>
                 <p>Want to create a Discord server for a UCSD course?</p>
+                <form action="#bottom">
+                    <input type="submit" value="Already have a server? Click here to add it" class="primary"
+                        style="margin-bottom: 0 auto;" />
+                </form>
             </header>
 
             <!-- <section id="makeServer" class="wrapper style5 special" >
@@ -141,19 +143,22 @@
                     <li class="icon">
                         <h2>Make your server!</h2>
                         <p>
-                            1. Head to <a href="https://discord.com" style="color: blue;">discord.com</a> to login.<br>
+                            1. Head to <a href="https://discord.com" target="_blank" style="color: blue;">discord.com</a> to login.<br>
                             Either Log into the app from top right or click “Open Discord in browser." <br>
                             <br>
-                            2. Simply clicking <a href="https://discord.new/WbjVhdGn3ahy" style="color: blue;">here</a>
+                            2. Simply clicking <a href="https://discord.new/WbjVhdGn3ahy" target="_blank" style="color: blue;">here</a>
                             will redirect you to a
                             template designed for UCSD classes.<br>
+                            If you do not want to use this template, click
+                            <a style="color: blue;"
+                                href="https://www.howtogeek.com/364075/how-to-create-set-up-and-manage-your-discord-server/" target="_blank">
+                                here </a>to see how to create a Discord server.<br>
                             <br>
                             3. Fill in the server name accordingly and then add your server to our site so that others
                             can find you!
                         </p>
                     </li>
                     <li class="iconimage">
-
                         <img src="/images/try2.png" style="width:100%; height:auto;">
                     </li>
                 </ul>
@@ -257,7 +262,7 @@
 
         <div class="wrapper style5 special">
             <div style="width: 67%; margin: 0 auto;">
-                <form class="form-container" >
+                <form class="form-container">
                     <div class="row gtr-uniform">
                         <div class="col-12" style="text-align: center;">
 
@@ -289,7 +294,7 @@
                             <ul class="actions">
                                 <li><input type="button" value="Submit" class="primary" onclick="submitClass()" />
                                 </li>
-                                <li><input type="reset" value="Clear" onclick="resetAddClass()" /></li>
+                                <li><input id="bottom" type="reset" value="Clear" onclick="resetAddClass()" /></li>
                             </ul>
                             <!--<button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px; font: inherit;">Submit</button>
                         							<button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px; font: inherit;">Close</button>-->
@@ -310,8 +315,9 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/profileCard.js"></script>
         <script src="assets/js/searchClass.js" />
+        <script src="assets/js/login.js" />
 
-    </div>
+        </div>
 </body>
 
 </html>
