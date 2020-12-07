@@ -83,8 +83,9 @@ class AssignmentBot(commands.Cog):
 				for assKey in assignDict:
 					date = datetime.strptime(assignDict[assKey]['date'], '%m/%d/%Y')
 					currDateTime = datetime.today()
-					channel = discord.utils.get(guild.text_channels, name="general")
-					if date.date() == currDateTime.date():
+					allChannels = [chan for chan in guild.channels if 'general' in chan.name]
+					channel = allChannels[0]
+					if date.date() == currDateTime.date():		
 						if channel:
 							await channel.send("@everyone, " + assignDict[assKey]['title'] + " is due today.")
 					elif date.date() < currDateTime.date():
