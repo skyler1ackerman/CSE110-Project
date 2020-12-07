@@ -20,8 +20,8 @@ class RuleBot(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases = ['rules', 'Rule', 'Rules'])
-    async def rule(self, ctx, a = None):
+    @commands.command(aliases = ['rule', 'Rule', 'Rules', 'listrule', 'listRules', 'listr', 'listR', 'showrule', 'showRule', 'showrules', 'showRules'])
+    async def rules(self, ctx, a = None):
         if not db.child(ctx.guild.id).child(FOLDER_STR).get().val():
             ruleDict = self.default_Dict()
         else:
@@ -37,8 +37,8 @@ class RuleBot(commands.Cog):
             else:
                 await ctx.send(a + ". "+ ruleDict[int(a)]["title"] + ": " + ruleDict[int(a)]["desc"]) 
 
-    @commands.command(aliases = ['addRule', 'addrule'])
-    async def add_rule(self, ctx, *, args = None): 
+    @commands.command(aliases = ['addrule', 'newrule', 'newRule', 'addr', 'addR', 'newr', 'newR'])
+    async def addRule(self, ctx, *, args = None):
         content = ctx.message.content
         newTitle = "**" + content.split('"')[1].strip() + "**"
         newDesc = content[content.rindex('"')+1:].strip()
@@ -58,8 +58,8 @@ class RuleBot(commands.Cog):
             db.child(ctx.guild.id).child(FOLDER_STR).child(index).child("desc").set(newDesc)
             await ctx.send("Rule added successfully!")
 
-    @commands.command(aliases = ['deleteRule', 'deleterule'])
-    async def delete_rule(self, ctx, a = None):
+    @commands.command(aliases = ['deleterule', 'delrule', 'delRule', 'delr', 'delR', 'deleter', 'deleteR'])
+    async def deleteRule(self, ctx, a = None):
         if not a:
             await ctx.send("Please enter a rule number to delete. If you do not know the number for a rule, enter !rules to see all the rules with their numbers.")
         elif not a.isnumeric():
@@ -78,8 +78,8 @@ class RuleBot(commands.Cog):
             db.child(ctx.guild.id).child(FOLDER_STR).set(delDict)
             await ctx.send("Rule deleted successfully.")
 
-    @commands.command(aliases = ['swaprule', 'swapRule', 'swaprules', 'swapRules'])
-    async def swap_rule(self, ctx, a = None, b = None):            
+    @commands.command(aliases = ['swaprule','swaprules', 'swapRules', 'switchrules', 'switchRule', 'swap', 'switch'])
+    async def swapRule(self, ctx, a = None, b = None):
         
         length = len(db.child(ctx.guild.id).child(FOLDER_STR).get().val())
         if not a or not b:

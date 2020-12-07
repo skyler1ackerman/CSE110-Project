@@ -19,8 +19,8 @@ class AssignmentBot(commands.Cog):
 		self.bot = bot
 
 	#!addAssign "assignment name" mm/dd/yyyy
-	@commands.command(name='addAssign', help='Adds a new assignment to the list')
-	async def newEvent(self, ctx, name=None, *date):
+	@commands.command(aliases = ['addassign', 'newassign', 'newAssign', 'adda', 'addA', 'newa', 'newA'], help='Adds a new assignment to the list')
+	async def addAssign(self, ctx, name=None, *date):
 		content = ctx.message.content
 		#check for proper name format
 		if name and (content.count('\"') == 2):
@@ -44,8 +44,8 @@ class AssignmentBot(commands.Cog):
 			await ctx.send('Please use the format: !addAssign "Assignment Name" mm/dd/yyyy')
 
 	#!delAssign "assignment name"
-	@commands.command(name='delAssign', help='Deletes an assignment from the list')
-	async def delEvent(self, ctx, name=None):
+	@commands.command(aliases = ['delassign', 'deleteassign', 'deleteAssign', 'dela', 'delA', 'deletea', 'deleteA'], help='Deletes an assignment from the list')
+	async def delAssign(self, ctx, name=None):
 		content = ctx.message.content
 		#check empty argument and in quotes
 		if name and (content.count('\"') == 2):
@@ -64,8 +64,8 @@ class AssignmentBot(commands.Cog):
 				await ctx.send('Please use the format: !delAssign "Assignment Name"')
 
 	#!listAssign
-	@commands.command(name='listAssign', help='Lists all assignments')
-	async def listEvents(self, ctx):
+	@commands.command(aliases = ['listassign', 'listA', 'lista', 'allassign', 'allAssign'], help='Lists all assignments')
+	async def listAssign(self, ctx):
 		if db.child(ctx.guild.id).child(top).get().val():
 			assignDict = dict(db.child(ctx.guild.id).child(top).get().val())
 			assignDict = dict(sorted(assignDict.items(), key=lambda k_v: datetime.strptime(k_v[1]['date'], '%m/%d/%Y')))
