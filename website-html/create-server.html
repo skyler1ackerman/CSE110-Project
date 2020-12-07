@@ -200,9 +200,9 @@
                                             Keep track of events and be notified on the day they happen!<br>
                                             Command Format:<br>
                                             <ul>
-                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!setevent event name</li>
-                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteevent event name</li>
-                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!schedule event name</li>
+                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addEvent &lt;EventName&gt;</li>
+                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteEvent &lt;EventName&gt;</li>
+                                            <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!listEvent &lt;EventName&gt;</li>
                                             </ul>
                                         </p>
                                     </li>
@@ -215,8 +215,8 @@
                                             Command Format:<br>
                                             <ul>
                                                 <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!listAssign</li>
-                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!delAssign assignment name</li>
-                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addAssign assignment name mm/dd/yyyy</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteAssign &lt;AssignName&gt;</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addAssign &lt;AssignName&gt; mm/dd/yyyy</li>
                                             </ul>
                                         </p>
                                     </li>
@@ -230,10 +230,10 @@
                                             Make rules for members to follow!<br>
                                             Command Format:<br>
                                             <ul>
-                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleterule number</li>
-                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addrule "title" description</li>
-                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!swaprules num1 num2</li>
-                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!rule number optional, lists all rules if no argument</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!deleteRule &lt;RuleName&gt;</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!addRule "title" &lt;RuleDesc&gt;</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!swapRule &lt;RuleNum1&gt; &lt;RuleNum2&gt;</li>
+                                                <li style="background-color: rgba(0, 0, 0, 0); padding: 0px 0px 0px 0px;"><i class="fas fa-chevron-right"></i>&nbsp;&nbsp;!listRule &lt;RuleNum&gt; (optional)</li>
                                         </p>
                                     </li>
                                 </div>
