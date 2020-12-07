@@ -91,4 +91,4 @@ class AssignmentBot(commands.Cog):
 						if channel:
 							await channel.send("@everyone, " + assignDict[assKey]['title'] + " was due.")
 							db.child(guild.id).child(top).child(assKey).remove()
-			await asyncio.sleep(10)
+			await asyncio.sleep(28800)
