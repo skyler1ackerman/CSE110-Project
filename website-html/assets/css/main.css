@@ -2558,11 +2558,33 @@ input, select, textarea {
 	}
 
 		.features li {
-			padding: 4em 4em 2em 6em ;
+			padding: 2em 4em 2em 4em ;
 			display: block;
 			position: relative;
 			text-align: left;
-			width: 50%;
+			width: 100%;
+			/* max-width:auto; 
+			max-height:400px; */
+		}
+
+		.features li.iconimage {
+			padding: 0px 0px 0px 0px ;
+			display: block;
+			position: relative;
+			/* text-align: left; */
+			width: 100%;
+			/* max-width:auto; 
+			max-height:400px; */
+		}
+
+		.features li.insideList {
+			background-color: none;
+			padding: 3em 4em 3em 4em;
+			display: block;
+			position: relative;
+			width: 100%;
+    		height: 100%;
+			text-align: left;
 		}
 
 			.features li:nth-child(1) {
@@ -2707,6 +2729,17 @@ input, select, textarea {
 			order: 2;
 			max-width: 48em;
 			width: 60%;
+		}
+
+		.spotlight .insideL {
+			padding: 2em, 2em, 2em, 2em;
+			-moz-order: 2;
+			-webkit-order: 2;
+			-ms-order: 2;
+			order: 2;
+			max-width: 48em;
+			height: 100%;
+			width: 100%;
 		}
 
 		/* .spotlight:nth-child(2n) {
