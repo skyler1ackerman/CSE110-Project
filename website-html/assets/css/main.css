@@ -2578,13 +2578,18 @@ input, select, textarea {
 		}
 
 		.features li.insideList {
-			background-color: none;
-			padding: 3em 4em 3em 4em;
+			padding: 3em 1em 0em 2em;
 			display: block;
 			position: relative;
 			width: 100%;
     		height: 100%;
 			text-align: left;
+		}
+
+		.features li.insideList li.inList{
+			background-color: rgba(0, 0, 0, 0); 
+			padding: 0px 0px 0px 0px;
+
 		}
 
 			.features li:nth-child(1) {
