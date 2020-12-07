@@ -1,144 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Create A Discord Server</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="icon" href="images/lightmode.png" id="light-scheme-icon"/>
-    <link rel="icon" href="images/darkmode.png" id="dark-scheme-icon"/>
-    <script src="assets/js/favIcon.js"></script>
+
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <meta charset="UTF-8">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-	<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
-	<script src="/__/firebase/init.js"></script>
-	<script src="assets/js/auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="assets/js/auth.js"></script>
 </head>
-<body>
-<div id="page-wrapper">
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="index.html">Triton Groups</a></h1>
-        <nav id="nav">
-            <ul>
-                <li class="special">
-                    <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                    <div id="menu">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="generic.html">Generic</a></li>
-                            <li><a href="elements.html">Elements</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                            <li><a href="#">Log In</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <article id="main">
-        <header>
-            <h2>Create a Discord Server</h2>
-            <p>Want to create a Discord server for a UCSD course?</p>
+
+<body class="landing is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <!-- Header -->
+        <!-- Header -->
+        <header id="header" class="">
+            <nav id="nav">
+                <!-- <ul> -->
+                <!-- <li class="special"> Navigation bar starts here -->
+                <ul class="menuToggle">
+                    <a href="afterlogin.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Home</a>
+                    &nbsp;
+                    |
+                    &nbsp;
+                    <a href="browse-class.html" class="no-style more scrolly one-text"
+                        style="font-weight: bold; cursor: pointer;">Classes</a>
+                    &nbsp;
+                    |
+                    &nbsp;
+                    <a href="browse-community.html" class="no-style more scrolly two-text"
+                        style="cursor: pointer;">Communities</a>
+                    &nbsp;
+                    |
+                    &nbsp;
+                    <img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer"
+                        class="avatar" alt=""
+                        style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
+                    &nbsp;
+                    &nbsp;
+                </ul>
+                <!-- </li> -->
+                <!-- </ul> -->
+            </nav>
         </header>
-        <section id="three" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Template</h2>
-                    <p>Use our Discord server template customized specifically for UCSD courses!</p>
-                    <!--<p><b>Important:</b> Ensure the Server Name is as follows: Department Code - Course Number</p>-->
-                </header>
+
+
+        <div class="form-popup" id="myForm"
+            style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+            <div style="padding: 0px 20px 0px 20px;">
+                <img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt=""
+                    style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+
+                <div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;">
+                    User</div>
+                <div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;">
+                    Email</div>
+
+                <button type="button" onclick="location.href='userprofile.html'"
+                    style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
+                <br>
+                <button type="button" onclick="signOutFunction()"
+                    style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign
+                    out</button>
+                <div style="width:200px;">
+                    <div onclick="goToContactUs()" class="profileCard"
+                        style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        Contact Us</div>
+                    <div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+                    <div onclick="goToAboutUs()" class="profileCard"
+                        style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        About Us</div>
+                    <br>
+                    <div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard"
+                        style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">
+                        Admin Dashboard</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <script>
+            // load profile pic, load name, load email
+            var profileImgUrl = localStorage.getItem("user-profileimgurl");
+            document.getElementById("profilePicUserProfile").src = profileImgUrl;
+            document.getElementById("profilePicUserProfile2").src = profileImgUrl;
+            document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
+            document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
+            // open profile popout
+            function openForm() {
+                if (document.getElementById("myForm").style.display == "grid") {
+                    document.getElementById("myForm").style.display = "none";
+                } else {
+                    document.getElementById("myForm").style.display = "grid";
+                }
+            }
+
+            // close profile popout
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+
+
+            // window.onload = function () {
+                //get all class info from FB databse
+                // getClassSnapshot();
+
+
+                // BS BELOW THIS LINE
+                // document.getElementById("email").placeholder=localStorage.getItem("user-email");
+                // document.getElementById("email").value=localStorage.getItem("user-email");
+                // localStorage.removeItem("user-email");
+                // document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+                // document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+                // localStorage.removeItem("user-displayname");
+                //remove local storage items in signout function for security.
+            // }
+        </script>
+
+
+        <article id="main">
+            <header>
+                <h2>Create a Discord Server</h2>
+                <p>Want to create a Discord server for a UCSD course?</p>
+                <form action="#bottom">
+                    <input type="submit" value="Already have a server? Click here to add it" class="primary"
+                        style="margin-bottom: 0 auto;" />
+                </form>
+            </header>
+
+
+            <section id="makeServer" class="wrapper style5 special">
                 <ul class="features">
                     <li class="icon">
-                        <!--<i class="fas fa-robot"></i>-->
-                        <h3>UCSD Course Template</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">Use</a>
+                        <h2>Make your server!</h2>
+                        <p>
+                            1. Head to <a href="https://discord.com" target="_blank" style="color: blue;">discord.com</a> to login.<br>
+                            Either Log into the app from top right or click “Open Discord in browser." <br>
+                            <br>
+                            2. Simply clicking <a href="https://discord.new/WbjVhdGn3ahy" target="_blank" style="color: blue;">here</a>
+                            will redirect you to a
+                            template designed for UCSD classes.<br>
+                            If you do not want to use this template, click
+                            <a style="color: blue;"
+                                herf="https://www.howtogeek.com/364075/how-to-create-set-up-and-manage-your-discord-server/" target="_blank">
+                                here </a>to see how to create a Discord server.<br>
+                            <br>
+                            3. Fill in the server name accordingly and then add your server to our site so that others
+                            can find you!
+                        </p>
+                    </li>
+                    <li class="icon">
+
+                        <img src="/images/discord-screen.png"
+                            style="width:65%;margin-left: auto; margin-right: auto; display: block; margin-top: auto;">
                     </li>
                 </ul>
-            </div>
-        </section>
-        <section class="wrapper style5">
-            <div class="inner">
+            </section>
 
-                <section>
-                    <h4>Discord Server Information</h4>
-                    <form method="post" action="#" class="was-validated">
-                        <div class="row gtr-uniform">
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" placeholder="Department Code (i.e. CSE, COGS, etc.)" required/>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" name="course-num" id="course-num" placeholder="Course Number" required/>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" name="instructor" id="instructor" value="" placeholder="Instructor"/>
-                            </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input type="text" placeholder="Quarter" required/>
-                            </div>
-                            <div class="col-12">
-                                <input type="text" name="discord-url" id="discord-url" value="" placeholder="Discord Link" required/>
-                            </div>
-                            <h5>Important Reminder</h5>
-                            <blockquote>Ensure that the Discord invite link you share is a permanent invite. To create a permanent invite, select "never" under "expire after" and "no limit" under "max uses."
-                                <p>Don't know to retrieve the invite link? <a href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">Look no further!</a> </p>
-                            </blockquote>
-                            <div class="col-12">
-                                <ul class="actions">
-                                    <li><input type="submit" value="Submit" class="primary"/></li>
-                                    <li><input type="reset" value="Cancel"/></li>
-                                </ul>
-                            </div>
+            <section id="customize" class="wrapper style4 special" style="background-color: rgb(251, 136, 70);">
+                <div class="inner">
+                    <header class="major">
+                        <h2>Customize your server with bots!</h2>
+                        <p>
+                            Consider adding our custom Discord bot to your server!
+                            Simply click this <a
+                                href="https://discord.com/api/oauth2/authorize?client_id=784663151382888449&permissions=8&scope=bot" target="_blank"
+                                style="color: rgb(90, 90, 250);">link</a>, make sure you are an admin, and
+                            select add to server!
+                        </p>
+                    </header>
+                    <ul class="features">
+                        <li class="icon">
+                            <!--<i class="fas fa-robot"></i>-->
+                            <h3>Event Commands</h3>
+                            <p>
+                                Keep track of events and be notified on the day they happen!<br>
+                                Command Format:<br>
+                                1. !setevent event name <br>
+                                2. !deleteevent event name <br>
+                                3. !schedule event name
+                            </p>
+                        </li>
+                        <li class="icon">
+                            <h3>Assignment Commands</h3>
+                            <p>
+                                Keep track of assignments and <br>be reminded on the due date!<br>
+                                Command Format:<br>
+                                1. !listAssign <br>
+                                2. !delAssign assignment name <br>
+                                3. !addAssign assignment name mm/dd/yyyy <br>
+                            </p>
+                        </li>
+                        <li class="icon">
+                            <h3>Rules Commands</h3>
+                            <p>
+                                Make rules for members to follow!<br>
+                                Command Format:<br>
+                                1. !deleterule number <br>
+                                2. !addrule "title" description<br>
+                                3. !swaprules num1 num2<br>
+                                4. !rule number optional, lists all rules if no argument<br>
+                            </p>
+                        </li>
+                        <li class="icon">
+                            <h3>Report Commands</h3>
+                            <p>
+                                In case of server policy or academic integrity violation:
+                                React to a message with the red square reaction to report a message to the admins of the
+                                server.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <div class="wrapper style5 special">
+            <div style="width: 67%; margin: 0 auto;">
+                <form class="form-container">
+                    <div class="row gtr-uniform">
+                        <div class="col-12" style="text-align: center;">
+
+                            <h4>Add a New Discord Server</h4>
                         </div>
-                    </form>
-                </section>
+                        <div class="col-12">
+                            <select name="selectyear" rows="1" id="year" required>
+                                <option value="">Select Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <select name="selectquarter" rows="1" id="quarter" required>
+                                <option value="">Select Quarter</option>
+                                <option value="spring">Spring</option>
+                                <option value="summer">Summer</option>
+                                <option value="fall">Fall</option>
+                                <option value="winter">Winter</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" placeholder="Professor" id="professor" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" placeholder="Discord Invite Link" id="invitelink" required>
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="button" value="Submit" class="primary" onclick="submitClass()" />
+                                </li>
+                                <li><input id="bottom" type="reset" value="Clear" onclick="resetAddClass()" /></li>
+                            </ul>
+                            <!--<button type="submit" class="btn" onclick="addDiscordInfotoDB()" style="margin:10px; font: inherit;">Submit</button>
+                        							<button type="button" class="btn cancel" onclick="closeForm()" style="margin-top:20px; font: inherit;">Close</button>-->
+                        </div>
+                    </div>
+                </form>
             </div>
-        </section>
-        <section id="three" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Customize</h2>
-                    <p>Consider adding our custom Discord bots for additional functionality!</p>
-                </header>
-                <ul class="features">
-                    <li class="icon">
-                        <!--<i class="fas fa-robot"></i>-->
-                        <h3>Bot #1</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                    <li class="icon">
-                        <h3>Bot #2</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                    <li class="icon">
-                        <h3>Bot #3</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                    <li class="icon">
-                        <h3>Bot #4</h3>
-                        <p>Insert list of features here.</p>
-                        <a href="#" class="button">View</a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </article>
+        </div>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-</div>
+        <!-- <script src="assets/js/feedbackDiscordUtil.js"></script> -->
+        <script src="assets/js/create-server.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/profileCard.js"></script>
+        <script src="assets/js/searchClass.js" />
+
+        </div>
 </body>
+
 </html>
