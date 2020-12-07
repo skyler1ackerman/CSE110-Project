@@ -12,6 +12,11 @@ function retrieveFeedbackVerified() {
                 feedbackVerifiedElement.removeChild(feedbackVerifiedElement.lastChild);
             }
         }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            feedbackVerifiedElement.append(emptyMessage);
+        }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
             let newFeedbackBoxElement = document.createElement('div')
@@ -94,6 +99,11 @@ function retrieveResolvedVerified() {
             while(resolvedVerifiedElement.hasChildNodes()){
                 resolvedVerifiedElement.removeChild(resolvedVerifiedElement.lastChild);
             }
+        }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            resolvedVerifiedElement.append(emptyMessage);
         }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
@@ -183,6 +193,11 @@ function retrieveFeedbackUnverified() {
                 feedbackUnverifiedElement.removeChild(feedbackUnverifiedElement.lastChild);
             }
         }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            feedbackUnverifiedElement.append(emptyMessage);
+        }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();
 
@@ -264,6 +279,11 @@ function retrieveResolvedUnverified() {
             while(resolvedUnverifiedElement.hasChildNodes()){
                 resolvedUnverifiedElement.removeChild(resolvedUnverifiedElement.lastChild);
             }
+        }
+        let emptyMessage = document.createElement("p");
+        emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
+        if(!snapshot.hasChildren()){
+            resolvedUnverifiedElement.append(emptyMessage);
         }
         snapshot.forEach(function(childSnapshot) {
             var feedback = childSnapshot.val();

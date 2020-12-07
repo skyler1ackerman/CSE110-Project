@@ -10,14 +10,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     </head>
-    <style>
-
-/*  For debugging
-  * {
-	  outline: 1px solid red  !important;
-  } */
-
-    </style>
 
 
 	<body class="whiteBackground">
@@ -64,13 +56,14 @@
 
 				<!-- Banner -->
 
-				<section id="banner" style="margin: 5%">
+				<section class="align-center" style="margin-top: 5vh">
 
-                    <div class="inner" style="margin-top: 5px;">
+                    <div class="inner">
 						<label>Discord Requests</label>
+						<p id="EmptyMessage">No discord requests submitted at this time.</p>
                     </div>
-                    <div style="margin-bottom: 140px; overflow: auto;">
-                        <div id="discordRequests" style="display: block; margin:auto; width: 60%;">
+                    <div>
+                        <div id="discordRequests" style="display: block; margin:auto; width: 60%; ">
 						</div>
 
                     </div>
@@ -78,7 +71,15 @@
 
 			</div>
 
-
+		<script>
+			let box = document.getElementById("discordRequests");
+			let message = document.getElementById('EmptyMessage');
+			if(box.childElementCount!=0){
+				message.style.display='none';
+			}else{
+				message.style.display="unset";
+			}
+		</script>
 		<!-- Scripts -->
 		<!-- below is firebase SDKs-->
 		<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->

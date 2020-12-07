@@ -3,17 +3,22 @@ function retrieveDiscordRequests() {
     console.log("retrieveDiscordRequests() called :)");
 
     let discordRequestsElement = document.querySelector('#discordRequests')
-    var discordRequestsRef = firebase.database().ref("DiscordServerRequests/");
+    var discordRequestsRef = firebase.database().ref("DiscordServerRequests/Classes");
     discordRequestsRef.on("value", function(snapshot) {
         while(discordRequestsElement.hasChildNodes()){
             discordRequestsElement.removeChild(discordRequestsElement.lastChild);
+        }
+        if(snapshot.hasChildren()){
+            document.getElementById('EmptyMessage').style.display="none";
+        }else{
+            document.getElementById('EmptyMessage').style.display="unset";
         }
         snapshot.forEach(function(childSnapshot) {
             var discordRequest = childSnapshot.val();
             let newDiscordRequestBoxElement = document.createElement('div')
             newDiscordRequestBoxElement.setAttribute("id", childSnapshot.key);
             //newFeedbackBoxElement.style.border = "solid gainsboro"
-            newDiscordRequestBoxElement.style.marginBottom = "10px"
+            newDiscordRequestBoxElement.style.marginBottom = "5vh"
 
             // Time
             let time = document.createElement('textarea')
