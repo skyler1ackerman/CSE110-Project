@@ -109,7 +109,7 @@ function getCommunityByKeyword(communityName){
                         };
                         if(clubSnapshot.val().inviteLink !== "") {
                             resultsString.str +=   `<a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                            resultsString.str +=   `<a href="report-discord-server.html" target="_blank" class="button" style="text-align: center;">Report</a>`;
+                            resultsString.str +=   `<a href="report-discord-server.html" class=\"button\">Report</a>`;
 
                         };
                         if(clubSnapshot.val().social_media !== "") {
@@ -195,7 +195,7 @@ function getCommunityCategory(category){
             };
             if(childNodes.val().inviteLink !== "") {
                 resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                resultsString.str +=   `<a href="report-discord-server.html" target="_blank" class="button" style="text-align: center;">Report</a>`;
+                resultsString.str +=   `<a href="report-discord-server.html" class="button" style="text-align: center;">Report</a>`;
 
             };
             if(childNodes.val().social_media !== "") {

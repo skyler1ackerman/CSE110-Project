@@ -18,20 +18,14 @@
 <body>
 <div id="page-wrapper">
     <!-- Header -->
-    <header id="header">
-        <h1><a href="index.html">Triton Groups</a></h1>
+    <header id="header" class="alt">
         <nav id="nav">
-            <ul>
-                <li class="special">
-                    <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                    <div id="menu">
-                        <ul>
-                            <li><a href="afterlogin.html">Home</a></li>
-                            <li><a href="browse-community.html">Communities</a></li>
-                            <li><a href="browse-class.html">Classes</a></li>
-                        </ul>
-                    </div>
-                </li>
+            <ul class="menuToggle">
+                <a href="afterlogin.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Back to Homepage</a>
+                &nbsp;
+                |
+                &nbsp;
+                &nbsp;
             </ul>
         </nav>
     </header>
@@ -48,7 +42,7 @@
                     <form>
                         <div class="row gtr-uniform">
                             <div class="col-6 col-12-xsmall">
-                                <input id="reportServerName" type="text" name="reportServerName" value="" placeholder="Community Name/Discord Server Name" required/>
+                                <input id="reportServerName" type="text" name="reportServerName" value="" placeholder="Class Name/Community Name" required/>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input id="reportDiscordLink" type="text" name="reportDiscordLink" value="" placeholder="Discord Link" required/>
