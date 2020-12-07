@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Contact Us</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" href="images/lightmode.png" id="light-scheme-icon"/>
+		<link rel="icon" href="images/darkmode.png" id="dark-scheme-icon"/>
+		<script src="assets/js/favIcon.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+		<script src="/__/firebase/init.js"></script>
+		<script src="assets/js/auth.js"></script>
+	</head>
+	<body class="landing is-preload">
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+                <header id="header" class="alt">
+					<nav id="nav">
+						<ul class="menuToggle">
+							<a href="afterlogin.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Back to Homepage</a>
+							&nbsp;
+							|
+							&nbsp;
+							&nbsp;
+						</ul>
+					</nav>
+				</header>
+				<div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+					<div style="padding: 0px 20px 0px 20px;">
+						<img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+						
+						<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
+						<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
+						
+						<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:30px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Profile</button>
+						<br>
+						<button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 20px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+						<div style="width:200px;">
+							<div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">Contact Us</div>
+							<div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+							<div class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px;">About Us</div>
+						</div>
+						
+					</div>	
+				</div>
+
+				<!-- Banner -->
+				<section class="wrapper style3 special" style="height:100%;">
+					<div class="inner">
+							<h2>Contact Us</h2>
+						<form id="feedbackForm">
+							<textarea placeholder="Email" rows="1" id="email" readonly></textarea>
+							<textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
+							<select name="Issue_type" rows="1" id="Issue_type">
+								<option value="">Select Message Type</option>
+								<option value="Bug">Bug</option>
+								<option value="Suggestion">Suggestion</option>
+								<option value="FeedBack">Feedback</option>
+								<option value="Other">Other</option>
+							</select>
+							<textarea placeholder="Explanation" rows="8" cols="100" id="explanation"></textarea>
+							<br>
+							<input id="Submit" onclick="getFeedbackValues()" type="submit" style="border: 1px solid #cccccc"></input>
+						</form>
+					</div>
+                </section>
+			</div>
+			<script>
+
+				// load for popout
+				// var profileImgUrl = localStorage.getItem("user-profileimgurl");
+				// document.getElementById("profilePicUserProfile").src=profileImgUrl;
+				// document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+				document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
+				document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
+
+				// load for form 
+				
+				document.getElementById("email").placeholder=localStorage.getItem("user-email");
+				document.getElementById("email").value=localStorage.getItem("user-email");
+				// localStorage.removeItem("user-email");
+				document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
+				document.getElementById("fullname").value=localStorage.getItem("user-displayname");
+
+				// open profile popout
+				function openForm() {
+					if (document.getElementById("myForm").style.display == "grid") {
+						document.getElementById("myForm").style.display = "none";
+					} else {
+					  	document.getElementById("myForm").style.display = "grid"; 
+					}
+				}
+
+				// close profile popout
+				function closeForm() {
+  					document.getElementById("myForm").style.display = "none";
+				}
+        
+			</script>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+      		<script src="assets/js/login.js"></script>
+			<script src="assets/js/feedbackDiscordUtil.js"></script>
+			
+	</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>spryleaf</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" href="images/lightmode.png" id="light-scheme-icon"/>
+		<link rel="icon" href="images/darkmode.png" id="dark-scheme-icon"/>
+		<script src="assets/js/favIcon.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            body {
+              font-family: Arial;
+              color: white;
+            }
+            
+            .split {
+              opacity: 1.0;
+              height: 60%;
+              width: 30%;
+              position: absolute;
+              z-index: 1;
+              top: 160px;
+              overflow-x: hidden;
+              padding-top: 20px;
+              border-radius: 25px;
+            }
+            
+            .left {
+              left: 150px;
+              background-color: #111;
+            }
+            
+            .right {
+              right: 150px;
+              background-color: red;
+            }
+            
+            .centered {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              text-align: center;
+            }
+            
+            .centered img {
+              width: 150px;
+              border-radius: 50%;
+            }
+			</style>
+			<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+			<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+			<script src="/__/firebase/init.js"></script>
+			<script src="assets/js/auth.js"></script>
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">spryleaf</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="generic.html">Generic</a></li>
+											<li><a href="elements.html">Elements</a></li>
+											<li><a href="#">Sign Up</a></li>
+											<li><a href="#">Log In</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Banner -->
+					<section id="banner" >
+						<div class="inner">
+                            <!-- <h2>Triton Groups</h2> -->
+                            <div class="split left">
+                                <div class="centered">
+                                  <!-- <img src="img_avatar2.png" alt="Avatar woman"> -->
+                                  <h2>View Club Archive</h2>
+                                  <p>This has club info bitch</p>
+                                </div>
+                              </div>
+                              
+                              <div class="split right">
+                                <div class="centered">
+                                  <!-- <img src="img_avatar.png" alt="Avatar man"> -->
+                                  <h2>Join Class Discord</h2>
+                                  <p>hopefully Gary doesnt come in</p>
+                                </div>
+                              </div>
+
+							<!-- <ul class="actions special">
+								<li><a href="#" class="button primary" onclick="signInFunction()">View Club Archive</a></li>
+                            </ul>
+                            <ul class="actions special">
+								<li><a href="#" class="button primary" onclick="signInFunction()">Join Class Discord</a></li>
+							</ul> -->
+							<!-- <ul class="actions special">
+								<li><a href="#" class="button primary">Activate</a></li>
+							</ul> -->
+						</div>
+						<a href="#one" class="more scrolly">Learn More</a>
+					</section>
+
+				<!-- One -->
+				<section id="one" class="wrapper style1 special">
+					<div class="inner">
+						<header class="major">
+							<h2>Our Digital Signage has no limit <br />
+							</h2>
+							<p>Simple, Creative, and Effective, We Deliver Our Products Anytime Anywhere</p>
+						</header>
+						<ul class="icons major">
+							<li><span class="icon solid fa-laptop major style1"><span class="label">Lorem</span></span></li>
+							<li><span class="icon solid fa-headphones major style2"><span class="label">Ipsum</span></span></li>
+							<li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Two -->
+				<section id="two" class="wrapper alt style2">
+					<section class="spotlight">
+						<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
+							<h2>Beautiful Design<br />
+							</h2>
+							<p>Our raphic design team makes sure every ads and announcements on the screen is pleasing to see.</p>
+						</div>
+					</section>
+					<section class="spotlight">
+						<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
+							<h2>Syncrhonous  <br />
+								contents update</h2>
+							<p>You have full control over your screen</p>
+						</div>
+					</section>
+					<section class="spotlight">
+						<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
+							<h2>Fast and Reliable <br />
+								Installation</h2>
+							<p>Our technicians will install everything in two hours with your elevator service provider</p>
+						</div>
+					</section>
+				</section>
+
+				<!-- Three -->
+				<section id="three" class="wrapper style3 special">
+					<div class="inner">
+						<header class="major">
+							<h2>Seamless support system</h2>
+							<!-- <p>your satisfaction is my satisfaction</p> -->
+						</header>
+						<ul class="features">
+							<li class="icon fa-paper-plane">
+								<h3>24/7 customer service</h3>
+								<p>we do this cause otherwise you wont hire me</p>
+							</li>
+							<li class="icon solid fa-laptop">
+								<h3>24/7 customer service</h3>
+								<p>we do this cause otherwise you wont hire me</p>
+							</li>
+							<li class="icon solid fa-code">
+								<h3>24/7 customer service</h3>
+								<p>we do this cause otherwise you wont hire me</p>
+							</li>
+							<li class="icon solid fa-headphones-alt">
+								<h3>24/7 customer service</h3>
+								<p>we do this cause otherwise you wont hire me</p>
+							</li>
+							<!-- <li class="icon fa-heart">
+								<h3>24/7 customer service</h3>
+								<p>we do this cause otherwise you wont hire me</p>
+							</li>
+							<li class="icon fa-flag">
+								<h3>24/7 customer service</h3>
+								<p>we do this cause otherwise you wont hire me</p>
+							</li> -->
+						</ul>
+					</div>
+				</section>
+
+				<!-- CTA -->
+					<section id="cta" class="wrapper style4">
+						<div class="inner">
+							<header>
+								<h2>Do something here!</h2>
+								<p>We will respond you asap on doing the thing</p>
+							</header>
+							<ul class="actions stacked">
+								<li><a href="#" class="button fit primary">Activate</a></li>
+								<li><a href="#" class="button fit">Learn More</a></li>
+							</ul>
+						</div>
+					</section>
+					<!-- ed4933
+					00ffcc -->
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright"></br>
+							<li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+							<li>(408) 533-5213 |</li> </br>
+							<li>spryleaf@spryleaf.io |</li> </br>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/login.js"></script>
+
+
+			<!-- below is firebase SDKs-->
+			<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+			<!-- this works only when we are using firebase hosting service-->
+			<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+			<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+  			<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+  			<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+			<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+			<script src="/__/firebase/init.js"></script> -->
+
+	</body>
+</html>

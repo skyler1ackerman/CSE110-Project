@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>tritongroups</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="icon" href="images/lightmode.png" id="light-scheme-icon"/>
+    <link rel="icon" href="images/darkmode.png" id="dark-scheme-icon"/>
+    <script src="assets/js/favIcon.js"></script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+	<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+	<script src="/__/firebase/init.js"></script>
+	<script src="assets/js/auth.js"></script>
+</head>
+<body class="landing is-preload">
+
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <!-- Header -->
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul class="menuToggle" >
+                <a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-class.html" class="no-style more scrolly one-text" style="cursor: pointer;">Classes</a>
+                &nbsp;
+                |
+                &nbsp;
+                <a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
+                &nbsp;
+                |
+                &nbsp;
+                <img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
+                &nbsp;
+                &nbsp;
+            </ul>
+        </nav>
+    </header>
+    <div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
+		<div style="padding: 0px 20px 0px 20px;">
+			<img id="profilePicUserProfile2" src="" referrerpolicy="no-referrer" class="avatar" alt="" style="margin:0 0 6px 0;width:80px;height:80px;justify-self: center;">
+			
+			<div id="profileName" style="color: white; font-size:medium; font-weight:lighter; line-height: normal;" >User</div>
+			<div id="profileEmail" style="color: white; font-size:small; font-weight:lighter; line-height: normal;" >Email</div>
+			
+			<button type="button" onclick="location.href='userprofile.html'" style="color: white; margin:20px 0 10px 0; overflow: visible;  padding:0 15px 0 15px;">Profile</button>
+            <br>
+            <button type="button" onclick="signOutFunction()" style="color: white;margin: 0px 0 15px 0; overflow: visible;  padding:0 10px 0 10px;">Sign out</button>
+            <div style="width:200px;">
+                <div onclick="goToContactUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Contact Us</div>
+                <div style="display: inline-block; font-size:11px; padding: 0px;">&#9675;</div>
+                <div onclick="goToAboutUs()" class="profileCard" style="display: inline-block; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">About Us</div>
+                <br>
+                <div onclick="goToAdminDashboard()" id="directAdmin" class="profileCard" style="display: none; font-size:12px; padding: 0 5px 0 5px; text-decoration: none; cursor: pointer;">Admin Dashboard</div>
+            </div>
+			
+		</div>	
+    </div>
+    
+    <script>
+        // load profile pic, load name, load email
+		var profileImgUrl = localStorage.getItem("user-profileimgurl");
+		document.getElementById("profilePicUserProfile").src=profileImgUrl;
+		document.getElementById("profilePicUserProfile2").src=profileImgUrl;
+		document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
+		document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
+        // open profile popout
+		function openForm() {
+			if (document.getElementById("myForm").style.display == "grid") {
+				document.getElementById("myForm").style.display = "none";
+			} else {
+				document.getElementById("myForm").style.display = "grid"; 
+			}
+		}
+
+		// close profile popout
+		function closeForm() {
+  			document.getElementById("myForm").style.display = "none";
+        }
+        
+        window.onload = function() {
+            if ( window.location.hash ) scroll(0,0);
+            // void some browsers issue
+            setTimeout( function() { scroll(0,0); }, 1);
+
+            if(window.location.hash) {
+                var hash = window.location.hash;
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 1500, 'swing');
+            }
+            const communityName = document.getElementById("community-category").innerHTML=localStorage.getItem("categoryInput");
+            getCommunitySnapshot();
+            getCommunityCategory(communityName);
+        }
+    </script>
+
+    <!-- Banner -->
+    <section id="banner">
+
+        <div class="inner">
+            <br><br><br><br>
+
+            <h2>Browse UCSD Communities</h2>
+
+            <p></p>
+            <div class="small-buttons">
+
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Academic</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Career</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Cooperative</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Cultural</a>
+                </div>
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Dance</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Educational</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Fraternities</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Media</a>
+                </div>
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Medical</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Music and Performance</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Political</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Service</a>
+                </div>
+                <div class="row">
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Social</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Sororities</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Spiritual</a>
+                    <a href="#" class="category-tags" onclick="submit_community_category(this.textContent)">Sports</a>
+                </div>
+            </div>
+        </div>
+        <div id="search" class="align-center">
+            <ul class="actions special">
+                <!--<div class="row gtr-0">
+                <div class="dropdown">
+                    <a href="#" class="button primary" id="dropdown" onclick="toggle()">Category
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="#" class="dropdown-item" onclick="submit_community_category(this.textContent)">Academic</a>
+                        <a href="#" class="dropdown-item" onclick="submit_community_category(this.textContent)">Career</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Cooperative</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Cultural</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Dance</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Educational</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Fraternities</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Media</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Medical</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Music and Performance</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Political</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Service</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Social</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Sororities</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Spiritual</a>
+                        <a href="#" class=" dropdown-item" onclick="submit_community_category(this.textContent)">Sports</a>
+                    </div>
+
+                </div>-->
+
+                <form autocomplete="off"action="/action_page.php">
+                    <div class="row gtr-25">
+                        <div class="autocomplete" style="width:400px;">
+                            <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
+                        </div>
+                        <div id="openformButton">
+                            <a href="add-community.html" class="button">+</a>
+                        </div>
+                    </div>
+                </form>
+            </ul>
+            <div class="submit-community-button"> <input type="submit" onclick="submit_community()"></div>
+        </div>
+    </section>
+
+    <section id="displayResults" class="wrapper style5">
+
+        <div id="results" class="inner">
+            <h2 style="text-align: center;" id="community-category"></h2>
+
+            <!-- Display query results here -->
+            <ul id="queryResults" class="alt">
+
+            </ul>
+        </div>
+
+    </section>
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright"></br>
+            <li>3855 Nobel Dr #1243, San Diego, CA 92122 |</li> </br>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/login.js"></script>
+<!-- <script src="assets/js/searchClass.js"></script> -->
+<script src="assets/js/searchCommunity.js"></script>
+<script src="assets/js/profileCard.js"></script>
+
+<!--JQuery script-->
+<script>
+    // this will close the profile popout element if anything else besides that and profile pic is clicked
+	$(document).click(function(e){
+		if($(e.target).closest("#myForm").length > 0 || ($(e.target).closest("#profilePicUserProfile").length > 0) || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
+			return true;
+		}
+            closeForm();
+    });
+        
+</script>
+
+<!-- below is firebase SDKs-->
+<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
+<!-- this works only when we are using firebase hosting service-->
+<!-- and it's userful because we don't have to initialize firebaseConfig manually-->
+<!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
+<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+<script src="/__/firebase/init.js"></script> -->
+<!--
+<script>
+function toggle() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+    if (!e.target.matches('#dropdown')) {
+        var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+            myDropdown.classList.remove('show');
+        }
+    }
+}</script>-->
+</body>
+</html>
