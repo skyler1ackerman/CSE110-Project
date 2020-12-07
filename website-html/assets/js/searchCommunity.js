@@ -72,6 +72,7 @@ function submit_community() {
         getCommunityByKeyword(communityInput);
     }
     else {
+        document.getElementById('displayResults').style.display = "none";
         alert("The community you entered is not in our Database.");
     }
 
