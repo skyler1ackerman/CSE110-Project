@@ -145,10 +145,6 @@
             // username is the email without @ucsd.edu
             usernameKey = usernameKey.substring(0, usernameKey.indexOf('@'));
             //console.log(usernameKey);
-            
-            // get all class and major info from FB databse, need this for vars
-            getClassSnapshot();
-            getMajorSnapshot();
 
             // load any db-saved courses to the page
             firebase.database().ref("userProfiles").child(usernameKey).child("courseList").on('value', function(dataSnapshot) {
@@ -190,6 +186,10 @@
                     document.getElementById("inputMajors").value = userMajor;
                 }
             });
+
+            // get all class and major info from FB databse, need this for vars
+            getClassSnapshot();
+            getMajorSnapshot();
                 
             // currently only for dropdown in select, no duplicate add check 
             function addCourse() {
