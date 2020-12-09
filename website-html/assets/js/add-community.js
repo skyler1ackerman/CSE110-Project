@@ -9,6 +9,7 @@ async function resetAddCommunity() {
     document.getElementById("type").value = '';
     document.getElementById("social_media").value = '';
     document.getElementById("description").value = '';
+    document.getElementById("contact_email").value = '';
 }
 
 // Get all the class names and populat clubsArr
@@ -36,14 +37,20 @@ async function submit_community() {
     var category = document.getElementById("comCategory").value;
     var type = document.getElementById("type").value;
     var desc = document.getElementById("description").value;
+    var contacEmail = document.getElementById("contact_email").value;
     
     if (!serverName) {
         alert("Please enter the club discord server name.")
         return;
     }
-    if (!link && !socialMedia) {
-        alert("Please enter either a discord link or a social media account or both.")
-        return;
+    // if (!link && !socialMedia) {
+    //     alert("Please enter either a discord link or a social media account or both.")
+    //     return;
+    // }
+
+    // if contact is not filled, it will take user's login email as it value
+    if (!contacEmail){
+        contacEmail = localStorage.getItem("user-email");
     }
 
     //check if filled out then populate array
@@ -54,7 +61,7 @@ async function submit_community() {
         } else {
             var fbRef = "DiscordServerRequests/";
             firebase.database().ref(fbRef).child("Communities").push().set({
-                contact: localStorage.getItem("user-email"),
+                contact: contacEmail,
                 category: category,
                 name: serverName,
                 description: desc,
