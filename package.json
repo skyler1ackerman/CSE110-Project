@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Node.js on Docker",
   "author": "First Last <[email protected]>",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.1",
+    "express": "^4.17.1",
     "firebase": "^8.1.2",
     "package.json": "^2.0.1"
   }
