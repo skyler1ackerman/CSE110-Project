@@ -41,24 +41,20 @@
                     <h4>Report Form</h4>
                     <form>
                         <div class="row gtr-uniform">
-                            <div class="col-6 col-12-xsmall">
-                                <input id="reportServerName" type="text" name="reportServerName" value="" placeholder="Class Name/Community Name" required/>
+                            <div class="col-12" >
+                                <p id="reportServerName" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;">Class Name/Community Name</p>
                             </div>
-                            <div class="col-6 col-12-xsmall">
-                                <input id="reportDiscordLink" type="text" name="reportDiscordLink" value="" placeholder="Discord Link" required/>
+                            <div class="col-12">
+                                <p id="reportDiscordLink" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;">Discord Link</p>
+                            </div>
+                            <div class="col-12">
+                                <p id="server_type" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;">Select Server Type</p>
                             </div>
                             <div class="col-12">
                                 <input id="reportContactEmail" type="email" name="reportContactEmail" value="" placeholder="Contact Email"/>
                             </div>
                             <div class="col-12">
                                 <textarea id="reportReason" name="Reason" placeholder="Reason for reporting..." rows="6"></textarea>
-                            </div>
-                            <div class="col-12">
-                            <select name="server_type" rows="1" id="server_type">
-								<option value="">Select Server Type</option>
-								<option value="Community">Community</option>
-								<option value="Class">Class</option>
-                            </select>
                             </div>
                             <div class="col-12">
                                 <ul class="actions">
@@ -82,6 +78,26 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/feedbackCommunityUtil.js"></script>
     <script src="assets/js/report.js"></script>
+
+    <script>
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            let reportServerNameDiv = document.getElementById('reportServerName')
+            let reportDiscordLinkDiv = document.getElementById('reportDiscordLink')
+            let reportContactEmailDiv = document.getElementById('reportContactEmail')
+            let reportServerTypeDiv = document.getElementById('server_type')
+
+            reportServerNameDiv.innerText =  localStorage.getItem('communityOrClassNameSelected')
+            reportDiscordLinkDiv.innerText =  localStorage.getItem('communityOrClassDiscordServerSelected')
+            reportContactEmailDiv.value =  localStorage.getItem('user-email')
+
+            if (localStorage.getItem('isCommunitySelected') == 'True') {
+                reportServerTypeDiv.innerText =  "Community"
+            } else {
+                reportServerTypeDiv.innerText =  "Class"
+            }
+        });
+    </script>
 </div>
 </body>
 </html>
