@@ -13,7 +13,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use('/', require('../routes/profileController'));
-
+app.use('/', require('../routes/reportController'));
+app.use('/', require('../routes/requestController'));
+app.use('/', require('../routes/searchController'));
+app.use('/', require('../routes/dashboardController'));
+app.use('/', require('../routes/feedbackController'));
 /*
 app.get('/', (req, res) => {
     res.send('Hello World');
