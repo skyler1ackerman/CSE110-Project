@@ -78,6 +78,18 @@ function submit_community() {
 
 }
 
+// Util Function for naviagating to report page
+function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
+    console.log("goToReportPage() called")
+
+    // Processing
+    localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
+    localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
+    localStorage.setItem('isCommunitySelected', 'True')
+
+    window.location.href = "report-discord-server.html"
+}
+
 // Keyword Search
 
 function getCommunityByKeyword(communityName){
@@ -87,7 +99,7 @@ function getCommunityByKeyword(communityName){
             childSnapshot.forEach(function(clubSnapshot){
                 if(clubSnapshot.key === communityName){
                     console.log("Club Snapshot!");
-                    console.log(clubSnapshot.key);
+                    console.log();
                     console.log(clubSnapshot.val().status);
 
                     var resultsString = { str : "" };
@@ -108,9 +120,8 @@ function getCommunityByKeyword(communityName){
                             resultsString.str +=   `<p><b>Description: </b>${clubSnapshot.val().description}</p>`;
                         };
                         if(clubSnapshot.val().inviteLink !== "") {
-                            resultsString.str +=   `<a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                            resultsString.str +=   `<a href="report-discord-server.html" class=\"button\">Report</a>`;
-
+                            resultsString.str +=   `<div style='display: flex;'><a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                            resultsString.str +=   `<button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromCommunity('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Report</button></div>`;
                         };
                         if(clubSnapshot.val().social_media !== "") {
                             resultsString.str +=   `<p><b>Social Media: </b>${clubSnapshot.val().social_media}</p>`;
@@ -194,9 +205,8 @@ function getCommunityCategory(category){
                 resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
             };
             if(childNodes.val().inviteLink !== "") {
-                resultsString.str +=   `<a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                resultsString.str +=   `<a href="report-discord-server.html" class="button" style="text-align: center;">Report</a>`;
-
+                resultsString.str +=   `<div style='display: flex;'><a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                resultsString.str +=   `<button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromCommunity('${childNodes.key}', '${childNodes.val().inviteLink}');\">Report</button></div>`;
             };
             if(childNodes.val().social_media !== "") {
                 resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
