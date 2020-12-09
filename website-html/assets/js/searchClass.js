@@ -59,6 +59,18 @@ async function getDiscordInfo(className) {
     return results;
 };
 
+// Util Function for naviagating to report page
+function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
+    console.log("goToReportPage() called")
+
+    // Processing
+    localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
+    localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
+    localStorage.setItem('isCommunitySelected', 'False')
+
+    window.location.href = "report-discord-server.html"
+}
+
 async function constructHTML(className) {
 
     // result is still empty even when using async/await
@@ -83,7 +95,7 @@ async function constructHTML(className) {
             resultsString.str += `<tr>
                                      <td style=\"text-align: center; vertical-align: middle;\">${elem['prof']}</td>
                                      <td><a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
-                                         <a href="report-discord-server.html" class=\"button\">Report</a>
+                                        <button class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromClass('${className}', '${elem['discord']}');\">Report</button>
                                      </td> </tr>`;
 
         });
