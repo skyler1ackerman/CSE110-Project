@@ -94,9 +94,9 @@ async function constructHTML(className) {
         result[key].forEach(function (elem) {
             resultsString.str += `<tr>
                                      <td style=\"text-align: center; vertical-align: middle;\">${elem['prof']}</td>
-                                     <td><a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
-                                        <button class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromClass('${className}', '${elem['discord']}');\">Report</button>
-                                     </td> </tr>`;
+                                     <td><div style='display: flex;'><a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
+                                        <button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromClass('${className}', '${elem['discord']}');\">Report</button>
+                                        </div></td></tr>`;
 
         });
 
