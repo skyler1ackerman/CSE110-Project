@@ -11,8 +11,8 @@ function searchbarClassSelected() {
 
 function getClassSnapshot() {
     getClassSnap().then(snapshot => {
-        for(var i in snapshot)
-            classesArr.push(snapshot[i]);
+        for(var i in snapshot.result)
+            classesArr.push(snapshot.result[i]);
     });
 }
 const getClassSnap = () => {
