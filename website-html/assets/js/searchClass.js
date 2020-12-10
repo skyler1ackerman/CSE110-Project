@@ -59,7 +59,7 @@ async function getDiscordInfo(className) {
     return results;
 };
 
-// Util Function for naviagating to report page
+// Util Function for navigating to report page
 function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
     console.log("goToReportPage() called")
 
