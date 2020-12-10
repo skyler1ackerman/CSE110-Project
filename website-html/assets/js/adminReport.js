@@ -65,7 +65,7 @@ function retrieveReportCommunity() {
             resolved.innerText = "Resolved"
             resolved.addEventListener("click",function(){
                 firebase.database().ref(ResolvedRef).child(newReportBoxElement.id).set({
-                    communityOrClassName: report.email,
+                    communityOrClassName: report.communityOrClassName,
                     discordLink: report.discordLink,
                     email: report.email,
                     fullname: report.fullname,
@@ -260,7 +260,7 @@ function retrieveReportClass() {
             resolved.innerText = "Resolved"
             resolved.addEventListener("click",function(){
                 ResolvedRef.child(newReportBoxElement.id).set({
-                    communityOrClassName: report.email,
+                    communityOrClassName: report.communityOrClassName,
                     discordLink: report.discordLink,
                     email: report.email,
                     fullname: report.fullname,
