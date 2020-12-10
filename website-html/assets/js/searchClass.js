@@ -59,7 +59,7 @@ async function getDiscordInfo(className) {
     return results;
 };
 
-// Util Function for navigating to report page
+// Util function for navigating to report page
 function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
     console.log("goToReportPage() called")
 
@@ -69,6 +69,18 @@ function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassD
     localStorage.setItem('isCommunitySelected', 'False')
 
     window.location.href = "report-discord-server.html"
+}
+
+// Util function for navigating to update page
+function goToUpdateCommunityPage(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
+    console.log("goToUpdateCommunityPage() called")
+
+    // Processing
+    localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
+    localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
+    localStorage.setItem('isCommunitySelected', 'False')
+
+    window.location.href = "update-community.html"
 }
 
 async function constructHTML(className) {
