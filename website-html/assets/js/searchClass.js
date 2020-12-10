@@ -10,7 +10,23 @@ function searchbarClassSelected() {
 }
 
 function getClassSnapshot() {
-    //console.log("getClassSnapshot() called :)");
+    getClassSnap().then(snapshot => {
+        for(var i in snapshot)
+            classesArr.push(snapshot[i]);
+    });
+}
+const getClassSnap = () => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getClassSnapshot', config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+}
+// OLD VERSION
+/*
+function getClassSnapshot() {
     var ref = firebase.database().ref("classes");
     ref.on("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
@@ -19,7 +35,7 @@ function getClassSnapshot() {
         });
     });
 }
-
+*/
 /*
 //reads in every discord info from a class
 async function getDiscordInfo(className) {
