@@ -33,7 +33,8 @@ function getCommunitySnapshot(){
   });
   console.log("communitiesArr:! ", communitiesArr);
 }
-
+//OLD VERSION
+/*
 function submit_community() {
     var communityInput = document.getElementById("inputCommunities").value;
     document.getElementById('displayResults').style.display = "block";
@@ -77,6 +78,64 @@ function submit_community() {
     }
 
 }
+ */
+function submit_community() {
+    var communityInput = document.getElementById("inputCommunities").value;
+    document.getElementById('displayResults').style.display = "block";
+
+    location.hash = 'displayResults';
+
+
+    // Animation for moving the screen
+    if (window.location.hash) scroll(0,0);
+
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+
+    // Removes previous title of Community from previous search query from page,
+    // otherwise it keeps adding the element but never gets deleted on new search
+
+    var remove1 = document.querySelector(" #results > #community-category ");
+    var remove2 = document.querySelector(" #results > #communityName ");
+    if(remove1 !== null){
+        remove1.parentNode.removeChild(remove1);
+    }
+    if(remove2 !== null){
+        remove2.parentNode.removeChild(remove2);
+    }
+
+
+    if (communitiesArr.includes(communityInput)) {
+        localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
+        getCommunity(communityInput).then(snapshot => {
+            let results = snapshot;
+            document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"communityName\">${communityInput}</h2>\n` + document.getElementById("results").innerHTML;
+            document.getElementById("queryResults").innerHTML = results;
+        });
+    }
+    else {
+        document.getElementById('displayResults').style.display = "none";
+        showInvalidCommunityAlert();
+    }
+
+}
+
+const getCommunity = (communityName) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getCommunity?name=' + communityName, config)
+        .then(response => response.text())
+        .catch(error => console.log(error));
+}
 
 // Util Function for naviagating to report page
 function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
@@ -91,7 +150,8 @@ function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrCl
 }
 
 // Keyword Search
-
+//OLD VERSION
+/*
 function getCommunityByKeyword(communityName){
     var ref = firebase.database().ref("clubs");
     ref.on("value", function(snapshot) {
@@ -138,7 +198,7 @@ function getCommunityByKeyword(communityName){
         });
     });
 }
-
+*/
 
 // Category Search
 

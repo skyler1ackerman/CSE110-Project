@@ -1,7 +1,6 @@
 const db = require("../server/db_config");
 
 module.exports = async function getClass(className) {
-
     var classRef = "classes/".concat(className);
     var ref = db.ref(classRef);
     var resultsString = { str: "" };
