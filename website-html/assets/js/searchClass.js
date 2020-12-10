@@ -78,7 +78,8 @@ function goToUpdateCommunityPage(communityOrClassNameSelected, communityOrClassD
     // Processing
     localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
     localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
-    localStorage.setItem('isCommunitySelected', 'False')
+    localStorage.setItem('isCommunitySelected', 'False') 
+    // These fields will above will be changed a bit 
 
     window.location.href = "update-community.html"
 }
