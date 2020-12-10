@@ -149,6 +149,16 @@ function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrCl
     window.location.href = "report-discord-server.html"
 }
 
+function goToUpdateCommunityPage(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
+
+    // Processing
+    localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
+    localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
+    localStorage.setItem('isCommunitySelected', 'False')
+
+    window.location.href = "update-community.html"
+}
+
 // Keyword Search
 //OLD VERSION
 /*

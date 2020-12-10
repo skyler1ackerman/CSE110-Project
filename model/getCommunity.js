@@ -24,12 +24,17 @@ module.exports = async function getCommunity(communityName) {
                         if(clubSnapshot.val().description !== "") {
                             resultsString.str +=   `<p><b>Description: </b>${clubSnapshot.val().description}</p>`;
                         };
-                        if(clubSnapshot.val().inviteLink !== "") {
-                            resultsString.str +=   `<div style='display: flex;'><a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                            resultsString.str +=   `<button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromCommunity('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Report</button></div>`;
-                        };
                         if(clubSnapshot.val().social_media !== "") {
                             resultsString.str +=   `<p><b>Social Media: </b>${clubSnapshot.val().social_media}</p>`;
+                        };
+                        if(clubSnapshot.val().inviteLink !== "") {
+                            resultsString.str +=   `<div style='display: flex;'><a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                            resultsString.str +=   `<button class=\"button\" style="margin-left: 10px; text-align: center; font-family: inherit;" onClick=\"goToReportPageFromCommunity('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Report</button>`;
+                            resultsString.str +=   `<button id="update_community_btn" style='margin-left: auto; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Update</button></div>`;
+
+                        }
+                        else{
+                            resultsString.str +=   `<button id="update_community_btn" style='margin-left: 10px; float: right; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Update</button>`;
                         };
                         resultsString.str += "<p></p>";
                         resultsString.str += "</div>";
