@@ -3,13 +3,13 @@ const router = express.Router();
 
 // input imports + router post/get here
 
-const getCommunity = require('../model/getCommunity');
+const getCommunityName = require('../model/getCommunityName');
 const setCommunity = require('../model/setCommunity');
 const setClassServerRequest = require('../model/setClassServerRequest')
 
 
-router.get('/getCommunity', (req, res) => {
-    getCommunity()
+router.get('/getCommunityName', (req, res) => {
+    getCommunityName()
     .then(doc => res.send(doc))
 });
 

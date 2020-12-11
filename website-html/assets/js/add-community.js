@@ -1,12 +1,12 @@
 var clubsArr = []
 
 
-const getCommunity = () => {
+const getCommunityName = () => {
     let config = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getCommunity', config)
+    return fetch('http://localhost:8000/getCommunityName', config)
     .then(response => response.json())
     .catch(error => console.log(error));
 }
@@ -47,7 +47,7 @@ function getClubSnapshot() {
     console.log("getClassSnapshot() called :)");
     // TODO: check the child tree (do the names match?)
 
-    // getCommunity().then(snapshot => {
+    // getCommunityName().then(snapshot => {
     //     console.log(snapshot);
     //     snapshot.forEach(function (childSnapshot) {
     //         childSnapshot.forEach(function (child2Snapshot) {
@@ -57,7 +57,7 @@ function getClubSnapshot() {
     //     });
     // });
 
-    getCommunity().then(snapshot => {
+    getCommunityName().then(snapshot => {
         // console.log(snapshot);
         Object.keys(snapshot).forEach(function (club_category) {
             // console.log(snapshot[club_category]);
