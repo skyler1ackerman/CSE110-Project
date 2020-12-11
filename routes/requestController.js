@@ -5,6 +5,7 @@ const router = express.Router();
 
 const getCommunity = require('../model/getCommunity');
 const setCommunity = require('../model/setCommunity');
+const setClassServerRequest = require('../model/setClassServerRequest')
 
 
 router.get('/getCommunity', (req, res) => {
@@ -15,6 +16,11 @@ router.get('/getCommunity', (req, res) => {
 router.post('/setCommunityRequest', (req, res) => {
     setCommunity(req.body.contacEmail, req.body.category, req.body.serverName, req.body.desc, req.body.link, req.body.type, req.body.socialMedia);
 });
+
+router.post('/setClassServerRequest', (req, res) => {
+    setClassServerRequest(req.body.user_email, req.body.class_name, req.body.invite_URL, req.body.prof_Name, req.body.quarter, req.body.year);
+});
+
 
 // end
 

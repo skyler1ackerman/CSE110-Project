@@ -1,5 +1,22 @@
 var classesArr = []
 
+const setClassServerRequest = (user_email, class_name, invite_URL, prof_Name, quarter, year) => {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_email, 
+            class_name, 
+            invite_URL, 
+            prof_Name, 
+            quarter, 
+            year
+        })
+    };
+    fetch('http://localhost:8000/setClassServerRequest', config)
+    .catch(error => console.log(error));
+}
+
 async function resetAddClass() {
     console.log("resetAddClass() called :)");
     document.getElementById("invitelink").value = '';
@@ -28,28 +45,20 @@ function submitClass() {
     console.log(localStorage.getItem("classinput"));
     console.log(localStorage.getItem("user-email"));
     //field variables
-    var inviteURL = document.getElementById("invitelink").value;
-    var profName = document.getElementById("professor").value;
+    var user_email = localStorage.getItem("user-email");
+    var class_name = localStorage.getItem("classinput");
+    var invite_URL = document.getElementById("invitelink").value;
+    var prof_Name = document.getElementById("professor").value;
     var quarter = document.getElementById("quarter").value;
     var year = document.getElementById("year").value;
 
-    console.log(inviteURL);
+    console.log(invite_URL);
     //check if filled out then populate array
-    if ([inviteURL, profName, quarter, year].every(Boolean)) {
+    if ([invite_URL, prof_Name, quarter, year].every(Boolean)) {
         // getClassSnapshot();
         //if not in database submit, else raise alert
         // just pasted it here coz there is no export in the original file
-        var fbRef = "DiscordServerRequests/";
-        firebase.database().ref(fbRef).child("Classes").push().set({
-            email: localStorage.getItem("user-email"),
-            className: localStorage.getItem("classinput"),
-            inviteURL: inviteURL,
-            profName: profName,
-            quarter: quarter,
-            year: year,
-            time: Date(Date.now()).toString()
-        });
-        
+        setClassServerRequest(user_email, class_name, invite_URL, prof_Name, quarter, year);        
         alert("Successfully submitted! Thank you for adding the class!");
         resetAddClass();
         
