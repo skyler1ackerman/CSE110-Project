@@ -33,7 +33,8 @@ function getCommunitySnapshot(){
   });
   console.log("communitiesArr:! ", communitiesArr);
 }
-
+//OLD VERSION
+/*
 function submit_community() {
     var communityInput = document.getElementById("inputCommunities").value;
     document.getElementById('displayResults').style.display = "block";
@@ -77,6 +78,64 @@ function submit_community() {
     }
 
 }
+ */
+function submit_community() {
+    var communityInput = document.getElementById("inputCommunities").value;
+    document.getElementById('displayResults').style.display = "block";
+
+    location.hash = 'displayResults';
+
+
+    // Animation for moving the screen
+    if (window.location.hash) scroll(0,0);
+
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+
+    // Removes previous title of Community from previous search query from page,
+    // otherwise it keeps adding the element but never gets deleted on new search
+
+    var remove1 = document.querySelector(" #results > #community-category ");
+    var remove2 = document.querySelector(" #results > #communityName ");
+    if(remove1 !== null){
+        remove1.parentNode.removeChild(remove1);
+    }
+    if(remove2 !== null){
+        remove2.parentNode.removeChild(remove2);
+    }
+
+
+    if (communitiesArr.includes(communityInput)) {
+        localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
+        getCommunity(communityInput).then(snapshot => {
+            let results = snapshot;
+            document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"communityName\">${communityInput}</h2>\n` + document.getElementById("results").innerHTML;
+            document.getElementById("queryResults").innerHTML = results;
+        });
+    }
+    else {
+        document.getElementById('displayResults').style.display = "none";
+        showInvalidCommunityAlert();
+    }
+
+}
+
+const getCommunity = (communityName) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getCommunity?name=' + communityName, config)
+        .then(response => response.text())
+        .catch(error => console.log(error));
+}
 
 // Util Function for naviagating to report page
 function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
@@ -90,8 +149,19 @@ function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrCl
     window.location.href = "report-discord-server.html"
 }
 
-// Keyword Search
+function goToUpdateCommunityPage(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
 
+    // Processing
+    localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
+    localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
+    localStorage.setItem('isCommunitySelected', 'False')
+
+    window.location.href = "update-community.html"
+}
+
+// Keyword Search
+//OLD VERSION
+/*
 function getCommunityByKeyword(communityName){
     var ref = firebase.database().ref("clubs");
     ref.on("value", function(snapshot) {
@@ -138,10 +208,11 @@ function getCommunityByKeyword(communityName){
         });
     });
 }
-
+*/
 
 // Category Search
-
+// OLD VERSION
+/*
 function submit_community_category(categoryInput){
     document.getElementById('displayResults').style.display = "block";
 
@@ -235,7 +306,72 @@ function getCommunityCategory(category){
         }
     });
 }
+*/
 
+function submit_community_category(categoryInput){
+    document.getElementById('displayResults').style.display = "block";
+
+    location.hash = 'displayResults';
+
+    // Animation for moving the screen
+
+    window.scrollBy(0, 1);//programatically scroll down a bit. otherwise animation sometimes doesnt work.
+    if (window.location.hash) scroll(0,0);
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        console.log(hash);
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+    // Removes previous title of Community from previous search query from page,
+    // otherwise it keeps adding the element but never gets deleted on new search
+
+    var remove1 = document.querySelector(" #results > #community-category ");
+    var remove2 = document.querySelector(" #results > #communityName ");
+    if(remove1 !== null){
+        remove1.parentNode.removeChild(remove1);
+    }
+    if(remove2 !== null){
+        remove2.parentNode.removeChild(remove2);
+    }
+
+    localStorage.setItem("categoryInput", categoryInput);
+    getCommunityByCat(categoryInput).then(snapshot => {
+        let results = snapshot;
+        document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"community-category\">${categoryInput}</h2>\n` + document.getElementById("results").innerHTML;
+        document.getElementById("queryResults").innerHTML = results;
+
+        var container = document.querySelector(" #results > #queryResults ");
+        var coll = container.querySelectorAll(" .community > .collapsible")
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    });
+}
+
+const getCommunityByCat = (category) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getCommunityByCat?category=' + category, config)
+        .then(response => response.text())
+        .catch(error => console.log(error));
+}
 // end of Category Search
 
 function autocompleteCommunity(inp, arr) {
