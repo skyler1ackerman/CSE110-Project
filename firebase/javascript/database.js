@@ -85,6 +85,7 @@ function removeErrorChar(removechar){
 // arr = ["category", "description", "status", "org_type" ,"contact" ,"s_media", "invite"];
 function writeClubs(category, clubname, description, status, org_type, contact, soc_media, invite){
   clubname = removeErrorChar(clubname);
+  clubname = clubname.replace(/\//g,'-');
   console.log("writeClubs() called :)"); 
 
   firebase.database().ref('clubs/').child(category).child(clubname).update({
