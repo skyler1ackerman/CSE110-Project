@@ -10,7 +10,23 @@ function searchbarClassSelected() {
 }
 
 function getClassSnapshot() {
-    //console.log("getClassSnapshot() called :)");
+    getClassSnap().then(snapshot => {
+        for(var i in snapshot.result)
+            classesArr.push(snapshot.result[i]);
+    });
+}
+const getClassSnap = () => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getClassSnapshot', config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+}
+// OLD VERSION
+/*
+function getClassSnapshot() {
     var ref = firebase.database().ref("classes");
     ref.on("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
@@ -19,7 +35,8 @@ function getClassSnapshot() {
         });
     });
 }
-
+*/
+/*
 //reads in every discord info from a class
 async function getDiscordInfo(className) {
     //console.log("getDiscordInfo() called");
@@ -58,7 +75,7 @@ async function getDiscordInfo(className) {
     // Returns results before finished parsing the DB, so still empty
     return results;
 };
-
+*/
 // Util Function for naviagating to report page
 function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
     console.log("goToReportPage() called")
@@ -70,7 +87,8 @@ function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassD
 
     window.location.href = "report-discord-server.html"
 }
-
+// OLD VERSION
+/*
 async function constructHTML(className) {
 
     // result is still empty even when using async/await
@@ -130,6 +148,7 @@ async function constructHTML(className) {
         });
     }
 };
+ */
 
 function addDiscordInfotoDB() {
     //console.log("addDiscordInfotoDB() called!");
@@ -169,6 +188,8 @@ function resetDB() {
     });
 }
 
+// OLD VERSION
+/*
 async function submit_class() {
     var classInput = document.getElementById("inputClasses").value;
     document.getElementById('displayResults').style.display = "block";
@@ -194,6 +215,102 @@ async function submit_class() {
     }
 
 }
+*/
+async function submit_class() {
+    var classInput = document.getElementById("inputClasses").value;
+    document.getElementById('displayResults').style.display = "block";
+    location.hash = 'displayResults';
+
+    // void some browsers issue
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+
+
+    if (classesArr.includes(classInput)) {
+        localStorage.setItem("classinput", classInput); //save data to local storage cause we dont wanna use php lmao
+        getClass(classInput).then(snapshot => {
+            let classInfo = snapshot;
+            constructHTML(classInfo, classInput);
+        });
+    }
+    else{
+        document.getElementById('displayResults').style.display = "none";
+        showInvalidClassAlert();
+    }
+
+}
+
+const getClass = (className) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getClass?className=' + className, config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+}
+
+function constructHTML(result, className) {
+
+    //console.log(JSON.parse(JSON.stringify(result)));
+    var resultsString = { str: "" };
+    if (jQuery.isEmptyObject(result)) {
+        resultsString.str += "<p>There is no discord server for this class yet. Add a new one!</p>";
+    }
+    Object.keys(result).forEach(function (key) {
+        resultsString.str += "<li class='community'>";
+        resultsString.str += `<button class=\"collapsible\">${key}</button>`;
+        resultsString.str += "<div class=\"content-class\">";
+        resultsString.str += "<div class=\"table-wrapper\" style=\"align-content: center;\">\n" +
+            "                        <table class=\"alt\" style=\"align-self: center;\">\n" +
+            "                            <thead></thead>\n" +
+            "                            <tbody>";
+        result[key].forEach(function (elem) {
+            resultsString.str += `<tr>
+                                     <td style=\"text-align: center; vertical-align: middle;\">${elem['prof']}</td>
+                                     <td><div style='display: flex;'><a href=\"${elem['discord']}\" target=\"_blank\" class=\"button primary\">Join Discord</a>
+                                        <button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromClass('${className}', '${elem['discord']}');\">Report</button>
+                                        </div></td></tr>`;
+
+        });
+
+        resultsString.str += "</tbody>\n" +
+            "                            <tfoot>\n" +
+            "                            </tfoot>\n" +
+            "                        </table>\n" +
+            "                    </div>\n" +
+            "                    <p></p>";
+        resultsString.str += "</div>";
+        resultsString.str += "</li>";
+        //};
+
+    });
+    document.getElementById("queryResults").innerHTML = resultsString.str;
+    document.getElementById("myclass").innerHTML = className;
+
+    var container = document.querySelector(" #results > #queryResults ");
+    var coll = container.querySelectorAll(" .community > .collapsible")
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+};
 
 function autocompleteClass(inp, arr) {
     /*the autocomplete function takes two arguments,
