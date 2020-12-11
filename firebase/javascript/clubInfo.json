@@ -879,7 +879,7 @@
        "Organization Type": "Undergraduate",
        "Contact": "cses@ucsd.edu",
        "Social Media": "",
-       "Invite": ""
+       "Invite": "https://discord.gg/uqVzRQg"
     },
     "Confessions at UCSD": {
        "Category": "Media",
@@ -4084,15 +4084,6 @@
        "Contact": "",
        "Social Media": "",
        "Invite": "https://discord.gg/kVxz2yT"
-    },
-    "Computer Science & Engineering Society": {
-       "Category": "Academic",
-       "Description": "The CSES Discord server is dedicated to all students hoping to share resources, get feedback and/or advice for technical/professional development, and connect with others! CSES announcements on upcoming workshops, applications, and other events will also be posted throughout the school year.",
-       "Status": "Current",
-       "Organization Type": "Undergraduate",
-       "Contact": "",
-       "Social Media": "",
-       "Invite": "https://discord.gg/uqVzRQg"
     },
     "UCSD Dragonboat": {
        "Category": "Social",
