@@ -74,24 +74,24 @@
 
         <script>
             // load profile pic, load name, load email
-            var profileImgUrl = localStorage.getItem("user-profileimgurl");
-            document.getElementById("profilePicUserProfile").src = profileImgUrl;
-            document.getElementById("profilePicUserProfile2").src = profileImgUrl;
-            document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
-            document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
-            // open profile popout
-            function openForm() {
-                if (document.getElementById("myForm").style.display == "grid") {
-                    document.getElementById("myForm").style.display = "none";
-                } else {
-                    document.getElementById("myForm").style.display = "grid";
-                }
-            }
+            // var profileImgUrl = localStorage.getItem("user-profileimgurl");
+            // document.getElementById("profilePicUserProfile").src = profileImgUrl;
+            // document.getElementById("profilePicUserProfile2").src = profileImgUrl;
+            // document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
+            // document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
+            // // open profile popout
+            // function openForm() {
+            //     if (document.getElementById("myForm").style.display == "grid") {
+            //         document.getElementById("myForm").style.display = "none";
+            //     } else {
+            //         document.getElementById("myForm").style.display = "grid";
+            //     }
+            // }
 
             // close profile popout
-            function closeForm() {
-                document.getElementById("myForm").style.display = "none";
-            }
+            // function closeForm() {
+            //     document.getElementById("myForm").style.display = "none";
+            // }
 
 
             window.onload = function () {
