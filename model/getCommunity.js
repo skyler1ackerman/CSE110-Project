@@ -29,8 +29,11 @@ module.exports = async function getCommunity(communityName) {
                         };
                         if(clubSnapshot.val().inviteLink !== "") {
                             resultsString.str +=   `<div style='display: flex;'><a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                            resultsString.str +=   `<button class=\"button\" style="margin-left: 10px; text-align: center; font-family: inherit;" onClick=\"goToReportPageFromCommunity('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Report</button>`;
-                            resultsString.str +=   `<button id="update_community_btn" style='margin-left: auto; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Update</button></div>`;
+                            resultsString.str +=   `<button class=\"button\" style="margin-left10px; text-align: center; font-family: inherit;" onClick=\"goToReportPageFromCommunity('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Report</button>`;
+                            resultsString.str +=   `<button id="update_community_btn" style='margin-left: auto; font-family: inherit;' class=\"button\" 
+                            style="text-align: center;" onClick=\"goToUpdateCommunityPage('${clubSnapshot.key}', '${clubSnapshot.val().contact}',  
+                            '${clubSnapshot.val().inviteLink}', '${clubSnapshot.val().description}', '${clubSnapshot.val().org_type}'
+                            , '${clubSnapshot.val().social_media}');\">Update</button></div>`;
 
                         }
                         else{
