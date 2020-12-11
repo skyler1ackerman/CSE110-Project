@@ -879,7 +879,7 @@
        "Organization Type": "Undergraduate",
        "Contact": "cses@ucsd.edu",
        "Social Media": "",
-       "Invite": ""
+       "Invite": "https://discord.gg/uqVzRQg"
     },
     "Confessions at UCSD": {
        "Category": "Media",
@@ -3932,7 +3932,7 @@
        "Social Media": "",
        "Invite": "https://discord.gg/4MEW2mF"
     },
-    "Cognitive Science Study Group (Cssg)": {
+    "Cognitive Science Study Group (CSSG)": {
        "Category": "Academic",
        "Description": "A hangout place and study group for students studying cognitive science! Whether you're just taking 1 or 2 cogs classes or a cogs major, anyone is welcome to come join.",
        "Status": "Current",
@@ -3941,7 +3941,7 @@
        "Social Media": "",
        "Invite": "https://discord.gg/TYFnHbZ"
     },
-    "UCSD Cse Study Group": {
+    "UCSD CSE Study Group": {
        "Category": "Academic",
        "Description": "Want to geek out and connect with like-minded people? Want a virtual CS dungeon to share the frustrations of programming assignments? If you're interested in Computer Science at all, join the CSE Study Group so we can all have fun (and suffer) together! Start early, start often, and join today!",
        "Status": "Current",
@@ -3977,9 +3977,9 @@
        "Social Media": "",
        "Invite": "https://discord.gg/t5BcsDF"
     },
-    "UCSD Mmw": {
+    "UCSD MMW": {
        "Category": "Academic",
-       "Description": "we discuss anything mmw related most of the time.",
+       "Description": "We discuss anything MMW related most of the time.",
        "Status": "Current",
        "Organization Type": "Undergraduate",
        "Contact": "",
@@ -4004,7 +4004,7 @@
        "Social Media": "",
        "Invite": "https://discord.gg/PuYSpEH"
     },
-    "Acm Uc San Diego": {
+    "ACM UC San Diego": {
        "Category": "Academic",
        "Description": "ACM is the world's largest computing society and we're UCSD's official Chapter. This is ACM's home on the internet where we play games, host fun events, post CS memes, and cry over PAs together. We're a member-first community open to people of all backgrounds and skill levels - not just CS majors!",
        "Status": "Current",
@@ -4084,15 +4084,6 @@
        "Contact": "",
        "Social Media": "",
        "Invite": "https://discord.gg/kVxz2yT"
-    },
-    "Computer Science & Engineering Society": {
-       "Category": "Academic",
-       "Description": "The CSES Discord server is dedicated to all students hoping to share resources, get feedback and/or advice for technical/professional development, and connect with others! CSES announcements on upcoming workshops, applications, and other events will also be posted throughout the school year.",
-       "Status": "Current",
-       "Organization Type": "Undergraduate",
-       "Contact": "",
-       "Social Media": "",
-       "Invite": "https://discord.gg/uqVzRQg"
     },
     "UCSD Dragonboat": {
        "Category": "Social",
