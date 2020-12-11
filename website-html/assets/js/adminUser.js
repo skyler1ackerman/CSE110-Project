@@ -1,14 +1,21 @@
-function getAdminEmail(){
-    console.log("getAdminEmail() called!");
-    var adRef="AdminUser/";
-    firebase.database().ref(adRef).push().set({
-        email:document.getElementById("Admin_Email").value
-    });
-    firebase.database().ref(adRef).once("child_added").then(function (){
-        document.getElementById("Admin_Email").value='';
-        console.log("Output clear")
-    });
+const setAdminEmail = () => {
+    console.log("setAdminEmail() called!");
+    getAdminEmail(document.getElementById("Admin_Email").value);
+    document.getElementById("Admin_Email").value='';
 }
+
+const getAdminEmail = (mail) => {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            mail
+        })
+    };
+    fetch('http://localhost:8000/getAdminEmail', config)
+    .catch(error => console.log(error));
+}
+
 function retrieveAdminUser() {
     console.log("retrieveAdminUser called :)");
     var ref=firebase.database().ref("AdminUser/");
