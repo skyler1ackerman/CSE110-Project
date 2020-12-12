@@ -45,16 +45,21 @@
                                 <p id="communityName" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;">Community Name</p>
                             </div>
                             <div class="col-12">
-                                <input id="communityContact" type="email" name="reportContactEmail" value="" placeholder="Contact Email"/>
+                                <input id="communityContact" type="email" name="communityContact" value="" placeholder="Contact Email"/>
                             </div>
                             <div class="col-12">
                                 <input id="communityDiscordLink" type="text" name="communityDiscordLink" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;" placeholder="Discord Link"/>
                             </div>
                             <div class="col-12">
-                                <input id="communityDescription" type="text" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;" name="communityDescription" value="" placeholder="Description"/>
+                                <textarea id="communityDescription" rows="6" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;" name="communityDescription" value="" placeholder="Description"></textarea>
                             </div>
                             <div class="col-12">
-                                <p id="communityType" type = "text" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;">Select Server Type</p>
+                                <select name="communityType" id="communityType" required>
+                                    <option value="Undergraduate">Undergraduate</option>
+                                    <option value="Graduate">Graduate</option>
+                                    <option value="Any">Any</option>
+                                </select>
+                                <!-- <input id="communityType" type = "text" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;"/> -->
                             </div>
                             <div class="col-12">
                                 <input id="communitySocialMedia" type="text" name="communitySocialMedia" value="" placeholder="Social Media"/>
@@ -100,11 +105,11 @@
             let communitySocialMedia = document.getElementById('communitySocialMedia')
 
             communityName.innerText =  localStorage.getItem('communityName')
-            communityContact.innerText =  localStorage.getItem('communityContact')
-            communityDiscordLink.innerText =  localStorage.getItem('communityDiscordLink')
-            communityDescription.innerText =  localStorage.getItem('communityDescription')
-            communityType.innerText =  localStorage.getItem('communityType')
-            communitySocialMedia.innerText =  localStorage.getItem('communityMedia')
+            communityContact.value =  localStorage.getItem('communityContact')
+            communityDiscordLink.value =  localStorage.getItem('communityDiscordLink')
+            communityDescription.value =  localStorage.getItem('communityDescription')
+            communityType.value =  localStorage.getItem('communityType')
+            communitySocialMedia.value =  localStorage.getItem('communityMedia')
 
 
             // if (localStorage.getItem('isCommunitySelected') == 'True') {

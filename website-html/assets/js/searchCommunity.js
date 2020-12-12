@@ -158,8 +158,9 @@ function goToUpdateCommunityPage(communityName, communityContact, communityDisco
     // Processing
     // window.alert(""+communityName);
     localStorage.setItem('communityName', communityName);
-    window.alert(""+communityContact);
+    
     localStorage.setItem('communityContact', communityContact);
+    window.alert(""+communityContact);
     localStorage.setItem('communityDiscordLink', communityDiscordLink)
     localStorage.setItem('communityDescription', communityDescription);
     localStorage.setItem('communityType', communityType);
