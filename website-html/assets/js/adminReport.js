@@ -25,7 +25,7 @@ const moveReport =(from,to,id,time,communityOrClassName,discordLink,email,fullna
         })
     };
     fetch('http://localhost:8000/moveReport',config)
-        .catch(error => config.log(error));
+        .catch(error => console.log(error));
 
 }
 
@@ -39,7 +39,7 @@ const removeData =(reference,id)=>{
         })
     };
     fetch('http://localhost:8000/removeData',config)
-        .catch(error => config.log(error));
+        .catch(error => console.log(error));
 
 }
 

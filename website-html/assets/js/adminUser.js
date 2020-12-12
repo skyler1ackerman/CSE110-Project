@@ -36,7 +36,7 @@ const removeData =(reference,id)=>{
         })
     };
     fetch('http://localhost:8000/removeData',config)
-        .catch(error => config.log(error));
+        .catch(error => console(error));
 
 }
 function retrieveAdminUser() {

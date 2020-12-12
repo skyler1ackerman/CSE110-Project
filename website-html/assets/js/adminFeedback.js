@@ -26,7 +26,7 @@ const moveFeedback =(from,to,id,email,fullname,issue_type,explanation,time)=>{
         })
     };
     fetch('http://localhost:8000/moveFeedback',config)
-        .catch(error => config.log(error));
+        .catch(error => console.log(error));
 
 }
 
@@ -40,7 +40,7 @@ const removeData =(reference,id)=>{
         })
     };
     fetch('http://localhost:8000/removeData',config)
-        .catch(error => config.log(error));
+        .catch(error => console.log(error));
 
 }
 

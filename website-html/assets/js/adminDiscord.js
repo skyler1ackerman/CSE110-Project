@@ -27,7 +27,7 @@ const removeData =(reference,id)=>{
         })
     };
     fetch('http://localhost:8000/removeData',config)
-        .catch(error => config.log(error));
+        .catch(error => console.log(error));
 
 }
 function retrieveCommunitiesRequests() {
@@ -258,7 +258,7 @@ function addDiscordInfotoDBFromAdminPage (className, inviteURL, profName, quarte
         })
     };
     fetch('http://localhost:8000/addClass',config)
-        .catch(error => config.log(error));
+        .catch(error => console.log(error));
 
 }
 
@@ -280,7 +280,7 @@ function addCommunitiesInfotoDBFromAdminPage(contact, name, inviteLink, org_type
         })
     };
     fetch('http://localhost:8000/addCommunity',config)
-        .catch(error=>config.log(error))
+        .catch(error=>console.log(error))
 
 
 }
