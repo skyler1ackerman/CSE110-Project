@@ -1,14 +1,14 @@
 
 function retrieveCommunitiesRequests() {
-
-    let discordRequestsElement = document.querySelector('#communitiesRequests')
     var discordRequestsRef = firebase.database().ref("DiscordServerRequests/Communities");
+    let discordRequestsElement = document.querySelector('#communitiesRequests')
+
     discordRequestsRef.on("value", function(snapshot) {
         while(discordRequestsElement.hasChildNodes()){
             discordRequestsElement.removeChild(discordRequestsElement.lastChild);
         }
         let emptyMessage = document.createElement("p");
-        emptyMessage.innerHTML = "No disocrd request submitted in this section at this time.";
+        emptyMessage.innerHTML = "No Discord request submitted in this section at this time.";
         if(!snapshot.hasChildren()){
             discordRequestsElement.append(emptyMessage);
         }
@@ -99,12 +99,12 @@ function retrieveCommunitiesRequests() {
             newDiscordRequestBoxElement.appendChild(description)
             newDiscordRequestBoxElement.appendChild(acceptBtn)
             newDiscordRequestBoxElement.appendChild(rejectBtn)
-            CommunitiesRequestArr.push(discordRequest);
+
             discordRequestsElement.append(newDiscordRequestBoxElement)
         });
     });
 
-    console.log("discordRequestArr:! ", CommunitiesRequestArr);
+    console.log("CommunitiesRequestArr:! ", CommunitiesRequestArr);
 }
 function retrieveDiscordRequests() {
     console.log("retrieveDiscordRequests() called :)");
@@ -116,11 +116,13 @@ function retrieveDiscordRequests() {
             discordRequestsElement.removeChild(discordRequestsElement.lastChild);
         }
         let emptyMessage = document.createElement("p");
-        emptyMessage.innerHTML = "No disocrd request submitted in this section at this time.";
+        emptyMessage.innerHTML = "No Discord request submitted in this section at this time.";
         if(!snapshot.hasChildren()){
             discordRequestsElement.append(emptyMessage);
         }
         snapshot.forEach(function(childSnapshot) {
+            discordRequestArr.push(childSnapshot)
+            console.log("discordRequestArr:! ", discordRequestArr);
             var discordRequest = childSnapshot.val();
             let newDiscordRequestBoxElement = document.createElement('div')
             newDiscordRequestBoxElement.setAttribute("id", childSnapshot.key);
@@ -198,41 +200,51 @@ function retrieveDiscordRequests() {
             newDiscordRequestBoxElement.appendChild(year)
             newDiscordRequestBoxElement.appendChild(acceptBtn)
             newDiscordRequestBoxElement.appendChild(rejectBtn)
-            discordRequestArr.push(discordRequest);
             discordRequestsElement.append(newDiscordRequestBoxElement)
         });
     });
 
-    console.log("discordRequestArr:! ", discordRequestArr);
-}
-
-function addDiscordInfotoDBFromAdminPage(className, inviteURL, profName, quarter, year){
-    console.log("addDiscordInfotoDBFromAdminPage() called!");
-    //First, count number of children in the class
-    var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
-
-    firebase.database().ref(classRef).push().set({
-        inviteURL: inviteURL,
-        profName: profName,
-        quarter : quarter,
-        year: year,
-    });
 
 }
+
+
+
+function addDiscordInfotoDBFromAdminPage (className, inviteURL, profName, quarter, year){
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            className,
+            inviteURL,
+            profName,
+            quarter,
+            year
+        })
+    };
+    fetch('http://localhost:8000/addClass',config)
+        .catch(error => config.log(error));
+
+}
+
+
+
 function addCommunitiesInfotoDBFromAdminPage(contact, name, inviteLink, org_type, category, social_media, description){
     //First, count number of children in the class
-    var Ref = "clubs/"+category;
-    var childRef = name;
-
-    firebase.database().ref(Ref).child(name).set({
-        contact: contact,
-        description: description,
-        inviteLink: inviteLink,
-        org_type: org_type,
-        social_media: social_media,
-        status: "Current"
-    });
+    let config = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            contact,
+            name,
+            inviteLink,
+            org_type,
+            category,
+            social_media,
+            description
+        })
+    };
+    fetch('http://localhost:8000/addCommunity',config)
+        .catch(error=>config.log(error))
 
 
 }
