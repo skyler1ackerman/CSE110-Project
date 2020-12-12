@@ -84,10 +84,9 @@
                             <div class="col-12">
                                 <input id="communitySocialMedia" type="text" name="communitySocialMedia" value="" placeholder="Social Media"/>
                             </div>
-
-                            <!-- <div class="col-12">
-                                <textarea id="updateReason" name="Reason" placeholder="Reason for updating..." rows="6"></textarea>
-                            </div> -->
+                            <div class="col-12">
+                                <textarea id="communityUpdateReason" name="Reason" placeholder="Reason for updating..." rows="6"></textarea>
+                            </div>
                             <div class="col-12">
                                 <ul class="actions">
                                     <li><input onclick="submitUpdateCommunity()" type="button" value="Submit" class="primary"/></li>
@@ -131,7 +130,7 @@
             communityDescription.value =  localStorage.getItem('communityDescription')
             communityType.value =  localStorage.getItem('communityType')
             communityCategory.value = localStorage.getItem('communityCategory')
-            communitySocialMedia.value =  localStorage.getItem('communityMedia')
+            communitySocialMedia.value =  localStorage.getItem('communitySocialMedia')
 
 
             // if (localStorage.getItem('isCommunitySelected') == 'True') {

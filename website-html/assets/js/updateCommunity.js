@@ -1,22 +1,15 @@
 async function submitUpdateCommunity() {
     console.log("submitUpdateCommunity() called!");
-    if (
-        document.getElementById("reportContactEmail") == null ||
-        document.getElementById("user-displayname") == null
-    ) {
-        console.error(`Missing server_type, reportContactEmail, or displayname`);
-    }
 
     if (
-        localStorage.getItem('isCommunitySelected') == null ||
-        localStorage.getItem("communityOrClassNameSelected") == null ||
-        localStorage.getItem("communityOrClassDiscordServerSelected") == null
+        localStorage.getItem("communityName") == null ||
+        localStorage.getItem("user-displayname") == null ||
+        localStorage.getItem("user-email") == null
     ) {
-        console.error(`Missing communityOrClassNameSelected or communityOrClassDiscordServerSelected`);
+        console.error(`Missing communityName, displayname, or user-email`);
     }
 
-    let server_type = localStorage.getItem('isCommunitySelected') === "True" ? 'Community' : 'Class';
-    var fbRef = `Report/${server_type}`;
+    var fbRef = `UpdateCommunity/`;
 
     try {
         await firebase
@@ -24,13 +17,19 @@ async function submitUpdateCommunity() {
             .ref(fbRef)
             .push()
             .set({
-                communityOrClassName: localStorage.getItem("communityOrClassNameSelected"),
-                discordLink: localStorage.getItem("communityOrClassDiscordServerSelected"),
-                email: document.getElementById("reportContactEmail").value,
+                communityName: localStorage.getItem("communityName"),
+                communityType: document.getElementById("communityType").value,
+                communityCategory: document.getElementById("communityCategory").value,
+                communityInviteLink: document.getElementById("communityDiscordLink").value,
+                communityContact: document.getElementById("communityContact").value,
+                communityDescription: document.getElementById("communityDescription").value,
+                communitySocialMedia: document.getElementById("communitySocialMedia").value,
+                communityUpdateReason: document.getElementById("communityUpdateReason").value,
                 fullname: localStorage.getItem("user-displayname"),
-                reason: document.getElementById("reportReason").value,
+                email: localStorage.getItem("user-email"),
                 time: Date(Date.now()).toString(),
             });
+        // reason: document.getElementById("reportReason").value, For Later!
 
         await firebase
             .database()
@@ -45,5 +44,5 @@ async function submitUpdateCommunity() {
         throw err;
     }
 
-    alert("Successfully submitted! Thank you for your report!");
+    alert("Successfully submitted! Thank you for your update!");
 }

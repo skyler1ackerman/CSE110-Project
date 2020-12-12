@@ -10,20 +10,12 @@
         <link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     </head>
-    <style>
-
-/*  For debugging
-  * {
-	  outline: 1px solid red  !important;
-  } */
-
-    </style>
 
 
 	<body class="whiteBackground">
 
 		<!-- Page Wrapper -->
-			<div class="whiteBackground" >
+			<div id="page-wrapper">
 
 				<!-- Header -->
                 <header id="header" class="alt">
@@ -34,16 +26,17 @@
 								<ul class="menuToggle">
 
 									<a href="afterlogin.html" class="no-style more" >Home</a>
+
 									|
-									<a class="no-style more" style="font-weight: bold;">Feedback Review</a>
+									<a href="admin-dashboard.html" class="no-style more">Feedback Review</a>
 									|
 									<a href="admin-report.html" class="no-style more">Report Review</a>
 									&nbsp;
 									|
 									&nbsp;
-									<a href="admin-discord-requests.html" class="no-style more">Discord Requests</a>
-									|
-									<a href="admin-community-update.html" class="no-style more">Community Updates</a>
+									<a class="no-style more" class="no-style more">Discord Updates</a>
+                                    |
+                                    <a href="admin-community-update.html" style="font-weight: bold;">Community Updates</a>
 									|
 									<a href="admin-discord-review.html" class="no-style more">Manage Discord</a>
 									|
@@ -53,7 +46,6 @@
 
 
 									<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
-
 									&nbsp;
 									&nbsp;
 									&nbsp;
@@ -64,33 +56,14 @@
                 </header>
 
 				<!-- Banner -->
-				<section class="align-center" style="margin-top: 10vh">
-                    <div class="inner">
-						<input type="radio" name="editList" id="feedbackOptionVerified" value="" checked onclick="feedbackVerifiedSelected()"/>
-						<label for="feedbackOptionVerified">Feedback Verified</label>
-						<input type="radio" name="editList" id="resolvedOptionVerified" value=""  onclick="resolvedVerifiedSelected()"/>
-						<label for="resolvedOptionVerified">Resolved Verified</label>
-						<input type="radio" name="editList" id="feedbackOptionUnverified" value="" onclick="feedbackUnverifiedSelected()"/>
-						<label for="feedbackOptionUnverified">Feedback Unverified</label>
-						<input type="radio" name="editList" id="resolvedOptionUnverified" value="" onclick="resolvedUnverifiedSelected()"/>
-						<label for="resolvedOptionUnverified">Resolved Unverified</label>
-						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
 
-                    </div>
-                    <div>
-                        <div id="feedbackVerified" style="display: block; margin:auto; width: 60%;">
-						</div>
-						<div id="resolvedVerified" style="display: none; margin:auto; width: 60%;">
-						</div>
-						<div id="feedbackUnverified" style="display: none; margin:auto; width: 60%;">
-						</div>
-						<div id="resolvedUnverified" style="display: none; margin:auto; width: 60%;">
-						</div>
+                <section class="align-center" style="margin-top: 10vh">
+
+                    <div id="communitiesUpdates" style="display: block; margin:auto; width: 60%;">
                     </div>
 				</section>
 
 			</div>
-
 
 		<!-- Scripts -->
 		<!-- below is firebase SDKs-->
@@ -107,13 +80,13 @@
 
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>s
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/login.js"></script>
-		<script src="assets/js/adminFeedback.js"></script>
+		<script src="assets/js/adminCommunityUpdate.js"></script>
 
 	</body>
 </html>
