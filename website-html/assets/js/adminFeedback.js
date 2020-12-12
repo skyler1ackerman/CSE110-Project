@@ -1,12 +1,58 @@
+const getFeedbackSnapshot=(path)=>{
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getFeedbackSnapshot?path=' + path, config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+}
+
+
+
+const moveFeedback =(from,to,id,email,fullname,issue_type,explanation,time)=>{
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            from,
+            to,
+            id,
+            email,
+            fullname,
+            issue_type,
+            explanation,
+            time
+        })
+    };
+    fetch('http://localhost:8000/moveFeedback',config)
+        .catch(error => console.log(error));
+
+}
+
+const removeData =(reference,id)=>{
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            reference,
+            id
+        })
+    };
+    fetch('http://localhost:8000/removeData',config)
+        .catch(error => console.log(error));
+
+}
+
 function retrieveFeedbackVerified() {
     console.log("retrieveFeedbackVerified() called :)");
 
     let feedbackVerifiedElement = document.querySelector('#feedbackVerified');
     var ResolvedRef="Feedback/ResolvedVerified";
     var refVerified = "Feedback/Verified";
-
-
-    firebase.database().ref(refVerified).on("value", function(snapshot) {
+    var feedbackSnapshot;
+    getFeedbackSnapshot(refVerified).then(snapshot=>{
+        feedbackSnapshot=snapshot;
         if(feedbackVerifiedElement != null){
             while(feedbackVerifiedElement.hasChildNodes()){
                 feedbackVerifiedElement.removeChild(feedbackVerifiedElement.lastChild);
@@ -14,87 +60,79 @@ function retrieveFeedbackVerified() {
         }
         let emptyMessage = document.createElement("p");
         emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
-        if(!snapshot.hasChildren()){
+
+        if(Object.keys(feedbackSnapshot).length==0){
             feedbackVerifiedElement.append(emptyMessage);
         }
-        snapshot.forEach(function(childSnapshot) {
-            var feedback = childSnapshot.val();
-            let newFeedbackBoxElement = document.createElement('div')
-            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
-            newFeedbackBoxElement.style.border = "gainsboro"
-            newFeedbackBoxElement.style.marginBottom = "10px"
-            //Time
-            let time = document.createElement('textarea')
-            time.innerText = feedback.time || 'N/A'
-            time.rows =1
-            time.readOnly=true
+        for(var key in feedbackSnapshot){
+                var id = key;
+                var feedback = feedbackSnapshot[key];
+                let newFeedbackBoxElement = document.createElement('div')
+                newFeedbackBoxElement.setAttribute("id", id);
+                newFeedbackBoxElement.style.border = "gainsboro"
+                newFeedbackBoxElement.style.marginBottom = "10px"
+                //Time
+                let time = document.createElement('textarea')
+                time.innerText = feedback["time"] || 'N/A'
+                time.rows =1
+                time.readOnly=true
 
-            // Email
-            let email = document.createElement('textarea')
-            email.innerText = feedback.email || 'N/A'
-            email.rows =1
-            email.readOnly=true
+                // Email
+                let email = document.createElement('textarea')
+                email.innerText = feedback["email"] || 'N/A'
+                email.rows =1
+                email.readOnly=true
 
-            // Fullname
-            let fullname = document.createElement('textarea')
-            fullname.innerText = feedback.fullname || 'N/A'
-            fullname.rows =1
-            fullname.readOnly=true
+                // Fullname
+                let fullname = document.createElement('textarea')
+                fullname.innerText = feedback["fullname"] || 'N/A'
+                fullname.rows =1
+                fullname.readOnly=true
 
-            // Issue Type
+                // Issue Type
 
-            let issue_type = document.createElement('textarea')
-            issue_type.innerText = feedback.issue_type || 'N/A'
-            issue_type.rows =1
-            issue_type.readOnly=true
-
-
-            // Explanation
-            let explanation = document.createElement('textarea')
-            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
-            explanation.readOnly=true
+                let issue_type = document.createElement('textarea')
+                issue_type.innerText = feedback["issue_type"] || 'N/A'
+                issue_type.rows =1
+                issue_type.readOnly=true
 
 
-
-            let resolved = document.createElement('button')
-            resolved.innerText = "Resolved"
-            resolved.addEventListener("click",function(){
-                firebase.database().ref(ResolvedRef).child(newFeedbackBoxElement.id).set({
-                    email: feedback.email,
-                    fullname: feedback.fullname,
-                    issue_type: feedback.issue_type,
-                    explanation: feedback.explanation,
-                    time: feedback.time
-                })
-                firebase.database().ref(refVerified).child(newFeedbackBoxElement.id).remove();
-            });
-
-            newFeedbackBoxElement.appendChild(time)
-            newFeedbackBoxElement.appendChild(email)
-            newFeedbackBoxElement.appendChild(fullname)
-            newFeedbackBoxElement.appendChild(issue_type)
-            newFeedbackBoxElement.appendChild(explanation)
-            newFeedbackBoxElement.appendChild(resolved)
-
-            feedbackVerifiedArr.push(feedback);
-            if(feedbackVerifiedElement != null) {
-                feedbackVerifiedElement.append(newFeedbackBoxElement)
-            }
+                // Explanation
+                let explanation = document.createElement('textarea')
+                explanation.innerHTML ="Explanation: \n\t"+(feedback["explanation"] || 'N/A')
+                explanation.readOnly=true
 
 
-        });
+
+                let resolved = document.createElement('button')
+                resolved.innerText = "Resolved"
+                resolved.addEventListener("click",function(feedback){
+                    moveFeedback(refVerified,ResolvedRef,newFeedbackBoxElement.id,feedback["email"],feedback["fullname"],
+                        feedback["issue_type"],feedback["explanation"],feedback["time"])
+                    // this.parentNode.parentNode.removeChild(this.parentNode);
+                    retrieveFeedbackVerified();
+                }.bind(resolved,feedback));
+
+                newFeedbackBoxElement.appendChild(time)
+                newFeedbackBoxElement.appendChild(email)
+                newFeedbackBoxElement.appendChild(fullname)
+                newFeedbackBoxElement.appendChild(issue_type)
+                newFeedbackBoxElement.appendChild(explanation)
+                newFeedbackBoxElement.appendChild(resolved)
+                if(feedbackVerifiedElement != null) {
+                    feedbackVerifiedElement.append(newFeedbackBoxElement)
+                }
+        }
     });
-
-    console.log("feedbackVerifiedArr:! ", feedbackVerifiedArr);
 }
 function retrieveResolvedVerified() {
     console.log("retrieveResolvedVerified() called :)");
-    var ref=firebase.database().ref("Feedback/ResolvedVerified");
-    var UnresolvedRef = firebase.database().ref("Feedback/Verified");
+    var ResolvedRef="Feedback/ResolvedVerified";
+    var UnresolvedRef = "Feedback/Verified";
     let resolvedVerifiedElement = document.querySelector('#resolvedVerified')
-
-
-    ref.on("value", function(snapshot) {
+    var feedbackSnapshot;
+    getFeedbackSnapshot(ResolvedRef).then(snapshot=>{
+        feedbackSnapshot=snapshot;
         if(resolvedVerifiedElement != null){
             while(resolvedVerifiedElement.hasChildNodes()){
                 resolvedVerifiedElement.removeChild(resolvedVerifiedElement.lastChild);
@@ -102,66 +140,64 @@ function retrieveResolvedVerified() {
         }
         let emptyMessage = document.createElement("p");
         emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
-        if(!snapshot.hasChildren()){
+        if(Object.keys(feedbackSnapshot).length==0){
             resolvedVerifiedElement.append(emptyMessage);
         }
-        snapshot.forEach(function(childSnapshot) {
-            var feedback = childSnapshot.val();
 
+        for(var key in feedbackSnapshot){
+            var id = key;
+            var feedback = feedbackSnapshot[key];
             let newFeedbackBoxElement = document.createElement('div')
-            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
+            newFeedbackBoxElement.setAttribute("id", id);
             newFeedbackBoxElement.style.border = "gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
-
             //Time
             let time = document.createElement('textarea')
-            time.innerText = feedback.time || 'N/A'
+            time.innerText = feedback["time"] || 'N/A'
             time.rows =1
             time.readOnly=true
 
             // Email
             let email = document.createElement('textarea')
-            email.innerText = feedback.email || 'N/A'
+            email.innerText = feedback["email"] || 'N/A'
             email.rows =1
             email.readOnly=true
 
             // Fullname
             let fullname = document.createElement('textarea')
-            fullname.innerText = feedback.fullname || 'N/A'
+            fullname.innerText = feedback["fullname"] || 'N/A'
             fullname.rows =1
             fullname.readOnly=true
 
             // Issue Type
 
             let issue_type = document.createElement('textarea')
-            issue_type.innerText = feedback.issue_type || 'N/A'
+            issue_type.innerText = feedback["issue_type"] || 'N/A'
             issue_type.rows =1
             issue_type.readOnly=true
 
 
             // Explanation
             let explanation = document.createElement('textarea')
-            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
+            explanation.innerHTML ="Explanation: \n\t"+(feedback["explanation"] || 'N/A')
             explanation.readOnly=true
 
             let unresolved = document.createElement('button')
             unresolved.innerText = "Unresolved"
-            unresolved.addEventListener("click",function(){
-                UnresolvedRef.child(newFeedbackBoxElement.id).set({
-                    email: feedback.email,
-                    fullname: feedback.fullname,
-                    issue_type: feedback.issue_type,
-                    explanation: feedback.explanation,
-                    time: feedback.time
-                })
-                ref.child(newFeedbackBoxElement.id).remove();
-            });
+            unresolved.addEventListener("click",function (feedback) {
+                moveFeedback(ResolvedRef, UnresolvedRef,newFeedbackBoxElement.id, feedback["email"], feedback["fullname"],
+                    feedback["issue_type"], feedback["explanation"], feedback["time"])
+                //this.parentNode.parentNode.removeChild(this.parentNode);
+                retrieveResolvedVerified();
+            }.bind(unresolved,feedback));
 
             let remove = document.createElement('button')
             remove.innerText = "Remove"
             remove.addEventListener("click",function(){
-                ref.child(newFeedbackBoxElement.id).remove();
-            });
+                removeData(ResolvedRef,newFeedbackBoxElement.id);
+                //this.parentNode.parentNode.removeChild(this.parentNode);
+                retrieveResolvedVerified();
+            }.bind(remove));
             newFeedbackBoxElement.appendChild(time)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullname)
@@ -174,20 +210,21 @@ function retrieveResolvedVerified() {
                 resolvedVerifiedElement.append(newFeedbackBoxElement)
             }
 
-            resolvedVerifiedArr.push(feedback);
-        });
+
+
+        }
+
 });
-    console.log("resolvedVerifiedArr:! ", resolvedVerifiedArr);
 }
 
 function retrieveFeedbackUnverified() {
     console.log("retrieveFeedbackUnverified() called :)");
-    var ResolvedRef=firebase.database().ref("Feedback/ResolvedUnverified");
-    var ref = firebase.database().ref("Feedback/Unverified");
+    var ResolvedRef="Feedback/ResolvedUnverified";
+    var ref = "Feedback/Unverified";
     let feedbackUnverifiedElement = document.querySelector('#feedbackUnverified')
-
-
-    ref.on("value", function(snapshot) {
+    var feedbackSnapshot;
+    getFeedbackSnapshot(ref).then(snapshot=>{
+        feedbackSnapshot=snapshot;
         if(feedbackUnverifiedElement != null){
             while(feedbackUnverifiedElement.hasChildNodes()){
                 feedbackUnverifiedElement.removeChild(feedbackUnverifiedElement.lastChild);
@@ -195,60 +232,55 @@ function retrieveFeedbackUnverified() {
         }
         let emptyMessage = document.createElement("p");
         emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
-        if(!snapshot.hasChildren()){
+        if(Object.keys(feedbackSnapshot).length==0){
             feedbackUnverifiedElement.append(emptyMessage);
         }
-        snapshot.forEach(function(childSnapshot) {
-            var feedback = childSnapshot.val();
-
+        for(var key in feedbackSnapshot){
+            var id = key;
+            var feedback = feedbackSnapshot[key];
             let newFeedbackBoxElement = document.createElement('div')
-            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
+            newFeedbackBoxElement.setAttribute("id", id);
             newFeedbackBoxElement.style.border = "gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
-
             //Time
             let time = document.createElement('textarea')
-            time.innerText = feedback.time || 'N/A'
+            time.innerText = feedback["time"] || 'N/A'
             time.rows =1
             time.readOnly=true
 
             // Email
             let email = document.createElement('textarea')
-            email.innerText = feedback.email || 'N/A'
+            email.innerText = feedback["email"] || 'N/A'
             email.rows =1
             email.readOnly=true
 
             // Fullname
             let fullname = document.createElement('textarea')
-            fullname.innerText = feedback.fullname || 'N/A'
+            fullname.innerText = feedback["fullname"] || 'N/A'
             fullname.rows =1
             fullname.readOnly=true
 
             // Issue Type
 
             let issue_type = document.createElement('textarea')
-            issue_type.innerText = feedback.issue_type || 'N/A'
+            issue_type.innerText = feedback["issue_type"] || 'N/A'
             issue_type.rows =1
             issue_type.readOnly=true
 
 
             // Explanation
             let explanation = document.createElement('textarea')
-            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
+            explanation.innerHTML ="Explanation: \n\t"+(feedback["explanation"] || 'N/A')
             explanation.readOnly=true
 
             let resolved = document.createElement('button')
             resolved.innerText = "Resolved"
-            resolved.addEventListener("click",function(){
-                ResolvedRef.child(newFeedbackBoxElement.id).set({
-                    email: feedback.email,
-                    fullname: feedback.fullname,
-                    issue_type: feedback.issue_type,
-                    explanation: feedback.explanation,
-                    time: feedback.time
-                })
-                ref.child(newFeedbackBoxElement.id).remove();
-            });
+            resolved.addEventListener("click",function(feedback){
+                moveFeedback(ref,ResolvedRef,newFeedbackBoxElement.id,feedback["email"],feedback["fullname"],
+                    feedback["issue_type"],feedback["explanation"],feedback["time"])
+                // this.parentNode.parentNode.removeChild(this.parentNode);
+                retrieveFeedbackUnverified();
+            }.bind(resolved,feedback));
             newFeedbackBoxElement.appendChild(time)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullname)
@@ -260,21 +292,19 @@ function retrieveFeedbackUnverified() {
                 feedbackUnverifiedElement.append(newFeedbackBoxElement)
             }
 
-            feedbackUnverifiedArr.push(feedback);
-        });
+        }
     });
-    console.log("feedbackUnverifiedArr:! ", feedbackUnverifiedArr);
 }
 
 
 function retrieveResolvedUnverified() {
     console.log("retrieveResolvedUnverified() called :)");
-    var ref=firebase.database().ref("Feedback/ResolvedUnverified");
-    var UnresolvedRef = firebase.database().ref("Feedback/Unverified");
+    var ref="Feedback/ResolvedUnverified";
+    var UnresolvedRef = "Feedback/Unverified";
     let resolvedUnverifiedElement = document.querySelector('#resolvedUnverified')
-
-
-    ref.on("value", function(snapshot) {
+    var feedbackSnapshot;
+    getFeedbackSnapshot(ref).then(snapshot=>{
+        feedbackSnapshot=snapshot;
         if(resolvedUnverifiedElement != null){
             while(resolvedUnverifiedElement.hasChildNodes()){
                 resolvedUnverifiedElement.removeChild(resolvedUnverifiedElement.lastChild);
@@ -282,66 +312,63 @@ function retrieveResolvedUnverified() {
         }
         let emptyMessage = document.createElement("p");
         emptyMessage.innerHTML = "No feedback submitted in this section at this time.";
-        if(!snapshot.hasChildren()){
+        if(Object.keys(feedbackSnapshot).length==0){
             resolvedUnverifiedElement.append(emptyMessage);
         }
-        snapshot.forEach(function(childSnapshot) {
-            var feedback = childSnapshot.val();
-
-
+        for(var key in feedbackSnapshot){
+            var id = key;
+            var feedback = feedbackSnapshot[key];
             let newFeedbackBoxElement = document.createElement('div')
-            newFeedbackBoxElement.setAttribute("id", childSnapshot.key);
+            newFeedbackBoxElement.setAttribute("id", id);
             newFeedbackBoxElement.style.border = "gainsboro"
             newFeedbackBoxElement.style.marginBottom = "10px"
             //Time
             let time = document.createElement('textarea')
-            time.innerText = feedback.time || 'N/A'
+            time.innerText = feedback["time"] || 'N/A'
             time.rows =1
             time.readOnly=true
 
             // Email
             let email = document.createElement('textarea')
-            email.innerText = feedback.email || 'N/A'
+            email.innerText = feedback["email"] || 'N/A'
             email.rows =1
             email.readOnly=true
 
             // Fullname
             let fullname = document.createElement('textarea')
-            fullname.innerText = feedback.fullname || 'N/A'
+            fullname.innerText = feedback["fullname"] || 'N/A'
             fullname.rows =1
             fullname.readOnly=true
 
             // Issue Type
 
             let issue_type = document.createElement('textarea')
-            issue_type.innerText = feedback.issue_type || 'N/A'
+            issue_type.innerText = feedback["issue_type"] || 'N/A'
             issue_type.rows =1
             issue_type.readOnly=true
 
 
             // Explanation
             let explanation = document.createElement('textarea')
-            explanation.innerHTML ="Explanation: \n\t"+(feedback.explanation || 'N/A')
+            explanation.innerHTML ="Explanation: \n\t"+(feedback["explanation"] || 'N/A')
             explanation.readOnly=true
 
             let unresolved = document.createElement('button')
             unresolved.innerText = "Unresolved"
-            unresolved.addEventListener("click",function(){
-                UnresolvedRef.child(newFeedbackBoxElement.id).set({
-                    email: feedback.email,
-                    fullname: feedback.fullname,
-                    issue_type: feedback.issue_type,
-                    explanation: feedback.explanation,
-                    time: feedback.time
-                })
-                ref.child(newFeedbackBoxElement.id).remove();
-            });
+            unresolved.addEventListener("click",function(feedback){
+                moveFeedback(ref, UnresolvedRef,newFeedbackBoxElement.id, feedback["email"], feedback["fullname"],
+                    feedback["issue_type"], feedback["explanation"], feedback["time"])
+                // this.parentNode.parentNode.removeChild(this.parentNode);
+                retrieveResolvedUnverified();
+            }.bind(unresolved,feedback));
 
             let remove = document.createElement('button')
             remove.innerText = "Remove"
             remove.addEventListener("click",function(){
-                ref.child(newFeedbackBoxElement.id).remove();
-            });
+                removeData(ref,newFeedbackBoxElement.id);
+                // this.parentNode.parentNode.removeChild(this.parentNode);
+                retrieveResolvedUnverified();
+            }.bind(remove));
             newFeedbackBoxElement.appendChild(time)
             newFeedbackBoxElement.appendChild(email)
             newFeedbackBoxElement.appendChild(fullname)
@@ -354,14 +381,13 @@ function retrieveResolvedUnverified() {
                 resolvedUnverifiedElement.append(newFeedbackBoxElement)
             }
 
-            resolvedUnverifiedArr.push(feedback);
-        });
+        };
     });
-    console.log("resolvedUnverifiedArr:! ", resolvedUnverifiedArr);
 }
 
 function feedbackVerifiedSelected(){
     console.log("feedbackVerifiedSelected() called");
+    retrieveFeedbackVerified()
     document.getElementById("feedbackUnverified").style.display = "none";
     document.getElementById("feedbackVerified").style.display = "block";
     document.getElementById("resolvedUnverified").style.display = "none";
@@ -369,6 +395,7 @@ function feedbackVerifiedSelected(){
 }
 
 function feedbackUnverifiedSelected(){
+    retrieveFeedbackUnverified()
     console.log("feedbackUnverifiedSelected() called");
     document.getElementById("feedbackUnverified").style.display = "block";;
     document.getElementById("feedbackVerified").style.display = "none";
@@ -378,6 +405,7 @@ function feedbackUnverifiedSelected(){
 }
 
 function resolvedVerifiedSelected(){
+    retrieveResolvedVerified()
     console.log("ResolvedVerifiedSelected() called");
     document.getElementById("feedbackUnverified").style.display = "none";
     document.getElementById("feedbackVerified").style.display = "none";
@@ -386,6 +414,7 @@ function resolvedVerifiedSelected(){
 }
 
 function resolvedUnverifiedSelected(){
+    retrieveResolvedUnverified()
     console.log("ResolvedUnverifiedSelected() called");
     document.getElementById("feedbackUnverified").style.display = "none";
     document.getElementById("feedbackVerified").style.display = "none";
@@ -394,12 +423,8 @@ function resolvedUnverifiedSelected(){
 
 }
 
-feedbackVerifiedArr = []
-feedbackUnverifiedArr = []
-resolvedVerifiedArr = []
-resolvedUnverifiedArr = []
-
 retrieveFeedbackVerified()
-retrieveFeedbackUnverified()
-retrieveResolvedUnverified()
-retrieveResolvedVerified()
+
+
+
+
