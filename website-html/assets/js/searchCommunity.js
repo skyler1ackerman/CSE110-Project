@@ -150,7 +150,7 @@ function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrCl
 }
 
 function goToUpdateCommunityPage(communityName, communityContact, communityDiscordLink, communityDescription,
-    communityType, communitySocialMedia) {
+    communityType, communitySocialMedia, communityCategory) {
 
     // Processing
     console.log("goToUpdateCommunityPage() called")
@@ -158,14 +158,12 @@ function goToUpdateCommunityPage(communityName, communityContact, communityDisco
     // Processing
     // window.alert(""+communityName);
     localStorage.setItem('communityName', communityName);
-    
     localStorage.setItem('communityContact', communityContact);
-    window.alert(""+communityContact);
     localStorage.setItem('communityDiscordLink', communityDiscordLink)
     localStorage.setItem('communityDescription', communityDescription);
     localStorage.setItem('communityType', communityType);
-    // localStorage.setItem('communityCategory', communityCategory);
-    localStorage.setItem('communitySocialMedia', communitySocialMedia);
+    localStorage.setItem('communitySocialMedia', communitySocialMedia);    
+    localStorage.setItem('communityCategory', communityCategory);
     
     window.location.href = "update-community.html"
 }

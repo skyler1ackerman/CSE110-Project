@@ -42,17 +42,17 @@ module.exports = async function getCommunity(communityName) {
                             clubSnapshot.key
                         }', '${clubSnapshot.val().contact}', '${
                             clubSnapshot.val().inviteLink
-                        }', '${clubSnapshot.val().description.replace(/'/g, "\\'")}', '${
+                        }', '${clubSnapshot.val().description.replace(/"/g, "'").replace(/'/g, "\\'")}', '${
                             clubSnapshot.val().org_type
-                        }', '${clubSnapshot.val().social_media}');\">Update</button></div>`;
+                        }', '${clubSnapshot.val().social_media}', '${clubSnapshot.ref.parent.key}');\">Update</button></div>`;
                     } else {
                         resultsString.str += `<button id="update_community_btn" style='margin-left: auto; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${
                             clubSnapshot.key
                         }', '${clubSnapshot.val().contact}', '${
                             clubSnapshot.val().inviteLink
-                        }', '${clubSnapshot.val().description.replace(/'/g, "\\'")}', '${
+                        }', '${clubSnapshot.val().description.replace(/"/g, "'").replace(/'/g, "\\'")}', '${
                             clubSnapshot.val().org_type
-                        }', '${clubSnapshot.val().social_media}');\">Update</button>`;
+                        }', '${clubSnapshot.val().social_media}', '${clubSnapshot.ref.parent.key}');\">Update</button>`;
 
                         // resultsString.str +=   `<button id="update_community_btn" style='margin-left: 10px; float: right; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Update</button>`;
                     }

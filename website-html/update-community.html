@@ -62,6 +62,26 @@
                                 <!-- <input id="communityType" type = "text" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;"/> -->
                             </div>
                             <div class="col-12">
+                                <select name="communityCategory" id="communityCategory" required>
+                                    <option value="Academic">Academic</option>
+                                    <option value="Career">Career</option>
+                                    <option value="Cooperative">Cooperative</option>
+                                    <option value="Cultural">Cultural</option>
+                                    <option value="Dance">Dance</option>
+                                    <option value="Education">Educational</option>
+                                    <option value="Fraternities">Fraternities</option>
+                                    <option value="Media">Media</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Music and Performance">Music and Performance</option>
+                                    <option value="Political">Political</option>
+                                    <option value="Service">Service</option>
+                                    <option value="Social">Social</option>
+                                    <option value="Sororities">Sororities</option>
+                                    <option value="Spiritual">Spiritual</option>
+                                    <option value="Sports">Sports</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
                                 <input id="communitySocialMedia" type="text" name="communitySocialMedia" value="" placeholder="Social Media"/>
                             </div>
 
@@ -102,6 +122,7 @@
             let communityDiscordLink = document.getElementById('communityDiscordLink')
             let communityDescription = document.getElementById('communityDescription')
             let communityType = document.getElementById('communityType')
+            let communityCategory = document.getElementById('communityCategory')
             let communitySocialMedia = document.getElementById('communitySocialMedia')
 
             communityName.innerText =  localStorage.getItem('communityName')
@@ -109,6 +130,7 @@
             communityDiscordLink.value =  localStorage.getItem('communityDiscordLink')
             communityDescription.value =  localStorage.getItem('communityDescription')
             communityType.value =  localStorage.getItem('communityType')
+            communityCategory.value = localStorage.getItem('communityCategory')
             communitySocialMedia.value =  localStorage.getItem('communityMedia')
 
 
