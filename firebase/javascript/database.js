@@ -80,7 +80,7 @@ function clubsInfo(clubfile){
 }
 
 function removeErrorChar(removechar){
-  return removechar.replace(/\.|\#|\$|\[|\]/g,'');
+  return removechar.replace(/\.|\#|\$|\[|\]|\"/g,'');
 }
 // arr = ["category", "description", "status", "org_type" ,"contact" ,"s_media", "invite"];
 function writeClubs(category, clubname, description, status, org_type, contact, soc_media, invite){
