@@ -2,7 +2,6 @@ const db = require("../server/db_config");
 
 module.exports = async function getCommunity(communityName) {
     var resultsString = { str : "" };
-
     var ref = db.ref("clubs");
      await ref.once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
