@@ -12,8 +12,8 @@
     <script src="/__/firebase/8.0.1/firebase-app.js"></script>
     <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
     <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-    <script src="/__/firebase/8.0.1/firebase-database.js"></script>
-    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <!--MVC DONT NEED<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>-->
     <script src="/__/firebase/init.js"></script>
     <script src="assets/js/auth.js"></script>
 </head>
@@ -71,10 +71,10 @@
 
 
         <script>
-            // load profile pic, load name, load email
-            var profileImgUrl = localStorage.getItem("user-profileimgurl");
-            document.getElementById("profilePicUserProfile").src = profileImgUrl;
-            document.getElementById("profilePicUserProfile2").src = profileImgUrl;
+            // // load profile pic, load name, load email
+            // var profileImgUrl = localStorage.getItem("user-profileimgurl");
+            // document.getElementById("profilePicUserProfile").src = profileImgUrl;
+            // document.getElementById("profilePicUserProfile2").src = profileImgUrl;
             document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
             document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
             // open profile popout
