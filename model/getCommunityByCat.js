@@ -24,12 +24,17 @@ module.exports = async function getCommunityByCat(category) {
             if(childNodes.val().description !== "") {
                 resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
             };
-            if(childNodes.val().inviteLink !== "") {
-                resultsString.str +=   `<div style='display: flex;'><a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                resultsString.str +=   `<button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromCommunity('${childNodes.key}', '${childNodes.val().inviteLink}');\">Report</button></div>`;
-            };
             if(childNodes.val().social_media !== "") {
                 resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
+            };
+            if(childNodes.val().inviteLink !== "") {
+                resultsString.str +=   `<div style='display: flex;'><a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                resultsString.str +=   `<button class=\"button\" style="margin-left: 10px; text-align: center; font-family: inherit;" onClick=\"goToReportPageFromCommunity('${childNodes.key}', '${childNodes.val().inviteLink}');\">Report</button>`;
+                resultsString.str +=   `<button id="update_community_btn" style='margin-left: auto; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${childNodes.key}', '${childNodes.val().inviteLink}');\">Update</button></div>`;
+
+            }
+        else{
+                resultsString.str +=   `<button id="update_community_btn" style='margin-left: 10px; float: right; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${childNodes.key}', '${childNodes.val().inviteLink}');\">Update</button>`;
             };
             resultsString.str += "<p></p>";
             resultsString.str += "</div>";

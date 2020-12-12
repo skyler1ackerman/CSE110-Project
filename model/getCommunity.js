@@ -8,7 +8,6 @@ module.exports = async function getCommunity(communityName) {
             snapshot.forEach(function(childSnapshot) {
                 childSnapshot.forEach(function(clubSnapshot){
                     if(clubSnapshot.key === communityName){
-
                         resultsString.str += "<li class='community'>";
                         resultsString.str += "<div>";
                         resultsString.str += "<p></p>";
