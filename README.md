@@ -1,4 +1,7 @@
 # CSE110-Project
+
+To start up Firebase:
+(Begin in root directory i.e. CSE110-Project)
 1. npm install -g firebase-tools
 2. firebase login
 3. cd website-html (go to root directory of your website project) 
@@ -13,3 +16,13 @@ choose follows
 
 5. firebase deploy
 6. firebase emulators:start (to test it locally. go to http://localhost:5000/ afterward) (To test on the world wide web, visit https://tritongroups-c26fa.web.app/)
+
+
+To start up Express Server:
+
+1. Open a new terminal
+2. Navigate to root directory of project (i.e CSE110-Project)
+3. npm install
+4. npm start
+
+Once you have completed both of these workflows visit localhost:5000.

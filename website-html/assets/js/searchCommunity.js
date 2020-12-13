@@ -1,5 +1,4 @@
 function searchbarClubSelected(){
-  console.log("searchbarClubSelected() called");
   document.getElementById("classSearchBar").style.display = "none";
   document.getElementById("clubSearchBar").style.display = "block";
 }
@@ -19,9 +18,8 @@ function getCommunityInfoByName(name){
       document.getElementById("community-email").innerHTML = snapshot.child("year").val();
   });
 }
-
+/*
 function getCommunitySnapshot(){
-  console.log("getCommunitySnapshot() called :)");
   var ref = firebase.database().ref("clubs");
   ref.on("value", function(snapshot) {
    snapshot.forEach(function(childSnapshot) {
@@ -31,7 +29,21 @@ function getCommunitySnapshot(){
        });
    });
   });
-  console.log("communitiesArr:! ", communitiesArr);
+}*/
+function getCommunitySnapshot() {
+    getCommunitySnap().then(snapshot => {
+        for(var i in snapshot.result)
+            communitiesArr.push(snapshot.result[i]);
+    });
+}
+const getCommunitySnap = () => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getCommunitySnapshot', config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
 }
 //OLD VERSION
 /*
@@ -111,7 +123,6 @@ function submit_community() {
         remove2.parentNode.removeChild(remove2);
     }
 
-
     if (communitiesArr.includes(communityInput)) {
         localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
         getCommunity(communityInput).then(snapshot => {
@@ -139,7 +150,6 @@ const getCommunity = (communityName) => {
 
 // Util Function for naviagating to report page
 function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
-    console.log("goToReportPage() called")
 
     // Processing
     localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
@@ -149,13 +159,22 @@ function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrCl
     window.location.href = "report-discord-server.html"
 }
 
-function goToUpdateCommunityPage(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
+function goToUpdateCommunityPage(communityName, communityContact, communityDiscordLink, communityDescription,
+    communityType, communitySocialMedia, communityCategory) {
 
     // Processing
-    localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
-    localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
-    localStorage.setItem('isCommunitySelected', 'False')
+    console.log("goToUpdateCommunityPage() called")
 
+    // Processing
+    // window.alert(""+communityName);
+    localStorage.setItem('communityName', communityName);
+    localStorage.setItem('communityContact', communityContact);
+    localStorage.setItem('communityDiscordLink', communityDiscordLink)
+    localStorage.setItem('communityDescription', communityDescription);
+    localStorage.setItem('communityType', communityType);
+    localStorage.setItem('communitySocialMedia', communitySocialMedia);    
+    localStorage.setItem('communityCategory', communityCategory);
+    
     window.location.href = "update-community.html"
 }
 
@@ -322,7 +341,6 @@ function submit_community_category(categoryInput){
     }, 1);
     if (window.location.hash) {
         var hash = window.location.hash;
-        console.log(hash);
         $('html, body').animate({
             scrollTop: $(hash).offset().top
         }, 1500, 'swing');

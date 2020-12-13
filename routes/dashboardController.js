@@ -6,6 +6,7 @@ const addCommunity = require('../model/addCommunity')
 const getFeedbackSnapshot = require('../model/getFeedbackSnapshot')
 const moveFeedback = require('../model/moveFeedback')
 const removeData = require('../model/removeData')
+const removeClass = require('../model/removeClass')
 const getAdminSnapshot = require('../model/getAdminSnapshot')
 const getReportSnapshot = require('../model/getReportSnapshot')
 const moveReport = require('../model/moveReport')
@@ -54,6 +55,12 @@ router.get('/getClassRequestSnapshot', (req, res) => {
     getClassRequestSnapshot(req.query.path)
         .then(doc => res.send(doc))
 });
+
+
+router.post('/removeClass',(req, res) => {
+    removeClass(req.body.className,req.body.bid)
+});
+
 
 // end
 
