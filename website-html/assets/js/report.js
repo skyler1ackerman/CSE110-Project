@@ -30,9 +30,9 @@ async function submitReport() {
         return
     } else {
         setNewReport(reportRef, community_or_class_name, discord_link, report_contact_email, user_fullname, report_reason);
+        alert("Successfully submitted! Thank you for your report!");
     }
 
     window.location.href = "afterlogin.html";
-
-    alert("Successfully submitted! Thank you for your report!");
+    
 }
