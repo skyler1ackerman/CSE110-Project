@@ -61,6 +61,7 @@ router.get('/getClassRequestSnapshot', (req, res) => {
         .then(doc => res.send(doc))
 });
 
+
 router.post('/removeClass',(req, res) => {
     removeClass(req.body.className,req.body.bid)
 });
