@@ -23,13 +23,13 @@ function dbFunction(arr) {
 
 function populateClasses(arr) {
   for(i = 0; i < arr.length; i++) {
-    writeClasses(arr[i], 'A', 'B', 'C', 'D')
+    writeClasses(arr[i], "", "", "", "")
   }
 }
 function writeClasses(name, profname, qtr, yr, link) {
 
   firebase.database().ref('classes/').child(name).set({
-    discordInfo1: {
+    placeholderServer: {
       profName: profname,
       quarter: qtr,
       year: yr,
@@ -55,21 +55,20 @@ function clubsInfo(clubfile){
   var obj = JSON.parse(clubInfo);
 
   // var keys = Object.keys(obj);
-
+  
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       var i = 0;
+      // arr = ["category", "description", "status", "org_type" ,"contact" ,"s_media", "invite"];
       var arr = ["none", "none", "none", "none" ,"none" ,"none", "none"];
       for (var inside_key in obj[key]) {
         if (obj[key].hasOwnProperty(inside_key)) {
           arr[i] = obj[key][inside_key];
         }
-        // else{
-        //   arr[i] = " - ";
-        // }
         i++;
       }
-      writeClubs(key, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6]);
+      
+      writeClubs(arr[0], key, arr[1], arr[2], arr[3], arr[4], arr[5], arr[6]);
       console.log(key);
       console.log(arr);
     }
@@ -81,32 +80,59 @@ function clubsInfo(clubfile){
 }
 
 function removeErrorChar(removechar){
-  return removechar.replace(/\.|\#|\$|\[|\]/g,'');
+  return removechar.replace(/\.|\#|\$|\[|\]|\"/g,'');
 }
-
-function writeClubs(clubname, year, purpose, created, status, org_type, org_email, soc_media){
+// arr = ["category", "description", "status", "org_type" ,"contact" ,"s_media", "invite"];
+function writeClubs(category, clubname, description, status, org_type, contact, soc_media, invite){
   clubname = removeErrorChar(clubname);
+  clubname = clubname.replace(/\//g,'-');
   console.log("writeClubs() called :)"); 
 
-  firebase.database().ref('clubs/').child(clubname).update({
-    "Academic Year": year, 
-    "Purpose": purpose, 
-    "Created": created, 
-    "Status": status, 
-    "Organization Type": org_type, 
-    "Organization Email": org_email, 
-    "Social Media": soc_media
+  firebase.database().ref('clubs/').child(category).child(clubname).update({
+    "description": description, 
+    "status": status, 
+    "org_type": org_type, 
+    "contact": contact, 
+    "social_media": soc_media, 
+    "inviteLink": invite
   });
 }
 
 // Example entry:
 
-// "Society of Hispanic Professional Engineers ": {
-//   "Academic Year": "2020",
-//   "Purpose": "The purpose of SHPE UCSD is to promote the advancement of Hispanics in math, science, engineering and other\rtechnical fields through our student chapter benefits; including but not limited to Professional Development, Academic\rDevelopment, and Community Service. SHPE at UCSD is a non-profit student organization.",
-//   "Created": "8/25/2020",
+// "Sigma Alpha Mu Fraternity": {
+//   "Category": "Fraternities",
+//   "Description": "To unite each undergraduate member toward a more meaningful life, to prepare members for responsible fraternity and community involvement.",
 //   "Status": "Current",
 //   "Organization Type": "Undergraduate",
-//   "Organization Email": "shpe@eng.ucsd.edu",
-//   "Social Media": "shpeucsd.org"
-// },
+//   "Contact": "prior.ucsdsam@gmail.com",
+//   "Social Media": "ucsdsammy",
+//   "Invite": ""
+// }
+
+function majorList(majorlistfile){
+  var majorList = majorlistfile;
+  
+  console.log("majorList() called :)");
+  firebase.initializeApp(firebaseConfig);
+
+  // Converting JSON-encoded string to JS object
+  var objM = JSON.parse(majorList);
+
+  for(var key in objM) {
+    writeMajors(objM[key]);
+  }
+
+}
+
+function writeMajors(major){
+
+  console.log("writeMajors() called :)"); 
+  // the major name included '/' in the string, firebase uses it as going inside the key to make new child
+  // so that it is replaced with '-'
+  major = major.replace(/\//g,'-');
+
+  firebase.database().ref('majors/').child(major).update({
+    majorName: major
+  });
+}
