@@ -159,13 +159,22 @@ function goToReportPageFromCommunity(communityOrClassNameSelected, communityOrCl
     window.location.href = "report-discord-server.html"
 }
 
-function goToUpdateCommunityPage(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
+function goToUpdateCommunityPage(communityName, communityContact, communityDiscordLink, communityDescription,
+    communityType, communitySocialMedia, communityCategory) {
 
     // Processing
-    localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
-    localStorage.setItem("communityOrClassDiscordServerSelected", communityOrClassDiscordServerSelected)
-    localStorage.setItem('isCommunitySelected', 'False')
+    console.log("goToUpdateCommunityPage() called")
 
+    // Processing
+    // window.alert(""+communityName);
+    localStorage.setItem('communityName', communityName);
+    localStorage.setItem('communityContact', communityContact);
+    localStorage.setItem('communityDiscordLink', communityDiscordLink)
+    localStorage.setItem('communityDescription', communityDescription);
+    localStorage.setItem('communityType', communityType);
+    localStorage.setItem('communitySocialMedia', communitySocialMedia);    
+    localStorage.setItem('communityCategory', communityCategory);
+    
     window.location.href = "update-community.html"
 }
 
