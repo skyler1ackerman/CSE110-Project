@@ -44,8 +44,6 @@ const removeData =(reference,id)=>{
 }
 
 function retrieveReportCommunity() {
-    console.log("retrieveReportCommunity() called :)");
-
     let reportCommunityElement = document.querySelector('#reportCommunity');
     var ResolvedRef="Report/ResolvedCommunity";
     var refCommunity = "Report/Community";
@@ -104,8 +102,6 @@ function retrieveReportCommunity() {
             reason.innerHTML ="Reason: \n\t"+(report["reason"] || 'N/A')
             reason.readOnly=true
 
-
-
             let resolved = document.createElement('button')
             resolved.innerText = "Resolved"
             resolved.addEventListener("click",function(report){
@@ -125,15 +121,11 @@ function retrieveReportCommunity() {
             if(reportCommunityElement != null) {
                 reportCommunityElement.append(newReportBoxElement)
             }
-
-
         };
     });
-
-
 }
+
 function retrieveResolvedCommunity() {
-    console.log("retrieveResolvedCommunity() called :)");
     var ref="Report/ResolvedCommunity";
     var UnresolvedRef = "Report/Community";
     let resolvedCommunityElement = document.querySelector('#resolvedCommunity')
@@ -225,11 +217,9 @@ function retrieveResolvedCommunity() {
 }
 
 function retrieveReportClass() {
-    console.log("retrieveReportClass() called :)");
     var ResolvedRef="Report/ResolvedClass";
     var ref = "Report/Class";
     let reportClassElement = document.querySelector('#reportClass')
-
 
     var reportSnapshot;
     getReportSnapshot(ref).then(snapshot=>{
@@ -304,20 +294,15 @@ function retrieveReportClass() {
             if(reportClassElement != null) {
                 reportClassElement.append(newReportBoxElement)
             }
-
-
         };
     });
 
 }
 
-
 function retrieveResolvedClass() {
-    console.log("retrieveResolvedClass() called :)");
     var ref="Report/ResolvedClass";
     var UnresolvedRef = "Report/Class";
     let resolvedClassElement = document.querySelector('#resolvedClass')
-
 
     var reportSnapshot;
     getReportSnapshot(ref).then(snapshot=>{
@@ -399,16 +384,12 @@ function retrieveResolvedClass() {
             if(resolvedClassElement != null){
                 resolvedClassElement.append(newReportBoxElement)
             }
-
-
         };
     });
-
 }
 
 function reportCommunitySelected(){
-    retrieveReportCommunity()
-    console.log("reportCommunitySelected() called");
+    retrieveReportCommunity();
     document.getElementById("reportClass").style.display = "none";
     document.getElementById("reportCommunity").style.display = "block";
     document.getElementById("resolvedClass").style.display = "none";
@@ -416,8 +397,7 @@ function reportCommunitySelected(){
 }
 
 function reportClassSelected(){
-    retrieveReportClass()
-    console.log("reportClassSelected() called");
+    retrieveReportClass();
     document.getElementById("reportClass").style.display = "block";;
     document.getElementById("reportCommunity").style.display = "none";
     document.getElementById("resolvedClass").style.display = "none";
@@ -426,8 +406,7 @@ function reportClassSelected(){
 }
 
 function resolvedCommunitySelected(){
-    retrieveResolvedCommunity()
-    console.log("ResolvedCommunitySelected() called");
+    retrieveResolvedCommunity();
     document.getElementById("reportClass").style.display = "none";
     document.getElementById("reportCommunity").style.display = "none";
     document.getElementById("resolvedClass").style.display = "none";
@@ -435,16 +414,13 @@ function resolvedCommunitySelected(){
 }
 
 function resolvedClassSelected(){
-    retrieveResolvedClass()
-    console.log("ResolvedClassSelected() called");
+    retrieveResolvedClass();
     document.getElementById("reportClass").style.display = "none";
     document.getElementById("reportCommunity").style.display = "none";
     document.getElementById("resolvedClass").style.display = "block";
     document.getElementById("resolvedCommunity").style.display = "none";
 
 }
-
-
 
 retrieveReportCommunity()
 

@@ -1,49 +1,38 @@
+const setNewReport = (reportRef, community_or_class_name, discord_link, report_contact_email, user_fullname, report_reason) => {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            reportRef, 
+            community_or_class_name, 
+            discord_link, 
+            report_contact_email, 
+            user_fullname, 
+            report_reason
+        })
+    };
+    fetch('http://localhost:8000/setNewReport', config)
+    .catch(error => console.log(error));
+}
+
 async function submitReport() {
-    console.log("submitCommunityReport() called!");
-    if (
-        document.getElementById("reportContactEmail") == null ||
-        document.getElementById("user-displayname") == null
-    ) {
-        console.error(`Missing server_type, reportContactEmail, or displayname`);
-    }
-
-    if (
-        localStorage.getItem('isCommunitySelected') == null ||
-        localStorage.getItem("communityOrClassNameSelected") == null ||
-        localStorage.getItem("communityOrClassDiscordServerSelected") == null
-    ) {
-        console.error(`Missing communityOrClassNameSelected or communityOrClassDiscordServerSelected`);
-    }
-
     let server_type = localStorage.getItem('isCommunitySelected') === "True" ? 'Community' : 'Class';
-    var fbRef = `Report/${server_type}`;
+    var reportRef = `Report/${server_type}`;
 
-    try {
-        await firebase
-            .database()
-            .ref(fbRef)
-            .push()
-            .set({
-                communityOrClassName: localStorage.getItem("communityOrClassNameSelected"),
-                discordLink: localStorage.getItem("communityOrClassDiscordServerSelected"),
-                email: document.getElementById("reportContactEmail").value,
-                fullname: localStorage.getItem("user-displayname"),
-                reason: document.getElementById("reportReason").value,
-                time: Date(Date.now()).toString(),
-            });
-
-        await firebase
-            .database()
-            .ref(fbRef)
-            .once("child_added")
-            .then(function () {
-                window.location.href = "afterlogin.html";
-
-                console.log("Back to the home page!");
-            });
-    } catch (err) {
-        throw err;
+    var community_or_class_name = localStorage.getItem("communityOrClassNameSelected");
+    var discord_link = localStorage.getItem("communityOrClassDiscordServerSelected");
+    var report_contact_email = document.getElementById("reportContactEmail").value;
+    var user_fullname = localStorage.getItem("user-displayname");
+    var report_reason =  document.getElementById("reportReason").value;
+    
+    if (!report_reason) {
+        alert("Please enter the reason for reporting.");
+        return
+    } else {
+        setNewReport(reportRef, community_or_class_name, discord_link, report_contact_email, user_fullname, report_reason);
+        alert("Successfully submitted! Thank you for your report!");
     }
 
-    alert("Successfully submitted! Thank you for your report!");
+    window.location.href = "afterlogin.html";
+    
 }

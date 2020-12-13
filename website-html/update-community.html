@@ -4,6 +4,9 @@
     <title>Update a Community</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="icon" href="images/lightmode.png" id="light-scheme-icon"/>
+    <link rel="icon" href="images/darkmode.png" id="dark-scheme-icon"/>
+    <script src="assets/js/favIcon.js"></script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <meta charset="UTF-8">
@@ -59,7 +62,6 @@
                                     <option value="Graduate">Graduate</option>
                                     <option value="Any">Any</option>
                                 </select>
-                                <!-- <input id="communityType" type = "text" style="background-color: rgba(0, 0, 0, 0.0375); padding: 15px;"/> -->
                             </div>
                             <div class="col-12">
                                 <select name="communityCategory" id="communityCategory" required>
@@ -107,14 +109,13 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/feedbackCommunityUtil.js"></script>
     <script src="assets/js/report.js"></script>
     <script src="assets/js/updateCommunity.js"></script>
+    <script src="assets/js/searchCommunity.js"></script>
+
 
     <script>
         $( document ).ready(function() {
-            console.log( "ready!" );
-
 
             let communityName = document.getElementById('communityName')
             let communityContact = document.getElementById('communityContact')
@@ -133,11 +134,6 @@
             communitySocialMedia.value =  localStorage.getItem('communitySocialMedia')
 
             localStorage.setItem('previousCommunityCategory', localStorage.getItem('communityCategory'));
-            // if (localStorage.getItem('isCommunitySelected') == 'True') {
-            //     reportServerTypeDiv.innerText =  "Community"
-            // } else {
-            //     reportServerTypeDiv.innerText =  "Class"
-            // }
         });
     </script>
 </div>

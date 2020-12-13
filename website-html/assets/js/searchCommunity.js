@@ -2,34 +2,7 @@ function searchbarClubSelected(){
   document.getElementById("classSearchBar").style.display = "none";
   document.getElementById("clubSearchBar").style.display = "block";
 }
-function getCommunityInfoByName(name){
-  console.log("getCommunityInfoByName() called :)");
-  var ref = firebase.database().ref("clubs").child(name);
-  console.log("NAME: ", name);
-  ref.on('value', function(snapshot) {
-      let communityObj = snapshot.val()
-      document.getElementById("community-academic-year").innerHTML =  snapshot.child("year").val(); //discord info
-      document.getElementById("community-date-created").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-status").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-organization-type").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-purpose").innerHTML =snapshot.child("year").val();
-      // document.getElementById("community-discord-link").innerHTML = communityObj  (Pending)
-      document.getElementById("community-socialmedia").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-email").innerHTML = snapshot.child("year").val();
-  });
-}
-/*
-function getCommunitySnapshot(){
-  var ref = firebase.database().ref("clubs");
-  ref.on("value", function(snapshot) {
-   snapshot.forEach(function(childSnapshot) {
-       childSnapshot.forEach(function(clubSnapshot){
-           var communityName = clubSnapshot.key;
-           communitiesArr.push(communityName);
-       });
-   });
-  });
-}*/
+
 function getCommunitySnapshot() {
     getCommunitySnap().then(snapshot => {
         for(var i in snapshot.result)
@@ -45,8 +18,7 @@ const getCommunitySnap = () => {
         .then(response => response.json())
         .catch(error => console.log(error));
 }
-//OLD VERSION
-/*
+
 function submit_community() {
     var communityInput = document.getElementById("inputCommunities").value;
     document.getElementById('displayResults').style.display = "block";
@@ -69,51 +41,6 @@ function submit_community() {
 
     // Removes previous title of Community from previous search query from page,
     // otherwise it keeps adding the element but never gets deleted on new search
-
-    var remove1 = document.querySelector(" #results > #community-category ");
-    var remove2 = document.querySelector(" #results > #communityName ");
-    if(remove1 !== null){
-        remove1.parentNode.removeChild(remove1);
-    }
-    if(remove2 !== null){
-        remove2.parentNode.removeChild(remove2);
-    }
-
-
-    if (communitiesArr.includes(communityInput)) {
-        localStorage.setItem("communityInput", communityInput); //save data to local storage cause we dont wanna use php lmao
-        getCommunityByKeyword(communityInput);
-    }
-    else {
-        document.getElementById('displayResults').style.display = "none";
-        showInvalidCommunityAlert();
-    }
-
-}
- */
-function submit_community() {
-    var communityInput = document.getElementById("inputCommunities").value;
-    document.getElementById('displayResults').style.display = "block";
-
-    location.hash = 'displayResults';
-
-
-    // Animation for moving the screen
-    if (window.location.hash) scroll(0,0);
-
-    setTimeout(function () {
-        scroll(0, 0);
-    }, 1);
-    if (window.location.hash) {
-        var hash = window.location.hash;
-        $('html, body').animate({
-            scrollTop: $(hash).offset().top
-        }, 1500, 'swing');
-    }
-
-    // Removes previous title of Community from previous search query from page,
-    // otherwise it keeps adding the element but never gets deleted on new search
-
     var remove1 = document.querySelector(" #results > #community-category ");
     var remove2 = document.querySelector(" #results > #communityName ");
     if(remove1 !== null){
@@ -163,10 +90,6 @@ function goToUpdateCommunityPage(communityName, communityContact, communityDisco
     communityType, communitySocialMedia, communityCategory) {
 
     // Processing
-    console.log("goToUpdateCommunityPage() called")
-
-    // Processing
-    // window.alert(""+communityName);
     localStorage.setItem('communityName', communityName);
     localStorage.setItem('communityContact', communityContact);
     localStorage.setItem('communityDiscordLink', communityDiscordLink)
@@ -178,163 +101,14 @@ function goToUpdateCommunityPage(communityName, communityContact, communityDisco
     window.location.href = "update-community.html"
 }
 
-// Keyword Search
-//OLD VERSION
-/*
-function getCommunityByKeyword(communityName){
-    var ref = firebase.database().ref("clubs");
-    ref.on("value", function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            childSnapshot.forEach(function(clubSnapshot){
-                if(clubSnapshot.key === communityName){
-                    console.log("Club Snapshot!");
-                    console.log();
-                    console.log(clubSnapshot.val().status);
-
-                    var resultsString = { str : "" };
-                        resultsString.str += "<li class='community'>";
-                        //resultsString.str += `<button class=\"collapsible\">${clubInfo.key}</button>`;
-                        resultsString.str += "<div>";
-                        resultsString.str += "<p></p>";
-                        if(clubSnapshot.val().status !== "") {
-                            resultsString.str +=   `<p><b>Status: </b>${clubSnapshot.val().status}</p>`;
-                        };
-                        if(clubSnapshot.val().org_type !== "") {
-                            resultsString.str +=   `<p><b>Type: </b>${clubSnapshot.val().org_type}</p>`;
-                        };
-                        if(clubSnapshot.val().contact !== ""){
-                            resultsString.str +=   `<p><b>Contact: </b>${clubSnapshot.val().contact}</p>`;
-                        };
-                        if(clubSnapshot.val().description !== "") {
-                            resultsString.str +=   `<p><b>Description: </b>${clubSnapshot.val().description}</p>`;
-                        };
-                        if(clubSnapshot.val().inviteLink !== "") {
-                            resultsString.str +=   `<div style='display: flex;'><a href=\"${clubSnapshot.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                            resultsString.str +=   `<button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromCommunity('${clubSnapshot.key}', '${clubSnapshot.val().inviteLink}');\">Report</button></div>`;
-                        };
-                        if(clubSnapshot.val().social_media !== "") {
-                            resultsString.str +=   `<p><b>Social Media: </b>${clubSnapshot.val().social_media}</p>`;
-                        };
-                        resultsString.str += "<p></p>";
-                        resultsString.str += "</div>";
-                        resultsString.str += "</li>";
-
-                    document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"communityName\">${communityName}</h2>\n` + document.getElementById("results").innerHTML;
-                    document.getElementById("queryResults").innerHTML = resultsString.str;
-
-                }
-            });
-        });
-    });
-}
-*/
-
-// Category Search
-// OLD VERSION
-/*
 function submit_community_category(categoryInput){
     document.getElementById('displayResults').style.display = "block";
 
     location.hash = 'displayResults';
 
     // Animation for moving the screen
-
-    window.scrollBy(0, 1);//programatically scroll down a bit. otherwise animation sometimes doesnt work.
-    if (window.location.hash) scroll(0,0);
-    setTimeout(function () {
-        scroll(0, 0);
-    }, 1);
-    if (window.location.hash) {
-        var hash = window.location.hash;
-        console.log(hash);
-        $('html, body').animate({
-            scrollTop: $(hash).offset().top
-        }, 1500, 'swing');
-    }
-    // Removes previous title of Community from previous search query from page,
-    // otherwise it keeps adding the element but never gets deleted on new search
-
-    var remove1 = document.querySelector(" #results > #community-category ");
-    var remove2 = document.querySelector(" #results > #communityName ");
-    if(remove1 !== null){
-        remove1.parentNode.removeChild(remove1);
-    }
-    if(remove2 !== null){
-        remove2.parentNode.removeChild(remove2);
-    }
-
-    localStorage.setItem("categoryInput", categoryInput);
-    getCommunityCategory(categoryInput);
-
-}
-
-function getCommunityCategory(category){
-    console.log("getCommunityCategory() called :)");
-    //console.log("CATEGORY: ", category);
-
-    var catRef = "clubs/".concat(category);
-    var ref = firebase.database().ref(catRef).on('value', function(snap){
-        var resultsString = { str : "" };
-
-        //This loop iterates over the clubs associated with the category
-        snap.forEach(function(childNodes){
-            resultsString.str += "<li class='community'>";
-            resultsString.str += `<button class=\"collapsible\">${childNodes.key}</button>`;
-            resultsString.str += "<div class=\"content\">";
-            resultsString.str += "<p></p>";
-            if(childNodes.val().status !== "") {
-                resultsString.str +=   `<p><b>Status: </b>${childNodes.val().status}</p>`;
-            };
-            if(childNodes.val().org_type !== "") {
-                resultsString.str +=   `<p><b>Type: </b>${childNodes.val().org_type}</p>`;
-            };
-            if(childNodes.val().contact !== ""){
-                resultsString.str +=   `<p><b>Contact: </b>${childNodes.val().contact}</p>`;
-            };
-            if(childNodes.val().description !== "") {
-                resultsString.str +=   `<p><b>Description: </b>${childNodes.val().description}</p>`;
-            };
-            if(childNodes.val().inviteLink !== "") {
-                resultsString.str +=   `<div style='display: flex;'><a href=\"${childNodes.val().inviteLink}\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
-                resultsString.str +=   `<button style='margin-left: 10px;' class=\"button\" style="text-align: center;" onClick=\"goToReportPageFromCommunity('${childNodes.key}', '${childNodes.val().inviteLink}');\">Report</button></div>`;
-            };
-            if(childNodes.val().social_media !== "") {
-                resultsString.str +=   `<p><b>Social Media: </b>${childNodes.val().social_media}</p>`;
-            };
-            resultsString.str += "<p></p>";
-            resultsString.str += "</div>";
-            resultsString.str += "</li>";
-        });
-        document.getElementById("results").innerHTML = `\t\t\t<h2 style=\"text-align: center;\" id=\"community-category\">${category}</h2>\n` + document.getElementById("results").innerHTML;
-        document.getElementById("queryResults").innerHTML = resultsString.str;
-
-        var container = document.querySelector(" #results > #queryResults ");
-        var coll = container.querySelectorAll(" .community > .collapsible")
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-    });
-}
-*/
-
-function submit_community_category(categoryInput){
-    document.getElementById('displayResults').style.display = "block";
-
-    location.hash = 'displayResults';
-
-    // Animation for moving the screen
-
-    window.scrollBy(0, 1);//programatically scroll down a bit. otherwise animation sometimes doesnt work.
+    // programatically scroll down a bit. otherwise animation sometimes doesnt work.
+    window.scrollBy(0, 1);      
     if (window.location.hash) scroll(0,0);
     setTimeout(function () {
         scroll(0, 0);
@@ -345,9 +119,9 @@ function submit_community_category(categoryInput){
             scrollTop: $(hash).offset().top
         }, 1500, 'swing');
     }
+
     // Removes previous title of Community from previous search query from page,
     // otherwise it keeps adding the element but never gets deleted on new search
-
     var remove1 = document.querySelector(" #results > #community-category ");
     var remove2 = document.querySelector(" #results > #communityName ");
     if(remove1 !== null){
