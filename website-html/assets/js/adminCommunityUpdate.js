@@ -165,5 +165,13 @@ function updateCommunitiesInfotoDBFromAdminPage(
     });
 }
 
+function communitiesUpdates(){
+    retrieveCommunitiesUpdates()
+    document.getElementById("communitiesRequests").style.display = "none";
+    document.getElementById("discordRequests").style.display = "none";
+    document.getElementById("communitiesUpdates").style.display = "block";
+}
+
+
 CommunitiesUpdateArr = [];
 retrieveCommunitiesUpdates();

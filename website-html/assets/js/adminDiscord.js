@@ -65,14 +65,14 @@ function retrieveCommunitiesRequests() {
             name.rows =1
             name.readOnly=true
             name.style.textAlign = "center"
-            
+
             // Email
             let contact = document.createElement('textarea')
             contact.innerText = discordRequest["contact"] || 'N/A'
             contact.rows =1
             contact.readOnly=true
             contact.style.textAlign = "center"
-            
+
             // Invite URL
             let inviteLink = document.createElement('textarea')
             inviteLink.innerText = discordRequest["inviteLink"] || 'N/A'
@@ -289,12 +289,13 @@ function classRequests(){
     retrieveDiscordRequests()
     document.getElementById("communitiesRequests").style.display = "none";
     document.getElementById("discordRequests").style.display = "block";
-
+    document.getElementById("communitiesUpdates").style.display = "block";
 }
 function communitiesRequests(){
     retrieveCommunitiesRequests()
     document.getElementById("communitiesRequests").style.display = "block";
     document.getElementById("discordRequests").style.display = "none";
+    document.getElementById("communitiesUpdates").style.display = "none";
 }
 
 

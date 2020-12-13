@@ -36,8 +36,7 @@
 									&nbsp;
 									<a class="no-style more" style="font-weight: bold;">Discord Requests</a>
 									|
-									<a href="admin-community-update.html" class="no-style more">Community Updates</a>
-									|
+
 									<a href="admin-discord-review.html" class="no-style more">Manage Discord</a>
 									|
 
@@ -60,10 +59,12 @@
 				<section class="align-center" style="margin-top: 10vh">
 
 					<div class="inner">
-						<input type="radio" name="editList" id="classDicordsOption" value="" checked onclick="classRequests()"/>
-						<label for="classDicordsOption">Class Requests</label>
-						<input type="radio" name="editList" id="communityDicordsOption" value=""  onclick="communitiesRequests()"/>
-						<label for="communityDicordsOption">Community Requests</label>
+						<input type="radio" name="editList" id="classDiscordsOption" value="" checked onclick="classRequests()"/>
+						<label for="classDiscordsOption">Class Requests</label>
+						<input type="radio" name="editList" id="communityDiscordsOption" value=""  onclick="communitiesRequests()"/>
+						<label for="communityDiscordsOption">Community Requests</label>
+						<input type="radio" name="editList" id="communityUpdatesOption" value=""  onclick="communitiesUpdates()"/>
+						<label for="communityUpdatesOption">Community Updates</label>
 
 					</div>
                     <div>
@@ -71,7 +72,8 @@
 						</div>
 						<div id="communitiesRequests" style="display: none; margin:auto; width: 60%; ">
 						</div>
-
+						<div id="communitiesUpdates" style="display: none; margin:auto; width: 60%; ">
+						</div>
                     </div>
 				</section>
 
@@ -99,6 +101,7 @@
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/login.js"></script>
 		<script src="assets/js/adminDiscord.js"></script>
+		<script src="assets/js/adminCommunityUpdate.js"></script>
 
 
 	</body>
