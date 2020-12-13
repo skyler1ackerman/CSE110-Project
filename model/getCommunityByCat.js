@@ -32,6 +32,9 @@ module.exports = async function getCommunityByCat(category) {
                 resultsString.str += `<div style='display: flex;'><a href=\"${
                     childNodes.val().inviteLink
                 }\" target="_blank" class="button primary" style="text-align: center;">Join Discord</a>`;
+                resultsString.str += `<button class=\"button\" style="margin-left10px; text-align: center; font-family: inherit;" onClick=\"goToReportPageFromCommunity('${
+                    childNodes.key
+                }', '${childNodes.val().inviteLink}');\">Report</button>`;
                 resultsString.str += `<button id="update_community_btn" style='margin-left: auto; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${
                     childNodes.key
                 }', '${childNodes.val().contact}', '${
