@@ -8,7 +8,7 @@ from discord.ext import commands
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-extensions = ['reportBot', 'eventBot', 'assignmentBot', 'ruleBot']
+extensions = ['reportBot', 'eventBot', 'assignmentBot', 'ruleBot', 'rainbowBot']
 for exten in extensions:
 	bot.load_extension(exten)
 
