@@ -1,5 +1,4 @@
 const setAdminEmail = () => {
-    console.log("setAdminEmail() called!");
     getAdminEmail(document.getElementById("Admin_Email").value);
     document.getElementById("Admin_Email").value='';
     retrieveAdminUser()
@@ -40,13 +39,9 @@ const removeData =(reference,id)=>{
 
 }
 function retrieveAdminUser() {
-    console.log("retrieveAdminUser called :)");
     let AdminUserElement = document.querySelector('#AdminUsers')
-    //let newAdminBoxElement = document.createElement('div')
     var adminSnapshot;
 
-    // newAdminBoxElement.style.border = "gainsboro"
-    // newAdminBoxElement.style.marginBottom = "10px"
     getAdminSnapshot().then(snapshot=>{
         adminSnapshot=snapshot;
         if(AdminUserElement != null){
@@ -64,15 +59,9 @@ function retrieveAdminUser() {
             let email = document.createElement('td')
             email.innerText = adminSnapshot[admin] || 'N/A'
 
-
-
             // IsAdmin
-
             let IsAdmin = document.createElement('td')
             IsAdmin.innerText = "Administrative User" || 'N/A'
-
-
-
 
             let remove = document.createElement('button')
             remove.innerText = "Remove"
@@ -90,6 +79,5 @@ function retrieveAdminUser() {
 
         };
     });
-    console.log("admin appended");
 }
 retrieveAdminUser();

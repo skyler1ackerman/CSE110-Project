@@ -49,7 +49,6 @@ function retrieveCommunitiesRequests() {
             var discordRequest = discordSnapshot[key];
             let newDiscordRequestBoxElement = document.createElement('div')
             newDiscordRequestBoxElement.setAttribute("id", id);
-            //newFeedbackBoxElement.style.border = "solid gainsboro"
             newDiscordRequestBoxElement.style.marginBottom = "5vh"
 
             // Time
@@ -79,6 +78,7 @@ function retrieveCommunitiesRequests() {
             inviteLink.rows =1
             inviteLink.readOnly=true
             inviteLink.style.textAlign = "center"
+
             // org_type
             let org_type = document.createElement('textarea')
             org_type.innerText = discordRequest["org_type"] || 'N/A'
@@ -106,8 +106,6 @@ function retrieveCommunitiesRequests() {
             description.readOnly=true
             description.style.textAlign = "center"
 
-
-
             let acceptBtn = document.createElement('button')
             acceptBtn.innerText = "Accept"
             acceptBtn.addEventListener("click",function(discordRequest){
@@ -122,7 +120,6 @@ function retrieveCommunitiesRequests() {
                 removeData(discordRequestsRef,newDiscordRequestBoxElement.id);
                 retrieveCommunitiesRequests();
             }.bind(rejectBtn));
-
 
             newDiscordRequestBoxElement.appendChild(time)
             newDiscordRequestBoxElement.appendChild(contact)
@@ -142,7 +139,6 @@ function retrieveCommunitiesRequests() {
 
 }
 function retrieveDiscordRequests() {
-    console.log("retrieveDiscordRequests() called :)");
     let discordRequestsElement = document.querySelector('#discordRequests')
     var discordRequestsRef = "DiscordServerRequests/Classes";
     getClassRequestSnapshot(discordRequestsRef).then(snapshot=> {
@@ -160,7 +156,6 @@ function retrieveDiscordRequests() {
             var discordRequest = discordSnapshot[key];
             let newDiscordRequestBoxElement = document.createElement('div')
             newDiscordRequestBoxElement.setAttribute("id", id);
-            //newFeedbackBoxElement.style.border = "solid gainsboro"
             newDiscordRequestBoxElement.style.marginBottom = "5vh"
 
             // Time
@@ -169,7 +164,6 @@ function retrieveDiscordRequests() {
             time.rows =1
             time.readOnly=true
             time.style.textAlign = "center"
-
 
             // Email
             let email = document.createElement('textarea')
@@ -191,6 +185,7 @@ function retrieveDiscordRequests() {
             inviteURL.rows =1
             inviteURL.readOnly=true
             inviteURL.style.textAlign = "center"
+
             // Prof Name
             let profName = document.createElement('textarea')
             profName.innerText = discordRequest["profName"] || 'N/A'
@@ -204,6 +199,7 @@ function retrieveDiscordRequests() {
             quarter.rows =1
             quarter.readOnly=true
             quarter.style.textAlign = "center"
+
             // Year
             let year = document.createElement('textarea')
             year.innerText = discordRequest["year"] || 'N/A'
@@ -239,11 +235,7 @@ function retrieveDiscordRequests() {
             discordRequestsElement.append(newDiscordRequestBoxElement)
         };
     });
-
-
 }
-
-
 
 function addDiscordInfotoDBFromAdminPage (className, inviteURL, profName, quarter, year){
     let config = {
@@ -262,8 +254,6 @@ function addDiscordInfotoDBFromAdminPage (className, inviteURL, profName, quarte
 
 }
 
-
-
 function addCommunitiesInfotoDBFromAdminPage(contact, name, inviteLink, org_type, category, social_media, description){
     //First, count number of children in the class
     let config = {
@@ -281,8 +271,6 @@ function addCommunitiesInfotoDBFromAdminPage(contact, name, inviteLink, org_type
     };
     fetch('http://localhost:8000/addCommunity',config)
         .catch(error=>console.log(error))
-
-
 }
 
 function classRequests(){
@@ -291,6 +279,7 @@ function classRequests(){
     document.getElementById("discordRequests").style.display = "block";
     document.getElementById("communitiesUpdates").style.display = "block";
 }
+
 function communitiesRequests(){
     retrieveCommunitiesRequests()
     document.getElementById("communitiesRequests").style.display = "block";

@@ -10,82 +10,48 @@
         <link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     </head>
-    <style>
-
-/*  For debugging
-  * {
-	  outline: 1px solid red  !important;
-  } */
-
-    </style>
-
-
 	<body class="whiteBackground">
-
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
-
 				<!-- Header -->
                 <header id="header" class="alt">
                     <!-- <h1><a href="index.html">TritonGroups</a></h1> -->
                     <nav id="nav">
-                        <!-- <ul> -->
-                            <!-- <li class="special"> Navigation bar starts here -->
-								<ul class="menuToggle">
-
-									<a href="afterlogin.html" class="no-style more" >Home</a>
-
-									|
-									<a href="admin-dashboard.html" class="no-style more">Feedback Review</a>
-									|
-									<a href="admin-report.html" class="no-style more">Report Review</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="admin-discord-requests.html" class="no-style more">Discord Requests</a>
-									|
-
-									<a class="no-style more" style="font-weight: bold;">Manage Discord</a>
-									|
-
-									<a href="admin-dashboard-user.html" class="no-style more">Admin</a>
-									|
-
-
-									<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
-									&nbsp;
-									&nbsp;
-									&nbsp;
-								</ul>
-								<!-- </li> -->
-                        <!-- </ul> -->
+						<ul class="menuToggle">
+							<a href="afterlogin.html" class="no-style more" >Home</a>
+							|
+							<a href="admin-dashboard.html" class="no-style more">Feedback Review</a>
+							|
+							<a href="admin-report.html" class="no-style more">Report Review</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="admin-discord-requests.html" class="no-style more">Discord Requests</a>
+							|
+							<a href="admin-community-update.html" class="no-style more">Community Updates</a>
+							|
+							<a class="no-style more" style="font-weight: bold;">Manage Discord</a>
+							|
+							<a href="admin-dashboard-user.html" class="no-style more">Admin</a>
+							|
+							<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
+							&nbsp;
+							&nbsp;
+							&nbsp;
+						</ul>
                     </nav>
                 </header>
 				<script>
 					window.onload = function() {
 						document.getElementById("myclass").innerHTML=localStorage.getItem("reviewClassInput");
-						//getDiscordInfo(localStorage.getItem("reviewClassInput")); //get 5 discord infos from DB
-						//constructHTML(localStorage.getItem("reviewClassInput"));
 						getClassSnapshot();
-						//get all class info from DB for search engine
-						//get all class info from FB database
-
-						// document.getElementById("email").placeholder=localStorage.getItem("user-email");
-						// document.getElementById("email").value=localStorage.getItem("user-email");
-						// // localStorage.removeItem("user-email");
-						// document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-						// document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-						// localStorage.removeItem("user-displayname");
-						//remove local storage items in signout function for security.
 					}
 				</script>
 				<!-- Banner -->
 				<section id="banner">
 					<div class="inner">
 						<br><br><br><br>
-
 						<h2>Browse Classes</h2>
-
 						<p></p>
 						<div id="classSearchBar" style="display: block;">
 							<ul class="actions special">
@@ -113,8 +79,6 @@
 					</div>
 				</section>
 			</div>
-
-
 		<!-- Scripts -->
 		<!-- below is firebase SDKs-->
 		<!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
@@ -137,7 +101,5 @@
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/login.js"></script>
 		<script src="assets/js/reviewClass.js"></script>
-
-
 	</body>
 </html>

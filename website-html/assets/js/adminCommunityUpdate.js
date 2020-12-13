@@ -14,7 +14,6 @@ function retrieveCommunitiesUpdates() {
             var communityUpdate = childSnapshot.val();
             let newCommunityUpdateBoxElement = document.createElement("div");
             newCommunityUpdateBoxElement.setAttribute("id", childSnapshot.key);
-            //newFeedbackBoxElement.style.border = "solid gainsboro"
             newCommunityUpdateBoxElement.style.marginBottom = "5vh";
 
             // Time
@@ -139,8 +138,6 @@ function retrieveCommunitiesUpdates() {
             communityUpdatesElement.append(newCommunityUpdateBoxElement);
         });
     });
-
-    console.log("communityUpdateArr:! ", CommunitiesUpdateArr);
 }
 
 function updateCommunitiesInfotoDBFromAdminPage(
@@ -151,7 +148,7 @@ function updateCommunitiesInfotoDBFromAdminPage(
     communityInviteLink,
     communitySocialMedia,
     communityDescription
-) {
+    ) {
     //First, count number of children in the class
     var Ref = `clubs/${communityCategory}`;
 

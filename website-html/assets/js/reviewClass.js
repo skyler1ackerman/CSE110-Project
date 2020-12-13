@@ -1,4 +1,3 @@
-
 function searchbarClassSelected(){
     document.getElementById("clubSearchBar").style.display = "none";
     document.getElementById("classSearchBar").style.display = "block";
@@ -117,21 +116,6 @@ const removeClass =(className,bid)=>{
         .catch(error => console.log(error));
 }
 
-
-
-/*
-function submit_class(){
-    var reviewClassInput = document.getElementById("inputClasses").value;
-    //check if user input is valid
-    if(classesArr.includes(reviewClassInput)){
-        localStorage.setItem("reviewClassInput", reviewClassInput); //save data to local storage cause we dont wanna use php lmao
-        window.location.href = "admin-discord-review.html";
-    }
-    else{
-        alert("The class you entered is not in our Database.");
-    }
-}*/
-
 function submit_class() {
     var reviewClassInput = document.getElementById("inputClasses").value;
     document.getElementById('displayResults').style.display = "block";
@@ -222,21 +206,6 @@ function autocompleteClass(inp, arr) {
         a.style.maxHeight="40vh"
         a.style.overflowY="scroll";
         a.style.borderColor="transparent";
-        // a.addEventListener("wheel",function (e){
-        //     e.preventDefault();
-        //
-        //     if(e.deltaY>0&&a.childElementCount>7){
-        //         nodesBuffer.appendChild(a.firstChild);
-        //         a.removeChild(a.firstChild);
-        //         console.log("scroll up");
-        //     }else if(e.deltaY<0){
-        //         if(nodesBuffer.hasChildNodes()){
-        //             console.log("buffer not empty");
-        //             a.insertBefore(nodesBuffer.lastChild,a.firstChild);
-        //         }
-        //     }
-        //
-        // });
 
     });
 
@@ -267,8 +236,6 @@ function autocompleteClass(inp, arr) {
             }
         }
     });
-
-
 
     function addActive(x) {
         /*a function to classify an item as "active":*/

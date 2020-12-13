@@ -45,8 +45,6 @@ const removeData =(reference,id)=>{
 }
 
 function retrieveFeedbackVerified() {
-    console.log("retrieveFeedbackVerified() called :)");
-
     let feedbackVerifiedElement = document.querySelector('#feedbackVerified');
     var ResolvedRef="Feedback/ResolvedVerified";
     var refVerified = "Feedback/Verified";
@@ -126,7 +124,6 @@ function retrieveFeedbackVerified() {
     });
 }
 function retrieveResolvedVerified() {
-    console.log("retrieveResolvedVerified() called :)");
     var ResolvedRef="Feedback/ResolvedVerified";
     var UnresolvedRef = "Feedback/Verified";
     let resolvedVerifiedElement = document.querySelector('#resolvedVerified')
@@ -187,7 +184,6 @@ function retrieveResolvedVerified() {
             unresolved.addEventListener("click",function (feedback) {
                 moveFeedback(ResolvedRef, UnresolvedRef,newFeedbackBoxElement.id, feedback["email"], feedback["fullname"],
                     feedback["issue_type"], feedback["explanation"], feedback["time"])
-                //this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedVerified();
             }.bind(unresolved,feedback));
 
@@ -195,7 +191,6 @@ function retrieveResolvedVerified() {
             remove.innerText = "Remove"
             remove.addEventListener("click",function(){
                 removeData(ResolvedRef,newFeedbackBoxElement.id);
-                //this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedVerified();
             }.bind(remove));
             newFeedbackBoxElement.appendChild(time)
@@ -209,16 +204,11 @@ function retrieveResolvedVerified() {
             if(resolvedVerifiedElement != null){
                 resolvedVerifiedElement.append(newFeedbackBoxElement)
             }
-
-
-
         }
-
-});
+    });
 }
 
 function retrieveFeedbackUnverified() {
-    console.log("retrieveFeedbackUnverified() called :)");
     var ResolvedRef="Feedback/ResolvedUnverified";
     var ref = "Feedback/Unverified";
     let feedbackUnverifiedElement = document.querySelector('#feedbackUnverified')
@@ -298,7 +288,6 @@ function retrieveFeedbackUnverified() {
 
 
 function retrieveResolvedUnverified() {
-    console.log("retrieveResolvedUnverified() called :)");
     var ref="Feedback/ResolvedUnverified";
     var UnresolvedRef = "Feedback/Unverified";
     let resolvedUnverifiedElement = document.querySelector('#resolvedUnverified')
@@ -358,7 +347,6 @@ function retrieveResolvedUnverified() {
             unresolved.addEventListener("click",function(feedback){
                 moveFeedback(ref, UnresolvedRef,newFeedbackBoxElement.id, feedback["email"], feedback["fullname"],
                     feedback["issue_type"], feedback["explanation"], feedback["time"])
-                // this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedUnverified();
             }.bind(unresolved,feedback));
 
@@ -366,7 +354,6 @@ function retrieveResolvedUnverified() {
             remove.innerText = "Remove"
             remove.addEventListener("click",function(){
                 removeData(ref,newFeedbackBoxElement.id);
-                // this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedUnverified();
             }.bind(remove));
             newFeedbackBoxElement.appendChild(time)
@@ -386,8 +373,7 @@ function retrieveResolvedUnverified() {
 }
 
 function feedbackVerifiedSelected(){
-    console.log("feedbackVerifiedSelected() called");
-    retrieveFeedbackVerified()
+    retrieveFeedbackVerified();
     document.getElementById("feedbackUnverified").style.display = "none";
     document.getElementById("feedbackVerified").style.display = "block";
     document.getElementById("resolvedUnverified").style.display = "none";
@@ -395,8 +381,7 @@ function feedbackVerifiedSelected(){
 }
 
 function feedbackUnverifiedSelected(){
-    retrieveFeedbackUnverified()
-    console.log("feedbackUnverifiedSelected() called");
+    retrieveFeedbackUnverified();
     document.getElementById("feedbackUnverified").style.display = "block";;
     document.getElementById("feedbackVerified").style.display = "none";
     document.getElementById("resolvedUnverified").style.display = "none";
@@ -405,8 +390,7 @@ function feedbackUnverifiedSelected(){
 }
 
 function resolvedVerifiedSelected(){
-    retrieveResolvedVerified()
-    console.log("ResolvedVerifiedSelected() called");
+    retrieveResolvedVerified();
     document.getElementById("feedbackUnverified").style.display = "none";
     document.getElementById("feedbackVerified").style.display = "none";
     document.getElementById("resolvedUnverified").style.display = "none";
@@ -414,8 +398,7 @@ function resolvedVerifiedSelected(){
 }
 
 function resolvedUnverifiedSelected(){
-    retrieveResolvedUnverified()
-    console.log("ResolvedUnverifiedSelected() called");
+    retrieveResolvedUnverified();
     document.getElementById("feedbackUnverified").style.display = "none";
     document.getElementById("feedbackVerified").style.display = "none";
     document.getElementById("resolvedUnverified").style.display = "block";

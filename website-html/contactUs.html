@@ -20,7 +20,6 @@
 	<body class="landing is-preload">
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
-
 				<!-- Header -->
                 <header id="header" class="alt">
 					<nav id="nav">
@@ -74,19 +73,12 @@
                 </section>
 			</div>
 			<script>
-
-				// load for popout
-				// var profileImgUrl = localStorage.getItem("user-profileimgurl");
-				// document.getElementById("profilePicUserProfile").src=profileImgUrl;
-				// document.getElementById("profilePicUserProfile2").src=profileImgUrl;
 				document.getElementById("profileEmail").innerHTML=localStorage.getItem("user-email");
 				document.getElementById("profileName").innerHTML=localStorage.getItem("user-displayname");
 
 				// load for form 
-				
 				document.getElementById("email").placeholder=localStorage.getItem("user-email");
 				document.getElementById("email").value=localStorage.getItem("user-email");
-				// localStorage.removeItem("user-email");
 				document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
 				document.getElementById("fullname").value=localStorage.getItem("user-displayname");
 
@@ -107,15 +99,15 @@
 			</script>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-      		<script src="assets/js/login.js"></script>
-			<script src="assets/js/feedbackDiscordUtil.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/login.js"></script>
+		<script src="assets/js/feedbackDiscordUtil.js"></script>
 			
 	</body>
 </html>
