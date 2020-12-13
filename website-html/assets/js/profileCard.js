@@ -21,8 +21,6 @@ function ifAdminDashboard() {
 
     getAdminUser().then(snapshot => {
         Object.keys(snapshot).forEach(function (admin_email) {
-            // console.log(admin_email);
-            console.log(snapshot[admin_email].email);
             if(localStorage.getItem("user-email")==snapshot[admin_email].email){
                 document.getElementById("directAdmin").style.display = "inline-block";
             }
