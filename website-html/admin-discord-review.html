@@ -66,7 +66,7 @@
 					window.onload = function() {
 						document.getElementById("myclass").innerHTML=localStorage.getItem("reviewClassInput");
 						//getDiscordInfo(localStorage.getItem("reviewClassInput")); //get 5 discord infos from DB
-						constructHTML(localStorage.getItem("reviewClassInput"));
+						//constructHTML(localStorage.getItem("reviewClassInput"));
 						getClassSnapshot();
 						//get all class info from DB for search engine
 						//get all class info from FB database
@@ -102,7 +102,7 @@
 
 				</section>
 
-				<section class="wrapper style5">
+				<section id="displayResults" class="wrapper style5" style="display: none;">
 
 					<div id="results" class="inner" style="text-align: center">
 						<h2 style="text-align: center" id="myclass"></h2>

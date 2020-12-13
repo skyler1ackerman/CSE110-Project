@@ -6,6 +6,8 @@ const getClass = require('../model/getClass');
 const getClassSnapshot = require('../model/getClassSnapshot');
 const getCommunity = require('../model/getCommunity');
 const getCommunityByCat = require('../model/getCommunityByCat');
+const getCommunitySnapshot = require('../model/getCommunitySnapshot');
+const getMajorSnapshot = require('../model/getMajorSnapshot');
 
 router.get('/getClass', (req, res) => {
     getClass(req.query.className)
@@ -24,6 +26,16 @@ router.get('/getCommunity', (req, res) => {
 
 router.get('/getCommunityByCat', (req, res) => {
     getCommunityByCat(req.query.category)
+        .then(doc => res.send(doc))
+});
+
+router.get('/getCommunitySnapshot', (req, res) => {
+    getCommunitySnapshot()
+        .then(doc => res.send(doc))
+});
+
+router.get('/getMajorSnapshot', (req, res) => {
+    getMajorSnapshot()
         .then(doc => res.send(doc))
 });
 // end

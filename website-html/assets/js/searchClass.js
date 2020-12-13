@@ -216,7 +216,7 @@ async function submit_class() {
 
 }
 */
-async function submit_class() {
+function submit_class() {
     var classInput = document.getElementById("inputClasses").value;
     document.getElementById('displayResults').style.display = "block";
     location.hash = 'displayResults';

@@ -11,6 +11,7 @@ module.exports = async function getCommunityByCat(category) {
             resultsString.str += `<button class=\"collapsible\">${childNodes.key}</button>`;
             resultsString.str += '<div class="content">';
             resultsString.str += "<p></p>";
+          
             if (childNodes.val().status !== "") {
                 resultsString.str += `<p><b>Status: </b>${childNodes.val().status}</p>`;
             }
