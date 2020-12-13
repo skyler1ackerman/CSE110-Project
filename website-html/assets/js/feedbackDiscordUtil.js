@@ -67,21 +67,3 @@ const sendFeedbackUnverifedHelper = (email, fullname, issue_type, explanation,
     fetch('http://localhost:8000/sendFeedbackUnverifed', config)
     .catch(error => console.log(error));
 }
-
-function getDiscordRequests(){
-    console.log("getDiscordRequests() called :)");
-    console.log(firebase)
-    var fbRef = "DiscordServerRequests/";
-    firebase.database().ref(fbRef).push().set({
-        email: localStorage.getItem("user-email"),
-        className: localStorage.getItem("classinput"),
-        inviteURL: document.getElementById("invitelink").value,
-        profName: document.getElementById("professor").value,
-        quarter : document.getElementById("quarter").value,
-        year: document.getElementById("year").value,
-        time: Date(Date.now()).toString()
-    });
-
-    alert("Successfully submitted! Thank you for your contribution!");
-}
-
