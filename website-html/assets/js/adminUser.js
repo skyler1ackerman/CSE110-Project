@@ -1,5 +1,5 @@
 const setAdminEmail = () => {
-    getAdminEmail(document.getElementById("Admin_Email").value);
+    getAdminEmail(document.getElementById("Admin_Email").value.toLowerCase());
     document.getElementById("Admin_Email").value='';
     retrieveAdminUser()
 }
