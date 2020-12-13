@@ -20,6 +20,7 @@ async function submitUpdateCommunity() {
                 communityName: localStorage.getItem("communityName"),
                 communityType: document.getElementById("communityType").value,
                 communityCategory: document.getElementById("communityCategory").value,
+                previousCommunityCategory:  localStorage.getItem("previousCommunityCategory"),
                 communityInviteLink: document.getElementById("communityDiscordLink").value,
                 communityContact: document.getElementById("communityContact").value,
                 communityDescription: document.getElementById("communityDescription").value,

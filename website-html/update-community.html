@@ -132,7 +132,7 @@
             communityCategory.value = localStorage.getItem('communityCategory')
             communitySocialMedia.value =  localStorage.getItem('communitySocialMedia')
 
-
+            localStorage.setItem('previousCommunityCategory', localStorage.getItem('communityCategory'));
             // if (localStorage.getItem('isCommunitySelected') == 'True') {
             //     reportServerTypeDiv.innerText =  "Community"
             // } else {

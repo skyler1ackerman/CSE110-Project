@@ -40,8 +40,8 @@ function retrieveCommunitiesUpdates() {
 
             // Update Reason
             let communityUpdateReason = document.createElement("textarea");
-            communityUpdateReason.innerText = ""
-            communityUpdateReason.innerText += "Reason for updating: "
+            communityUpdateReason.innerText = "";
+            communityUpdateReason.innerText += "Reason for updating: ";
             communityUpdateReason.innerText += communityUpdate.communityUpdateReason || "N/A";
             communityUpdateReason.rows = 5;
             communityUpdateReason.readOnly = true;
@@ -92,6 +92,18 @@ function retrieveCommunitiesUpdates() {
             let updateBtn = document.createElement("button");
             updateBtn.innerText = "Update";
             updateBtn.addEventListener("click", function () {
+                // Delete previous community info
+                if (
+                    communityUpdate.previousCommunityCategory !== null ||
+                    communityUpdate.previousCommunityCategory !== undefined ||
+                    communityUpdate.previousCommunityCategory !== ""
+                ) {
+                    const clubToBeRemovedRef = firebase
+                        .database()
+                        .ref(`clubs/${communityUpdate.previousCommunityCategory}`);
+                    clubToBeRemovedRef.child(communityUpdate.communityName).remove();
+                }
+
                 updateCommunitiesInfotoDBFromAdminPage(
                     communityUpdate.communityCategory,
                     communityUpdate.communityContact,
