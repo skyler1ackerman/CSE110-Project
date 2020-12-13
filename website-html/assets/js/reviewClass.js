@@ -14,7 +14,7 @@ const getClassSnap = () => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getClassSnapshot', config)
+    return fetch('http://18.237.22.223:8000/getClassSnapshot', config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
@@ -112,7 +112,7 @@ const removeClass =(className,bid)=>{
             bid
         })
     };
-    fetch('http://localhost:8000/removeClass',config)
+    fetch('http://18.237.22.223:8000/removeClass',config)
         .catch(error => console.log(error));
 }
 
@@ -151,7 +151,7 @@ const getClass = (className) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getClass?className=' + className, config)
+    return fetch('http://18.237.22.223:8000/getClass?className=' + className, config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }

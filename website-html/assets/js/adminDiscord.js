@@ -3,7 +3,7 @@ const getCommRequestSnapshot=(path)=>{
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getCommRequestSnapshot?path=' + path, config)
+    return fetch('http://18.237.22.223:8000/getCommRequestSnapshot?path=' + path, config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
@@ -13,7 +13,7 @@ const getClassRequestSnapshot=(path)=>{
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getClassRequestSnapshot?path=' + path, config)
+    return fetch('http://18.237.22.223:8000/getClassRequestSnapshot?path=' + path, config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
@@ -26,7 +26,7 @@ const removeData =(reference,id)=>{
             id
         })
     };
-    fetch('http://localhost:8000/removeData',config)
+    fetch('http://18.237.22.223:8000/removeData',config)
         .catch(error => console.log(error));
 
 }
@@ -249,7 +249,7 @@ function addDiscordInfotoDBFromAdminPage (className, inviteURL, profName, quarte
             year
         })
     };
-    fetch('http://localhost:8000/addClass',config)
+    fetch('http://18.237.22.223:8000/addClass',config)
         .catch(error => console.log(error));
 
 }
@@ -269,7 +269,7 @@ function addCommunitiesInfotoDBFromAdminPage(contact, name, inviteLink, org_type
             description
         })
     };
-    fetch('http://localhost:8000/addCommunity',config)
+    fetch('http://18.237.22.223:8000/addCommunity',config)
         .catch(error=>console.log(error))
 }
 

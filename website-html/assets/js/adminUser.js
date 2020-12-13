@@ -12,7 +12,7 @@ const getAdminEmail = (mail) => {
             mail
         })
     };
-    fetch('http://localhost:8000/getAdminEmail', config)
+    fetch('http://18.237.22.223:8000/getAdminEmail', config)
     .catch(error => console.log(error));
 }
 const getAdminSnapshot = ()=>{
@@ -20,7 +20,7 @@ const getAdminSnapshot = ()=>{
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getAdminSnapshot', config)
+    return fetch('http://18.237.22.223:8000/getAdminSnapshot', config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
@@ -34,7 +34,7 @@ const removeData =(reference,id)=>{
             id
         })
     };
-    fetch('http://localhost:8000/removeData',config)
+    fetch('http://18.237.22.223:8000/removeData',config)
         .catch(error => console(error));
 
 }

@@ -22,7 +22,7 @@ const sendFeedbackVerifedHelper = (email, fullname, issue_type, explanation,
             time
         })
     };
-    fetch('http://localhost:8000/sendFeedbackVerifed', config)
+    fetch('http://18.237.22.223:8000/sendFeedbackVerifed', config)
     .catch(error => console.log(error));
 }
 
@@ -52,6 +52,6 @@ const sendFeedbackUnverifedHelper = (email, fullname, issue_type, explanation,
             time
         })
     };
-    fetch('http://localhost:8000/sendFeedbackUnverifed', config)
+    fetch('http://18.237.22.223:8000/sendFeedbackUnverifed', config)
     .catch(error => console.log(error));
 }

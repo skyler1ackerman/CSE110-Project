@@ -11,7 +11,7 @@ const getAdminUser = () => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getAdminUser', config)
+    return fetch('http://18.237.22.223:8000/getAdminUser', config)
     .then(response => response.json())
     .catch(error => console.log(error));
 }
