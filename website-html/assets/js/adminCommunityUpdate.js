@@ -89,7 +89,7 @@ function retrieveCommunitiesUpdates() {
             communityDescription.style.textAlign = "center";
 
             let updateBtn = document.createElement("button");
-            updateBtn.innerText = "Update";
+            updateBtn.innerText = "Accept";
             updateBtn.addEventListener("click", function () {
                 // Delete previous community info
                 if (
@@ -116,7 +116,7 @@ function retrieveCommunitiesUpdates() {
             });
 
             let ignoreBtn = document.createElement("button");
-            ignoreBtn.innerText = "Ignore";
+            ignoreBtn.innerText = "Reject";
             ignoreBtn.addEventListener("click", function () {
                 communityUpdatesRef.child(newCommunityUpdateBoxElement.id).remove();
             });
