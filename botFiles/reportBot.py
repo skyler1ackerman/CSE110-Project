@@ -94,12 +94,13 @@ class ReportBot(commands.Cog):
 	# Runs whenever a new reaction is added
 	@commands.Cog.listener()
 	async def on_reaction_add(self, reaction, user):
-		# This is a dictionary of all of the emojis that the bot checks for.
-		# Right now it's just the red flag
-		optionDict = {'🟥': self.sendReport}
-		# If the emoji sent is in the dict.keys(), it will run that function
-		try:
-			await optionDict[reaction.emoji](reaction, user)
-		# Otherwise, it will ignore it
-		except KeyError:
-			pass
+		if not user.bot:
+			# This is a dictionary of all of the emojis that the bot checks for.
+			# Right now it's just the red flag
+			optionDict = {'🟥': self.sendReport}
+			# If the emoji sent is in the dict.keys(), it will run that function
+			try:
+				await optionDict[reaction.emoji](reaction, user)
+			# Otherwise, it will ignore it
+			except KeyError:
+				pass
