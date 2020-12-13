@@ -1,4 +1,3 @@
-
 function removeClass(className,Bid){
     var classRef = "classes/".concat(className);
     firebase.database().ref(classRef).child(Bid).remove();
@@ -25,52 +24,8 @@ const getClassSnap = () => {
         .catch(error => console.log(error));
 }
 
-//reads in every discord info from a class
-/*
-async function getDiscordInfo(className){
-    console.log("getDiscordInfo() called");
-    var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
-    var ref = firebase.database().ref(classRef);
-    var resultsString = { str : "" };
-    var results = {};
-    //This loop iterates over the clubs associated with the category
-    await ref.once("value", function(snapshot) {
-        snapshot.forEach(function (snapshot) {
-            var info_id = snapshot.key;
-            var info_year = snapshot.child("year").val(); //discord info
-            var info_quarter = snapshot.child("quarter").val(); //discord info
-            var info_profname = snapshot.child("profName").val(); //discord info
-            var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
-            if(info_quarter === ""){
-                return;
-            }
-            var item = info_quarter.concat(" ",info_year);
-            // if Quarter Year is not already in the dict, add it
-            if (!(item in results)){
-                results[item] = [];
-            }
-
-            // Add to list associated with Quarter Year
-            // results = Dictionary where
-            // { Fall 2020 : [ {prof: ... , discord : ... } , {...} ] }
-            var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl, "id" : info_id};
-            results[item].push(profDiscordInfo);
-            //console.log(results);
-
-        });
-    });
-    //console.log(JSON.parse(JSON.stringify(results)));
-
-    // Returns results before finished parsing the DB, so still empty
-    return results;
-};
-*/
 function constructHTML(result, className){
 
-    // result is still empty even when using async/await
-    //let result = await getDiscordInfo(className);
-    //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = {str : ""};
     if (localStorage.getItem("reviewClassInput")!=null&&jQuery.isEmptyObject(result)){
         resultsString.str += "<p>There is no discord server for this class yet.</p>";
@@ -155,21 +110,6 @@ function constructHTML(result, className){
     }
 };
 
-
-
-
-/*
-function submit_class(){
-    var reviewClassInput = document.getElementById("inputClasses").value;
-    //check if user input is valid
-    if(classesArr.includes(reviewClassInput)){
-        localStorage.setItem("reviewClassInput", reviewClassInput); //save data to local storage cause we dont wanna use php lmao
-        window.location.href = "admin-discord-review.html";
-    }
-    else{
-        alert("The class you entered is not in our Database.");
-    }
-}*/
 function submit_class() {
     var reviewClassInput = document.getElementById("inputClasses").value;
     document.getElementById('displayResults').style.display = "block";
@@ -260,21 +200,6 @@ function autocompleteClass(inp, arr) {
         a.style.maxHeight="40vh"
         a.style.overflowY="scroll";
         a.style.borderColor="transparent";
-        // a.addEventListener("wheel",function (e){
-        //     e.preventDefault();
-        //
-        //     if(e.deltaY>0&&a.childElementCount>7){
-        //         nodesBuffer.appendChild(a.firstChild);
-        //         a.removeChild(a.firstChild);
-        //         console.log("scroll up");
-        //     }else if(e.deltaY<0){
-        //         if(nodesBuffer.hasChildNodes()){
-        //             console.log("buffer not empty");
-        //             a.insertBefore(nodesBuffer.lastChild,a.firstChild);
-        //         }
-        //     }
-        //
-        // });
 
     });
 
@@ -305,8 +230,6 @@ function autocompleteClass(inp, arr) {
             }
         }
     });
-
-
 
     function addActive(x) {
         /*a function to classify an item as "active":*/

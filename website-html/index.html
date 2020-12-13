@@ -19,38 +19,32 @@
 		
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
-
 				<!-- Header -->
 					<header id="header" class="alt">
-						<!-- <h1><a href="index.html">TritonGroups</a></h1> -->
 						<nav id="nav">
-							<!-- <ul> -->
-								<!-- <li class="special"> Navigation bar starts here -->
-									<ul class="menuToggle">
-										<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
-										&nbsp;
-										|
-										&nbsp;
-										<a href="#one" class="no-style more scrolly one-text" style="cursor: pointer;">How It Works</a>
-										&nbsp;
-										|
-										&nbsp;
-										<a href="#two" class="no-style more scrolly two-text" style="cursor: pointer;">About Us</a>
-										&nbsp;
-										|
-										&nbsp;
-										<a href="#three" class="no-style more scrolly three-text" style="cursor: pointer;">Contact Us</a>
-										&nbsp;
-										|
-										&nbsp;
-										<a href="javascript:signInFunction();" class="no-style more scrolly four-text" style="cursor: pointer;">Login</a>
+							<ul class="menuToggle">
+								<a href="index.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
+								&nbsp;
+								|
+								&nbsp;
+								<a href="#one" class="no-style more scrolly one-text" style="cursor: pointer;">How It Works</a>
+								&nbsp;
+								|
+								&nbsp;
+								<a href="#two" class="no-style more scrolly two-text" style="cursor: pointer;">About Us</a>
+								&nbsp;
+								|
+								&nbsp;
+								<a href="#three" class="no-style more scrolly three-text" style="cursor: pointer;">Contact Us</a>
+								&nbsp;
+								|
+								&nbsp;
+								<a href="javascript:signInFunction();" class="no-style more scrolly four-text" style="cursor: pointer;">Login</a>
 
-										&nbsp;
-										&nbsp;
-										&nbsp;
-									</ul>
-								<!-- </li> -->
-							<!-- </ul> -->
+								&nbsp;
+								&nbsp;
+								&nbsp;
+							</ul>
 						</nav>
 					</header>
 
@@ -66,17 +60,13 @@
 							<ul class="actions special">
 								<li><a href="#" class="button primary" onclick="signInFunction()">LOG IN</a></li>
 							</ul>
-							<!-- <ul class="actions special">
-								<li><a href="#" class="button primary">Activate</a></li>
-							</ul> -->
 						</div>
-						<!-- <a href="#one" class="more scrolly">About Us</a> -->
 					</section>
 
 				<!-- One -->
 				<section id="one" class="wrapper alt style3">
 					<header style="text-align: center;"><br>
-						<h2>How It Works						</h2>
+						<h2>How It Works</h2>
 					</header>
 
 					<section class="spotlight">
@@ -159,21 +149,13 @@
 						<br/>
 						<br/>
 						<br/>
-
-						<!-- <ul class="icons major">
-							<li><span class="icon solid fa-laptop major style1"><span class="label">Lorem</span></span></li>
-							<li><span class="icon solid fa-headphones major style2"><span class="label">Ipsum</span></span></li>
-							<li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
-						</ul> -->
 					</div>
 				</section>
 
 				<!-- Three -->
 				<section id="three" class="wrapper style3 special">
 					<div class="inner">
-						<!-- <header class="major"> -->
-							<h2>Contact Us</h2>
-						<!-- </header> -->
+						<h2>Contact Us</h2>
 						<form id="feedbackForm">
 							<textarea placeholder="Email" rows="1" id="email"></textarea>
 							<textarea placeholder="Full Name" rows="1" id="fullname"></textarea>
@@ -190,19 +172,6 @@
 
 					</div>
 				</section>
-				<!-- <footer id="footer"> -->
-					<!-- <ul class="icons">
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright"></br>
-						<li>9500 Gilman Dr, La Jolla, CA 92093 |</li> </br>
-						<li>(858) 534-2230 |</li> </br>
-						<li>TRITON GROUPS |</li> </br>
-					</ul> -->
-				<!-- </footer> -->
-
 			</div>
 
 		<!-- Scripts -->
@@ -235,38 +204,26 @@
 				$(document).scroll(function() {
 				  var scrollPos = $(document).scrollTop()+100; //100: buffer
 				  if (scrollPos < top1) {
-					// console.log("passed1!!")
 					$('.zero-text').css('font-weight', 'bold');
 					$('.one-text').css('font-weight', 'normal');
 					$('.two-text').css('font-weight', 'normal');
 					$('.three-text').css('font-weight', 'normal');
-					// $('.colorchange').css('background', '#555555');
-					// $('.colorchange').css('background-color', '#555555 !important');
 				  } else if (scrollPos >= top1 && scrollPos < top2) {
-					// console.log("passed1!")
 					$('.zero-text').css('font-weight', 'normal');
 					$('.one-text').css('font-weight', 'bold');
 					$('.two-text').css('font-weight', 'normal');
 					$('.three-text').css('font-weight', 'normal');
-					// $('.colorchange').css('background', '#555555');
-					// $('.colorchange').css('background-color', '#555555 !important');
 				  } else if (scrollPos >= top2 && scrollPos < top3) {
-					// console.log("passed2!")
 					$('.zero-text').css('font-weight', 'normal');
 					$('.one-text').css('font-weight', 'normal');
 					$('.two-text').css('font-weight', 'bold');
 					$('.three-text').css('font-weight', 'normal');
-					// $('.colorchange').css('background', '#111111 !important');
-					// $('.colorchange').css('background-color', '#111111 !important');
 				  }
 				  else if (scrollPos >= top3) {
-					// console.log("passed3!")
 					$('.zero-text').css('font-weight', 'normal');
 					$('.one-text').css('font-weight', 'normal');
 					$('.two-text').css('font-weight', 'normal');
 					$('.three-text').css('font-weight', 'bold');
-					// $('.colorchange').css('background', '#333333 !important');
-					// $('.colorchange').css('background-color', '#333333 !important');
 				  }
 				});
 			</script>

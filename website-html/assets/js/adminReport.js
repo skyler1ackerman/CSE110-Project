@@ -104,8 +104,6 @@ function retrieveReportCommunity() {
             reason.innerHTML ="Reason: \n\t"+(report["reason"] || 'N/A')
             reason.readOnly=true
 
-
-
             let resolved = document.createElement('button')
             resolved.innerText = "Resolved"
             resolved.addEventListener("click",function(report){
@@ -125,13 +123,10 @@ function retrieveReportCommunity() {
             if(reportCommunityElement != null) {
                 reportCommunityElement.append(newReportBoxElement)
             }
-
-
         };
     });
-
-
 }
+
 function retrieveResolvedCommunity() {
     console.log("retrieveResolvedCommunity() called :)");
     var ref="Report/ResolvedCommunity";
@@ -230,7 +225,6 @@ function retrieveReportClass() {
     var ref = "Report/Class";
     let reportClassElement = document.querySelector('#reportClass')
 
-
     var reportSnapshot;
     getReportSnapshot(ref).then(snapshot=>{
         reportSnapshot=snapshot;
@@ -304,20 +298,16 @@ function retrieveReportClass() {
             if(reportClassElement != null) {
                 reportClassElement.append(newReportBoxElement)
             }
-
-
         };
     });
 
 }
-
 
 function retrieveResolvedClass() {
     console.log("retrieveResolvedClass() called :)");
     var ref="Report/ResolvedClass";
     var UnresolvedRef = "Report/Class";
     let resolvedClassElement = document.querySelector('#resolvedClass')
-
 
     var reportSnapshot;
     getReportSnapshot(ref).then(snapshot=>{
@@ -399,11 +389,8 @@ function retrieveResolvedClass() {
             if(resolvedClassElement != null){
                 resolvedClassElement.append(newReportBoxElement)
             }
-
-
         };
     });
-
 }
 
 function reportCommunitySelected(){

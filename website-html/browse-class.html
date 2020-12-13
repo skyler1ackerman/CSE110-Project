@@ -10,7 +10,7 @@
     <script src="assets/js/favIcon.js"></script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <script src="/__/firebase/8.0.1/firebase-app.js"></script>
     <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
     <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
@@ -30,13 +30,9 @@
 
     <!-- Page Wrapper -->
     <div id="page-wrapper">
-
-        <!-- Header -->
         <!-- Header -->
         <header id="header" class="alt">
             <nav id="nav">
-                <!-- <ul> -->
-                <!-- <li class="special"> Navigation bar starts here -->
                 <ul class="menuToggle">
                     <a href="afterlogin.html" class="no-style more scrolly zero-text" style="cursor: pointer;">Home</a>
                     &nbsp;
@@ -58,8 +54,6 @@
                     &nbsp;
                     &nbsp;
                 </ul>
-                <!-- </li> -->
-                <!-- </ul> -->
             </nav>
         </header>
         <div class="form-popup" id="myForm"
@@ -121,14 +115,6 @@
             window.onload = function () {
                 //get all class info from FB databse
                 getClassSnapshot();
-
-                // document.getElementById("email").placeholder=localStorage.getItem("user-email");
-                // document.getElementById("email").value=localStorage.getItem("user-email");
-                // localStorage.removeItem("user-email");
-                // document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-                // document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-                // localStorage.removeItem("user-displayname");
-                //remove local storage items in signout function for security.
             }
         </script>
 
@@ -165,9 +151,7 @@
             </div>
 
             <div id="openformButton">
-                <a class="button" href="create-server.html" style="background-color: #d88054; color: white">Add Server</a>
-                <!-- <a class="btn" href="javascript:void(0)" onclick="storeClassName(); window.location='create-server.html'">Submit</a> -->
-            
+                <a class="button" href="create-server.html" style="background-color: #d88054; color: white">Add Server</a>    
             </div>
 
         </section>
@@ -197,17 +181,5 @@
         });
 
     </script>
-
-    <!-- below is firebase SDKs-->
-    <!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
-    <!-- this works only when we are using firebase hosting service-->
-    <!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-    <!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-<script src="/__/firebase/init.js"></script> -->
-
 </body>
-
 </html>

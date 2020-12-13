@@ -85,10 +85,6 @@ async function submit_community() {
         alert("Please enter the club discord server name.")
         return;
     }
-    // if (!link && !socialMedia) {
-    //     alert("Please enter either a discord link or a social media account or both.")
-    //     return;
-    // }
 
     // if contact is not filled, it will take user's login email as it value
     if (!contacEmail){

@@ -187,7 +187,6 @@ function retrieveResolvedVerified() {
             unresolved.addEventListener("click",function (feedback) {
                 moveFeedback(ResolvedRef, UnresolvedRef,newFeedbackBoxElement.id, feedback["email"], feedback["fullname"],
                     feedback["issue_type"], feedback["explanation"], feedback["time"])
-                //this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedVerified();
             }.bind(unresolved,feedback));
 
@@ -195,7 +194,6 @@ function retrieveResolvedVerified() {
             remove.innerText = "Remove"
             remove.addEventListener("click",function(){
                 removeData(ResolvedRef,newFeedbackBoxElement.id);
-                //this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedVerified();
             }.bind(remove));
             newFeedbackBoxElement.appendChild(time)
@@ -209,12 +207,8 @@ function retrieveResolvedVerified() {
             if(resolvedVerifiedElement != null){
                 resolvedVerifiedElement.append(newFeedbackBoxElement)
             }
-
-
-
         }
-
-});
+    });
 }
 
 function retrieveFeedbackUnverified() {
@@ -358,7 +352,6 @@ function retrieveResolvedUnverified() {
             unresolved.addEventListener("click",function(feedback){
                 moveFeedback(ref, UnresolvedRef,newFeedbackBoxElement.id, feedback["email"], feedback["fullname"],
                     feedback["issue_type"], feedback["explanation"], feedback["time"])
-                // this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedUnverified();
             }.bind(unresolved,feedback));
 
@@ -366,7 +359,6 @@ function retrieveResolvedUnverified() {
             remove.innerText = "Remove"
             remove.addEventListener("click",function(){
                 removeData(ref,newFeedbackBoxElement.id);
-                // this.parentNode.parentNode.removeChild(this.parentNode);
                 retrieveResolvedUnverified();
             }.bind(remove));
             newFeedbackBoxElement.appendChild(time)

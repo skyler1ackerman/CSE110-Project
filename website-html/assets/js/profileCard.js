@@ -18,18 +18,12 @@ const getAdminUser = () => {
 
 function ifAdminDashboard() {
     // kaiwen's jquery thing to make a new button on page for admin, change if wanted
-
     getAdminUser().then(snapshot => {
         Object.keys(snapshot).forEach(function (admin_email) {
             if(localStorage.getItem("user-email")==snapshot[admin_email].email){
                 document.getElementById("directAdmin").style.display = "inline-block";
             }
         });
-        // snapshot.forEach(function (childSnapshot){
-        //     if(localStorage.getItem("user-email")==childSnapshot.val().email){
-        //         document.getElementById("directAdmin").style.display = "inline-block";
-        //     }
-        // });
     });
 }
 

@@ -44,20 +44,7 @@ function testFunction() {
             console.log(user.photoURL, "saved to local storage");
             console.log("signin successful!");
             window.location.href = "afterlogin.html";
-            // var link="afterlogin.html";
-            // firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
-            //    snapshot.forEach(function (childSnapshot){
-
-            //        if(user.email==childSnapshot.val().email){
-            //            link="afterAdminLogin.html";
-            //                window.location.href=link;
-            //        }
-
-            //    });
-            //     window.location.href = link;
-            // });
       }
-      // ...
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -87,13 +74,7 @@ function testFunction() {
       console.log("signout error!");
      });
     }
-  // else {
-  //    console.log("user does not want to logout")
-  // }
- 
- 
 }
-
 
 //alert box for non-ucsd sign in alert
 function showLoginAlert(){

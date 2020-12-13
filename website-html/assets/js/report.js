@@ -33,34 +33,7 @@ async function submitReport() {
     } else {
         setNewReport(reportRef, community_or_class_name, discord_link, report_contact_email, user_fullname, report_reason);
     }
-    // try {
-    //     await 
-    //         setNewReport(reportRef, community_or_class_name, discord_link, report_contact_email, user_fullname, report_reason);
-    //         // firebase
-    //         // .database()
-    //         // .ref(fbRef)
-    //         // .push()
-    //         // .set({
-    //         //     communityOrClassName: localStorage.getItem("communityOrClassNameSelected"),
-    //         //     discordLink: localStorage.getItem("communityOrClassDiscordServerSelected"),
-    //         //     email: document.getElementById("reportContactEmail").value,
-    //         //     fullname: localStorage.getItem("user-displayname"),
-    //         //     reason: document.getElementById("reportReason").value,
-    //         //     time: Date(Date.now()).toString(),
-    //         // });
 
-    //     // await firebase
-    //     //     .database()
-    //     //     .ref(fbRef)
-    //     //     .once("child_added")
-    //     //     .then(function () {
-    //     //         
-
-    //     //         console.log("Back to the home page!");
-    //     //     });
-    // } catch (err) {
-    //     throw err;
-    // }
     window.location.href = "afterlogin.html";
 
     alert("Successfully submitted! Thank you for your report!");
