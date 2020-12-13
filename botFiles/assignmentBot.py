@@ -35,6 +35,7 @@ class AssignmentBot(commands.Cog):
 				else:
 					db.child(ctx.guild.id).child(top).child(title).child('title').set(title)
 					db.child(ctx.guild.id).child(top).child(title).child('date').set(''.join(str(dateFound.group())))
+					# Create a loop if this is the first assignment in the folder
 					if(len(db.child(ctx.guild.id).child(top).get().val()) == 1):
 						self.bot.loop.create_task(self.checkSchedule(ctx.guild))
 					await ctx.send('Added assignment "' + name + '"')
@@ -92,4 +93,7 @@ class AssignmentBot(commands.Cog):
 						if channel:
 							await channel.send("@everyone, " + assignDict[assKey]['title'] + " was due.")
 							db.child(guild.id).child(top).child(assKey).remove()
+			# Terminate if there is no assignments
+			else:
+				break
 			await asyncio.sleep(28800)
