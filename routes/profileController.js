@@ -9,7 +9,7 @@ const getUserEmail = require('../model/getUserEmail');
 const getUserMajor = require('../model/getUserMajor');
 const getUserClasses = require('../model/getUserClasses');
 const saveUserProfile = require('../model/saveUserProfile');
-
+const getAdminUser = require('../model/getAdminUser');
 
 router.get('/getUserName', (req, res) => {
     getUserName(req.query.uid)
@@ -35,6 +35,11 @@ router.get('/getUserClasses', (req, res) => {
 });
 router.post('/saveUserProfile', (req, res) => {
     saveUserProfile(req.body.uid, req.body.courses, req.body.major, req.body.email, req.body.name);
+});
+
+router.get('/getAdminUser', (req, res) => {
+    getAdminUser()
+    .then(doc => res.send(doc))
 });
 
 module.exports = router;
