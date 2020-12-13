@@ -11,7 +11,6 @@ const getReportSnapshot = require('../model/getReportSnapshot')
 const moveReport = require('../model/moveReport')
 const getCommRequestSnapshot = require('../model/getCommRequestSnapshot')
 const getClassRequestSnapshot = require('../model/getClassRequestSnapshot')
-// input imports + router post/get here
 
 router.post('/getAdminEmail', (req, res) => {
     adminEmail(req.body.mail);
@@ -54,7 +53,5 @@ router.get('/getClassRequestSnapshot', (req, res) => {
     getClassRequestSnapshot(req.query.path)
         .then(doc => res.send(doc))
 });
-
-// end
 
 module.exports = router;
