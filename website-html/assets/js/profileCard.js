@@ -6,14 +6,32 @@ function goToAboutUs(){
     window.location.href = "aboutUs.html";
 }
 
+const getAdminUser = () => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getAdminUser', config)
+    .then(response => response.json())
+    .catch(error => console.log(error));
+}
+
 function ifAdminDashboard() {
     // kaiwen's jquery thing to make a new button on page for admin, change if wanted
-    firebase.database().ref("AdminUser/").once("value").then(function(snapshot){
-        snapshot.forEach(function (childSnapshot){
-            if(localStorage.getItem("user-email")==childSnapshot.val().email){
+
+    getAdminUser().then(snapshot => {
+        Object.keys(snapshot).forEach(function (admin_email) {
+            // console.log(admin_email);
+            console.log(snapshot[admin_email].email);
+            if(localStorage.getItem("user-email")==snapshot[admin_email].email){
                 document.getElementById("directAdmin").style.display = "inline-block";
             }
         });
+        // snapshot.forEach(function (childSnapshot){
+        //     if(localStorage.getItem("user-email")==childSnapshot.val().email){
+        //         document.getElementById("directAdmin").style.display = "inline-block";
+        //     }
+        // });
     });
 }
 
