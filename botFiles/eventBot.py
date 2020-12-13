@@ -22,7 +22,6 @@ def setup(bot):
 class EventBot(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
-		self.bot.loop.create_task(self.checkSchedule())
 
 	# newEvent will add a new event folder with data to firebase db given user input, for specific server folder
 	@commands.command(aliases=['addevent', 'addEvent', 'newevent', 'adde', 'addE', 'newe', 'newE'], help='Adds a new assignment to the server. Format: !addAssign <EventName> (Optional)')
@@ -48,18 +47,18 @@ class EventBot(commands.Cog):
 			await ctx.send('Event "' + eventName + '" already exists!')
 		else:
 			# take user input for date and time, only accept same user's input
-			await ctx.send("Enter date of event, mm/dd/yyyy (spaces required).")
+			await ctx.send("Enter date of event, mm/dd/yyyy")
 			eventDateMsg = await self.bot.wait_for("message", timeout=30, check=verifyUser)
-			await ctx.send("Enter time of event, HH:MM (pm/am) (spaces required).")
+			await ctx.send("Enter time of event, HH:MM (pm/am)")
 			eventTimeMsg = await self.bot.wait_for("message", timeout=30, check=verifyUser)
 			# parse user input to generate datetime object, set format string
 			eventDateTime = datetime.strptime(eventDateMsg.content + " " + eventTimeMsg.content, '%m/%d/%Y %I:%M %p')
-			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("date").set(eventDateTime.isoformat(' '))
-			# get channel for event announcements, by taking command's current channel
-			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("channel").set(ctx.channel.id)
-			# get user who called command, might be useful for RSVP feature
-			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).child("users").set(ctx.author.id)
+			eventDict = {'date': str(eventDateTime), 'channel': ctx.channel.id, 'users': ctx.author.id}
+			db.child(ctx.guild.id).child(FOLDER_STR).child(eventName).set(eventDict)
 			await ctx.send('Added event "' + eventName + '", scheduled for: ' + eventDateTime.ctime() + '.')
+			# Create a loop if this is the first event in the folder
+			if(len(db.child(ctx.guild.id).child(FOLDER_STR).get().val()) == 1):
+				self.bot.loop.create_task(self.checkSchedule(ctx.guild))
 
 	@newEvent.error
 	async def newEventError(self, ctx, error):
@@ -121,35 +120,24 @@ class EventBot(commands.Cog):
 	# functions
 	# checkSchedule will access firebase db to see if any events have passed, all servers
 	# will send discord msg and delete said event's folder
-	async def checkSchedule(self):
+
+	async def checkSchedule(self, guild):
 		while(True):
 			# sanity check
-			if db.get().val() is not None:
-				for childGuild in db.get().val():
-					# save a ordereddict of strings for easy access, cant call methods
-					guildAllEvents = db.get().val()[childGuild][FOLDER_STR]
-					# working null db check
-					if guildAllEvents is not None:
-						# get a datetime obj for current time to compare with events, local time + tz naive
-						currDateTime = datetime.now()
-						# loop through all events, finish up started events and maybe remind
-						for eventFolder in guildAllEvents:
-							# make datetime object for current event
-							eventDateTime = datetime.fromisoformat(guildAllEvents[eventFolder]['date'])
-							# if event start-time passed, send message to channel that event was made in
-							if eventDateTime < currDateTime:
-								destinationChannel = self.bot.get_channel(guildAllEvents[eventFolder]['channel'])
-								if destinationChannel is not None:
-									await destinationChannel.send("@everyone, " + eventFolder + " has started at: " + eventDateTime.ctime() + ".")
-								# delete event since its over and no more reminders, need correct type
-								db.child(childGuild).child(FOLDER_STR).child(eventFolder).remove()
-							else:
-								# insert secondary reminder alerts here
-								# 30 minute reminder, w/ 60 second check interval and millisec precision
-								# ex. if event is 12:00 pm remind at (11:29:00 am, 11:30:00 am] 
-								if (eventDateTime - timedelta(minutes=31)) < currDateTime <= (eventDateTime - timedelta(minutes=30)):
-									destinationChannel = bot.get_channel(guildAllEvents[eventFolder]['channel'])
-									if destinationChannel is not None:
-										await destinationChannel.send("@everyone, " + eventFolder + " starts in 30 minutes!")
-			# keep loop alseep for 60 seconds
+			if db.child(guild.id).child(FOLDER_STR).get().val():
+				eventDict = dict(db.child(guild.id).child(FOLDER_STR).get().val())
+				for eventKey in eventDict:
+					eventDateTime = datetime.fromisoformat(eventDict[eventKey]['date'])
+					currDateTime = datetime.today()
+					channel = self.bot.get_channel(eventDict[eventKey]['channel'])
+					if eventDateTime < currDateTime:			
+						if channel:
+							await channel.send("@everyone, " + eventKey + " has started at: " + eventDateTime.ctime() + ".")
+							db.child(guild.id).child(FOLDER_STR).child(eventKey).remove()
+					elif (eventDateTime - timedelta(minutes=31)) < currDateTime <= (eventDateTime - timedelta(minutes=30)):
+						if channel:
+							await channel.send("@everyone, " + eventKey + " starts in 30 minutes!")		
+			else:
+				# Terminate if there are no events
+				break		
 			await asyncio.sleep(60)
