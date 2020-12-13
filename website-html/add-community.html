@@ -14,16 +14,14 @@
     <script src="/__/firebase/8.0.1/firebase-app.js"></script>
     <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
     <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-    <script src="/__/firebase/8.0.1/firebase-database.js"></script>
-    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <!--MVC DONT NEED<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.0.1/firebase-storage.js"></script>-->
     <script src="/__/firebase/init.js"></script>
     <script src="assets/js/auth.js"></script>
 </head>
 
 <body>
     <div id="page-wrapper">
-        <!-- Header -->
-        <!-- Header -->
         <!-- Header -->
         <header id="header" class="alt">
             <nav id="nav">
@@ -70,45 +68,6 @@
 
             </div>
         </div>
-
-
-        <script>
-            // load profile pic, load name, load email
-            // var profileImgUrl = localStorage.getItem("user-profileimgurl");
-            // document.getElementById("profilePicUserProfile").src = profileImgUrl;
-            // document.getElementById("profilePicUserProfile2").src = profileImgUrl;
-            // document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
-            // document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
-            // // open profile popout
-            // function openForm() {
-            //     if (document.getElementById("myForm").style.display == "grid") {
-            //         document.getElementById("myForm").style.display = "none";
-            //     } else {
-            //         document.getElementById("myForm").style.display = "grid";
-            //     }
-            // }
-
-            // close profile popout
-            // function closeForm() {
-            //     document.getElementById("myForm").style.display = "none";
-            // }
-
-
-            window.onload = function () {
-                //get all class info from FB databse
-                getClubSnapshot();
-
-                // document.getElementById("email").placeholder=localStorage.getItem("user-email");
-                // document.getElementById("email").value=localStorage.getItem("user-email");
-                // localStorage.removeItem("user-email");
-                // document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-                // document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-                // localStorage.removeItem("user-displayname");
-                //remove local storage items in signout function for security.
-            }
-        </script>
-
-
         <article id="main">
             <header>
                 <h2>Add a Community</h2>
@@ -134,6 +93,7 @@
                                         <option value="">* - Type -</option>
                                         <option value="Undergraduate">Undergraduate</option>
                                         <option value="Graduate">Graduate</option>
+                                        <option value="Any">Any</option>
                                     </select>
                                 </div>
 

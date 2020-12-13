@@ -1,8 +1,37 @@
 var clubsArr = []
+
+
+const getCommunityName = () => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getCommunityName', config)
+    .then(response => response.json())
+    .catch(error => console.log(error));
+}
+
+const setCommunity = (contacEmail, category, serverName, desc, link, type, socialMedia) => {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            contacEmail, 
+            category, 
+            serverName, 
+            desc, 
+            link, 
+            type, 
+            socialMedia
+        })
+    };
+    fetch('http://localhost:8000/setCommunityRequest', config)
+    .catch(error => console.log(error));
+}
+
 getClubSnapshot();
 
-async function resetAddCommunity() {
-    console.log("resetAddCommunity() called :)");
+function resetAddCommunity() {
     document.getElementById("serverName").value = '';
     document.getElementById("comCategory").value = '';
     document.getElementById("discordLink").value = '';
@@ -13,21 +42,18 @@ async function resetAddCommunity() {
 }
 
 // Get all the class names and populat clubsArr
-async function getClubSnapshot() {
-    console.log("getClassSnapshot() called :)");
-    // TODO: check the child tree (do the names match?)
-    var ref = firebase.database().ref("clubs");
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            childSnapshot.forEach(function (child2Snapshot) {
-                var clubName = child2Snapshot.key;
+function getClubSnapshot() {
+    getCommunityName().then(snapshot => {
+        Object.keys(snapshot).forEach(function (club_category) {
+            Object.keys(snapshot[club_category]).forEach(function (club_name) {
+                var clubName = club_name;
                 clubsArr.push(clubName);
             });
         });
     });
 }
 
-// we want to check if the community already exists in the database
+//  twe want to check if the community already exists inhe database
 // we do this by comparing community name
 async function submit_community() {
     //field variables
@@ -43,10 +69,6 @@ async function submit_community() {
         alert("Please enter the club discord server name.")
         return;
     }
-    // if (!link && !socialMedia) {
-    //     alert("Please enter either a discord link or a social media account or both.")
-    //     return;
-    // }
 
     // if contact is not filled, it will take user's login email as it value
     if (!contacEmail){
@@ -59,18 +81,7 @@ async function submit_community() {
         if (clubsArr.includes(serverName)) {
             alert("The community already exists. Try using the search communities page");
         } else {
-            var fbRef = "DiscordServerRequests/";
-            firebase.database().ref(fbRef).child("Communities").push().set({
-                contact: contacEmail,
-                category: category,
-                name: serverName,
-                description: desc,
-                inviteLink: link,
-                org_type: type,
-                social_media: socialMedia,
-                time: Date(Date.now()).toString()
-            });
-
+            setCommunity(contacEmail, category, serverName, desc, link, type, socialMedia);
             alert("Successfully submitted! Thank you for adding the community!");
         }
         resetAddCommunity();

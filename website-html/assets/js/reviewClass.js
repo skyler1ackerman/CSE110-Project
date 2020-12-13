@@ -1,81 +1,34 @@
-
-function removeClass(className,Bid){
-    var classRef = "classes/".concat(className);
-    firebase.database().ref(classRef).child(Bid).remove();
-}
-
 function searchbarClassSelected(){
-    console.log("searchbarClassSelected() called");
     document.getElementById("clubSearchBar").style.display = "none";
     document.getElementById("classSearchBar").style.display = "block";
 }
 
-function getClassSnapshot(){
-    console.log("getClassSnapshot() called :)");
-    var ref = firebase.database().ref("classes");
-    ref.on("value", function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            var className = childSnapshot.key;
-            classesArr.push(className);
-        });
+function getClassSnapshot() {
+    getClassSnap().then(snapshot => {
+        for(var i in snapshot.result)
+            classesArr.push(snapshot.result[i]);
     });
 }
+const getClassSnap = () => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getClassSnapshot', config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+}
 
-//reads in every discord info from a class
-async function getDiscordInfo(className){
-    console.log("getDiscordInfo() called");
-    var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
-    var ref = firebase.database().ref(classRef);
-    var resultsString = { str : "" };
-    var results = {};
-    //This loop iterates over the clubs associated with the category
-    await ref.once("value", function(snapshot) {
-        snapshot.forEach(function (snapshot) {
-            var info_id = snapshot.key;
-            var info_year = snapshot.child("year").val(); //discord info
-            var info_quarter = snapshot.child("quarter").val(); //discord info
-            var info_profname = snapshot.child("profName").val(); //discord info
-            var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
-            if(info_quarter === ""){
-                return;
-            }
-            var item = info_quarter.concat(" ",info_year);
-            // if Quarter Year is not already in the dict, add it
-            if (!(item in results)){
-                results[item] = [];
-            }
+function constructHTML(result, className){
 
-            // Add to list associated with Quarter Year
-            // results = Dictionary where
-            // { Fall 2020 : [ {prof: ... , discord : ... } , {...} ] }
-            var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl, "id" : info_id};
-            results[item].push(profDiscordInfo);
-            //console.log(results);
-
-        });
-    });
-    //console.log(JSON.parse(JSON.stringify(results)));
-
-    // Returns results before finished parsing the DB, so still empty
-    return results;
-};
-
-async function constructHTML(className){
-
-    // result is still empty even when using async/await
-    let result = await getDiscordInfo(className);
-    console.log("constructHTML");
-    //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = {str : ""};
     if (localStorage.getItem("reviewClassInput")!=null&&jQuery.isEmptyObject(result)){
-        resultsString.str += "<p>There is no discord server for this class yet. Add a new one!</p>";
+        resultsString.str += "<p>There is no discord server for this class yet.</p>";
     }
-    //console.log(Object.values(result).length);
     Object.keys(result).forEach(function(key) {
-        resultsString.str += "<li class='community' style=\"display: inline;\">";
+        resultsString.str += "<li class='community'>";
         resultsString.str += `<button class=\"collapsible\">${key}</button>`;
-        resultsString.str += "<div class=\"content\">";
+        resultsString.str += "<div class=\"content-class\">";
         resultsString.str += "<p></p>";
         resultsString.str += "<div class=\"table-wrapper\" style=\"align-content: center;\">\n" +
             "                        <table class=\"alt\" style=\"align-self: center;\">\n" +
@@ -103,8 +56,6 @@ async function constructHTML(className){
         //};
 
     });
-    console.log("After for each loop");
-    console.log(resultsString.str);
     document.getElementById("queryResults").innerHTML = resultsString.str;
 
     var container = document.querySelector(" #results > #queryResults ");
@@ -115,10 +66,8 @@ async function constructHTML(className){
 
     for(i = 0; i < removeBts.length; i++){
         var Bid=removeBts[i].id;
-        console.log();
         removeBts[i].addEventListener("click",function (className,Bid,e){
-            var classRef = "classes/".concat(className);
-            firebase.database().ref(classRef).child(Bid).remove();
+            removeClass(className, Bid);
             var element = document.getElementById(Bid).parentNode.parentNode;
             if(confirm("Are you sure you want to remove it?")){
                 if(element.parentNode.childElementCount==1){
@@ -154,20 +103,57 @@ async function constructHTML(className){
     }
 };
 
+const removeClass =(className,bid)=>{
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            className,
+            bid
+        })
+    };
+    fetch('http://localhost:8000/removeClass',config)
+        .catch(error => console.log(error));
+}
 
-
-
-
-function submit_class(){
+function submit_class() {
     var reviewClassInput = document.getElementById("inputClasses").value;
-    //check if user input is valid
+    document.getElementById('displayResults').style.display = "block";
+    location.hash = 'displayResults';
+
+    // void some browsers issue
+    setTimeout(function () {
+        scroll(0, 0);
+    }, 1);
+    if (window.location.hash) {
+        var hash = window.location.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 1500, 'swing');
+    }
+
     if(classesArr.includes(reviewClassInput)){
         localStorage.setItem("reviewClassInput", reviewClassInput); //save data to local storage cause we dont wanna use php lmao
-        window.location.href = "admin-discord-review.html";
+        getClass(reviewClassInput).then(snapshot => {
+            let classInfo = snapshot;
+            constructHTML(classInfo, reviewClassInput);
+        });
     }
     else{
-        alert("The class you entered is not in our Database.");
+        document.getElementById('displayResults').style.display = "none";
+        showInvalidClassAlert();
     }
+
+}
+
+const getClass = (className) => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getClass?className=' + className, config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
 }
 
 function autocompleteClass(inp, arr) {
@@ -220,21 +206,6 @@ function autocompleteClass(inp, arr) {
         a.style.maxHeight="40vh"
         a.style.overflowY="scroll";
         a.style.borderColor="transparent";
-        // a.addEventListener("wheel",function (e){
-        //     e.preventDefault();
-        //
-        //     if(e.deltaY>0&&a.childElementCount>7){
-        //         nodesBuffer.appendChild(a.firstChild);
-        //         a.removeChild(a.firstChild);
-        //         console.log("scroll up");
-        //     }else if(e.deltaY<0){
-        //         if(nodesBuffer.hasChildNodes()){
-        //             console.log("buffer not empty");
-        //             a.insertBefore(nodesBuffer.lastChild,a.firstChild);
-        //         }
-        //     }
-        //
-        // });
 
     });
 
@@ -265,8 +236,6 @@ function autocompleteClass(inp, arr) {
             }
         }
     });
-
-
 
     function addActive(x) {
         /*a function to classify an item as "active":*/
