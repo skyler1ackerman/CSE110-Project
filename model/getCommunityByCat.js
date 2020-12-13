@@ -34,7 +34,7 @@ module.exports = async function getCommunityByCat(category) {
 
             }
         else{
-                resultsString.str +=   `<button id="update_community_btn" style='margin-left: 10px; float: right; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${childNodes.key}', '${childNodes.val().inviteLink}');\">Update</button>`;
+                resultsString.str +=   `<button id="update_community_btn" style='margin-left: 10px; margin-bottom: 10px; float: right; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${childNodes.key}', '${childNodes.val().inviteLink}');\">Update</button>`;
             };
             resultsString.str += "<p></p>";
             resultsString.str += "</div>";

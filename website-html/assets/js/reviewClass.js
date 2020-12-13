@@ -1,9 +1,4 @@
 
-function removeClass(className,Bid){
-    var classRef = "classes/".concat(className);
-    firebase.database().ref(classRef).child(Bid).remove();
-}
-
 function searchbarClassSelected(){
     document.getElementById("clubSearchBar").style.display = "none";
     document.getElementById("classSearchBar").style.display = "block";
@@ -25,57 +20,12 @@ const getClassSnap = () => {
         .catch(error => console.log(error));
 }
 
-//reads in every discord info from a class
-/*
-async function getDiscordInfo(className){
-    console.log("getDiscordInfo() called");
-    var classRef = "classes/".concat(className);
-    console.log("Finding class ->", className);
-    var ref = firebase.database().ref(classRef);
-    var resultsString = { str : "" };
-    var results = {};
-    //This loop iterates over the clubs associated with the category
-    await ref.once("value", function(snapshot) {
-        snapshot.forEach(function (snapshot) {
-            var info_id = snapshot.key;
-            var info_year = snapshot.child("year").val(); //discord info
-            var info_quarter = snapshot.child("quarter").val(); //discord info
-            var info_profname = snapshot.child("profName").val(); //discord info
-            var info_inviteurl = snapshot.child("inviteURL").val(); //discord info
-            if(info_quarter === ""){
-                return;
-            }
-            var item = info_quarter.concat(" ",info_year);
-            // if Quarter Year is not already in the dict, add it
-            if (!(item in results)){
-                results[item] = [];
-            }
-
-            // Add to list associated with Quarter Year
-            // results = Dictionary where
-            // { Fall 2020 : [ {prof: ... , discord : ... } , {...} ] }
-            var profDiscordInfo = {"prof" : info_profname, "discord" : info_inviteurl, "id" : info_id};
-            results[item].push(profDiscordInfo);
-            //console.log(results);
-
-        });
-    });
-    //console.log(JSON.parse(JSON.stringify(results)));
-
-    // Returns results before finished parsing the DB, so still empty
-    return results;
-};
-*/
 function constructHTML(result, className){
 
-    // result is still empty even when using async/await
-    //let result = await getDiscordInfo(className);
-    //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = {str : ""};
     if (localStorage.getItem("reviewClassInput")!=null&&jQuery.isEmptyObject(result)){
         resultsString.str += "<p>There is no discord server for this class yet.</p>";
     }
-    //console.log(Object.values(result).length);
     Object.keys(result).forEach(function(key) {
         resultsString.str += "<li class='community'>";
         resultsString.str += `<button class=\"collapsible\">${key}</button>`;
@@ -118,8 +68,7 @@ function constructHTML(result, className){
     for(i = 0; i < removeBts.length; i++){
         var Bid=removeBts[i].id;
         removeBts[i].addEventListener("click",function (className,Bid,e){
-            var classRef = "classes/".concat(className);
-            firebase.database().ref(classRef).child(Bid).remove();
+            removeClass(className, Bid);
             var element = document.getElementById(Bid).parentNode.parentNode;
             if(confirm("Are you sure you want to remove it?")){
                 if(element.parentNode.childElementCount==1){
@@ -155,6 +104,18 @@ function constructHTML(result, className){
     }
 };
 
+const removeClass =(className,bid)=>{
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            className,
+            bid
+        })
+    };
+    fetch('http://localhost:8000/removeClass',config)
+        .catch(error => console.log(error));
+}
 
 
 
@@ -170,6 +131,7 @@ function submit_class(){
         alert("The class you entered is not in our Database.");
     }
 }*/
+
 function submit_class() {
     var reviewClassInput = document.getElementById("inputClasses").value;
     document.getElementById('displayResults').style.display = "block";
