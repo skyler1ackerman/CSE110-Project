@@ -1,5 +1,4 @@
 async function submitUpdateCommunity() {
-    console.log("submitUpdateCommunity() called!");
 
     if (
         localStorage.getItem("communityName") == null ||
@@ -38,8 +37,6 @@ async function submitUpdateCommunity() {
             .once("child_added")
             .then(function () {
                 window.location.href = "afterlogin.html";
-
-                console.log("Back to the home page!");
             });
     } catch (err) {
         throw err;
