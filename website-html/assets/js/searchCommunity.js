@@ -2,21 +2,6 @@ function searchbarClubSelected(){
   document.getElementById("classSearchBar").style.display = "none";
   document.getElementById("clubSearchBar").style.display = "block";
 }
-function getCommunityInfoByName(name){
-  console.log("getCommunityInfoByName() called :)");
-  var ref = firebase.database().ref("clubs").child(name);
-  console.log("NAME: ", name);
-  ref.on('value', function(snapshot) {
-      let communityObj = snapshot.val()
-      document.getElementById("community-academic-year").innerHTML =  snapshot.child("year").val(); //discord info
-      document.getElementById("community-date-created").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-status").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-organization-type").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-purpose").innerHTML =snapshot.child("year").val();
-      document.getElementById("community-socialmedia").innerHTML = snapshot.child("year").val();
-      document.getElementById("community-email").innerHTML = snapshot.child("year").val();
-  });
-}
 
 function getCommunitySnapshot() {
     getCommunitySnap().then(snapshot => {
@@ -105,10 +90,6 @@ function goToUpdateCommunityPage(communityName, communityContact, communityDisco
     communityType, communitySocialMedia, communityCategory) {
 
     // Processing
-    console.log("goToUpdateCommunityPage() called")
-
-    // Processing
-    // window.alert(""+communityName);
     localStorage.setItem('communityName', communityName);
     localStorage.setItem('communityContact', communityContact);
     localStorage.setItem('communityDiscordLink', communityDiscordLink)

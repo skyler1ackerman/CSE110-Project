@@ -1,8 +1,3 @@
-function removeClass(className,Bid){
-    var classRef = "classes/".concat(className);
-    firebase.database().ref(classRef).child(Bid).remove();
-}
-
 function searchbarClassSelected(){
     document.getElementById("clubSearchBar").style.display = "none";
     document.getElementById("classSearchBar").style.display = "block";
@@ -30,7 +25,6 @@ function constructHTML(result, className){
     if (localStorage.getItem("reviewClassInput")!=null&&jQuery.isEmptyObject(result)){
         resultsString.str += "<p>There is no discord server for this class yet.</p>";
     }
-    //console.log(Object.values(result).length);
     Object.keys(result).forEach(function(key) {
         resultsString.str += "<li class='community'>";
         resultsString.str += `<button class=\"collapsible\">${key}</button>`;
@@ -73,8 +67,7 @@ function constructHTML(result, className){
     for(i = 0; i < removeBts.length; i++){
         var Bid=removeBts[i].id;
         removeBts[i].addEventListener("click",function (className,Bid,e){
-            var classRef = "classes/".concat(className);
-            firebase.database().ref(classRef).child(Bid).remove();
+            removeClass(className, Bid);
             var element = document.getElementById(Bid).parentNode.parentNode;
             if(confirm("Are you sure you want to remove it?")){
                 if(element.parentNode.childElementCount==1){
@@ -109,6 +102,19 @@ function constructHTML(result, className){
 
     }
 };
+
+const removeClass =(className,bid)=>{
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            className,
+            bid
+        })
+    };
+    fetch('http://localhost:8000/removeClass',config)
+        .catch(error => console.log(error));
+}
 
 function submit_class() {
     var reviewClassInput = document.getElementById("inputClasses").value;

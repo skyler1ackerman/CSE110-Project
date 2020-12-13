@@ -21,6 +21,7 @@ module.exports = async function getCommunityByCat(category) {
             if (childNodes.val().contact !== "") {
                 resultsString.str += `<p><b>Contact: </b>${childNodes.val().contact}</p>`;
             }
+
             if (childNodes.val().description !== "") {
                 resultsString.str += `<p><b>Description: </b>${childNodes.val().description}</p>`;
             }
@@ -41,7 +42,7 @@ module.exports = async function getCommunityByCat(category) {
                     childNodes.ref.parent.key
                 }');\">Update</button></div>`;
             } else {
-                resultsString.str += `<button id="update_community_btn" style='margin-left: auto; font-family: inherit;' class=\"button\" style="text-align: center;" onClick=\"goToUpdateCommunityPage('${
+                resultsString.str += `<button id="update_community_btn" style='margin-left: 10px; margin-bottom: 10px; float: right; font-family: inherit; text-align: center;' class=\"button\" onClick=\"goToUpdateCommunityPage('${
                     childNodes.key
                 }', '${childNodes.val().contact}', '${
                     childNodes.val().inviteLink

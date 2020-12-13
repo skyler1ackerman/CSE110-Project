@@ -7,7 +7,6 @@ module.exports = async function getCommunity(communityName) {
     await ref.once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
             childSnapshot.forEach(function (clubSnapshot) {
-                console.log(clubSnapshot.val().contact);
                 if (clubSnapshot.key === communityName) {
                     resultsString.str += "<li class='community'>";
                     resultsString.str += "<div>";

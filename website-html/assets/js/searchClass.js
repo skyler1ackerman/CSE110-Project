@@ -22,7 +22,6 @@ const getClassSnap = () => {
 
 // Util Function for naviagating to report page
 function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassDiscordServerSelected) {
-    console.log("goToReportPage() called")
 
     // Processing
     localStorage.setItem('communityOrClassNameSelected', communityOrClassNameSelected);
@@ -30,44 +29,6 @@ function goToReportPageFromClass(communityOrClassNameSelected, communityOrClassD
     localStorage.setItem('isCommunitySelected', 'False')
 
     window.location.href = "report-discord-server.html"
-}
-
-function addDiscordInfotoDB() {
-    //console.log("addDiscordInfotoDB() called!");
-    //First, count number of children in the class
-    var className = localStorage.getItem("classinput")
-    var classRef = "classes/".concat(className);
-    //console.log("Finding class ->", className);
-    var class_ref = firebase.database().ref(classRef);
-    var counter = 1;
-    class_ref.on("value", function (snapshot) {
-        snapshot.forEach(function (snapshot) {
-            counter++;
-        });
-    });
-
-    //now add a discordinfo inside class DB
-    var discordRef = "classes/" + className + "/discordInfo" + counter;
-    //console.log(discordRef);
-    var discord_ref = firebase.database().ref(discordRef);
-    discord_ref.set({
-        inviteURL: document.getElementById("invitelink").value,
-        profName: document.getElementById("professor").value,
-        quarter: document.getElementById("quarter").value,
-        year: document.getElementById("year").value,
-    });
-}
-
-function resetDB() {
-    //log("addDiscordInfotoDB() called!");
-    //First, count number of children in the class
-    var className = localStorage.getItem("classinput")
-    var classRef = "classes/".concat(className);
-    //console.log("Finding class ->", className);
-    var class_ref = firebase.database().ref(classRef);
-    class_ref.set({
-        discordInfo1: "",
-    });
 }
 
 function submit_class() {
@@ -111,8 +72,6 @@ const getClass = (className) => {
 }
 
 function constructHTML(result, className) {
-
-    //console.log(JSON.parse(JSON.stringify(result)));
     var resultsString = { str: "" };
     if (jQuery.isEmptyObject(result)) {
         resultsString.str += "<p>There is no discord server for this class yet. Add a new one!</p>";
