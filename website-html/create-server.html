@@ -70,24 +70,6 @@
         </div>
 
 
-        <script>
-            document.getElementById("profileEmail").innerHTML = localStorage.getItem("user-email");
-            document.getElementById("profileName").innerHTML = localStorage.getItem("user-displayname");
-            // open profile popout
-            function openForm() {
-                if (document.getElementById("myForm").style.display == "grid") {
-                    document.getElementById("myForm").style.display = "none";
-                } else {
-                    document.getElementById("myForm").style.display = "grid";
-                }
-            }
-            // close profile popout
-            function closeForm() {
-                document.getElementById("myForm").style.display = "none";
-            }
-        </script>
-
-
         <article id="main">
             <header>
                 <h2>Create a Discord Server</h2>
