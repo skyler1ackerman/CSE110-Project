@@ -1,54 +1,74 @@
-function getAdminEmail(){
-    console.log("getAdminEmail() called!");
-    var adRef="AdminUser/";
-    firebase.database().ref(adRef).push().set({
-        email:document.getElementById("Admin_Email").value
-    });
-    firebase.database().ref(adRef).once("child_added").then(function (){
-        document.getElementById("Admin_Email").value='';
-        console.log("Output clear")
-    });
+const setAdminEmail = () => {
+    getAdminEmail(document.getElementById("Admin_Email").value.toLowerCase());
+    document.getElementById("Admin_Email").value='';
+    retrieveAdminUser()
+}
+
+const getAdminEmail = (mail) => {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            mail
+        })
+    };
+    fetch('http://localhost:8000/getAdminEmail', config)
+    .catch(error => console.log(error));
+}
+const getAdminSnapshot = ()=>{
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getAdminSnapshot', config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+}
+
+const removeData =(reference,id)=>{
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            reference,
+            id
+        })
+    };
+    fetch('http://localhost:8000/removeData',config)
+        .catch(error => console(error));
+
 }
 function retrieveAdminUser() {
-    console.log("retrieveAdminUser called :)");
-    var ref=firebase.database().ref("AdminUser/");
     let AdminUserElement = document.querySelector('#AdminUsers')
-    //let newAdminBoxElement = document.createElement('div')
+    var adminSnapshot;
 
-
-    // newAdminBoxElement.style.border = "gainsboro"
-    // newAdminBoxElement.style.marginBottom = "10px"
-    ref.on("value", function(snapshot) {
+    getAdminSnapshot().then(snapshot=>{
+        adminSnapshot=snapshot;
         if(AdminUserElement != null){
             while(AdminUserElement.childElementCount>1){
                 AdminUserElement.removeChild(AdminUserElement.lastChild);
             }
 
         }
-        snapshot.forEach(function(childSnapshot) {
-            var admin = childSnapshot.val();
+        for(var key in adminSnapshot){
+            var admin = key;
             let adminRowElement=document.createElement('tr')
-            adminRowElement.setAttribute("id", childSnapshot.key);
+            adminRowElement.setAttribute("id", admin);
 
             // Email
             let email = document.createElement('td')
-            email.innerText = admin.email || 'N/A'
-
-
+            email.innerText = adminSnapshot[admin] || 'N/A'
 
             // IsAdmin
-
             let IsAdmin = document.createElement('td')
             IsAdmin.innerText = "Administrative User" || 'N/A'
 
-
-
-
             let remove = document.createElement('button')
             remove.innerText = "Remove"
-            remove.addEventListener("click",function(){
-                ref.child(adminRowElement.id).remove();
-            });
+            remove.addEventListener("click",function(admin){
+                removeData("AdminUser/",admin);
+                retrieveAdminUser()
+            }.bind(remove,admin));
             adminRowElement.appendChild(email)
             adminRowElement.appendChild(IsAdmin)
             adminRowElement.appendChild(remove)
@@ -57,8 +77,7 @@ function retrieveAdminUser() {
                 AdminUserElement.append(adminRowElement)
             }
 
-        });
+        };
     });
-    console.log("admin appended");
 }
 retrieveAdminUser();

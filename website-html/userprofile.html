@@ -12,14 +12,13 @@
         <script src="/__/firebase/8.0.1/firebase-app.js"></script>
 		<script src="/__/firebase/8.0.1/firebase-auth.js"></script>
 		<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-database.js"></script>
-		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>
+		<!--MVC DONT NEED<script src="/__/firebase/8.0.1/firebase-database.js"></script>
+		<script src="/__/firebase/8.0.1/firebase-storage.js"></script>-->
 		<script src="/__/firebase/init.js"></script>
         <script src="assets/js/auth.js"></script>
         
     </head>
     <body class="landing2 is-preload">
-
 
         <!-- Page Wrapper -->
         <div id="page-wrapper">
@@ -58,10 +57,6 @@
                                         <label>Full Name</label>
                                         <textarea placeholder="Full Name" rows="1" id="fullname" readonly></textarea>
                                     </div>
-                                    <!-- <div class="col-6">
-                                        <label>Major</label>
-                                        <input id="inputMajor" type="text" name="searchmajor" style="text-align:left; width: 760px;" placeholder="Search Major">
-                                    </div> -->
                                 </div>
                                 <br/>
                                 <!--adding major-->
@@ -70,8 +65,6 @@
                                     <input id="inputMajors" type="text" name="searchmajor" style="text-align:left; width: 600px;" placeholder="Search Majors">
                                 </div>
                                 <label id="inputMajorsErr" style="color: red"></label>
-                                <!-- <input type="button" id = "btnSet" value = "Set" onclick = "setMajor()" style="border: 1px solid #cccccc"/>-->
-                                <!--adding classes-->
                                 <div class="autocomplete" style="width: auto;">
                                     <label>Classes</label>
                                     <input id="inputClasses" type="text" name="searchclasses" style="text-align:left; width: 600px;" placeholder="Search Classes">
@@ -102,205 +95,7 @@
         <script src="assets/js/login.js"></script>
         <script src="assets/js/searchClass.js"></script>
         <script src="assets/js/searchMajor.js"></script>
-        <!--<script src="assets/js/searchCommunity.js"></script>-->
-
-
-        <!-- below is firebase SDKs-->
-        <!-- Add Firebase SDKs and initialize Firebase from HOSTING URL-->
-        <!-- this works only when we are using firebase hosting service-->
-        <!-- and it's userful because we don't have to initialize firebaseConfig manually-->
-        <!-- <script src="/__/firebase/8.0.1/firebase-app.js"></script>
-        <script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
-        <script src="/__/firebase/8.0.1/firebase-auth.js"></script>
-        <script src="/__/firebase/8.0.1/firebase-database.js"></script>
-        <script src="/__/firebase/init.js"></script> -->
-
-        <!-- add courses to the textbox -->
-        <script type="text/javascript">
-
-            var courseArray = [];
-            var courseCount = 0;
-            var userMajor = "";
-
-            window.onload = function() {
-
-                // // get all class info from FB databse
-                // //getCommunitySnapshot();
-                // getClassSnapshot();
-
-                // redirect if user not signed in; check by sign-in info in localStorage from login.js
-                if (typeof localStorage.getItem("user-email") !== "string") {
-                    document.location.href="/";
-                }
-
-                document.getElementById("email").placeholder=localStorage.getItem("user-email");
-                document.getElementById("email").value=localStorage.getItem("user-email");
-                // localStorage.removeItem("user-email");
-                document.getElementById("fullname").placeholder=localStorage.getItem("user-displayname");
-                document.getElementById("fullname").value=localStorage.getItem("user-displayname");
-                // localStorage.removeItem("user-displayname");
-                // take url of user's profile pic from login.js, get a resized version (unsure if always works)
-                var profileImgUrl = localStorage.getItem("user-profileimgurl");
-                profileImgUrl = profileImgUrl.replace("s96-c", "s512-c");
-                document.getElementById("profilePicUserProfile").src=profileImgUrl;
-                //remove local storage items in signout function for security.
-                document.getElementById("welcomeMessage").innerHTML="Hi " + localStorage.getItem("user-displayname").substr(0,localStorage.getItem("user-displayname").indexOf(' ')) + "!";
-
-                // used username as key in order to recover saved user data
-                var usernameKey = localStorage.getItem("user-email");
-                // username is the email without @ucsd.edu
-                usernameKey = usernameKey.substring(0, usernameKey.indexOf('@'));
-                //console.log(usernameKey);
-                
-                // get all class and major info from FB databse, need this for vars
-                getClassSnapshot();
-                getMajorSnapshot();
-
-                // load any db-saved courses to the page
-                firebase.database().ref("userProfiles").child(usernameKey).child("courseList").on('value', function(dataSnapshot) {
-                    // take DataSnapshot obj, which might be null
-                    courseArray = dataSnapshot.val();
-                    if (courseArray == null) {
-                        //console.log(courseArray + " this is from db");
-                        courseArray = [];
-                        //console.log(courseArray + " this is empty arr");
-                    } else if (typeof courseArray === "string"){
-                        // take string of comma-seperated classes, turn into an array of strings
-                        //console.log(courseArray + " this is from db");
-                        courseArray = courseArray.split(",");
-                        courseCount = courseArray.length;
-                        //console.log(courseArray + " this is new arr");
-                        if(courseArray[0].length === 0){
-                            courseArray = [];
-                            courseCount = 0;
-                        }
-                        // clear and fill in the course list textbox 
-                        document.getElementById("courseListToSave").value = "";
-                        for (i of courseArray) {
-                            document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
-                            //console.log(i);
-                        }
-                    }
-                });
-
-
-                // load db-saved major to page
-                firebase.database().ref("userProfiles").child(usernameKey).child("major").on('value', function(dataSnapshot) {
-                    // take DataSnapshot obj, which might be null
-                    userMajor = dataSnapshot.val();
-                    if (userMajor == null) {
-                        //console.log(userMajor + " this is from db");
-                        userMajor = "";
-                    } else if (typeof userMajor === "string"){
-                        // fill in the major textbox 
-                        document.getElementById("inputMajors").value = userMajor;
-                    }
-                });
-
-            }
-            // load db-saved major to page
-            
-                
-            // currently only for dropdown in select, no duplicate add check 
-            function addCourse() {
-                var currentCourse = document.getElementById("inputClasses").value;
-                // clear the input box for responsiveness
-                document.getElementById("inputClasses").value = "";
-                document.getElementById("inputClassesErr").innerHTML = "";
-                document.getElementById("inputMajorsErr").innerHTML = "";
-                document.getElementById("saveErr").innerHTML = "";
-                //check if user input is valid
-                if(classesArr.includes(currentCourse) && currentCourse !== ""){
-                    //console.log("good add");
-                }
-                else{
-                    //alert("The class you entered is not in our Database.");
-                    document.getElementById("inputClassesErr").innerHTML = "The class you entered is not in our database.";
-                    return false;
-                }
-                //console.log("Add " +  currentCourse);
-                var i;
-                for (i of courseArray) {
-                    if(i == currentCourse){
-                        //alert("The class you entered is already in the list.");
-                        document.getElementById("inputClassesErr").innerHTML = "The class you entered is already in the list.";
-                        return false;
-                    }
-                }
-                courseArray[courseCount] = currentCourse;
-                courseCount++;
-                // clear and fill in the course list textbox 
-                document.getElementById("courseListToSave").value = "";
-                for (i of courseArray) {
-                    document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
-                    //console.log(i);
-                }
-
-            }
-
-            // take entered major, make sure its valid before letting save button take it 
-            function setMajor() {
-                var currentMajor = document.getElementById("inputMajors").value;
-                // check if user input is valid major, allowing empty major
-                if(majorsArr.includes(currentMajor) || currentMajor === ""){
-                    //console.log("good add");
-                    userMajor = currentMajor;
-                    //alert("The major you entered will be saved.");
-                    document.getElementById("inputMajorsErr").style.color = "green"; 
-                    console.log("Major saved!");
-                    // document.getElementById("inputMajorsErr").innerHTML = "Major saved!";
-                }
-                else{
-                    //alert("The major you entered is not in our database, will not be saved.");
-                    document.getElementById("inputMajorsErr").style.color = "red"; 
-                    document.getElementById("inputMajorsErr").innerHTML = "Invalid major.";
-                    document.getElementById("inputMajors").value = "";
-                    userMajor = "";
-                    return false;
-                }
-            }
-
-            function updateProfile(){
-                //console.log("Save ");
-                //console.log(courseArray.toString());
-
-                var courses = courseArray.toString();
-                // used username as key in order to avoid multiple entry from the same user
-                var usernameKey = document.getElementById("email").value;
-                // username is the email without @ucsd.edu
-                usernameKey = usernameKey.substring(0, usernameKey.indexOf('@'));
-                //console.log(usernameKey);
-
-                // iterate through courseArray, send to firebase db
-                firebase.database().ref("userProfiles").child(usernameKey).set({
-                    email: document.getElementById("email").value,
-                    fullname: document.getElementById("fullname").value,
-                    major: userMajor,
-                    courseList: courses, //document.getElementById("courseListToSave").value,
-                });
-
-                //alert("Enrolled courses saved!")
-                document.getElementById("saveErr").style.color = "green";
-                console.log("Enrolled courses saved!");
-                document.getElementById("saveErr").innerHTML = "Your changes have been saved.";
-                document.getElementById("inputClasses").value = "";
-                document.getElementById("inputClassesErr").innerHTML = "";
-
-            }
-            // clear is not meant to update db, only the list visible on page
-            function clearList(){
-                //console.log("clear ");
-                //console.log(courseArray.toString());
-
-                document.getElementById("courseListToSave").value = "";
-                document.getElementById("saveErr").innerHTML = "";
-                document.getElementById("inputMajorsErr").innerHTML = "";
-                document.getElementById("inputClassesErr").innerHTML = "";
-                document.getElementById("inputClasses").value = "";
-                courseArray = [];
-                courseCount = 0;
-            }
-        </script>
+        <script src="assets/js/userprofile.js"></script>
 
     </body>
 </html>

@@ -1,12 +1,19 @@
+majorsArr = [];
+
 function getMajorSnapshot() {
-    //console.log("getMajorSnapshot() called :)");
-    var ref = firebase.database().ref("majors");
-    ref.on("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            var majorName = childSnapshot.key;
-            majorsArr.push(majorName);
-        });
+    getMajorSnapshotHelper().then(snapshot => {
+        for(var i in snapshot.result)
+            majorsArr.push(snapshot.result[i]);
     });
+}
+const getMajorSnapshotHelper = () => {
+    let config = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('http://localhost:8000/getMajorSnapshot', config)
+        .then(response => response.json())
+        .catch(error => console.log(error));
 }
 
 // see searchClass.js
@@ -65,21 +72,7 @@ function autocompleteClass(inp, arr) {
                 
             }
         }
-
-        // a.addEventListener("wheel", function (e) {
-        //     e.preventDefault();
-        //
-        //     if (e.deltaY > 0 && a.childElementCount > 7) {
-        //         nodesBuffer.appendChild(a.firstChild);
-        //         a.removeChild(a.firstChild);
-        //         //console.log("scroll up");
-        //     } else if (e.deltaY < 0) {
-        //         if (nodesBuffer.hasChildNodes()) {
-        //             //console.log("buffer not empty");
-        //             a.insertBefore(nodesBuffer.lastChild, a.firstChild);
-        //         }
-        //     }
-        // });
+        
         a.style.maxHeight="42vh"
         a.style.overflowY="scroll";
         a.style.borderColor="transparent";

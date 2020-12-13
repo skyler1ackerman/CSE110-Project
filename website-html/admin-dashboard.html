@@ -10,55 +10,31 @@
         <link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     </head>
-    <style>
-
-/*  For debugging
-  * {
-	  outline: 1px solid red  !important;
-  } */
-
-    </style>
-
-
 	<body class="whiteBackground">
-
 		<!-- Page Wrapper -->
 			<div class="whiteBackground" >
-
 				<!-- Header -->
                 <header id="header" class="alt">
                     <!-- <h1><a href="index.html">TritonGroups</a></h1> -->
                     <nav id="nav">
-                        <!-- <ul> -->
-                            <!-- <li class="special"> Navigation bar starts here -->
-								<ul class="menuToggle">
-
-									<a href="afterlogin.html" class="no-style more" >Home</a>
-									|
-									<a class="no-style more" style="font-weight: bold;">Feedback Review</a>
-									|
-									<a href="admin-report.html" class="no-style more">Report Review</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="admin-discord-requests.html" class="no-style more">Request Review</a>
-									|
-
-									<a href="admin-discord-review.html" class="no-style more">Manage Discord</a>
-									|
-
-									<a href="admin-dashboard-user.html" class="no-style more" >Admin</a>
-									|
-
-
-									<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
-
-									&nbsp;
-									&nbsp;
-									&nbsp;
-								</ul>
-								<!-- </li> -->
-                        <!-- </ul> -->
+						<ul class="menuToggle">
+							<a href="afterlogin.html" class="no-style more" >Home</a>
+							|
+							<a class="no-style more" style="font-weight: bold;">Feedback Review</a>
+							|
+							<a href="admin-report.html" class="no-style more">Report Review</a>
+							|
+							<a href="admin-discord-requests.html" class="no-style more">Discord Requests</a>
+							|
+							<a href="admin-discord-review.html" class="no-style more">Manage Discord</a>
+							|
+							<a href="admin-dashboard-user.html" class="no-style more" >Admin</a>
+							|
+							<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
+							&nbsp;
+							&nbsp;
+							&nbsp;
+						</ul>
                     </nav>
                 </header>
 
@@ -73,8 +49,6 @@
 						<label for="feedbackOptionUnverified">Feedback Unverified</label>
 						<input type="radio" name="editList" id="resolvedOptionUnverified" value="" onclick="resolvedUnverifiedSelected()"/>
 						<label for="resolvedOptionUnverified">Resolved Unverified</label>
-						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
-
                     </div>
                     <div>
                         <div id="feedbackVerified" style="display: block; margin:auto; width: 60%;">

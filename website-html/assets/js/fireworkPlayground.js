@@ -249,7 +249,6 @@ function loop() {
 	if( limiterTick >= limiterTotal ) {
 		if( mousedown ) {
 			// start the firework at the bottom middle of the screen, then set the current mouse coordinates as the target
-			console.log(ch, mx, my);
 			fireworks.push( new Firework( cw / 2, ch, mx, my ) );
 			limiterTick = 0;
 		}

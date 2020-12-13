@@ -20,45 +20,34 @@
 	<body class="whiteBackground">
 		<!-- Page Wrapper -->
 			<div class="whiteBackground" >
-
 				<!-- Header -->
                 <header id="header" class="alt">
                     <!-- <h1><a href="index.html">TritonGroups</a></h1> -->
                     <nav id="nav">
-                        <!-- <ul> -->
-                            <!-- <li class="special"> Navigation bar starts here -->
-								<ul class="menuToggle">
-									<a href="afterlogin.html" class="no-style more" >Home</a>
-									|
-									<a href="admin-dashboard.html" class="no-style more">Feedback Review</a>
-									|
-									<a href="admin-report.html" class="no-style more">Report Review</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="admin-discord-requests.html" class="no-style more">Request Review</a>
-									|
+						<ul class="menuToggle">
+							<a href="afterlogin.html" class="no-style more" >Home</a>
+							|
+							<a href="admin-dashboard.html" class="no-style more">Feedback Review</a>
+							|
+							<a href="admin-report.html" class="no-style more">Report Review</a>
+							|
+							<a href="admin-discord-requests.html" class="no-style more">Discord Requests</a>
+							|
+							<a href="admin-discord-review.html" class="no-style more">Manage Discord</a>
+							|
+							<a class="no-style more" style="font-weight: bold;">Admin</a>
+							|
+							<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
 
-									<a href="admin-discord-review.html" class="no-style more">Manage Discord</a>
-									|
-
-									<a class="no-style more" style="font-weight: bold;">Admin</a>
-									|
-
-									<a href="javascript:signOutFunction();" class="no-style more">Logout</a>
-
-									&nbsp;
-									&nbsp;
-									&nbsp;
-								</ul>
-								<!-- </li> -->
-                        <!-- </ul> -->
+							&nbsp;
+							&nbsp;
+							&nbsp;
+						</ul>
                     </nav>
                 </header>
 
 				<!-- Banner -->
 				<section id="banner">
-
                     <div>
 						<label style="color: #1d242a">Manage Admin Users</label>
                         <div  style="display: block; margin:auto; ">
@@ -73,7 +62,7 @@
 						<div>
 							<label style="color: #1d242a">Add a Admin User</label>
 							<textarea placeholder="" id="Admin_Email" rows="1"></textarea>
-							<button onclick="getAdminEmail()">Add</button>
+							<button onclick="setAdminEmail()">Add</button>
 						</div>
 
                     </div>

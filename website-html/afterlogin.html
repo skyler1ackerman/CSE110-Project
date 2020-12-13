@@ -41,32 +41,26 @@
 	<body class="landing is-preload">
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
-
 				<!-- Header -->
                 <header id="header" class="alt">
-                    <!-- <h1><a href="index.html">TritonGroups</a></h1> -->
                     <nav id="nav">
-                        <!-- <ul> -->
-                            <!-- <li class="special"> Navigation bar starts here -->
-								<ul class="menuToggle" >
-									<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="browse-class.html" class="no-style more scrolly one-text" style="cursor: pointer;">Classes</a>
-									&nbsp;
-									|
-									&nbsp;
-									<a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
-                                    &nbsp;
-                                    |
-                                    &nbsp;
-									<img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
-									&nbsp;
-									&nbsp;
-								</ul>
-								<!-- </li> -->
-                        <!-- </ul> -->
+						<ul class="menuToggle" >
+							<a href="afterlogin.html" class="no-style more scrolly zero-text" style="font-weight: bold; cursor: pointer;">Home</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="browse-class.html" class="no-style more scrolly one-text" style="cursor: pointer;">Classes</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="browse-community.html" class="no-style more scrolly two-text" style="cursor: pointer;">Communities</a>
+							&nbsp;
+							|
+							&nbsp;
+							<img id="profilePicUserProfile" src="" onclick="openForm()" referrerpolicy="no-referrer" class="avatar" alt="" style="vertical-align:middle;margin:0 5px 5px 0;width:32px; height:32px; cursor: pointer;">
+							&nbsp;
+							&nbsp;
+						</ul>
 					</nav>
 				</header>
 				<div class="form-popup" id="myForm" style="background-color: #13274a; border: #13274a; text-align: center; border-radius: 10px; padding:26px 0 15px 0; justify-content: center; width:230px; position:fixed; right:20px; top:50px; border: solid black 1px; z-index:20;">
@@ -97,47 +91,8 @@
 						<h2>Triton Groups</h2>
 						<br><br>
 						<p id="welcomeMessage"></p>
-						<!-- <input type="radio" name="editList" id="searchOptionClasses" value="" checked onclick="searchbarClassSelected()"/>
-						<label for="searchOptionClasses">Classes</label>				
-						<input type="radio" name="editList" id="searchOptionClubs" value="" onclick="searchbarClubSelected()"/>
-						<label for="searchOptionClubs">Clubs</label> -->
-						<!-- <p style="font-size: 30px; margin-bottom: 0; padding-bottom: 10px;">&#8595;</p> -->
-						<!-- <div id="classSearchBar" style="display: block;">
-							<ul class="actions special">
-								<form autocomplete="off" action="/action_page.php">
-									<div class="autocomplete" style="width:400px;">
-									  <input id="inputClasses" type="text" name="searchclasses" style="text-align:center;" placeholder="Search Class Discords">
-									</div>
-								</form>
-								</ul>
-							<input type="submit" onclick="submit_class()" value="SEARCH">
-						</div>
-						<div id="clubSearchBar" style="display: none;">
-							<ul class="actions special">
-								<form autocomplete="off" action="/action_page.php">
-									<div class="autocomplete" style="width:400px;">
-									  <input id="inputCommunities" type="text" name="searchcommunities" style="text-align:center;" placeholder="Search Clubs or Communities">
-									</div>
-								</form>
-							</ul>
-							<input type="submit" onclick="submit_community()" value="SEARCH">
-						</div> -->
 					</div>
 				</section>
-
-				<!-- <footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright"></br>
-						<li>9500 Gilman Dr, La Jolla, CA 92093 |</li> </br>
-						<li>(858) 534-2230 |</li> </br>
-						<li>TRITON GROUPS |</li> </br>
-					</ul>
-				</footer> -->
-
 			</div>
 			
 		<!-- Scripts -->
@@ -149,34 +104,15 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
       		<script src="assets/js/login.js"></script>
-			<!-- <script src="assets/js/searchClass.js"></script>
-			<script src="assets/js/searchCommunity.js"></script> -->
 			<script src="assets/js/feedbackDiscordUtil.js"></script>
 			<script src="assets/js/livechat.js"></script>
 			<script src="assets/js/firework.js"></script>
 			<script src="assets/js/fireworkPlayground.js"></script>
 			<script src="assets/js/profileCard.js"></script>
 
-
-
 			<!-- Jquery starts here: Javascript event handler for nav bar -->
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-			<script>
-			//    var top1 = $('#one').offset().top;
-
-			//    $(document).scroll(function() {
-			// 	 var scrollPos = $(document).scrollTop()+100; //100: buffer
-			// 	 if (scrollPos < top1) {
-			// 	   $('.zero-text').css('font-weight', 'bold');
-			// 	   $('.one-text').css('font-weight', 'normal');
-			// 	 } 
-			// 	 else {
-			// 	   $('.zero-text').css('font-weight', 'normal');
-			// 	   $('.one-text').css('font-weight', 'bold');
-			// 	 } 
-			//    });
-		   </script>
-		   <script>
+		   	<script>
 			   	// get profile pic, name, email for popout
 				var profileImgUrl = localStorage.getItem("user-profileimgurl");
 				document.getElementById("profilePicUserProfile").src=profileImgUrl;
@@ -199,7 +135,6 @@
   					document.getElementById("myForm").style.display = "none";
 				}
 
-	
 				// jquery !!
 				// this will close the profile popout element if anything else besides that and profile pic is clicked
 				$(document).click(function(e){
@@ -208,12 +143,6 @@
 					}
 					closeForm();
 				});
-				// $(document).click(function(e){
-				// 	if($(e.target).closest("#talkjs-container").length > 0 || ($(e.target).closest("#toggleChatContainerImg").length > 0)) {
-				// 		return false;
-				// 	}
-				// 	closeForm();
-			   	// });
 
 			</script>
 	</body>
