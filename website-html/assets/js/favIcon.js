@@ -7,7 +7,6 @@ async function onUpdate() {
     document.head.append(darkSchemeIcon);
   } else {
     document.head.append(lightSchemeIcon);
-    console.log(darkSchemeIcon);
     darkSchemeIcon.remove();
   }
 }

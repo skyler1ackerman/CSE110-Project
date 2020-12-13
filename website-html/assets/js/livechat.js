@@ -21,15 +21,10 @@ function setCurrentUserObj(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             currentUser.id = user.uid;
-            console.log("user uid:", currentUser.id);
             currentUser.name = user.displayName;
-            console.log("user name:", currentUser.name);
             currentUser.email = user.email;
-            console.log("user email:", currentUser.email);
             currentUser.photoUrl = user.photoURL;
-            console.log("user photoUrl:", currentUser.photoUrl);
             currentUser.welcomeMessage = "Hi! I am ".concat(currentUser.name);
-            console.log("user welcome msg:", currentUser.welcomeMessage);
         } else {
           // No user is signed in.
         }
@@ -142,10 +137,8 @@ function findMatch(){
         //when the queue is empty, create a new queue and listen to it.
         var ifAllQueueFull = 1;
         if(snapshot.numChildren() == 0){
-            console.log("EMPTY QUEUE!");
             var myRef = firebase.database().ref("livechat/queues").push();
             var key = myRef.key; //get the push-random-key for listening
-            console.log("key: ", key);
             myRef.set({
                 "participants": {
                     [currentUser.id]: {
@@ -158,11 +151,9 @@ function findMatch(){
                 },
             });
             firebase.database().ref("livechat/queues").child(key).on('value', (snapshot) =>{
-                console.log("sc:", snapshot.child("participants").numChildren()); 
                 if(snapshot.child("participants").numChildren()==2){
                     //read the other person's profile and match with him.
                     snapshot.child("participants").forEach(function(childSnapshot){
-                        console.log(childSnapshot.key);
                         if(childSnapshot.key!=currentUser.id){
                             //get the other person's user profile(that's not me)
                             var oUser = childSnapshot.val();
@@ -170,13 +161,10 @@ function findMatch(){
                             firebase.database().ref("livechat/queues").child(key).off();
                             //and match
                             //first, set UI as if the user is not on the queue
-                            console.log("toggle btn clicked");
                             document.getElementById('talkjs-container').style.display = 'block';
                             document.getElementById('matchBtn').style.display = 'block';
                             document.getElementById('chatGuide').style.display = 'block';
                             //then do stuff
-                            console.log("OTHER USER ENTERED THE QUERY!");
-                            console.log("You are matching with: ", oUser.email)
                             instantiateSession(oUser.id, oUser.name, oUser.email, oUser.photoURL, oUser.welcomeMessage);
                             document.getElementById("chatGuide").innerHTML = "Welcome to Triton Chat!"
                             document.getElementById("cancelBtn").style.display = "none"; 
@@ -228,14 +216,10 @@ function findMatch(){
                     //read the other's profile (once) and match
                     firebase.database().ref("livechat/queues/" + childSnapshot.key + "/participants/").once('value').then((snapshot) => {
                         snapshot.forEach(function(grandChildSnapshot){
-                            console.log(grandChildSnapshot.key);
                             if(grandChildSnapshot.key!=currentUser.id){
                                 //get the other person's user profile(that's not me)
                                 var oUser = grandChildSnapshot.val();
-                                console.log("YOU ENTERED AN EXISTING QUERY!");
-                                console.log("You are matching with: ", oUser.email)
                                 //first, set UI as if the user is not on the queue
-                                console.log("toggle btn clicked");
                                 document.getElementById('talkjs-container').style.display = 'block';
                                 document.getElementById('matchBtn').style.display = 'block';
                                 document.getElementById('chatGuide').style.display = 'block';
@@ -277,10 +261,8 @@ function findMatch(){
             //in JS, if statement is synchronous
             //if every queue is full, create new queue and listen to it  //line below gets executed after foreach is done since js trait
             if(ifAllQueueFull == 1){
-                console.log("EVERY QUEUE IS FULL. CREATING NEW QUEUE");
                 var myRef = firebase.database().ref("livechat/queues").push();
                 var key = myRef.key; //get the push-random-key for listening
-                console.log("key: ", key);
                 myRef.set({
                     "participants": {
                         [currentUser.id]: {
@@ -293,21 +275,15 @@ function findMatch(){
                     },
                 });
                 firebase.database().ref("livechat/queues").child(key).on('value', (snapshot) =>{
-                    console.log("sc:", snapshot.child("participants").numChildren()); 
                     if(snapshot.child("participants").numChildren()==2){
                         //read the other person's profile and match with him.
                         snapshot.child("participants").forEach(function(childSnapshot){
-                            console.log(childSnapshot.key);
                             if(childSnapshot.key!=currentUser.id){
                                 //get the other person's user profile(that's not me)
                                 var oUser = childSnapshot.val();
                                 //detach eventlistener
                                 firebase.database().ref("livechat/queues").child(key).off();
-                                //and match
-                                console.log("OTHER USER ENTERED THE QUERY!");
-                                console.log("You are matching with: ", oUser.email)
                                 //first, set UI as if the user is not on the queue
-                                console.log("toggle btn clicked");
                                 document.getElementById('talkjs-container').style.display = 'block';
                                 document.getElementById('matchBtn').style.display = 'block';
                                 document.getElementById('chatGuide').style.display = 'block';
@@ -364,7 +340,6 @@ function dequeueMatch(){
                     //if the only participant's ID is same as my ID, remove the queue room
                     if(grandChildSnapshot.key==currentUser.id){
                         //remove the queue
-                        console.log("key: ", childSnapshot.key);
                         firebase.database().ref("livechat/queues/"+childSnapshot.key).remove();
                         document.getElementById("loadingIcon").style.display = "none"; 
                         document.getElementById("chatGuide").innerHTML = "Welcome To Triton Chat!"; 
@@ -399,7 +374,6 @@ function getClaimByName(Name){
 function toggleChatContainer(){
     if(document.getElementById('talkjs-container').style.display == 'none'){
         //first, set UI as if the user is not on the queue
-        console.log("toggle btn clicked");
         document.getElementById('talkjs-container').style.display = 'block';
         document.getElementById('matchBtn').style.display = 'block';
         document.getElementById('chatGuide').style.display = 'block';
@@ -412,7 +386,6 @@ function toggleChatContainer(){
                         //if the only participant's ID is same as my ID, ctivate loadingIcon and cancel button
                         if(grandChildSnapshot.key==currentUser.id){
                             //activate loadingIcon and cancel button
-                            console.log("there is my queue going on")
                             document.getElementById('talkjs-container').style.display = 'block';
                             document.getElementById('chatGuide').style.display = 'block';
                             document.getElementById('loadingIcon').style.display = 'flex';
@@ -432,11 +405,5 @@ function toggleChatContainer(){
     }
 }
 setCurrentUserObj();
-// initiateDefaultPopupSession();
 initiateDefaultSession();
-// instantiateSession();
 
-//when user opens up, in default, inbox should appear : click the button programactically (didnt work...)
-//match and unmatch buttons. and welcome message or on qeuue message 
-
-//aftre mathing there is cancel button. change it to new matching

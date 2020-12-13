@@ -1,5 +1,4 @@
 function sendFeedbackVerifed(){
-    console.log("sendFeedbackVerifed() called!");
     sendFeedbackVerifedHelper(document.getElementById("email").value, 
         document.getElementById("fullname").value, 
         document.getElementById("Issue_type").value, 
@@ -7,7 +6,6 @@ function sendFeedbackVerifed(){
         Date(Date.now()).toString());
     document.getElementById("Issue_type").value='';
     document.getElementById("explanation").value='';
-    console.log("Output clear");
     alert("Successfully submitted! Thank you for your feedback!");
 }
 
@@ -29,7 +27,6 @@ const sendFeedbackVerifedHelper = (email, fullname, issue_type, explanation,
 }
 
 function sendFeedbackUnverifed(){
-    console.log("sendFeedbackUnverifed() called!");
     sendFeedbackUnverifedHelper(document.getElementById("email").value, 
         document.getElementById("fullname").value, 
         document.getElementById("Issue_type").value, 
@@ -39,7 +36,6 @@ function sendFeedbackUnverifed(){
     document.getElementById("fullname").value='';
     document.getElementById("Issue_type").value='';
     document.getElementById("explanation").value='';
-    console.log("Output clear")
     alert("Successfully submitted! Thank you for your feedback!");
 }
 

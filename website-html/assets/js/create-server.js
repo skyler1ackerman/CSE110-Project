@@ -18,7 +18,6 @@ const setClassServerRequest = (user_email, class_name, invite_URL, prof_Name, qu
 }
 
 async function resetAddClass() {
-    console.log("resetAddClass() called :)");
     document.getElementById("invitelink").value = '';
     document.getElementById("professor").value = '';
     document.getElementById("quarter").value = '';
@@ -28,9 +27,6 @@ async function resetAddClass() {
 // we want to check if the community already exists in the database
 // we do this by comparing community name
 function submitClass() {
-
-    console.log(localStorage.getItem("classinput"));
-    console.log(localStorage.getItem("user-email"));
     //field variables
     var user_email = localStorage.getItem("user-email");
     var class_name = localStorage.getItem("classinput");
@@ -39,7 +35,6 @@ function submitClass() {
     var quarter = document.getElementById("quarter").value;
     var year = document.getElementById("year").value;
 
-    console.log(invite_URL);
     //check if filled out then populate array
     if ([invite_URL, prof_Name, quarter, year].every(Boolean)) {
         //if not in database submit, else raise alert

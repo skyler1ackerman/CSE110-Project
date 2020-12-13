@@ -1,5 +1,4 @@
 function searchbarClassSelected() {
-    //console.log("searchbarClassSelected() called");
     document.getElementById("clubSearchBar").style.display = "none";
     document.getElementById("classSearchBar").style.display = "block";
 }

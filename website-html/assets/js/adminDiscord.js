@@ -139,7 +139,6 @@ function retrieveCommunitiesRequests() {
 
 }
 function retrieveDiscordRequests() {
-    console.log("retrieveDiscordRequests() called :)");
     let discordRequestsElement = document.querySelector('#discordRequests')
     var discordRequestsRef = "DiscordServerRequests/Classes";
     getClassRequestSnapshot(discordRequestsRef).then(snapshot=> {

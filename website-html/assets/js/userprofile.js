@@ -79,11 +79,7 @@ const saveUserProfile = (uid, courses, major, email, name) => {
 function updatePage() {
     // used user id as key in order to recover saved user data
     usernameKey = currentUser.id;
-
-    // get stuff from db, with request to backend
-    getUserName(usernameKey).then(snapshot => {
-        console.log(snapshot);
-    });
+    
     getUserMajor(usernameKey).then(snapshot => {
         userMajor = snapshot;
         if (userMajor == null) {
@@ -92,7 +88,6 @@ function updatePage() {
             // fill in the major textbox 
             document.getElementById("inputMajors").value = userMajor;
         }
-        console.log(snapshot);
     });
     getUserClasses(usernameKey).then(snapshot => {
         courseArray = snapshot;
@@ -112,7 +107,6 @@ function updatePage() {
                 document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
             }
         }
-        console.log(snapshot);
     });
     
     document.getElementById("fullname").value = currentUser.name;
@@ -138,14 +132,12 @@ function addCourse() {
     document.getElementById("saveErr").innerHTML = "";
     //check if user input is valid
     if(classesArr.includes(currentCourse) && currentCourse !== ""){
-        //console.log("good add");
     }
     else{
         //alert("The class you entered is not in our Database.");
         document.getElementById("inputClassesErr").innerHTML = "The class you entered is not in our database.";
         return false;
     }
-    //console.log("Add " +  currentCourse);
     var i;
     for (i of courseArray) {
         if(i == currentCourse){
@@ -160,7 +152,6 @@ function addCourse() {
     document.getElementById("courseListToSave").value = "";
     for (i of courseArray) {
         document.getElementById("courseListToSave").value = document.getElementById("courseListToSave").value + i + "\n";
-        //console.log(i);
     }
 
 }
@@ -170,11 +161,9 @@ function setMajor() {
     var currentMajor = document.getElementById("inputMajors").value;
     // check if user input is valid major, allowing empty major
     if(majorsArr.includes(currentMajor) || currentMajor === ""){
-        //console.log("good add");
         userMajor = currentMajor;
         //alert("The major you entered will be saved.");
         document.getElementById("inputMajorsErr").style.color = "green"; 
-        console.log("Major saved!");
         document.getElementById("inputMajorsErr").innerHTML = "";
     }
     else{
@@ -195,7 +184,6 @@ function updateProfile(){
     saveUserProfile(currentUser.id, courses, userMajor, currentUser.email, currentUser.name);
     //alert("Enrolled courses saved!")
     document.getElementById("saveErr").style.color = "green";
-    console.log("Enrolled courses saved!");
     document.getElementById("saveErr").innerHTML = "Your changes have been saved.";
     document.getElementById("inputClasses").value = "";
     document.getElementById("inputClassesErr").innerHTML = "";
@@ -203,9 +191,6 @@ function updateProfile(){
 }
 // clear is not meant to update db, only the list visible on page
 function clearList(){
-    //console.log("clear ");
-    //console.log(courseArray.toString());
-
     document.getElementById("courseListToSave").value = "";
     document.getElementById("saveErr").innerHTML = "";
     document.getElementById("inputMajorsErr").innerHTML = "";

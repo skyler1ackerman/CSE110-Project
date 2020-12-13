@@ -32,7 +32,6 @@ const setCommunity = (contacEmail, category, serverName, desc, link, type, socia
 getClubSnapshot();
 
 function resetAddCommunity() {
-    console.log("resetAddCommunity() called :)");
     document.getElementById("serverName").value = '';
     document.getElementById("comCategory").value = '';
     document.getElementById("discordLink").value = '';
@@ -44,23 +43,8 @@ function resetAddCommunity() {
 
 // Get all the class names and populat clubsArr
 function getClubSnapshot() {
-    console.log("getClassSnapshot() called :)");
-    // TODO: check the child tree (do the names match?)
-
-    // getCommunityName().then(snapshot => {
-    //     console.log(snapshot);
-    //     snapshot.forEach(function (childSnapshot) {
-    //         childSnapshot.forEach(function (child2Snapshot) {
-    //             var clubName = child2Snapshot.key;
-    //             clubsArr.push(clubName);
-    //         });
-    //     });
-    // });
-
     getCommunityName().then(snapshot => {
-        // console.log(snapshot);
         Object.keys(snapshot).forEach(function (club_category) {
-            // console.log(snapshot[club_category]);
             Object.keys(snapshot[club_category]).forEach(function (club_name) {
                 var clubName = club_name;
                 clubsArr.push(clubName);

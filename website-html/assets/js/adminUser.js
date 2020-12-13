@@ -1,5 +1,4 @@
 const setAdminEmail = () => {
-    console.log("setAdminEmail() called!");
     getAdminEmail(document.getElementById("Admin_Email").value);
     document.getElementById("Admin_Email").value='';
     retrieveAdminUser()
@@ -40,7 +39,6 @@ const removeData =(reference,id)=>{
 
 }
 function retrieveAdminUser() {
-    console.log("retrieveAdminUser called :)");
     let AdminUserElement = document.querySelector('#AdminUsers')
     var adminSnapshot;
 
@@ -81,6 +79,5 @@ function retrieveAdminUser() {
 
         };
     });
-    console.log("admin appended");
 }
 retrieveAdminUser();

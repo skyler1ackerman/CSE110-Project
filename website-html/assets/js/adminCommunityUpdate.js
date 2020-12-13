@@ -138,8 +138,6 @@ function retrieveCommunitiesUpdates() {
             communityUpdatesElement.append(newCommunityUpdateBoxElement);
         });
     });
-
-    console.log("communityUpdateArr:! ", CommunitiesUpdateArr);
 }
 
 function updateCommunitiesInfotoDBFromAdminPage(

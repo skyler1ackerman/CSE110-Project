@@ -1,12 +1,5 @@
-function testFunction() {
-  console.log("test called :)");
-  const email = "yoryu@ucsd.edu"
-  console.log(email.substr(email.length - 9)); //Outputs: Tabs1    
-}
-
- function signInFunction() {
+function signInFunction() {
     //doc: https://firebase.google.com/docs/auth/web/google-signin#before_you_begin
-    console.log("signInFunction called :)");
     //initialize firebase app only if there isn't any...
     var provider = new firebase.auth.GoogleAuthProvider();
     //without this, google auth keeps logging in automatically without account selection option
@@ -18,17 +11,10 @@ function testFunction() {
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      console.log(user);
-      console.log(user.displayName);
-      console.log(user.email);
-      console.log(user.photoURL);
       //check if the email ends with @ucsd.edu
-      console.log(user.email.substr(user.email.length - 9));
       if(user.email.substr(user.email.length - 9) != "@ucsd.edu"){
-        console.log("Not a UCSD email!");
         //if not ucsd email, sign out
         firebase.auth().signOut().then(function() {
-          console.log("signout successful!");   
           showLoginAlert();
         }).catch(function(error) {
           console.log("signout error!");
@@ -37,12 +23,8 @@ function testFunction() {
       else{
         //save user info to local storage to use in it feedback form
             localStorage.setItem("user-email", user.email); //save data to local storage cause we dont wanna use php lmao
-            console.log(user.email, "saved to local storage");
             localStorage.setItem("user-displayname", user.displayName);
-            console.log(user.displayName, "saved to local storage");
             localStorage.setItem("user-profileimgurl", user.photoURL);
-            console.log(user.photoURL, "saved to local storage");
-            console.log("signin successful!");
             window.location.href = "afterlogin.html";
       }
     }).catch(function(error) {
@@ -57,7 +39,6 @@ function testFunction() {
     });
 }
  function signOutFunction() {
-     console.log("signOutFunction called :)");
     var answer = true;
     if (answer) {
    
@@ -67,11 +48,10 @@ function testFunction() {
         localStorage.removeItem("user-email"); 
         localStorage.removeItem("user-displayname"); 
         localStorage.removeItem("user-profileimgurl"); 
-        console.log("signout successful");
         window.location.href = "index.html";
     }).catch(function(error) {
-      // An error happened.
-      console.log("signout error!");
+        // An error happened.
+        console.log("signout error!");
      });
     }
 }

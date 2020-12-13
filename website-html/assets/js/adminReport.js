@@ -44,8 +44,6 @@ const removeData =(reference,id)=>{
 }
 
 function retrieveReportCommunity() {
-    console.log("retrieveReportCommunity() called :)");
-
     let reportCommunityElement = document.querySelector('#reportCommunity');
     var ResolvedRef="Report/ResolvedCommunity";
     var refCommunity = "Report/Community";
@@ -128,7 +126,6 @@ function retrieveReportCommunity() {
 }
 
 function retrieveResolvedCommunity() {
-    console.log("retrieveResolvedCommunity() called :)");
     var ref="Report/ResolvedCommunity";
     var UnresolvedRef = "Report/Community";
     let resolvedCommunityElement = document.querySelector('#resolvedCommunity')
@@ -220,7 +217,6 @@ function retrieveResolvedCommunity() {
 }
 
 function retrieveReportClass() {
-    console.log("retrieveReportClass() called :)");
     var ResolvedRef="Report/ResolvedClass";
     var ref = "Report/Class";
     let reportClassElement = document.querySelector('#reportClass')
@@ -304,7 +300,6 @@ function retrieveReportClass() {
 }
 
 function retrieveResolvedClass() {
-    console.log("retrieveResolvedClass() called :)");
     var ref="Report/ResolvedClass";
     var UnresolvedRef = "Report/Class";
     let resolvedClassElement = document.querySelector('#resolvedClass')
@@ -394,8 +389,7 @@ function retrieveResolvedClass() {
 }
 
 function reportCommunitySelected(){
-    retrieveReportCommunity()
-    console.log("reportCommunitySelected() called");
+    retrieveReportCommunity();
     document.getElementById("reportClass").style.display = "none";
     document.getElementById("reportCommunity").style.display = "block";
     document.getElementById("resolvedClass").style.display = "none";
@@ -403,8 +397,7 @@ function reportCommunitySelected(){
 }
 
 function reportClassSelected(){
-    retrieveReportClass()
-    console.log("reportClassSelected() called");
+    retrieveReportClass();
     document.getElementById("reportClass").style.display = "block";;
     document.getElementById("reportCommunity").style.display = "none";
     document.getElementById("resolvedClass").style.display = "none";
@@ -413,8 +406,7 @@ function reportClassSelected(){
 }
 
 function resolvedCommunitySelected(){
-    retrieveResolvedCommunity()
-    console.log("ResolvedCommunitySelected() called");
+    retrieveResolvedCommunity();
     document.getElementById("reportClass").style.display = "none";
     document.getElementById("reportCommunity").style.display = "none";
     document.getElementById("resolvedClass").style.display = "none";
@@ -422,16 +414,13 @@ function resolvedCommunitySelected(){
 }
 
 function resolvedClassSelected(){
-    retrieveResolvedClass()
-    console.log("ResolvedClassSelected() called");
+    retrieveResolvedClass();
     document.getElementById("reportClass").style.display = "none";
     document.getElementById("reportCommunity").style.display = "none";
     document.getElementById("resolvedClass").style.display = "block";
     document.getElementById("resolvedCommunity").style.display = "none";
 
 }
-
-
 
 retrieveReportCommunity()
 

@@ -16,8 +16,6 @@ const setNewReport = (reportRef, community_or_class_name, discord_link, report_c
 }
 
 async function submitReport() {
-    console.log("submitCommunityReport() called!");
-
     let server_type = localStorage.getItem('isCommunitySelected') === "True" ? 'Community' : 'Class';
     var reportRef = `Report/${server_type}`;
 
