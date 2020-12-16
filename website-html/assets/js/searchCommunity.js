@@ -14,7 +14,7 @@ const getCommunitySnap = () => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getCommunitySnapshot', config)
+    return fetch('http://18.237.22.223:8000/getCommunitySnapshot', config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
@@ -70,7 +70,7 @@ const getCommunity = (communityName) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getCommunity?name=' + communityName, config)
+    return fetch('http://18.237.22.223:8000/getCommunity?name=' + communityName, config)
         .then(response => response.text())
         .catch(error => console.log(error));
 }
@@ -160,7 +160,7 @@ const getCommunityByCat = (category) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getCommunityByCat?category=' + category, config)
+    return fetch('http://18.237.22.223:8000/getCommunityByCat?category=' + category, config)
         .then(response => response.text())
         .catch(error => console.log(error));
 }

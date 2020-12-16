@@ -6,7 +6,7 @@ const getCommunityName = () => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getCommunityName', config)
+    return fetch('http://18.237.22.223:8000/getCommunityName', config)
     .then(response => response.json())
     .catch(error => console.log(error));
 }
@@ -25,7 +25,7 @@ const setCommunity = (contacEmail, category, serverName, desc, link, type, socia
             socialMedia
         })
     };
-    fetch('http://localhost:8000/setCommunityRequest', config)
+    fetch('http://18.237.22.223:8000/setCommunityRequest', config)
     .catch(error => console.log(error));
 }
 

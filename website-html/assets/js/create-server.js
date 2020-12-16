@@ -13,7 +13,7 @@ const setClassServerRequest = (user_email, class_name, invite_URL, prof_Name, qu
             year
         })
     };
-    fetch('http://localhost:8000/setClassServerRequest', config)
+    fetch('http://18.237.22.223:8000/setClassServerRequest', config)
     .catch(error => console.log(error));
 }
 

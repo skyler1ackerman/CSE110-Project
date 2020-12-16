@@ -35,7 +35,7 @@ const getUserName = (uid) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getUserName?uid=' + uid, config)
+    return fetch('http://18.237.22.223:8000/getUserName?uid=' + uid, config)
     .then(response => response.text())
     .catch(error => console.log(error));
 }
@@ -45,7 +45,7 @@ const getUserMajor = (uid) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getUserMajor?uid=' + uid, config)
+    return fetch('http://18.237.22.223:8000/getUserMajor?uid=' + uid, config)
     .then(response => response.text())
     .catch(error => console.log(error));
 }
@@ -55,7 +55,7 @@ const getUserClasses = (uid) => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getUserClasses?uid=' + uid, config)
+    return fetch('http://18.237.22.223:8000/getUserClasses?uid=' + uid, config)
     .then(response => response.text())
     .catch(error => console.log(error));
 }
@@ -72,7 +72,7 @@ const saveUserProfile = (uid, courses, major, email, name) => {
             name
         })
     };
-    fetch('http://localhost:8000/saveUserProfile', config)
+    fetch('http://18.237.22.223:8000/saveUserProfile', config)
     .catch(error => console.log(error));
 }
 

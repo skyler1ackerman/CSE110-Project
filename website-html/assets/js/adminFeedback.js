@@ -3,7 +3,7 @@ const getFeedbackSnapshot=(path)=>{
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getFeedbackSnapshot?path=' + path, config)
+    return fetch('http://18.237.22.223:8000/getFeedbackSnapshot?path=' + path, config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
@@ -25,7 +25,7 @@ const moveFeedback =(from,to,id,email,fullname,issue_type,explanation,time)=>{
             time
         })
     };
-    fetch('http://localhost:8000/moveFeedback',config)
+    fetch('http://18.237.22.223:8000/moveFeedback',config)
         .catch(error => console.log(error));
 
 }
@@ -39,7 +39,7 @@ const removeData =(reference,id)=>{
             id
         })
     };
-    fetch('http://localhost:8000/removeData',config)
+    fetch('http://18.237.22.223:8000/removeData',config)
         .catch(error => console.log(error));
 
 }

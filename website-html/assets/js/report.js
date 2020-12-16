@@ -11,7 +11,7 @@ const setNewReport = (reportRef, community_or_class_name, discord_link, report_c
             report_reason
         })
     };
-    fetch('http://localhost:8000/setNewReport', config)
+    fetch('http://18.237.22.223:8000/setNewReport', config)
     .catch(error => console.log(error));
 }
 

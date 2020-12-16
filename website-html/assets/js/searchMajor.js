@@ -11,7 +11,7 @@ const getMajorSnapshotHelper = () => {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    return fetch('http://localhost:8000/getMajorSnapshot', config)
+    return fetch('http://18.237.22.223:8000/getMajorSnapshot', config)
         .then(response => response.json())
         .catch(error => console.log(error));
 }
